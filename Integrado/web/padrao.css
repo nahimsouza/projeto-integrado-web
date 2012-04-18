@@ -15,6 +15,7 @@
 div.cabecalho{
     position: absolute;
     background-color: lightgreen;
+    margin: 0;
     height:130px;
     width:100%;
 }
@@ -41,8 +42,38 @@ div.menu{
     margin-left: 0;
     margin-bottom: 700px;
     margin-right: 200px;
-    height: 700px;
+    height: 70%;
     width: 200px;
+    border: 1px solid;
+}
+
+/* Declara a formatação da div conteudo*/
+div.conteudo{
+    position: absolute;
+    background-color: RGB(176,247,182); /*verde claro*/
+    color: black;
+    margin-top: 130px;
+    margin-left: 200px;
+    margin-bottom: 700px;
+    margin-right: 100%;
+    height: 70%;
+    width: 80%;
+    border: 1px solid;
+    /*padding: 10px;
+    padding-left: 100px;*/   
+}
+
+/* Declara a formatação da div rodape*/
+div.rodape{
+    position: absolute;
+    background-color: lightgreen;
+    color: tan;
+    margin-top:90%;
+    margin-left: 0;
+    margin-bottom: 0;
+    margin-right: 0;
+    height: 10%;
+    width: 100%
 }
 
 /* Declara a formatação da lista */
@@ -87,30 +118,4 @@ div.menu li ul li:hover a{
 div.menu li ul a{
     position: absolute;
     display: none;
-}
-
-/* Declara a formatação da div conteudo*/
-div.conteudo{
-    position: absolute;
-    background-color: RGB(176,247,182); /*verde claro*/
-    color: black;
-    margin-top: 130px;
-    margin-left: 202px;
-    margin-bottom: 700px;
-    margin-right: 0;
-    height: 700px;
-    width: 85%;
-}
-
-/* Declara a formatação da div rodape*/
-div.rodape{
-    position: absolute;
-    background-color: lightgreen;
-    color: tan;
-    margin-top:90%;
-    margin-left: 0;
-    margin-bottom: 0;
-    margin-right: 0;
-    height: 10%;
-    width: 100%
 }
