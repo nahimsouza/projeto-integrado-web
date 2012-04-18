@@ -40,6 +40,7 @@ div.menu{
     right: 20%;
     height: 80%;
     width: 20%;
+    border-top: 1px solid green;
 }
 
 /* Declara a formatação da div conteudo*/
@@ -53,6 +54,7 @@ div.conteudo{
     right: 80%;
     height: 80%;
     width: 80%;
+    border-top: 1px solid green;
     /*padding: 10px;
     padding-left: 100px;*/   
 }
@@ -60,8 +62,6 @@ div.conteudo{
 /* Declara a formatação da lista */
 div.menu ul{
     list-style: none;
-    border-bottom: 2px solid;
-    width: 80%;
     
 }
 
@@ -69,11 +69,12 @@ div.menu ul{
 div.menu ul li{
     border: 2px solid;
     background-color: white;
-    border-bottom: 0;
+    width: 80%;
 }
 div.menu ul a{
     text-decoration: none;
     color: green;
+    
 }
 
 div.menu li:hover a{
@@ -84,14 +85,14 @@ div.menu li:hover a{
 }
 
 div.menu li ul li{
-    position: relative;
+    position: absolute;
     display: block;
     background-color: white;
     color: green;
 }
 
 div.menu li ul li:hover a{
-    position: relative;
+    position: absolute;
     display: block;
     background-color: white;
     color: green;
