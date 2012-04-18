@@ -21,3 +21,24 @@ function helpText(messageNum)
             {
                 document.getElementById("tip").innerHTML = helpArray[messageNum];
             }
+
+function login(){
+    var login, senha;
+     login = document.getElementById("email").value;
+     senha = document.getElementById("senha").value;
+    
+    if(login == "colaborador"){
+        if(senha == "senha"){
+            alert("Bem vindo Colaborador!");
+            //red
+        }
+    }else if(login == "adm"){
+        if(senha == "adm"){
+            alert("Bem vindo ADM!");
+            //red
+        }
+     }else
+         alert("Usuario ou senha inválido!");
+        
+     document.getElementById("senha").value = "";
+}
