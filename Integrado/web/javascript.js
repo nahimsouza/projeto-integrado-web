@@ -33,15 +33,81 @@ function login(){
         if(login == "colaborador@email.com"){
             if(senha == "senha"){
                 alert("Bem vindo Colaborador!");
-                document.location = "/colaborador.html";
+                document.location = "colaborador.html";
             }
         }else if(login == "adm@adm.com.br"){
             if(senha == "adm"){
                 alert("Bem vindo ADM!");
-                document.location = "/adm.html";
+                document.location = "adm.html";
             }
         }else
             alert("Usuario ou senha inválido!");
     }
     document.getElementById("senha").value = "";
+}
+
+function abre(url){
+    alert("oi");
+    $("conteudo").load('http://9gag.com/');
+    alert("tchau");
+}
+
+ 
+ 
+
+ function load_content ( id, content ) {
+     content = "<html>" +
+    "<head> "+
+    "    <title></title>"+
+    "    <meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>"+
+    "</head>"+
+    "<body>"+
+    "    <p>"+
+    "        Nome: <input type='text' name='display' "+
+    "    </p>"+
+    "    <p>"+
+    "        Descrição: <input type='text' name='description'/>"+
+    "    </p>"+
+    "</body>"+
+"</html>";
+    var node = document.getElementById( id );
+    node.innerHTML = content;
+}
+
+
+function GetXMLHttp() {
+    if(navigator.appName == "Microsoft Internet Explorer") {
+        xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    else {
+        xmlHttp = new XMLHttpRequest();
+    }
+    return xmlHttp;
+}
+
+var xmlRequest = GetXMLHttp();
+
+function abrirPag(valor){
+    var url = valor;
+
+    xmlRequest.onreadystatechange = mudancaEstado;
+    xmlRequest.open("GET",url,true);
+    xmlRequest.send(null);
+
+    /*if (xmlRequest.readyState == 1) {
+        document.getElementById("conteudo_mostrar").innerHTML = "<img src='loader.gif'>";
+    }*/
+
+    return url;
+}
+
+function mudancaEstado(){
+    if (xmlRequest.readyState == 4){
+        document.getElementById("conteudo").innerHTML = xmlRequest.responseText;
+    }
+}
+
+
+function hello(){
+    document.getElementById("dc").value = document.getElementById("dp").value;
 }
