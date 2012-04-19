@@ -2,6 +2,18 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
+function ltrim(texto) {
+    return texto.replace(/^[ ]+/, '');
+}
+
+function rtrim(texto) {
+    return texto.replace(/[ ]+$/, '');
+}
+
+function trim(texto) {
+    return ltrim(rtrim(texto));
+}
+
 var helpArray = 
 ["Faz a consulta da entidade que você quer procurar", // element 0
 "Escreva aqui o nome ao qual gostaria de ser chamado. ", // element 1
@@ -115,24 +127,32 @@ function inserirUsuario(){
     var erMail, erNome, erSenha;
     erMail = /^[\w]+@[\w]+\.[\w]{2,4}\b(\.[\w]+)?\b$/;
     erNome = /^[\w]+$/;
-    erSenha = /^$/;
+    erSenha = /^.+$/;
     
     var nome, email, senha, rsenha;
     
-    nome = document.getElementById("nome").value;
-    email = document.getElementById("cemail").value;
-    senha = document.getElementById("pass").value;
-    rsenha = document.getElementById("rpass").value;
+    nome = trim(document.getElementById("nome").value);
+    email = trim(document.getElementById("cemail").value);
+    senha = trim(document.getElementById("pass").value);
+    rsenha = trim(document.getElementById("rpass").value);
 
-    if(!erNome.test(nome))
+    if(nome.match(erNome)==null){
         alert("Nome inválido!");
-    else if(!erMail.test(email))
+        return false;
+    }
+    else if(email.match(erMail)==null){
         alert("Email inválido!");
-    else if(erSenha.test(senha) && senha != rsenha){
+        return false;
+    }   
+    else if(senha.match(erSenha) == null){
         alert("Senhas inválidas!");
         return false;
+    }
+    else if(rsenha != senha ){
+        alert("As senhas não coincidem!");
+        return false;
     }else
-        alert("Cadastro solicitado com sucesso!");
+        return alert("Cadastro solicitado com sucesso!");
     
     
 }
