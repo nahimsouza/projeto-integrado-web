@@ -117,3 +117,11 @@ function inserirCategoria(){
 function inserirTipo(){
     alert("Tipo inserido com sucesso!");
 }
+
+function verDados(){
+    var erEmail = /^\w+@\w+\.\w{2,4}\b(\.\w+)?\b$/;
+    var erNome = /^[\a]+$/;
+    
+    if(!erNome.test(nome))
+        alert("Nome inválido!");
+}
