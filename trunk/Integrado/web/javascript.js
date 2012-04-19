@@ -186,7 +186,7 @@ function buscaSimples(){
         +"<td>music,common</td>"
         +"<td>/common/topic, /music/single </td>"
         +"<td><input type='button' value='Delete' onclick='deleteRow(this.parentNode.parentNode.rowIndex)'></td>"
-        +"<td><input type='button' value='Alterar' onclick=''></td>"
+        +"<td><input type='button' value='Alterar'></td>"
         +"</tr>"
         +"<tr>"
         +"<td>Music to See</td>"
@@ -195,6 +195,7 @@ function buscaSimples(){
         +"<td>tv,common</td>"
         +"<td>/tv/tv_program,/common/topic</td>"
         +"<td><input type='button' value='Delete' onclick='deleteRow(this.parentNode.parentNode.rowIndex)'></td>"
+        +"<td><input type='button' value='Alterar'></td>"
         +"</tr>"
         +"<tr>"
         +"<td>Electronic Music Laboratories</td>"
@@ -203,6 +204,7 @@ function buscaSimples(){
         +"<td>common</td>"
         +"<td>/common/topic</td>"
         +"<td><input type='button' value='Delete' onclick='deleteRow(this.parentNode.parentNode.rowIndex)'></td>"
+        +"<td><input type='button' value='Alterar'></td>"
         +"</tr>"
         +"</table>"
         +"</body>"
@@ -223,3 +225,123 @@ function deleteRow(i){
     document.getElementById('myTable').deleteRow(i)
 }
 
+
+
+function buscaUsuario(){
+    var palavra;
+        palavra = document.getElementById("palavra").value;
+    var pal = document.getElementById("resultado");
+
+    var html = "<html>" 
+        + "<head>"
+        + "<script type = 'text/javascript' src='javascript.js'></script>"
+        + "</head>"
+        + "<body>"
+        + "<table id='myTable' border='1'>"
+        + "<tr>"
+        +"<td>Nome</td>"
+        +"<td>Email</td>"
+        
+    
+        +"</tr>"
+        +"<tr>"
+        +"<td> Nahim Alves de Souza</td>"
+        +"<td> nahimsouza@yahoo.com.br </td>"
+        +"<td><input type='button' value='Delete' onclick='deleteRow(this.parentNode.parentNode.rowIndex)'></td>"
+        +"</tr>"
+        +"<tr>"
+        +"<td>Francisco Guiraldelli</td>"
+        +"<td> francisco.guiraldelli@gmail.com </td>"
+        +"<td><input type='button' value='Delete' onclick='deleteRow(this.parentNode.parentNode.rowIndex)'></td>"
+        +"</tr>"
+        +"<tr>"
+        +"<td>Erico Alexandre Nielsen Matthiesen</td>"
+        +"<td>erico.matt@gmail.com</td>"
+        +"<td><input type='button' value='Delete' onclick='deleteRow(this.parentNode.parentNode.rowIndex)'></td>"
+        +"</tr>"
+        +"</table>"
+        +"</body>"
+        +"</html>";
+    
+    var html2 = "<html>" 
+        + "<head>"
+        + "<script type = 'text/javascript' src='javascript.js'></script>"
+        + "</head>"
+        + "<body>"
+        + "<table id='myTable' border='1'>"
+        + "<tr>"
+        +"<td>Nome</td>"
+        +"<td>Email</td>"
+        +"</tr>"
+        +"<tr>"
+        +"<td>Erico Alexandre Nielsen Matthiesen</td>"
+        +"<td>erico.matt@gmail.com</td>"
+        +"<td><input type='button' value='Delete' onclick='deleteRow(this.parentNode.parentNode.rowIndex)'></td>"
+        +"</tr>"
+        +"</table>"
+        +"</body>"
+        +"</html>";
+ 
+    
+    if(palavra == "Erico" ){
+        pal.innerHTML=html2;
+    }else{
+        pal.innerHTML=html;
+    }
+
+}
+
+
+function buscaAvancada(){
+    var tipoP, tipoNP;
+        
+        tipoP = document.getElementById("tipoP").value;
+        tipoNP = document.getElementById("tipoNP").value;
+        
+    var pal = document.getElementById("resultadoAvancado");
+
+    
+    var html = "<html>" 
+        + "<head>"
+        + "<script type = 'text/javascript' src='javascript.js'></script>"
+        + "</head>"
+        + "<body>"
+        +"<p> 3 Entidades encontradas </p>"
+        + "<table id='myTable' border='1'>"
+        + "<tr>"
+        +"<td>Display Name</td>"
+        +"<td>Tipo</td>"
+    
+        +"</tr>"
+        +"<tr>"
+        +"<td>The Sound of Music</td>"
+        +"<td>/common/topic, /music/single </td>"
+        +"<td><input type='button' value='Delete' onclick='deleteRow(this.parentNode.parentNode.rowIndex)'></td>"
+        +"<td><input type='button' value='Alterar'></td>"
+        +"</tr>"
+        
+        +"<tr>"
+        +"<td>Music to See</td>"
+        +"<td>/tv/tv_program,/common/topic</td>"
+        +"<td><input type='button' value='Delete' onclick='deleteRow(this.parentNode.parentNode.rowIndex)'></td>"
+        +"<td><input type='button' value='Alterar'></td>"
+        +"</tr>"
+        
+        +"<tr>"
+        +"<td>Electronic Music Laboratories</td>"      
+        +"<td>/common/topic</td>"
+        +"<td><input type='button' value='Delete' onclick='deleteRow(this.parentNode.parentNode.rowIndex)'></td>"
+        +"<td><input type='button' value='Alterar'></td>"
+        +"</tr>"
+        +"</table>"
+        +"</body>"
+        +"</html>";
+    
+ 
+    if(tipoP == "music" && tipoNP == "history"){
+        pal.innerHTML=html;
+    }else{
+        pal.innerHTML="Nenhum resultado encontrado.";
+    }
+
+}
