@@ -9,14 +9,14 @@ and open the template in the editor.
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     </head>
     <body>
-        <div>
-            
-                <form>
+        <form>
+            <p>
                 <label> Nome da entidade: 
                     <input type="text" size="30" maxlength="60"/>
                 </label>
-                <p>
-                    <label> Pertence ao tipo:
+            </p>
+            <p>
+                <label> Pertence ao tipo:
                     <select id="tipoP"> 
                         <option> Selecione um tipo </option>
                         <option> Sports </option>
@@ -24,8 +24,8 @@ and open the template in the editor.
                         <option> Book </option>
                         <option> History </option>
                     </select>
-                    </label>
-                    <label> Não pertence ao tipo:
+                </label>
+                <label> Não pertence ao tipo:
                     <select id="tipoNP">
                         <option> Selecione um tipo </option>
                         <option> Sports </option>
@@ -33,16 +33,11 @@ and open the template in the editor.
                         <option> Book </option>
                         <option> History </option>
                     </select>
-                    </label>
-                
-                <p><input type="submit" name="busca" value="Buscar"/></p>
-                </p>
-                </form>
-                
-                    
-                    
+                </label>
             </p>
-           
-        </div>
+            <p>
+                <input type="button" name="busca" value="Buscar"/></p>
+
+        </form>
     </body>
 </html>

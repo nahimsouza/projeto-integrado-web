@@ -18,7 +18,7 @@ div.cabecalho{
     top: 0;
     left: 0;
     bottom: 20%;
-    right: 100%;
+    right: 80%;
     height:20%;
     width: 70%;
 }
@@ -32,7 +32,6 @@ div.cabecalho h1{
 /* Declara a formatação da div menu*/
 div.menu{
     position: absolute;
-    background-color: RGB(176,247,182); /*verde claro*/;
     color: green;
     top: 20%;
     left: 0;
@@ -40,21 +39,20 @@ div.menu{
     right: 20%;
     height: 80%;
     width: 20%;
-    border-top: 1px solid green;
 }
 
 /* Declara a formatação da div conteudo*/
 div.conteudo{
     position: absolute;
-    background-color: RGB(177,248,1); /*verde claro*/
     color: black;
     top: 20%;
     left: 20%;
     bottom: 80%;
     right: 80%;
-    height: 80%;
-    width: 80%;
-    border-top: 1px solid green;   
+    
+    width: 60%;
+    padding-top: 50px;
+    padding-left: 50px;
 }
 
 /* Declara a formatação da lista */
@@ -120,14 +118,21 @@ div.login{
     top: 0;
     right:0%;
     bottom: 20%;
-    height:20%;
+    height: 20%;
     width: 30%;
-
+    padding-left: 10px;
 }
-div.login h4{
+div.login label{
     padding-left: 1px;
     font-size:20px;
-    color: white
-    
-    
+    color: white;
+}
+
+div.login a{
+    text-decoration: none;
+    color: white;
+}
+
+div.conteudo p{
+    text-align: center;
 }

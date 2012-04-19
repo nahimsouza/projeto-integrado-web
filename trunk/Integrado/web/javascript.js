@@ -108,6 +108,12 @@ function mudancaEstado(){
 }
 
 
-function hello(){
-    document.getElementById("dc").value = document.getElementById("dp").value;
+function inserirEntidade(){
+    alert("Entidade inserida com sucesso!");
+}
+function inserirCategoria(){
+    alert("Categoria inserida com sucesso!");
+}
+function inserirTipo(){
+    alert("Tipo inserido com sucesso!");
 }
