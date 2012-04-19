@@ -7,6 +7,8 @@ and open the template in the editor.
     <head>
         <title></title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <script type = "text/javascript" src="javascript.js"></script>
+        <link rel="stylesheet" type="text/css" href="padrao.css"/>
     </head>
     <body>
         <form>
@@ -14,25 +16,28 @@ and open the template in the editor.
                 <label> Pertence ao tipo:
                     <select id="tipoP"> 
                         <option> Selecione um tipo </option>
-                        <option> Sports </option>
-                        <option> Music </option>
-                        <option> Book </option>
-                        <option> History </option>
+                        <option value="sports"> Sports </option>
+                        <option value="music"> Music </option>
+                        <option value="book"> Book </option>
+                        <option value="history"> History </option>
                     </select>
                 </label>
                 <label> Não pertence ao tipo:
                     <select id="tipoNP">
                         <option> Selecione um tipo </option>
-                        <option> Sports </option>
-                        <option> Music </option>
-                        <option> Book </option>
-                        <option> History </option>
+                        <option value="sports"> Sports </option>
+                        <option value="music"> Music </option>
+                        <option value="book"> Book </option>
+                        <option value="history"> History </option>
                     </select>
                 </label>
             </p>
             <p>
-                <input type="button" name="busca" value="Buscar"/></p>
-
+                <input type="button" name="busca" value="Buscar" onclick="buscaAvancada();"/></p>
+        
+            <div id="resultadoAvancado">
+        
+            </div>
         </form>
     </body>
 </html>
