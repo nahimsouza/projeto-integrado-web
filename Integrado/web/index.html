@@ -15,33 +15,37 @@ and open the template in the editor.
             <h1>
                 ChicoBase.com
             </h1>
-            <div id="user" class="user">
-                Bem-vindo Colaborador
-            </div>
         </div>
         <div id="login" class="login">
-            
-                <h4>
-                    <p>
-                        Email: <input type="text" id="email" size="30" maxlength="30" />
-                    </p>
-                    <p>
-                        Senha: <input type="password" id="senha" size="30" maxlength="30" />
-                        <input type="button" name="submeter" value="Entrar!" onclick="login()"/>
-                    </p>
-                </h4>
-            
+            <p>
+                <label>
+                    Email: 
+                </label>
+                <input type="text" id="email" size="30" maxlength="30" />
+            </p>
+            <p>
+                <label>
+                    Senha: 
+                </label>
+                <input type="password" id="senha" size="30" maxlength="30" />
+                <input type="button" name="submeter" value="Entrar!" onclick="login()"/>
+            </p>
+            <p align="center">
+                <a href="cadastro"> Criar conta. </a>
+            </p>
 
-    </div>
+
+
+        </div>
         <div id="menu" class="menu">
             <ul>
                 <li>
-                    <a href="javascript:" onclick="abrirPag('cadEntidade.html')" onmouseover="helpText(0)" onmouseout="helpText(12)">
+                    <a href="javascript:" onclick="abrirPag('buscaSimples.html')" onmouseover="helpText(0)" onmouseout="helpText(12)">
                         Consulta Simples
                     </a>
                 </li>
                 <li>
-                    <a href="javascript:" onclick="abrirPag('index.html')">
+                    <a href="javascript:" onclick="abrirPag('buscaAvancada.html')">
                         Consulta Avançada
                     </a>
                 </li>
