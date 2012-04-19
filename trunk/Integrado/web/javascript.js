@@ -118,10 +118,16 @@ function inserirTipo(){
     alert("Tipo inserido com sucesso!");
 }
 
-function verDados(){
+function inserirUsuario(){
     var erEmail = /^\w+@\w+\.\w{2,4}\b(\.\w+)?\b$/;
     var erNome = /^[\a]+$/;
     
+    nome = document.getElementById("nome").value;
+    email = document.getElementById("email").value;
+    
     if(!erNome.test(nome))
         alert("Nome inválido!");
+    
+    if(!erNome.test(email))
+        alert("Email inválido!");
 }
