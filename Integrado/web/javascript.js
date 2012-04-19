@@ -27,8 +27,8 @@ function login(){
     login = document.getElementById("email").value;
     senha = document.getElementById("senha").value;
      
-    erMail = /^\w+@\w+\.\w{2,4}\b(\.\w+)?\b$/
-    
+    erMail = /^\w+@\w+\.\w{2,4}\b(\.\w+)?\b$/;
+    vMail();
     if(erMail.test(login)){    
         if(login == "colaborador@email.com"){
             if(senha == "senha"){
@@ -45,13 +45,6 @@ function login(){
     }
     document.getElementById("senha").value = "";
 }
-
-function abre(url){
-    alert("oi");
-    $("conteudo").load('http://9gag.com/');
-    alert("tchau");
-}
-
  
  
 
@@ -119,15 +112,23 @@ function inserirTipo(){
 }
 
 function inserirUsuario(){
-    var erEmail = /^\w+@\w+\.\w{2,4}\b(\.\w+)?\b$/;
-    var erNome = /^[\a]+$/;
+    var erMail, erNome, erSenha;
+    erMail = /^[\w]+@[\w]+\.[\w]{2,4}\b(\.[\w]+)?\b$/;
+    erNome = /^[\w]+$/;
+    
+    var nome, email, senha, rsenha;
     
     nome = document.getElementById("nome").value;
-    email = document.getElementById("email").value;
-    
+    email = document.getElementById("cemail").value;
+    senha = document.getElementById("senha").value;
+    rsenha = document.getElementById("rsenha").value;
+
     if(!erNome.test(nome))
         alert("Nome inválido!");
-    
-    if(!erNome.test(email))
+    else if(!erMail.test(email))
         alert("Email inválido!");
+    else if(senha != "" && senha != rsenha)
+        alert("Senhas diferentes!");
+    else
+        alert("Cadastro solicitado com sucesso!");
 }
