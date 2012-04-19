@@ -12,16 +12,19 @@ and open the template in the editor.
     </head>
     <body>
     <p>
-        <label>Busca: </label><input type="text" size="30" maxlength="60"/>
-        <input type="button" name="busca" value="Buscar"/>
+        <label>Busca: </label><input type="text" size="30" maxlength="60" id="palavra"/>
+        <input type="button" name="busca" value="Buscar" onclick="buscaSimples();"/>
     </p>
    
     <p>
-            <input type="radio" name="tipoBusca" value="titulo" CHECKED/><label>Titulo</label>
+            <input type="radio" name="tipoBusca" value="titulo" CHECKED/><label>Entidade</label>
             <input type="radio" name="tipoBusca" value="tipo"/><label>Tipo</label>
             <input type="radio" name="tipoBusca" value="categoria"/><label>Categoria</label>
     </p>
     
+    <div id="resultado">
+        
+    </div>
     
     </body>
 </html>
