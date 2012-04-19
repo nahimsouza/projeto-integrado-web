@@ -98,7 +98,7 @@ function abrirPag(valor){
     xmlRequest.onreadystatechange = mudancaEstado;
     xmlRequest.open("GET",url,true);
     xmlRequest.send(null);
-
+    
     /*if (xmlRequest.readyState == 1) {
         document.getElementById("conteudo_mostrar").innerHTML = "<img src='loader.gif'>";
     }*/
@@ -156,3 +156,70 @@ function inserirUsuario(){
     
     
 }
+
+
+
+function buscaSimples(){
+    var palavra;
+        palavra = document.getElementById("palavra").value;
+    var pal = document.getElementById("resultado");
+
+    
+    var html = "<html>" 
+        + "<head>"
+        + "<script type = 'text/javascript' src='javascript.js'></script>"
+        + "</head>"
+        + "<body>"
+        + "<table id='myTable' border='1'>"
+        + "<tr>"
+        +"<td>Display Name</td>"
+        +"<td>Description</td>"
+        +"<td>Wikikeys</td>"
+        +"<td>Categoria</td>"
+        +"<td>Tipo</td>"
+    
+        +"</tr>"
+        +"<tr>"
+        +"<td>The Sound of Music</td>"
+        +"<td>...</td>"
+        +"<td>\n</td>"
+        +"<td>music,common</td>"
+        +"<td>/common/topic, /music/single </td>"
+        +"<td><input type='button' value='Delete' onclick='deleteRow(this.parentNode.parentNode.rowIndex)'></td>"
+        +"<td><input type='button' value='Alterar' onclick=''></td>"
+        +"</tr>"
+        +"<tr>"
+        +"<td>Music to See</td>"
+        +"<td>Music to See is a Canadian music educational television miniseries which aired on CBC Television in 1957.\nHelmut Blume presented this televised course on aspects of music such as electronic music, how opera is associated with drama and the conductor's role.\nOhio University presented Music to See with an award for educational broadcasting.\nThis half-hour series was broadcast Tuesdays at 10:30 p.m. (Eastern) from 3 September to 29 October 1957.</td>"
+        +"<td>/wikipedia/en_id/28377018</td>"
+        +"<td>tv,common</td>"
+        +"<td>/tv/tv_program,/common/topic</td>"
+        +"<td><input type='button' value='Delete' onclick='deleteRow(this.parentNode.parentNode.rowIndex)'></td>"
+        +"</tr>"
+        +"<tr>"
+        +"<td>Electronic Music Laboratories</td>"
+        +"<td>Electronic Music Laboratories, commonly abbreviated to EML, was an audio synthesizer company. Founded in 1968 in Vernon, Connecticut by four former engineers, the company manufactured and designed a variety of synthesizers sharing the same basic design but configured in different ways.\nThe company originated by accident, after Dale Blake, Norman Millard, Dennis Daugherty, and Jeff Murray, employees of Gerber Scientific, founded the company in order to ensure that they all continued to have a job following an impending layoff. Following the schematics of a fellow audio engineer, Fred Locke, the four made synthesizers that directly competed with those of Moog Music and ARP. Although their synthesizers were not as sophisticated or capable as those designed by Bob Moog or Alan R. Pearlman, they were marketed as being much more reliable, which was true due to their use of op-amps instead of transistors.\nAlthough the company stopped manufacturing synthesizers in 1976, following the departure of two of their employees, the company continued to operate until 1984, designing and manufacturing products for others and repairing their synthesizers.\nSynthesizer modules were also available,</td>"
+        +"<td>/wikipedia/en_id/4319270</td>"
+        +"<td>common</td>"
+        +"<td>/common/topic</td>"
+        +"<td><input type='button' value='Delete' onclick='deleteRow(this.parentNode.parentNode.rowIndex)'></td>"
+        +"</tr>"
+        +"</table>"
+        +"</body>"
+        +"</html>";
+    
+ 
+    
+    if(palavra == "music" ){
+        pal.innerHTML=html;
+    }else{
+        pal.innerHTML="Nenhum resultado encontrado.";
+    }
+
+}
+
+
+function deleteRow(i){
+    document.getElementById('myTable').deleteRow(i)
+}
+
