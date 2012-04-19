@@ -115,20 +115,24 @@ function inserirUsuario(){
     var erMail, erNome, erSenha;
     erMail = /^[\w]+@[\w]+\.[\w]{2,4}\b(\.[\w]+)?\b$/;
     erNome = /^[\w]+$/;
+    erSenha = /^$/;
     
     var nome, email, senha, rsenha;
     
     nome = document.getElementById("nome").value;
     email = document.getElementById("cemail").value;
-    senha = document.getElementById("senha").value;
-    rsenha = document.getElementById("rsenha").value;
+    senha = document.getElementById("pass").value;
+    rsenha = document.getElementById("rpass").value;
 
     if(!erNome.test(nome))
         alert("Nome inválido!");
     else if(!erMail.test(email))
         alert("Email inválido!");
-    else if(senha != "" && senha != rsenha)
-        alert("Senhas diferentes!");
-    else
+    else if(erSenha.test(senha) && senha != rsenha){
+        alert("Senhas inválidas!");
+        return false;
+    }else
         alert("Cadastro solicitado com sucesso!");
+    
+    
 }
