@@ -54,9 +54,7 @@ div.conteudo{
     right: 80%;
     height: 80%;
     width: 80%;
-    border-top: 1px solid green;
-    /*padding: 10px;
-    padding-left: 100px;*/   
+    border-top: 1px solid green;   
 }
 
 /* Declara a formatação da lista */
@@ -71,12 +69,15 @@ div.menu ul li{
     background-color: white;
     width: 80%;
 }
+
+/* Declara a formatação dos links <a> na div menu*/
 div.menu ul a{
     text-decoration: none;
     color: green;
     
 }
 
+/* Formatação dos links */
 div.menu li:hover a{
     position: relative;
     display: block;
@@ -85,14 +86,20 @@ div.menu li:hover a{
 }
 
 div.menu li ul li{
-    position: absolute;
-    display: block;
+    position: relative;
+    display: none;
     background-color: white;
     color: green;
 }
-
+div.menu li:hover ul li{
+    
+    display: block;
+    position: relative;
+    width: 100%;
+    padding-left:0;
+}
 div.menu li ul li:hover a{
-    position: absolute;
+    position: relative;
     display: block;
     background-color: white;
     color: green;

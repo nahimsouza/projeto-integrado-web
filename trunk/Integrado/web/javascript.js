@@ -27,19 +27,18 @@ function login(){
     login = document.getElementById("email").value;
     senha = document.getElementById("senha").value;
      
-    erMail = /^\w+@\w{2,20}\.(com|com.br)$/
+    erMail = /^\w+@\w+\.\w{2,4}\b(\.\w+)?\b$/
     
-    if(erMail.test(login)){
-    
-        if(login == "colaborador"){
+    if(erMail.test(login)){    
+        if(login == "colaborador@email.com"){
             if(senha == "senha"){
                 alert("Bem vindo Colaborador!");
-                document.href = "/colaborador.html";
+                document.location = "/colaborador.html";
             }
-        }else if(login == "adm"){
+        }else if(login == "adm@adm.com.br"){
             if(senha == "adm"){
                 alert("Bem vindo ADM!");
-                document.href = "/adm.html"
+                document.location = "/adm.html";
             }
         }else
             alert("Usuario ou senha inválido!");
