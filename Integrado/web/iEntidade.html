@@ -17,7 +17,7 @@ Insere entidades, usando uma função javascript(para simular)
                     Dysplayname: 
                 </td>
                 <td> 
-                    <input id="displayname" name="displayname" type="text" size="30" maxlength="30"/>
+                    <input id="displayname" name="displayname" type="text" size="30" maxlength="30" onmouseover="helpText(9)" onmouseout="helpText(12)"/>
 
                 </td>
             </tr>
@@ -26,7 +26,7 @@ Insere entidades, usando uma função javascript(para simular)
                     <label>Description: </label>
                 </td>
                 <td>
-                    <textarea id="description" cols="35" rows="5" ></textarea>
+                    <textarea id="description" cols="35" rows="5" onmouseover="helpText(10)" onmouseout="helpText(12)"></textarea>
                 </td>
             </tr>
             <tr>
@@ -34,7 +34,7 @@ Insere entidades, usando uma função javascript(para simular)
                     Wikikey: 
                 </td>
                 <td>
-                    <input id="wiki" type="text" size="28" maxlength="30"/>
+                    <input id="wiki" type="text" size="28" maxlength="30" onmouseover="helpText(11);" onmouseout="helpText(12)"/>
                     <input type="button" value="Adicionar" onclick="wikiListInsere();"/>
                 </td>
             </tr>
@@ -54,7 +54,7 @@ Insere entidades, usando uma função javascript(para simular)
                     Categoria:
                 </td>
                 <td> 
-                    <select id="categoria" name="tipo">
+                    <select id="categoria" name="tipo" onmouseover="helpText(13)" onmouseout="helpText(12)">
                         <option value="tipo1">tipo1</option>
                         <option value="tipo2">tipo2 </option>
                         <option value="tipo3">tipo3 </option>
@@ -66,7 +66,7 @@ Insere entidades, usando uma função javascript(para simular)
                 <td>Tipo:
                 </td>
                 <td>
-                    <select id="tipo" name="tipo">
+                    <select id="tipo" name="tipo" onmouseover="helpText(14)" onmouseout="helpText(12)">
                         <option value="tipo1">tipo1</option>
                         <option value="tipo2">tipo2 </option>
                         <option value="tipo3">tipo3 </option>
@@ -91,10 +91,12 @@ Insere entidades, usando uma função javascript(para simular)
                 </td>
 
                 <td>
-                    <input type="reset" value="OK" onclick="inserirEntidade();"/>
+                    <input type="button" value="OK" onclick="inserirEntidade();"/>
                 </td>
             </tr>
         </table>
-
+        <div id="tip">
+            
+        </div>
     </body>
 </html>

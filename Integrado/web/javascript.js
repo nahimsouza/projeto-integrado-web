@@ -24,10 +24,15 @@ var helpArray =
 "Selecione a operação", // element 6
 "Abre a tela de requisições de novos colaboradores",// element 7
 "Abre a lista de todos colaboradores para exclusão",// element 8
-"Selecione o seu sexo.",// element 9
-"Digite aqui a sua nova senha.",// element 10
-"Repita aqui a senha que você digitou no campo anterior",// element 11
-"" ]; // element 12
+"Entre com o nome da entidade",// element 9
+"Descreva a entidade",// element 10
+"Digite aqui a wikikey e aperte ok para adicioná-la",// element 11
+"", // element 12
+"Selecione a categoria",// element 13
+"Selecione o tipo e aperte OK para confirmar a Categoria/Tipo",// element 14
+"Insira o nome da categoria desejada",// element 15
+"Entre com o nome do tipo",// element 16
+""];// element 17
 // -->
 function helpText(messageNum)
 {
@@ -100,10 +105,6 @@ function abrirPag(valor){
     xmlRequest.open("GET",url,true);
     xmlRequest.send(null);
     
-    /*if (xmlRequest.readyState == 1) {
-        document.getElementById("conteudo_mostrar").innerHTML = "<img src='loader.gif'>";
-    }*/
-
     return url;
 }
 
@@ -445,7 +446,9 @@ function alterarCategoria(){
 }
 
 function pCat(y){
+    alert("entrei no pcat");
     document.getElementById("ncateg").value = y;
+    alert("passei o y")
     alert(y);
         clearInterval(interval);
 }
