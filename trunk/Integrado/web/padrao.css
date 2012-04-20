@@ -49,7 +49,7 @@ div.conteudo{
     left: 20%;
     bottom: 80%;
     right: 80%;
-    
+    font-size:20px;
     width: 60%;
     padding-top: 50px;
     padding-left: 50px;
@@ -59,7 +59,7 @@ div.conteudo{
 div.menu ul{
     list-style: none;
     position: relative;
-    
+
 }
 
 /* Declara a formatação de cada linha da lista*/
@@ -93,7 +93,7 @@ div.menu li ul li{
     color: green;
 }
 div.menu li:hover ul li{
-    
+
     display: block;
     position: relative;
     width: 100%;
@@ -116,8 +116,8 @@ div.menu li ul a{
 }
 
 .tip { font-family: sans-serif;
-                color: blue;
-                font-size: 12px 
+       color: blue;
+       font-size: 12px 
 }
 div.login{
     position: absolute;
@@ -136,10 +136,45 @@ div.login label{
 }
 
 div.login a{
-    text-decoration: none;
-    color: green;
+    text-decoration: blink;
+    color: white;
+    font-size:15px;
+    font-weight: bold
+}
+div.login label.cad {
+    padding-left: 0px;
+    font-size:15px;
+    text-decoration: blink;
+    color: white;
+}
+div.conteudo p{
+    text-align: justify;
+    font-size:20px;
+    text-decoration: blink;
+    color:black;
+    font-weight: bold
+}
+div.conteudo p.teste{
+    text-align: justify;
+    font-size:30px;
+    text-decoration: blink;
+    color:red;
+    font-weight: bold
 }
 
-div.conteudo p{
-    text-align: center;
+div.conteudo p.mid{
+    text-align: justify;
+    font-size:35px;
+    text-decoration: blink;
+    color:blue;
+    /*font-weight: bold;*/
 }
+
+div.conteudo p.head{
+    text-align: justify;
+    font-size:45px;
+    text-decoration: blink;
+    color:black;
+    /*font-weight: bold;*/
+}
+        
