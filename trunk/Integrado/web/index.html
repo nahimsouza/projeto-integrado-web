@@ -22,13 +22,15 @@ possui opções de login, cadastrar usuário e consultas.
                 <label>
                     Email: 
                 </label>
-                <input type="text" id="email" size="30" maxlength="30" />
+                <input type="text" id="email" size="30" maxlength="30" 
+                       onmouseover="helpText(23)" onmouseout="helpText(12)"/>
             </p>
             <p>
                 <label>
                     Senha: 
                 </label>
-                <input type="password" id="senha" size="30" maxlength="30" />
+                <input type="password" id="senha" size="30" maxlength="30" 
+                       onmouseover="helpText(24)" onmouseout="helpText(12)"/>
                 <input type="button" name="submeter" value="Entrar!" onclick="login();"/>
             </p>
             <p>

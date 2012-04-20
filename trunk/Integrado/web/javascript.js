@@ -32,7 +32,14 @@ var helpArray =
 "Selecione o tipo e aperte OK para confirmar a Categoria/Tipo",// element 14
 "Insira o nome da categoria desejada",// element 15
 "Entre com o nome do tipo",// element 16
-""];// element 17
+"", // element 17
+"Digite aqui o seu nome completo", // element 18
+"Digite aqui o seu e-mail",// element 19
+"Digite aqui uma senha",// element 20
+"Confirme a senha que você digitou acima",// element 21
+"Faça uma breve explicação porque você quer se Colaborador",// element 22
+"Digite aqui o e-mail que você cadastrou anteriormente",// element 23
+"Digite aqui a senha que você cadastrou anteriormente"];// element 24
 // -->
 function helpText(messageNum)
 {
