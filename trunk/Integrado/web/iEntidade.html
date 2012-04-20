@@ -34,7 +34,8 @@ Insere entidades, usando uma função javascript(para simular)
                     Wikikey: 
                 </td>
                 <td>
-                    <input id="wiki" type="text" size="28" maxlength="30"/><input type="button" value="OK"/>
+                    <input id="wiki" type="text" size="28" maxlength="30"/>
+                    <input type="button" value="Adicionar" onclick="wikiListInsere();"/>
                 </td>
             </tr>
             <tr>
@@ -42,9 +43,10 @@ Insere entidades, usando uma função javascript(para simular)
 
                 </td>
                 <td>
-                    <select name="wikis" size="5">
+                    <select id ="wikis" name="wikis" size="5">
 
                     </select>
+                    <input type="button" value="Remover" onclick="wikiListRemove()"/>
                 </td>
             </tr>
             <tr>
@@ -70,16 +72,17 @@ Insere entidades, usando uma função javascript(para simular)
                         <option value="tipo3">tipo3 </option>
                         <option value="tipo4">tipo4 </option>
                     </select>
-                    <input type="button" name="tipoButton" value="OK"/>
+                    <input type="button" name="tipoButton" value="OK" onclick="tipoListInsere();"/>
                 </td>
             </tr>
             <tr>
                 <td>
                 </td>
                 <td>
-                    <select name="tipos" size="5">
+                    <select id="listaTipos" name="tipos" size="5">
 
                     </select>
+                    <input type="button" value="Remover" onclick="tipoListRemove();"/>
                 </td>
             </tr>
             <tr>
