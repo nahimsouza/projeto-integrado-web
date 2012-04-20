@@ -171,8 +171,86 @@ function inserirUsuario(){
 }
 
 
-
 function buscaSimples(){
+    if(document.getElementById("buscaE").checked)
+        buscaEntidade();
+    else if(document.getElementById("buscaT").checked)
+        buscaTipo();
+    else if(document.getElementById("buscaC").checked)
+        buscaCategoria();
+}
+
+function buscaCategoria(){
+    var palavra = document.getElementById("palavra").value;
+    var res = document.getElementById("resultado");
+    
+     var html = "<html>" 
+    + "<head>"
+    + "<script type = 'text/javascript' src='javascript.js'></script>"
+    + "</head>"
+    + "<body>"
+    + "<table id='myTable' border='1'>"
+    + "<tr>"
+    +"<td>Categoria</td>"
+    +"</tr>"
+    +"<tr>"
+    +"<td>music</td>"
+    +"<td><input type='button' value='Delete' onclick='deleteRow(this.parentNode.parentNode.rowIndex)'></td>"
+    +"<td><input type='button' value='Alterar' onclick='alterarCategoria();'></td>"
+    +"</tr>"
+    +"</table>"
+    +"</body>"
+    +"</html>";
+    
+ 
+    
+    if(palavra == "music" ){
+        res.innerHTML=html;
+    }else{
+        res.innerHTML="Nenhum resultado encontrado.";
+    }
+}
+
+function buscaTipo(){
+    var palavra = document.getElementById("palavra").value;
+    var res = document.getElementById("resultado");
+    
+     var html = "<html>" 
+    + "<head>"
+    + "<script type = 'text/javascript' src='javascript.js'></script>"
+    + "</head>"
+    + "<body>"
+    + "<table id='myTable' border='1'>"
+    + "<tr>"
+    +"<td>Categoria</td>"
+    +"<td>Tipo</td>"
+    +"</tr>"
+    +"<tr>"
+    +"<td>music</td>"
+    +"<td>artist</td>"
+    +"<td><input type='button' value='Delete' onclick='deleteRow(this.parentNode.parentNode.rowIndex)'></td>"
+    +"<td><input type='button' value='Alterar' onclick='alterarTipo(1);'></td>"
+    +"</tr>"
+    +"<tr>"
+    +"<td>broadcast</td>"
+    +"<td>artist</td>"
+    +"<td><input type='button' value='Delete' onclick='deleteRow(this.parentNode.parentNode.rowIndex)'></td>"
+    +"<td><input type='button' value='Alterar' onclick='alterarTipo(2);'></td>"
+    +"</tr>"
+    +"</table>"
+    +"</body>"
+    +"</html>";
+    
+ 
+    
+    if(palavra == "artist" ){
+        res.innerHTML=html;
+    }else{
+        res.innerHTML="Nenhum resultado encontrado.";
+    }
+}
+
+function buscaEntidade(){
     var palavra;
     palavra = document.getElementById("palavra").value;
     var pal = document.getElementById("resultado");
@@ -320,6 +398,7 @@ function buscaAvancada(){
     + "</head>"
     + "<body>"
     +"<p> 3 Entidades encontradas </p>"
+    +"<center>"
     + "<table id='myTable' border='1'>"
     + "<tr>"
     +"<td>Display Name</td>"
@@ -329,24 +408,19 @@ function buscaAvancada(){
     +"<tr>"
     +"<td>The Sound of Music</td>"
     +"<td>/common/topic, /music/single </td>"
-    +"<td><input type='button' value='Delete' onclick='deleteRow(this.parentNode.parentNode.rowIndex)'></td>"
-    +"<td><input type='button' value='Alterar'></td>"
     +"</tr>"
         
     +"<tr>"
     +"<td>Music to See</td>"
     +"<td>/tv/tv_program,/common/topic</td>"
-    +"<td><input type='button' value='Delete' onclick='deleteRow(this.parentNode.parentNode.rowIndex)'></td>"
-    +"<td><input type='button' value='Alterar'></td>"
     +"</tr>"
         
     +"<tr>"
     +"<td>Electronic Music Laboratories</td>"      
     +"<td>/common/topic</td>"
-    +"<td><input type='button' value='Delete' onclick='deleteRow(this.parentNode.parentNode.rowIndex)'></td>"
-    +"<td><input type='button' value='Alterar'></td>"
     +"</tr>"
     +"</table>"
+    +"</center>"
     +"</body>"
     +"</html>";
     
@@ -359,10 +433,40 @@ function buscaAvancada(){
 
 }
 
+var interval;
+
+function alterarCategoria(){
+    var x=document.getElementById('myTable').rows[1].cells;
+    var y;
+    y = x[0].innerHTML;
+    abrirPag("iCategoria.html");
+  
+    interval = setInterval("pCat(y)",3000);
+}
+
+function pCat(y){
+    document.getElementById("ncateg").value = y;
+    alert(y);
+        clearInterval(interval);
+}
+
+function alterarTipo(i){
+    var x=document.getElementById('myTable').rows[i].cells;
+        v = new Array(2);
+    for(i=0;i<2;i++)
+        v[i] = x[i].innerHTML;
+    abrirPag("iTipo.html");
+        
+    interval = setInterval("preencheTipo(v)",2000);
+
+}
+
+function preencheTipo(v){
+    document.getElementById("ntipo").value = v[1];
+        clearInterval(interval);
+}
 
 function alterarEntidade(i){
-    alert("entrei");
-    
     var displayname, descricao, wikikeys, categoria, tipo;
     
     var x=document.getElementById('myTable').rows[i].cells;
@@ -374,17 +478,31 @@ function alterarEntidade(i){
 
     abrirPag("iEntidade.html");
         
-    preencheEntidade(v);
+    interval = setInterval("preencheEntidade(v)",2000);
 }
 
 
 function preencheEntidade(v){
+    var t, cont;
+    t = new Array(10);
+    cont = 0;
     
-    alert("to entrando devagarzinho");
+    for(i=0;i<v[4].length;i++)
+        if(v[4][i]==",")
+            cont++;
+    cont++;
+    t=v[4].split(",",cont);
     
-    alert(document.getElementById("conteudo"));
+    document.getElementById("displayname").value = v[0];
+    document.getElementById("description").value = v[1];
+    var wikiOpt = document.getElementById("wikis").options;
+    wikiOpt[wikiOpt.length] = new Option (v[2],v[2], true, true);
+
+    var listOpt = document.getElementById("listaTipos").options;
+    for(i=0;i<cont;i++)
+        listOpt[listOpt.length] = new Option (t[i], t[i], true, true);
     
-    alert("preenchi tudo");
+    clearInterval(interval);
 }
 
 function user(i){
@@ -399,4 +517,26 @@ function valida(string){
     if(trim(string).match(erBranco) != null)
         return true;
     return false;
+}
+
+function wikiListInsere(){
+    var texto = document.getElementById("wiki").value;
+    var valor = texto;
+    document.getElementById("wikis").options[document.getElementById("wikis").options.length] = new Option (texto, valor, true, true);
+}
+
+function wikiListRemove(){
+    document.getElementById("wikis").remove(document.getElementById("wikis").selectedIndex);
+}
+
+function tipoListInsere(){
+    var texto = "/"+document.getElementById("categoria").value + "/" + document.getElementById("tipo").value;
+    var valor = texto;
+
+    document.getElementById("listaTipos").options[document.getElementById("listaTipos").options.length] = new Option (texto, valor, true, true);
+
+}
+
+function tipoListRemove(){
+    document.getElementById("listaTipos").remove(document.getElementById("listaTipos").selectedIndex);
 }
