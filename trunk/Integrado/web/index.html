@@ -29,7 +29,7 @@ possui opções de login, cadastrar usuário e consultas.
                     Senha: 
                 </label>
                 <input type="password" id="senha" size="30" maxlength="30" />
-                <input type="button" name="submeter" value="Entrar!" onclick="login()"/>
+                <input type="button" name="submeter" value="Entrar!" onclick="login();"/>
             </p>
             <p>
                 <a href="javascript:" onclick="abrirPag('cadUsuario.html')"> Criar conta. </a>
@@ -46,7 +46,7 @@ possui opções de login, cadastrar usuário e consultas.
                     </a>
                 </li>
                 <li>
-                    <a href="javascript:" onclick="abrirPag('buscaAvancada.html')">
+                    <a href="javascript:" onclick="abrirPag('buscaAvancada.html')" onmouseover="helpText(1)" onmouseout="helpText(12)">
                         Consulta Avançada
                     </a>
                 </li>
@@ -54,36 +54,5 @@ possui opções de login, cadastrar usuário e consultas.
             <div id="tip" class = "tip"></div>
         </div>
         <div id="conteudo" class="conteudo">Conteudo</div>
-        <!-- <div id="rodape" class="rodape">Rodape</div> -->
     </body>
 </html>
-
-<!-- 
-<li>
-                    <a href="#">
-                        Cadastrar
-                    </a>
-                    <ul>
-
-                        <li>
-                            <a href="#">
-                                Entidade
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                Tipo
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-<<<<<<< .mine
-            </ul>
-            <div id="tip" class = "tip"></div>
-        </div>
-        <div id="conteudo" class="conteudo">Conteudo</div>
-        <div id="rodape" class="rodape">Rodape</div>
-    </body>
-</html>
-=======
--->

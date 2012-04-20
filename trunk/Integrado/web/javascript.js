@@ -16,14 +16,14 @@ function trim(texto) {
 
 var helpArray = 
 ["Faz a consulta da entidade que você quer procurar", // element 0
-"Escreva aqui o nome ao qual gostaria de ser chamado. ", // element 1
-"Digite aqui o seu primeiro nome, ou pressione a tecla \"TAB\".", // element 2
-"Digite aqui o seu sobrenome.", // element 3
-"Digite aqui o seu CPF.", // element 4
-"Digite aqui seu RG.", // element 5
-"Digite aqui o dia do seu Nascimento.", // element 6
-"Digite aqui o mês do seu Nascimento.",// element 7
-"Digite aqui o ano do seu Nascimento.",// element 8
+"Faz a consulta avançada entre 2 tipos diferentes ", // element 1
+"Selecione o que deseja inserir", // element 2
+"Clique aqui para inserir uma nova entidade", // element 3
+"Clique aqui para inserir uma nova categoria", // element 4
+"Clique aqui para inserir um novo tipo", // element 5
+"Selecione a operação", // element 6
+"Abre a tela de requisições de novos colaboradores",// element 7
+"Abre a lista de todos colaboradores para exclusão",// element 8
 "Selecione o seu sexo.",// element 9
 "Digite aqui a sua nova senha.",// element 10
 "Repita aqui a senha que você digitou no campo anterior",// element 11
@@ -40,7 +40,8 @@ function login(){
     senha = document.getElementById("senha").value;
      
     erMail = /^\w+@\w+\.\w{2,4}\b(\.\w+)?\b$/;
-    vMail();
+    
+    
     if(erMail.test(login)){    
         if(login == "colaborador@email.com"){
             if(senha == "senha"){
@@ -186,7 +187,7 @@ function buscaSimples(){
         +"<td>music,common</td>"
         +"<td>/common/topic, /music/single </td>"
         +"<td><input type='button' value='Delete' onclick='deleteRow(this.parentNode.parentNode.rowIndex)'></td>"
-        +"<td><input type='button' value='Alterar'></td>"
+        +"<td><input type='button' value='Alterar' onclick='alterarEntidade(1);'></td>"
         +"</tr>"
         +"<tr>"
         +"<td>Music to See</td>"
@@ -344,4 +345,39 @@ function buscaAvancada(){
         pal.innerHTML="Nenhum resultado encontrado.";
     }
 
+}
+
+
+function alterarEntidade(i){
+    alert("entrei");
+    
+    var displayname, descricao, wikikeys, categoria, tipo;
+    
+    var x=document.getElementById('myTable').rows[i].cells;
+    
+    v = new Array(5);
+    
+    for(i=0;i<5;i++)
+        v[i] = x[i].innerHTML;
+
+    abrirPag("iEntidade.html");
+        
+        preencheEntidade(v);
+}
+
+
+function preencheEntidade(v){
+    
+    alert("to entrando devagarzinho");
+    
+        alert(document.getElementById("conteudo"));
+    
+    alert("preenchi tudo");
+}
+
+function user(i){
+    if(i==1)
+        alert("Adicionado como colaborador.");
+    else
+        alert("Colaborador rejeitado.");
 }
