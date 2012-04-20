@@ -58,11 +58,13 @@ div.conteudo{
 /* Declara a formatação da lista */
 div.menu ul{
     list-style: none;
+    position: relative;
     
 }
 
 /* Declara a formatação de cada linha da lista*/
 div.menu ul li{
+    position: relative;
     border: 2px solid;
     background-color: white;
     width: 80%;
@@ -70,9 +72,10 @@ div.menu ul li{
 
 /* Declara a formatação dos links <a> na div menu*/
 div.menu ul a{
+    position: relative;
     text-decoration: none;
     color: green;
-    
+    display: block;
 }
 
 /* Formatação dos links */
@@ -95,12 +98,16 @@ div.menu li:hover ul li{
     position: relative;
     width: 100%;
     padding-left:0;
+    top: 0;
+    left: 0;
 }
 div.menu li ul li:hover a{
     position: relative;
     display: block;
     background-color: white;
     color: green;
+    top: 0;
+    left: 0;
 }
 
 div.menu li ul a{
@@ -130,7 +137,7 @@ div.login label{
 
 div.login a{
     text-decoration: none;
-    color: white;
+    color: green;
 }
 
 div.conteudo p{
