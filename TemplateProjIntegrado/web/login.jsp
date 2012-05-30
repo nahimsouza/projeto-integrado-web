@@ -45,7 +45,6 @@
             <section class="adv-content">
                 <div class="container">
                     <ul class="breadcrumbs">
-                        <li>Início</li>
                     </ul>
                     <% //Recupera a Session
                         HttpSession s = request.getSession(false);
@@ -54,7 +53,7 @@
                             login = (UsuarioBean) s.getAttribute("Usuario");
                         }
                     %>
-                    <h2><%login.getTipo();%> </h2>
+                    <h2><%="Bem vindo, "+ login.getTipo()%> </h2>
                 </div>
             </section><div class="ic">More Website Templates at TemplateMonster.com!</div>
         </header>
