@@ -46,6 +46,12 @@
                 <div class="container">
                     <ul class="breadcrumbs">
                     </ul>
+                    <form id="email-form" method="post" action="ValidarLogin" >
+                        <fieldset>
+                            <input type="submit" value="logout"/>
+                            <input type="hidden" name="tipo" value="logout">
+                        </fieldset>
+                    </form>
                     <% //Recupera a Session
                         HttpSession s = request.getSession(false);
                         UsuarioBean login = null;
@@ -53,7 +59,7 @@
                             login = (UsuarioBean) s.getAttribute("Usuario");
                         }
                     %>
-                    <h2><%="Bem vindo, "+ login.getTipo()%> </h2>
+                    <h2><%="Bem vindo, " + login.getTipo()%> </h2>
                 </div>
             </section><div class="ic">More Website Templates at TemplateMonster.com!</div>
         </header>

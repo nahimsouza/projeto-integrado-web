@@ -13,11 +13,19 @@ public class ValidarLogin extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        login(request, response);
+        String tipo = request.getParameter("tipo");
+        if (tipo.compareTo("login") == 0) {
+            login(request, response);
+        } else if (tipo.compareTo("logout") == 0) {
+            logout(request, response);
+        }
     }
 
     private void logout(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        HttpSession session = request.getSession(false);
+        session.invalidate();
+        response.sendRedirect("index.jsp");
     }
 
     private void login(HttpServletRequest request, HttpServletResponse response)
@@ -28,6 +36,7 @@ public class ValidarLogin extends HttpServlet {
             HttpSession session = request.getSession();
             UsuarioBean user = new UsuarioBean();
             user.setLogin(email);
+            user.setTipo(Validacao.getTipo());
             session.setAttribute("Usuario", user);
             response.sendRedirect("login.jsp");
         }//fim if
