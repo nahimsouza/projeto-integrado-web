@@ -46,11 +46,12 @@
 				<ul class="breadcrumbs">
 					<li>Início</li>
 				</ul>
-				<form action="" id="email-form">
+				<form action="ValidaLogin" id="email-form" method="post">
 					<fieldset>
-                                                email <input type="text" value=""><!--<input type="submit" value="">-->
-                                                senha <input type="password" value="">
+                                                email <input type="text" value="" name="email"><!--<input type="submit" value="">-->
+                                                senha <input type="password" value="" name="senha">
                                                 <input type="submit" value="ir">
+                                                <input type="hidden" name="tipo" value="login">
 					</fieldset>
 				</form>
 			</div>
