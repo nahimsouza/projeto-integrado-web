@@ -31,12 +31,12 @@
 					<ul>
 						<li><a href="index.jsp" class="current">início</a></li>
 						<li><a href="consulta.jsp">consultas</a></li>
-                                        <!--    <li><a href="index-1.html">inserção</a></li>
-						<li><a href="index-2.html">alteração</a></li>
-						<li><a href="index-3.html">remoção</a></li>
-                                                <li><a href="index-1.html">usuarios</a></li> 
-                                        -->     <li><a href="javascript:" onclick="abrirPag('cadUsuario.html')">Cadastre-se</a></li>
-                                                <li><a href="index-1.html">sobre</a></li>
+                                                <li><a href="insercao.jsp">inserção</a></li>
+						<li><a href="alteracao.jsp">alteração</a></li>
+						<li><a href="remocao.jsp">remoção</a></li>
+                                                <li><a href="usuarios.jsp">usuarios</a></li> 
+                                                <li><a href="cadastro.jsp">Cadastre-se</a></li>
+                                                <li><a href="sobre.jsp">sobre</a></li>
 					</ul> 
 				</div>
 			</div>

@@ -1,5 +1,10 @@
 <%-- 
-    Pagina de consulta para os usuarios comuns
+    De modo semelhante à página de consultas, esta página deve 
+    exibir as opções de alteração (entidade, tipo ou categoria)
+
+    : falta arrumar as divs que indicam qual alteração será feita
+        - alt. entidade, tipo, categoria
+
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -30,9 +35,9 @@
 					<h1><a href="index.jsp"><b>Chico</b>Base</a></h1>
 					<ul>
 						<li><a href="index.jsp">início</a></li>
-						<li><a href="consulta.jsp" class="current">consultas</a></li>
+						<li><a href="consulta.jsp">consultas</a></li>
                                                 <li><a href="insercao.jsp">inserção</a></li>
-						<li><a href="alteracao.jsp">alteração</a></li>
+						<li><a href="alteracao.jsp" class="current">alteração</a></li>
 						<li><a href="remocao.jsp">remoção</a></li>
                                                 <li><a href="usuarios.jsp">usuarios</a></li> 
                                                 <li><a href="cadastro.jsp">Cadastre-se</a></li>
@@ -87,25 +92,19 @@
 				<div class="wrapper">
 					<div class="grid3 first">
 						<ul class="categories">
-							<li><a href="javascript:void(0)" onclick="showDiv( 'conEntidade', true );
-                                                                                                  showDiv( 'conCategoria', false );
-                                                                                                  showDiv( 'conTipo', false );
-                                                                                                  showDiv( 'conAvancada', false );">Consulta por Entidade</a></li>
+							<li><a href="javascript:void(0)" onclick="showDiv( 'altEntidade', true );
+                                                                                                  showDiv( 'altCategoria', false );
+                                                                                                  showDiv( 'altTipo', false );">Alterar Entidade</a></li>
                                                         
-							<li><a href="javascript:void(0)" onclick="showDiv( 'conEntidade', false );
-                                                                                                  showDiv( 'conCategoria', true );
-                                                                                                  showDiv( 'conTipo', false );
-                                                                                                  showDiv( 'conAvancada', false );">Consulta por Categoria</a></li>
+							<li><a href="javascript:void(0)" onclick="showDiv( 'altEntidade', false );
+                                                                                                  showDiv( 'altCategoria', true );
+                                                                                                  showDiv( 'altTipo', false );">Alterar Categoria</a></li>
                                                         
-                                                        <li><a href="javascript:void(0)" onclick="showDiv( 'conEntidade', false );
-                                                                                                  showDiv( 'conCategoria', false );
-                                                                                                  showDiv( 'conTipo', true );
-                                                                                                  showDiv( 'conAvancada', false );">Consulta por Tipo</a></li>
+                                                        <li><a href="javascript:void(0)" onclick="showDiv( 'altEntidade', false );
+                                                                                                  showDiv( 'altCategoria', false );
+                                                                                                  showDiv( 'altTipo', true );">Alterar Tipo</a></li>
 							
-                                                        <li><a href="javascript:void(0)" onclick="showDiv( 'conEntidade', false );
-                                                                                                  showDiv( 'conCategoria', false );
-                                                                                                  showDiv( 'conTipo', false );
-                                                                                                  showDiv( 'conAvancada', true );">Consulta Avançada</a></li>
+
                                             <!--	<li><a href="#">Communications</a></li>
                                                         <li><a href="#">Education and Research</a></li>
 							<li><a href="#">Engineering and Construction</a></li>
@@ -113,18 +112,15 @@
 							<li><a href="#">Industrial Manufacturing</a></li>  -->
 						</ul>
 					</div>
-					<div class="grid9" id="conEntidade">
-                                            <%@include file="conEntidade.jsp" %>
+					<div class="grid9" id="altEntidade">
+                                            <%@include file="altEntidade.jsp" %>
 					</div>
-                                        <div class="grid9" id="conCategoria" style="display: none">
-                                            <%@include file="conCategoria.jsp" %>
+                                        <div class="grid9" id="altCategoria" style="display: none">
+                                            <%@include file="altCategoria.jsp" %>
 					</div>
-                                        <div class="grid9" id="conTipo" style="display: none">
-                                            <%@include file="conTipo.jsp" %>
+                                        <div class="grid9" id="altTipo" style="display: none">
+                                            <%@include file="altTipo.jsp" %>
                                     	</div>
-                                        <div class="grid9" id="conAvancada" style="display: none">
-                                            <%@include file="conAvancada.jsp" %>
-					</div>
 				</div>
 			</div>
 		</div>

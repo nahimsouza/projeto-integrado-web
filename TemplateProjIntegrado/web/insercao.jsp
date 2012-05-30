@@ -1,5 +1,10 @@
 <%-- 
-    Pagina de consulta para os usuarios comuns
+    De modo semelhante à página de consultas, esta página deve 
+    exibir as opções de inserção (entidade, tipo ou categoria)
+
+    : falta arrumar as divs que indicam qual insercao será feita
+        - ins. entidade, tipo, categoria
+
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -30,8 +35,8 @@
 					<h1><a href="index.jsp"><b>Chico</b>Base</a></h1>
 					<ul>
 						<li><a href="index.jsp">início</a></li>
-						<li><a href="consulta.jsp" class="current">consultas</a></li>
-                                                <li><a href="insercao.jsp">inserção</a></li>
+						<li><a href="consulta.jsp">consultas</a></li>
+                                                <li><a href="insercao.jsp" class="current">inserção</a></li>
 						<li><a href="alteracao.jsp">alteração</a></li>
 						<li><a href="remocao.jsp">remoção</a></li>
                                                 <li><a href="usuarios.jsp">usuarios</a></li> 
@@ -87,25 +92,19 @@
 				<div class="wrapper">
 					<div class="grid3 first">
 						<ul class="categories">
-							<li><a href="javascript:void(0)" onclick="showDiv( 'conEntidade', true );
-                                                                                                  showDiv( 'conCategoria', false );
-                                                                                                  showDiv( 'conTipo', false );
-                                                                                                  showDiv( 'conAvancada', false );">Consulta por Entidade</a></li>
+							<li><a href="javascript:void(0)" onclick="showDiv( 'insEntidade', true );
+                                                                                                  showDiv( 'insCategoria', false );
+                                                                                                  showDiv( 'insTipo', false );">Inserir Entidade</a></li>
                                                         
-							<li><a href="javascript:void(0)" onclick="showDiv( 'conEntidade', false );
-                                                                                                  showDiv( 'conCategoria', true );
-                                                                                                  showDiv( 'conTipo', false );
-                                                                                                  showDiv( 'conAvancada', false );">Consulta por Categoria</a></li>
+							<li><a href="javascript:void(0)" onclick="showDiv( 'insEntidade', false );
+                                                                                                  showDiv( 'insCategoria', true );
+                                                                                                  showDiv( 'insTipo', false );">Inserir Categoria</a></li>
                                                         
-                                                        <li><a href="javascript:void(0)" onclick="showDiv( 'conEntidade', false );
-                                                                                                  showDiv( 'conCategoria', false );
-                                                                                                  showDiv( 'conTipo', true );
-                                                                                                  showDiv( 'conAvancada', false );">Consulta por Tipo</a></li>
+                                                        <li><a href="javascript:void(0)" onclick="showDiv( 'insEntidade', false );
+                                                                                                  showDiv( 'insCategoria', false );
+                                                                                                  showDiv( 'insTipo', true );">Inserir Tipo</a></li>
 							
-                                                        <li><a href="javascript:void(0)" onclick="showDiv( 'conEntidade', false );
-                                                                                                  showDiv( 'conCategoria', false );
-                                                                                                  showDiv( 'conTipo', false );
-                                                                                                  showDiv( 'conAvancada', true );">Consulta Avançada</a></li>
+
                                             <!--	<li><a href="#">Communications</a></li>
                                                         <li><a href="#">Education and Research</a></li>
 							<li><a href="#">Engineering and Construction</a></li>
@@ -113,18 +112,15 @@
 							<li><a href="#">Industrial Manufacturing</a></li>  -->
 						</ul>
 					</div>
-					<div class="grid9" id="conEntidade">
-                                            <%@include file="conEntidade.jsp" %>
+					<div class="grid9" id="insEntidade">
+                                            <%@include file="insEntidade.jsp" %>
 					</div>
-                                        <div class="grid9" id="conCategoria" style="display: none">
-                                            <%@include file="conCategoria.jsp" %>
+                                        <div class="grid9" id="insCategoria" style="display: none">
+                                            <%@include file="insCategoria.jsp" %>
 					</div>
-                                        <div class="grid9" id="conTipo" style="display: none">
-                                            <%@include file="conTipo.jsp" %>
+                                        <div class="grid9" id="insTipo" style="display: none">
+                                            <%@include file="insTipo.jsp" %>
                                     	</div>
-                                        <div class="grid9" id="conAvancada" style="display: none">
-                                            <%@include file="conAvancada.jsp" %>
-					</div>
 				</div>
 			</div>
 		</div>
