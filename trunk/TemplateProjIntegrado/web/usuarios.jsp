@@ -1,5 +1,9 @@
 <%-- 
-    Pagina de consulta para os usuarios comuns
+    Página do administrador para consultar usuários
+
+    : falta modificar as páginas de solicitacoes e consultas
+        - arrumar as divs
+
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -30,11 +34,11 @@
 					<h1><a href="index.jsp"><b>Chico</b>Base</a></h1>
 					<ul>
 						<li><a href="index.jsp">início</a></li>
-						<li><a href="consulta.jsp" class="current">consultas</a></li>
+						<li><a href="consulta.jsp">consultas</a></li>
                                                 <li><a href="insercao.jsp">inserção</a></li>
 						<li><a href="alteracao.jsp">alteração</a></li>
 						<li><a href="remocao.jsp">remoção</a></li>
-                                                <li><a href="usuarios.jsp">usuarios</a></li> 
+                                                <li><a href="usuarios.jsp" class="current">usuarios</a></li> 
                                                 <li><a href="cadastro.jsp">Cadastre-se</a></li>
                                                 <li><a href="sobre.jsp">sobre</a></li>
 					</ul> 
@@ -87,25 +91,14 @@
 				<div class="wrapper">
 					<div class="grid3 first">
 						<ul class="categories">
-							<li><a href="javascript:void(0)" onclick="showDiv( 'conEntidade', true );
-                                                                                                  showDiv( 'conCategoria', false );
-                                                                                                  showDiv( 'conTipo', false );
-                                                                                                  showDiv( 'conAvancada', false );">Consulta por Entidade</a></li>
+							<li><a href="javascript:void(0)" onclick="showDiv( 'solicitacoes', true );
+                                                                                                  showDiv( 'conUsuario', false );">Novas Solicitações</a></li>
                                                         
-							<li><a href="javascript:void(0)" onclick="showDiv( 'conEntidade', false );
-                                                                                                  showDiv( 'conCategoria', true );
-                                                                                                  showDiv( 'conTipo', false );
-                                                                                                  showDiv( 'conAvancada', false );">Consulta por Categoria</a></li>
+							<li><a href="javascript:void(0)" onclick="showDiv( 'solicitacoes', false );
+                                                                                                  showDiv( 'conUsuario', true );">Consultar Usuários</a></li>
                                                         
-                                                        <li><a href="javascript:void(0)" onclick="showDiv( 'conEntidade', false );
-                                                                                                  showDiv( 'conCategoria', false );
-                                                                                                  showDiv( 'conTipo', true );
-                                                                                                  showDiv( 'conAvancada', false );">Consulta por Tipo</a></li>
 							
-                                                        <li><a href="javascript:void(0)" onclick="showDiv( 'conEntidade', false );
-                                                                                                  showDiv( 'conCategoria', false );
-                                                                                                  showDiv( 'conTipo', false );
-                                                                                                  showDiv( 'conAvancada', true );">Consulta Avançada</a></li>
+
                                             <!--	<li><a href="#">Communications</a></li>
                                                         <li><a href="#">Education and Research</a></li>
 							<li><a href="#">Engineering and Construction</a></li>
@@ -113,17 +106,11 @@
 							<li><a href="#">Industrial Manufacturing</a></li>  -->
 						</ul>
 					</div>
-					<div class="grid9" id="conEntidade">
-                                            <%@include file="conEntidade.jsp" %>
+					<div class="grid9" id="solicitacoes">
+                                            <%@include file="solicitacoes.jsp" %>
 					</div>
-                                        <div class="grid9" id="conCategoria" style="display: none">
-                                            <%@include file="conCategoria.jsp" %>
-					</div>
-                                        <div class="grid9" id="conTipo" style="display: none">
-                                            <%@include file="conTipo.jsp" %>
-                                    	</div>
-                                        <div class="grid9" id="conAvancada" style="display: none">
-                                            <%@include file="conAvancada.jsp" %>
+                                        <div class="grid9" id="conUsuario" style="display: none">
+                                            <%@include file="conUsuario.jsp" %>
 					</div>
 				</div>
 			</div>
