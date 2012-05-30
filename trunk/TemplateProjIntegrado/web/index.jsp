@@ -46,11 +46,11 @@
 				<ul class="breadcrumbs">
 					<li>Início</li>
 				</ul>
-				<form action="ValidaLogin" id="email-form" method="post">
+                                <form id="email-form" method="post" action="ValidarLogin" >
 					<fieldset>
                                                 email <input type="text" value="" name="email"><!--<input type="submit" value="">-->
                                                 senha <input type="password" value="" name="senha">
-                                                <input type="submit" value="ir">
+                                                <input type="submit" value="ir"/>
                                                 <input type="hidden" name="tipo" value="login">
 					</fieldset>
 				</form>
@@ -70,7 +70,8 @@
 							<img src="images/slide5.jpg" alt="" width="495" height="329">
 						</div>
 						<a href="#" id="prev"></a>
-						<a href="#" id="next"></a>
+
+                                                <a href="#" id="next"></a>
 					</section>
 					<section id="intro">
 						<div class="inner">
@@ -98,7 +99,8 @@
 							<li><a href="#">High Technology</a></li>
 							<li><a href="#">Industrial Manufacturing</a></li>
 						</ul>
-					</div>
+
+            </div>
 					<div class="grid9">
 						<h2>Grow service revenue with world-class<br /> lifecycle service and support.</h2>
 						<p>Fusce euismod consequat ante. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Pellentesque sed dolor. Aliquam congue fermentum nisl. Mauris accumsan nulla vel diam. Sed in lacus ut enim adipiscing aliquet. Nulla venenatis. In pede m aliquet sit amet, euismod in, auctor ut, ligula. Aliquam dapibus tincidunt metus. Praesent justo dolor, lobortis quis, lobortisissim, pulvinar ac, lorem. Vestibulum sed ante. Donec sagittis euismod purus.Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Praesent vestibulum molestie lacus. Aenean nonummy hendrerit mauris. Phasellus porta. </p>
@@ -110,11 +112,13 @@
 						</section>
 					</div>
 				</div>
-			</div>
+
+            </div>
 		</div>
             -->
 		<div class="bottom">
-			<div class="container">
+
+                    <div class="container">
 				<div class="wrapper">
 					<div class="grid3 first">
 						<h3>Compartilhe</h3>
@@ -122,9 +126,12 @@
 							<li><a href="#">facebook.com/chicobase</a></li>
 							<li><a href="#">@chicobase</a></li>
 							<li><a href="#"></a></li>
-						</ul>
-					</div>
-					<div class="grid3">
+
+                                                </ul>
+
+                                        </div>
+
+                                    <div class="grid3">
 						<h3>Links Úteis</h3>
 						<ul class="list2">
 							<li><a href="#">Google</a></li>
@@ -181,4 +188,4 @@
 		});
 	</script>
 </body>
-</html>
+                </html>
