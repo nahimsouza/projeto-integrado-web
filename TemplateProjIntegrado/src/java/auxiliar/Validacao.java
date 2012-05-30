@@ -42,4 +42,10 @@ public class Validacao {
         
         return true;
     }
+    
+     public static boolean getTipo() {
+         boolean tipo = true;
+         //se consulta no banco de dados retornar Colaborador tipo = true senao tipo = false
+         return tipo;
+     }
 }
