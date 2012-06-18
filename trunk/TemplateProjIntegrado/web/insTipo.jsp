@@ -30,18 +30,33 @@
       	<div>
             <div class="container">
 		<div class="wrapper">
-                    <div class="grid9" id="conEntidade">
-			<h2>Inserir Tipo</h2>
+                    <div class="grid9" id="insTipo">
+                        <h2>Inserir Tipo</h2>
                         <p> 
-                            <form id="search-form">
-                                <fieldset> 
-                                    <input type="text">
-                                    <input type="submit" value="Consultar">
-                                </fieldset>
-                            </form>
+                        <form id="search-form">
+                            <fieldset> 
+                                <p>
+                                    Tipo: <input type="text" id="ntipo" name="display" onmouseover="helpText(16)" onmouseout="helpText(12)"/>
+                                </p>
+                                <p> Categoria:
+                                    <select id="categ" name="categ" onmouseover="helpText(13)" onmouseout="helpText(12)">
+                                        <option> Selecione uma categoria </option>
+                                        <option> Sports </option>
+                                        <option> Music </option>
+                                        <option> Book </option>
+                                        <option> History </option>
+                                    </select>
+                    
+                                </p>
+                                <p>
+                                   <input type="submit" value="Confirmar">
+                                </p>
+                               
+                            </fieldset>
+                        </form>
                         </p>
                     </div>
-        	</div>
+                </div>
 		
             </div>
 	</div>
