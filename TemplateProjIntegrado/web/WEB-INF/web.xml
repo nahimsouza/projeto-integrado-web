@@ -8,6 +8,10 @@
         <servlet-name>VerificarSolicitacao</servlet-name>
         <servlet-class>controle.VerificarSolicitacao</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>VerificarSolicitacoes</servlet-name>
+        <servlet-class>controle.VerificarSolicitacoes</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ValidarLogin</servlet-name>
         <url-pattern>/ValidarLogin</url-pattern>
@@ -15,6 +19,10 @@
     <servlet-mapping>
         <servlet-name>VerificarSolicitacao</servlet-name>
         <url-pattern>/VerificarSolicitacao</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>VerificarSolicitacoes</servlet-name>
+        <url-pattern>/VerificarSolicitacoes</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
