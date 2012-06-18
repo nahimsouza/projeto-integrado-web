@@ -77,7 +77,10 @@
                             </ul>
                         </div>
                         <div class="grid9" id="solicitacoes">
-                            <%@include file="solicitacoes.jsp" %>
+                            <form id="formulario" nome ="formulario" method="post" action="VerificarSolicitacoes" >
+                                <script language="JavaScript">document.forms['formulario'].submit();</script>
+                            </form>
+                            
                         </div>
                         <div class="grid9" id="conUsuario" style="display: none">
                             <%@include file="conUsuario.jsp" %>
