@@ -4,9 +4,17 @@
         <servlet-name>ValidarLogin</servlet-name>
         <servlet-class>controle.ValidarLogin</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>VerificarSolicitacao</servlet-name>
+        <servlet-class>controle.VerificarSolicitacao</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ValidarLogin</servlet-name>
         <url-pattern>/ValidarLogin</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>VerificarSolicitacao</servlet-name>
+        <url-pattern>/VerificarSolicitacao</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

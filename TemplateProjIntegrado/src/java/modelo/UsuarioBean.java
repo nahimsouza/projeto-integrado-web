@@ -5,11 +5,15 @@ public class UsuarioBean {
     private String login;
     private boolean tipo;
 
+    public UsuarioBean() {
+    }
+
     public String getTipo() {
-        if(tipo)
+        if (tipo) {
             return "Colaborador";
-        else
+        } else {
             return "Administrador";
+        }
     }
 
     public void setTipo(boolean tipo) {
