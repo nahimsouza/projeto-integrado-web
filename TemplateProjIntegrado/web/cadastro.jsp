@@ -105,9 +105,21 @@
 							<li><a href="#">High Technology</a></li>
 							<li><a href="#">Industrial Manufacturing</a></li>  
 						</ul>
-					</div> -->
-					
-                                    <h2>Cadastro de Usuário</h2>
+                                                </div> -->
+                                            
+                                            <h2>Insira seus dados</h2>
+                                            <p>
+                                            <form id="cadastro-from">
+                                               <br>Nome Completo :<input id="cadNome" type="text" size="25" />
+                                                <br><br> E-Mail :<input id="cadEMail" type="text" size="25" />
+                                                <br><br> Senha :<input id="cadSenha" type="text" size="25" />
+                                                <br><br> Corfimar a Senha :<input id="cadRSenha" type="text" size="25" />
+                                                <br><br> Data de nascimento :<input id="dataNasc" type="text" size="10"/>
+                                                <br><br> <input type="button" value="Cadastrar" onclick="VerificaCadastro()" />
+                                            </form>
+
+                                </p>
+                                   
                                     
                                     <!--    <div class="grid9" id="solicitacoes">
                                              < %@include file="solicitacoes.jsp" %>
