@@ -27,19 +27,24 @@
 
 <body>
 	<section id="content">
-      	<div>
-            <div class="container">
-		<div class="wrapper">
-                    <div class="grid9" id="conEntidade">
-			<h2>Inserir Categoria</h2>
-                        <p> 
+            <div>
+                <div class="container">
+                    <div class="wrapper">
+                        <div class="grid9" id="insCategoria">
+                            <h2>Inserir Categoria</h2>
+                            <p> 
                             <form id="search-form">
                                 <fieldset> 
-                                    <input type="text">
-                                    <input type="submit" value="Consultar">
+                                    <p>
+                                        Categoria: <input type="text" id="ncateg" name="display" onmouseover="helpText(15);" onmouseout="helpText(12)"/>
+                                    </p>
+                                    <p>
+                                      <input type="submit" value="Confirmar">
+                                    </p>
+                                    
                                 </fieldset>
                             </form>
-                        </p>
+                            </p>
                     </div>
         	</div>
 		
