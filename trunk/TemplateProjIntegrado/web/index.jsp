@@ -24,38 +24,7 @@
 
 <body>
 	<header>
-		<nav>
-			<div class="container">
-				<div class="wrapper">
-					<h1><a href="index.jsp"><b>Chico</b>Base</a></h1>
-					<ul>
-						<li><a href="index.jsp" class="current">início</a></li>
-						<li><a href="consulta.jsp">consultas</a></li>
-                                                <li><a href="insercao.jsp">inserção</a></li>
-						<li><a href="alteracao.jsp">alteração</a></li>
-						<li><a href="remocao.jsp">remoção</a></li>
-                                                <li><a href="usuarios.jsp">usuarios</a></li> 
-                                                <li><a href="cadastro.jsp">Cadastre-se</a></li>
-                                                <li><a href="sobre.jsp">sobre</a></li>
-					</ul> 
-				</div>
-			</div>
-		</nav>
-		<section class="adv-content">
-			<div class="container">
-				<ul class="breadcrumbs">
-					<li>Início</li>
-				</ul>
-                                <form id="email-form" method="post" action="ValidarLogin" >
-					<fieldset>
-                                                email <input type="text" value="" name="email"><!--<input type="submit" value="">-->
-                                                senha <input type="password" value="" name="senha">
-                                                <input type="submit" value="ir"/>
-                                                <input type="hidden" name="tipo" value="login">
-					</fieldset>
-				</form>
-			</div>
-		</section><div class="ic">More Website Templates at TemplateMonster.com!</div>
+            <%@include file="userHeader.jsp" %>
 	</header>
 	<section id="content">
 		<div class="top">
@@ -83,84 +52,8 @@
 				</div>
 			</div>
 		</div>
-            <!--
-		<div class="middle">
-			<div class="container">
-				<div class="wrapper">
-					<div class="grid3 first">
-						<ul class="categories">
-							<li><a href="#">Aerospace</a></li>
-							<li><a href="#">Automotive</a></li>
-							<li><a href="#">Chemicals</a></li>
-							<li><a href="#">Communications</a></li>
-							<li><a href="#">Consumer Products</a></li>
-							<li><a href="#">Education and Research</a></li>
-							<li><a href="#">Engineering and Construction</a></li>
-							<li><a href="#">High Technology</a></li>
-							<li><a href="#">Industrial Manufacturing</a></li>
-						</ul>
-
-            </div>
-					<div class="grid9">
-						<h2>Grow service revenue with world-class<br /> lifecycle service and support.</h2>
-						<p>Fusce euismod consequat ante. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Pellentesque sed dolor. Aliquam congue fermentum nisl. Mauris accumsan nulla vel diam. Sed in lacus ut enim adipiscing aliquet. Nulla venenatis. In pede m aliquet sit amet, euismod in, auctor ut, ligula. Aliquam dapibus tincidunt metus. Praesent justo dolor, lobortis quis, lobortisissim, pulvinar ac, lorem. Vestibulum sed ante. Donec sagittis euismod purus.Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Praesent vestibulum molestie lacus. Aenean nonummy hendrerit mauris. Phasellus porta. </p>
-						<p><a href="#" class="more">Read More</a></p>
-						<section class="images">
-							<figure><a href="#"><img src="images/1page-img1.jpg" alt=""></a></figure>
-							<figure><a href="#"><img src="images/1page-img2.jpg" alt=""></a></figure>
-							<figure><a href="#"><img src="images/1page-img3.jpg" alt=""></a></figure>
-						</section>
-					</div>
-				</div>
-
-            </div>
-		</div>
-            -->
-		<div class="bottom">
-
-                    <div class="container">
-				<div class="wrapper">
-					<div class="grid3 first">
-						<h3>Compartilhe</h3>
-						<ul class="list1">
-							<li><a href="#">facebook.com/chicobase</a></li>
-							<li><a href="#">@chicobase</a></li>
-							<li><a href="#"></a></li>
-
-                                                </ul>
-
-                                        </div>
-
-                                    <div class="grid3">
-						<h3>Links Úteis</h3>
-						<ul class="list2">
-							<li><a href="#">Google</a></li>
-							<li><a href="#">Bing</a></li>
-							<li><a href="#">Wikipedia</a></li>
-							<li><a href="#">UFSCar</a></li>
-							<li><a href="#">Moodle</a></li>
-							<li><a href="#">World Wide Web Consortium</a></li>
-							<li><a href="#">FAQs</a></li>
-						</ul>
-					</div>
-					<div class="grid3">
-						<h3>Mais buscados</h3>
-						<ul class="list2">
-							<li><a href="#">Washington</a></li>
-							<li><a href="#">UFSCar</a></li>
-							<li><a href="#">SQL Server 2008</a></li>
-							<li><a href="#">NetBeans</a></li>
-							<li><a href="#">Virtualization</a></li>
-							<li><a href="#">IV SeCoT</a></li>
-							<li><a href="#">Maratona de Programação</a></li>
-						</ul>
-					</div>
-					<div class="grid3">
-						<div id="datepicker"></div>
-					</div>
-				</div>
-			</div>
-		</div>
+            
+            <%@include file = "bottom.jsp" %>
 	</section>
 	<footer>
 		<div class="container">
