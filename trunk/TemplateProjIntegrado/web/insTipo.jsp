@@ -37,8 +37,13 @@
                             <fieldset> 
                                 <p>
                                     Tipo: <input type="text" id="ntipo" name="display" onmouseover="helpText(16)" onmouseout="helpText(12)"/>
+                                    <input type="button" value="Adicionar"/>
                                 </p>
-                                <p> Categoria:
+                             
+                                <table>  <tr>
+                                    
+                                <td>
+                                    Categoria:
                                     <select id="categ" name="categ" onmouseover="helpText(13)" onmouseout="helpText(12)">
                                         <option> Selecione uma categoria </option>
                                         <option> Sports </option>
@@ -46,8 +51,18 @@
                                         <option> Book </option>
                                         <option> History </option>
                                     </select>
-                    
-                                </p>
+                                </td>
+    </tr></tr>
+                                        <tr>
+                                                           
+                                       
+                                            <td>
+                                                <select id ="categoriass" name="categorias" size="5" >
+                        
+                                                </select>
+                                                <input type="button" value="Remover" onclick="wikiListRemove()"/>
+                                            </td>
+                                        </tr></table>
                                 <p>
                                    <input type="submit" value="Confirmar">
                                 </p>
