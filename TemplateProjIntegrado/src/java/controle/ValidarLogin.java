@@ -38,7 +38,7 @@ public class ValidarLogin extends HttpServlet {
             user.setLogin(email);
             user.setTipo(Validacao.getTipo());
             session.setAttribute("Usuario", user);
-            response.sendRedirect("login.jsp");
+            response.sendRedirect("colabIndex.jsp");
         }//fim if
         else {
             response.sendRedirect("erro.html");

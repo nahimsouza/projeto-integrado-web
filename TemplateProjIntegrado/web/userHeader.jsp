@@ -37,6 +37,8 @@
                 <input type="hidden" name="tipo" value="login">
             </fieldset>
             <% }%>
+
+
         </form>
     </div>
 </section><div class="ic">More Website Templates at TemplateMonster.com!</div>
