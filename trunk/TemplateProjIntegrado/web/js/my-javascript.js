@@ -51,3 +51,37 @@ function tipoListInsere(){
 function tipoListRemove(){
     document.getElementById("listaTipos").remove(document.getElementById("listaTipos").selectedIndex);
 }
+
+function VerificaCadastro(){
+    var erMail, erNome, erSenha;
+    erMail = /^[\w]+@[\w]+\.[\w]{2,4}\b(\.[\w]+)?\b$/;
+    erNome = /^[\w]+$/;
+    erSenha = /^.+$/;
+    
+    var nome, email, senha, rsenha;
+    
+    nome = trim(document.getElementById("cadNome").value);
+    email = trim(document.getElementById("cadEMail").value);
+    senha = trim(document.getElementById("cadSenha").value);
+    rsenha = trim(document.getElementById("cadRSenha").value);
+
+    if(nome.match(erNome)==null){
+        alert("Nome inválido!");
+        return false;
+    }
+    else if(email.match(erMail)==null){
+        alert("Email inválido!");
+        return false;
+    }   
+    else if(senha.match(erSenha) == null){
+        alert("Senhas inválidas!");
+        return false;
+    }
+    else if(rsenha != senha ){
+        alert("As senhas não coincidem!");
+        return false;
+    }else
+        return alert("Cadastro solicitado com sucesso!");
+    
+    
+}
