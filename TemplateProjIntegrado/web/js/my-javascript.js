@@ -28,3 +28,26 @@ function mudancaEstado(){
         document.getElementById("conteudo").innerHTML = xmlRequest.responseText;
     }
 }
+
+
+function wikiListInsere(){
+    var texto = document.getElementById("wiki").value;
+    var valor = texto;
+    document.getElementById("wikis").options[document.getElementById("wikis").options.length] = new Option (texto, valor, true, true);
+}
+
+function wikiListRemove(){
+    document.getElementById("wikis").remove(document.getElementById("wikis").selectedIndex);
+}
+
+function tipoListInsere(){
+    var texto = "/"+document.getElementById("categoria").value + "/" + document.getElementById("tipo").value;
+    var valor = texto;
+
+    document.getElementById("listaTipos").options[document.getElementById("listaTipos").options.length] = new Option (texto, valor, true, true);
+
+}
+
+function tipoListRemove(){
+    document.getElementById("listaTipos").remove(document.getElementById("listaTipos").selectedIndex);
+}
