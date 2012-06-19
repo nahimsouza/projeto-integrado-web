@@ -86,7 +86,7 @@
                                             <div class="grid9" id="conEntidade">
                                                 <h2><strong>Novas Solicitações</strong></h2>
                                                 <p> 
-                                                <form id="search-form" action="">
+                                                <form id="search-form" action="ValidarUsuario" method="post">
                                                     <fieldset> 
                                                         <%
                                                             if (request.getAttribute("usuarioBean") == null) {%>
@@ -109,8 +109,13 @@
                                                             <tr>
                                                             <fieldset>
                                                                 <h3><%= l.getLogin()%></h3>
+                                                                <script type ="text/javascript">
+                                                                        document.setAttribute("usuario", l);
+                                                                </script>
+                                                                <input type="hidden" name="tipo" value="aceitar"/>
                                                                 <input type="submit" value="aceitar"/>
-                                                                <input type="submit" value="rejeitar"/>
+                                                                <input type="submit" value="rejeitar" onclick=""/>
+                                         
                                                             </fieldset> 
                                                             </tr>
                                                             <% }%>
