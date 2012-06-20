@@ -3,6 +3,17 @@
  * and open the template in the editor.
  */
 
+function ltrim(texto) {
+    return texto.replace(/^[ ]+/, '');
+}
+
+function rtrim(texto) {
+    return texto.replace(/[ ]+$/, '');
+}
+
+function trim(texto) {
+    return ltrim(rtrim(texto));
+}
 
 function showDiv( idName, value ){
     //funcao ShowDiv retirada de: http://www.guj.com.br/java/136558-mudar-conteudo-de-uma-div-resolvido 
@@ -53,10 +64,11 @@ function tipoListRemove(){
 }
 
 function VerificaCadastro(){
-    var erMail, erNome, erSenha;
-    erMail = /^[\w]+@[\w]+\.[\w]{2,4}\b(\.[\w]+)?\b$/;
-    erNome = /^[\w]+$/;
-    erSenha = /^.+$/;
+    var erMail, erNome, erSenha, erData;
+    erMail = /^[\w\.?]+@[\w]+\.[\w]{2,4}\b(\.[\w]+)?\b$/;
+    erNome = /^[\w +]+$/;
+    erSenha = /^.{6,10}$/;
+    erData = /^[0-9]{2}\/[0-9]{2}\/[0-9]{4}$/
     
     var nome, email, senha, rsenha;
     
@@ -64,7 +76,7 @@ function VerificaCadastro(){
     email = trim(document.getElementById("cadEMail").value);
     senha = trim(document.getElementById("cadSenha").value);
     rsenha = trim(document.getElementById("cadRSenha").value);
-
+    edata = trim(document.getElementById("cadData").value);
     if(nome.match(erNome)==null){
         alert("Nome inválido!");
         return false;
@@ -80,8 +92,13 @@ function VerificaCadastro(){
     else if(rsenha != senha ){
         alert("As senhas não coincidem!");
         return false;
-    }else
+    }
+    else if(edata.match(erData)==null){
+        alert("Data de Nascimento deve estar no formato dd/mm/aaaa!");
+        return false;
+    }else{
         return alert("Cadastro solicitado com sucesso!");
-    
+        document.getElementById("search-form").submit();
+    }
     
 }

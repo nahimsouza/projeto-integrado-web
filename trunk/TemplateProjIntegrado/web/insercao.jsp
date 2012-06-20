@@ -10,27 +10,10 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>ChicoBase</title>
-        <meta charset="utf-8">
-        <link rel="stylesheet" href="css/reset.css" type="text/css" media="all">
-        <link rel="stylesheet" href="css/grid.css" type="text/css" media="all">
-        <link rel="stylesheet" href="css/style.css" type="text/css" media="all">
-        <link rel="stylesheet" href="css/jquery-ui-1.8.5.custom.css" type="text/css" media="all">
-        <script type="text/javascript" src="js/jquery-1.4.2.min.js" ></script>
-        <script type="text/javascript" src="js/jquery.cycle.all.js"></script>
-        <script type="text/javascript" src="js/jquery-ui-1.8.5.custom.min.js"></script>
-        <script type="text/javascript" src="js/my-javascript.js"></script>
-        <!--[if lt IE 9]>
-                <script type="text/javascript" src="js/html5.js"></script>
-        <![endif]-->
-    </head>
+    <%@include file="head.jsp" %>
 
     <body>
-        <header>
-            <%@include file = "colabHeader.jsp" %>
-        </header>
+        <%@include file = "colabHeader.jsp" %>
         <section id="content">
             <!--		<div class="top">
                              <div class="container">
@@ -62,17 +45,17 @@
                     <div class="wrapper">
                         <div class="grid3 first">
                             <ul class="categories">
-                                   <li><a href="javascript:void(0)" onclick="showDiv( 'insEntidade', true );
-                                                            showDiv( 'insCategoria', false );
-                                                            showDiv( 'insTipo', false );">Inserir Entidade</a></li>
+                                <li><a href="javascript:void(0)" onclick="showDiv( 'insEntidade', true );
+                                       showDiv( 'insCategoria', false );
+                                       showDiv( 'insTipo', false );">Inserir Entidade</a></li>
 
-                                       <li><a href="javascript:void(0)" onclick="showDiv( 'insEntidade', false );
-                                                            showDiv( 'insCategoria', true );
-                                                            showDiv( 'insTipo', false );">Inserir Categoria</a></li>
+                                <li><a href="javascript:void(0)" onclick="showDiv( 'insEntidade', false );
+                                           showDiv( 'insCategoria', true );
+                                           showDiv( 'insTipo', false );">Inserir Categoria</a></li>
 
-                                       <li><a href="javascript:void(0)" onclick="showDiv( 'insEntidade', false );
-                                                            showDiv( 'insCategoria', false );
-                                                            showDiv( 'insTipo', true );">Inserir Tipo</a></li>
+                                <li><a href="javascript:void(0)" onclick="showDiv( 'insEntidade', false );
+                                           showDiv( 'insCategoria', false );
+                                           showDiv( 'insTipo', true );">Inserir Tipo</a></li>
 
 
                                 <!--	<li><a href="#">Communications</a></li>
@@ -95,58 +78,9 @@
                 </div>
             </div>
 
-            <div class="bottom">
-                <div class="container">
-                    <div class="wrapper">
-                        <div class="grid3 first">
-                            <h3>Compartilhe</h3>
-                            <ul class="list1">
-                                <li><a href="#">facebook.com/chicobase</a></li>
-                                <li><a href="#">@chicobase</a></li>
-                                <li><a href="#"></a></li>
-                            </ul>
-                        </div>
-                        <div class="grid3">
-                            <h3>Links Úteis</h3>
-                            <ul class="list2">
-                                <li><a href="#">Google</a></li>
-                                <li><a href="#">Bing</a></li>
-                                <li><a href="#">Wikipedia</a></li>
-                                <li><a href="#">UFSCar</a></li>
-                                <li><a href="#">Moodle</a></li>
-                                <li><a href="#">World Wide Web Consortium</a></li>
-                                <li><a href="#">FAQs</a></li>
-                            </ul>
-                        </div>
-                        <div class="grid3">
-                            <h3>Mais buscados</h3>
-                            <ul class="list2">
-                                <li><a href="#">Washington</a></li>
-                                <li><a href="#">UFSCar</a></li>
-                                <li><a href="#">SQL Server 2008</a></li>
-                                <li><a href="#">NetBeans</a></li>
-                                <li><a href="#">Virtualization</a></li>
-                                <li><a href="#">IV SeCoT</a></li>
-                                <li><a href="#">Maratona de Programação</a></li>
-                            </ul>
-                        </div>
-                        <div class="grid3">
-                            <div id="datepicker"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <%@include file="bottom.jsp" %>
         </section>
-        <footer>
-            <div class="container">
-                <div class="wrapper">
-                    <div class="copy">ChicoBase (c) 2012	|	<a href="index-4.html">Privacy policy</a></div>
-                    <address class="phone">
-                        Ficamos felizes em ajudá-lo! Entre em contato conosco. <strong>contato@chicobase.com</strong>
-                    </address>
-                </div>
-            </div>
-        </footer>
+            <%@include file="footer.jsp" %>
         <script type="text/javascript">
             $(document).ready(function() {
                 $('.pics').cycle({
