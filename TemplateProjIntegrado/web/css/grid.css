@@ -40,6 +40,11 @@
 .grid11 {
 	width: 894px;
 }
+.grid12 {
+	width: 390px;
+        float: left;
+	margin-left: 40%;
+}
 .first {
 	margin-left: 0;
 	clear: left;
