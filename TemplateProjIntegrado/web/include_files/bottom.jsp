@@ -16,12 +16,12 @@
                                     <div class="grid3">
 						<h3>Links Úteis</h3>
 						<ul class="list2">
-							<li><a href="www.google.com.br">Google</a></li>
-							<li><a href="www.bing.com">Bing</a></li>
-							<li><a href="www.wipedia.com">Wikipedia</a></li>
-							<li><a href="www.ufscar.br">UFSCar</a></li>
-							<li><a href="www.moodle.ufscar.br">Moodle</a></li>
-							<li><a href="www.w3c.com">World Wide Web Consortium</a></li>
+							<li><a href="http://www.google.com.br">Google</a></li>
+							<li><a href="http://www.bing.com">Bing</a></li>
+							<li><a href="http://www.wipedia.com">Wikipedia</a></li>
+							<li><a href="http://www.ufscar.br">UFSCar</a></li>
+							<li><a href="http://www.moodle.ufscar.br">Moodle</a></li>
+							<li><a href="http://www.w3c.com">World Wide Web Consortium</a></li>
 							<li><a href="#">FAQs</a></li>
 						</ul>
 					</div>
@@ -43,3 +43,18 @@
 				</div>
 			</div>
 		</div>
+<script type="text/javascript">
+            $(document).ready(function() {
+                $('.pics').cycle({
+                    fx: 'toss',
+                    next:	 '#next', 
+                    prev:	 '#prev' 
+                });
+			
+                // Datepicker
+                $('#datepicker').datepicker({
+                    inline: true
+                });
+			
+            });
+        </script>

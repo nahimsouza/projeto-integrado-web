@@ -1,17 +1,10 @@
-<%-- 
-    Página do cadastro de usuários
-
-    : falta criar os campos
-
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
-    <%@include file="head.jsp" %>
+    <%@include file="include_files/head.jsp" %>
 
     <body>
-        <%@include file="colabHeader.jsp" %>
+        <%@include file="include_files/userHeader.jsp" %>
 
 
         <section id="content"> 
@@ -29,23 +22,8 @@
                     </form>
                 </div>
             </div>
-            <%@include file="bottom.jsp" %>
+            <%@include file="include_files/bottom.jsp" %>
         </section>
-        <%@include file="footer.jsp" %>
-        <script type="text/javascript">
-            $(document).ready(function() {
-                $('.pics').cycle({
-                    fx: 'toss',
-                    next:	 '#next', 
-                    prev:	 '#prev' 
-                });
-			
-                // Datepicker
-                $('#datepicker').datepicker({
-                    inline: true
-                });
-			
-            });
-        </script>
+        <%@include file="include_files/footer.jsp" %>
     </body>
 </html>
