@@ -7,7 +7,7 @@
 <html lang="en">
     <%@include file="include_files/head.jsp" %>
     <body>
-        <%@include file = "include_files/colabHeader.jsp" %>
+        <%@include file = "include_files/userHeader.jsp" %>
         <section id="content">
             <div class="middle">
                 <div class="container">

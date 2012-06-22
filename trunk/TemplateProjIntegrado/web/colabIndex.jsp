@@ -5,27 +5,9 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>ChicoBase</title>
-	<meta charset="utf-8">
-	<link rel="stylesheet" href="css/reset.css" type="text/css" media="all">
-	<link rel="stylesheet" href="css/grid.css" type="text/css" media="all">
-	<link rel="stylesheet" href="css/style.css" type="text/css" media="all">
-	<link rel="stylesheet" href="css/jquery-ui-1.8.5.custom.css" type="text/css" media="all">
-	<script type="text/javascript" src="js/jquery-1.4.2.min.js" ></script>
-	<script type="text/javascript" src="js/jquery.cycle.all.js"></script>
-	<script type="text/javascript" src="js/jquery-ui-1.8.5.custom.min.js"></script>
-        <script type="text/javascript" src="js/my-javascript.js"></script>
-	<!--[if lt IE 9]>
-		<script type="text/javascript" src="js/html5.js"></script>
-	<![endif]-->
-</head>
-
+    <%@include file="include_files/head.jsp" %>
 <body>
-	<header>
-            <%@include file="colabHeader.jsp" %>
-	</header>
+            <%@include file="include_files/colabHeader.jsp" %>
 	<section id="content">
 		<div class="top">
 			<div class="container">
@@ -53,32 +35,8 @@
 			</div>
 		</div>
             
-            <%@include file = "bottom.jsp" %>
+            <%@include file = "include_files/bottom.jsp" %>
 	</section>
-	<footer>
-		<div class="container">
-			<div class="wrapper">
-				<div class="copy">ChicoBase (c) 2012	|	<a href="index-4.html">Privacy policy</a></div>
-				<address class="phone">
-					Ficamos felizes em ajudá-lo! Entre em contato conosco. <strong>contato@chicobase.com</strong>
-				</address>
-			</div>
-		</div>
-	</footer>
-	<script type="text/javascript">
-		$(document).ready(function() {
-			$('.pics').cycle({
-				fx: 'toss',
-				next:	 '#next', 
-				prev:	 '#prev' 
-			});
-			
-			// Datepicker
-			$('#datepicker').datepicker({
-				inline: true
-			});
-			
-		});
-	</script>
+            <%@include file="include_files/footer.jsp" %>
 </body>
                 </html>
