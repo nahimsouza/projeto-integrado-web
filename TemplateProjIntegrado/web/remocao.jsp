@@ -34,13 +34,13 @@
 						</ul>
 					</div>
 					<div class="grid9" id="remEntidade">
-                                            <%@include file="remEntidade.jsp" %>
+                                            <%@include file="content_files\remEntidade.jsp" %>
 					</div>
                                         <div class="grid9" id="remCategoria" style="display: none">
-                                            <%@include file="remCategoria.jsp" %>
+                                            <%@include file="content_files\remCategoria.jsp" %>
 					</div>
                                         <div class="grid9" id="remTipo" style="display: none">
-                                            <%@include file="remTipo.jsp" %>
+                                            <%@include file="content_files\remTipo.jsp" %>
                                     	</div>
 				</div>
 			</div>

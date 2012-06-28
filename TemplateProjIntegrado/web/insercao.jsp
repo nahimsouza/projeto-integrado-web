@@ -66,13 +66,13 @@
                             </ul>
                         </div>
                         <div class="grid9" id="insEntidade">
-                            <%@include file="insEntidade.jsp" %>
+                            <%@include file="content_files\insEntidade.jsp" %>
                         </div>
                         <div class="grid9" id="insCategoria" style="display: none">
-                            <%@include file="insCategoria.jsp" %>
+                            <%@include file="content_files\insCategoria.jsp" %>
                         </div>
                         <div class="grid9" id="insTipo" style="display: none">
-                            <%@include file="insTipo.jsp" %>
+                            <%@include file="content_files\insTipo.jsp" %>
                         </div>
                     </div>
                 </div>
