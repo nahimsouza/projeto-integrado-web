@@ -84,7 +84,7 @@
 
                         </div>
                         <div class="grid9" id="conUsuario" style="display: none">
-                            <%@include file="conUsuario.jsp" %>
+                            <%@include file="content_files/conUsuario.jsp" %>
                         </div>
                     </div>
                 </div>

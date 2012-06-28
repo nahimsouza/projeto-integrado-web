@@ -33,13 +33,13 @@
                             </ul>
                         </div>
                         <div class="grid9" id="altEntidade">
-                            <%@include file="altEntidade.jsp" %>
+                            <%@include file="content_files\altEntidade.jsp" %>
                         </div>
                         <div class="grid9" id="altCategoria" style="display: none">
-                            <%@include file="altCategoria.jsp" %>
+                            <%@include file="content_files\altCategoria.jsp" %>
                         </div>
                         <div class="grid9" id="altTipo" style="display: none">
-                            <%@include file="altTipo.jsp" %>
+                            <%@include file="content_files\altTipo.jsp" %>
                         </div>
                     </div>
                 </div>

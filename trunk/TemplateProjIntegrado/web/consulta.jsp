@@ -36,16 +36,16 @@
                             </ul>
                         </div>
                         <div class="grid9" id="conEntidade">
-                            <%@include file="conEntidade.jsp" %>
+                            <%@include file="content_files\conEntidade.jsp" %>
                         </div>
                         <div class="grid9" id="conCategoria" style="display: none">
-                            <%@include file="conCategoria.jsp" %>
+                            <%@include file="content_files\conCategoria.jsp" %>
                         </div>
                         <div class="grid9" id="conTipo" style="display: none">
-                            <%@include file="conTipo.jsp" %>
+                            <%@include file="content_files\conTipo.jsp" %>
                         </div>
                         <div class="grid9" id="conAvancada" style="display: none">
-                            <%@include file="conAvancada.jsp" %>
+                            <%@include file="content_files\conAvancada.jsp" %>
                         </div>
                     </div>
                 </div>
