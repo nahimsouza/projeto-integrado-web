@@ -6,7 +6,8 @@
                 <h1><a href="index.jsp"><b>Chico</b>Base</a></h1>
                 <ul>
                     <li><a href="index.jsp" class="current">início</a></li>
-                    <li><a href="consulta_user.jsp">consultas</a></li>
+                   <!-- <li><a href="consulta_user.jsp">consultas</a></li> -->
+                    <li><a href="consulta.jsp">consultas</a></li>
                     <li><a href="cadastro.jsp">Cadastre-se</a></li>
                     <li><a href="sobre.jsp">sobre</a></li>
                 </ul> 

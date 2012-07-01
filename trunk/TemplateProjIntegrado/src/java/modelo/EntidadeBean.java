@@ -9,10 +9,21 @@ package modelo;
  * @author fguira
  */
 public class EntidadeBean {
-    private int idEntidade;
+   // private int idEntidade;
     private String displayname;
-    private String mid;
+   // private String mid;
     private String descricao;
+    
+    
+    // construtor sem parâmetros:
+    public EntidadeBean(){
+    }
+    
+    // construtor com parâmetros
+    public EntidadeBean (String displayname, String descricao){
+        this.displayname = displayname;
+        this.descricao = descricao;
+    }
 
     public String getDescricao() {
         return descricao;
@@ -30,7 +41,7 @@ public class EntidadeBean {
         this.displayname = displayname;
     }
 
-    public int getIdEntidade() {
+  /*  public int getIdEntidade() {
         return idEntidade;
     }
 
@@ -41,5 +52,5 @@ public class EntidadeBean {
     public void setMid(String mid) {
         this.mid = mid;
     }
-    
+    */
 }

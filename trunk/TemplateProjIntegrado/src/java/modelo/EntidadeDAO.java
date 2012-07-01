@@ -27,7 +27,7 @@ public class EntidadeDAO {
     }
 
     // inclui filme no BD
-    public void salvar(EntidadeBean entidade, CategoriaTipoBean categoria) throws EntidadeDAOException {
+ /*   public void salvar(EntidadeBean entidade, CategoriaTipoBean categoria) throws EntidadeDAOException {
         PreparedStatement ps = null;
         Connection conn = null;
         ResultSet rs = null;
@@ -89,27 +89,24 @@ public class EntidadeDAO {
             ConnectionUsuarioFactory.closeConnection(conn, ps, rs);
         }
     } // fim 
-
-    // consulta filmes por código
-    public List<EntidadeBean> todasCategorias(String categoria) throws EntidadeDAOException {
+*/
+    public List<EntidadeBean> listaEntidades(String displayname) throws EntidadeDAOException, UsuarioDAOException {
         PreparedStatement ps = null;
         Connection conn = null;
         ResultSet rs = null;
 
-
         try {
-            String SQL = "Select * from LocaLuciana where categoria='" + categoria + "'";
+            // Busca ABSOLUTA por entidade:
+            String SQL = "SELECT displayname,description FROM entities WHERE displayname = '" + displayname + "'";
             conn = this.conn;
             ps = conn.prepareStatement(SQL);
             rs = ps.executeQuery();
             List<EntidadeBean> list = new ArrayList<EntidadeBean>();
             while (rs.next()) {
-                int cod = (Integer) rs.getObject("codigo");
-                String titulo = rs.getObject("titulo").toString();
-                int ano_prod = (Integer) rs.getObject("ano");
-                double preco = rs.getDouble("preco");
-                String cat = rs.getObject("categoria").toString();
-                list.add(new EntidadeBean(cod, titulo, cat, ano_prod, preco));
+                String name = rs.getObject("displayname").toString(); // o nome entre aspas é o nome do campo no BD
+                String desc = rs.getObject("description").toString();
+                
+                list.add(new EntidadeBean(name,desc));
             }
 
             return list;
