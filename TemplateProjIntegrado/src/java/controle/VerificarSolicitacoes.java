@@ -1,29 +1,48 @@
 package controle;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.List;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.RequestDispatcher;
-import java.util.List;
+import modelo.EntidadeBean;
+import modelo.EntidadeDAO;
 import modelo.UsuarioBean;
-import modelo.UsuarioDAO;
 
 public class VerificarSolicitacoes extends HttpServlet {
-
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-    }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        acaoConsultarMultipla(request, response);
+        String acao = request.getParameter("acao");
+
+        if (acao.compareTo("conEntidade") == 0) {
+            String displayname = request.getParameter("nomeEntidade");
+            acaoConsultarEntidade(request, response, displayname);
+        }
+
+    }
+
+    private void acaoConsultarEntidade(HttpServletRequest request, HttpServletResponse response, String displayname)
+            throws ServletException, IOException {
+
+        try {
+            EntidadeDAO entidade = new EntidadeDAO();
+            List<EntidadeBean> lista = (List<EntidadeBean>) entidade.listaEntidades(displayname);
+            request.setAttribute("entidadeBean", this);
+            
+        } catch (Exception sqle) {
+            request.setAttribute("entidadeBean", null);
+        }
+        RequestDispatcher rd = null;
+
+        rd = request.getRequestDispatcher("/testeVIEW.jsp");
+
+        rd.forward(request, response);
 
     }
 

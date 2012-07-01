@@ -11,7 +11,7 @@ public class ConnectionUsuarioFactory {
     public static Connection getConnection() throws UsuarioDAOException {
         try {
             Class.forName("com.microsoft.jdbc.sqlserver.SQLServerDriver").newInstance();
-            String conexao = "jdbc:sqlserver://192.168.12.4:1433;database=labbd06";
+            String conexao = "jdbc:sqlserver://shelton.sor.ufscar.br:1433;database=labbd06"; //192.168.12.4
             String usuario = "labbd06", senha = "turma06";
             Connection conn = DriverManager.getConnection(conexao, usuario, senha);
             return conn;
