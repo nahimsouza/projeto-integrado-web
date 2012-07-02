@@ -16,7 +16,7 @@
                     <div class="wrapper">
                         <div class="grid3 first">
                             <ul class="categories">
-                           <%--        <li><a href="javascript:void(0)" onclick="showDiv( 'conEntidade', true );
+                                       <li><a href="javascript:void(0)" onclick="showDiv( 'conEntidade', true );
                                                             showDiv( 'conCategoria', false );
                                                             showDiv( 'conTipo', false );
                                                             showDiv( 'conAvancada', false );">Consulta por Entidade</a></li>
@@ -36,7 +36,7 @@
                                                             showDiv( 'conTipo', false );
                                                             showDiv( 'conAvancada', true );">Consulta Avançada</a></li>
                             </ul>
-                        </div>  --%>
+                        </div>
                         <div class="grid9" id="conEntidade">
                             <%@include file="content_files/conEntidade.jsp" %>
                         </div>
