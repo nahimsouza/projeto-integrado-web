@@ -40,7 +40,7 @@ public class VerificarSolicitacoes extends HttpServlet {
         }
         RequestDispatcher rd = null;
 
-        rd = request.getRequestDispatcher("/testeVIEW.jsp");
+        rd = request.getRequestDispatcher("/consulta_user.jsp");
 
         rd.forward(request, response);
 

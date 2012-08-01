@@ -21,7 +21,8 @@
 
 --%>
 
-
+<%@page import="modelo.EntidadeBean" %>
+<%@page import="java.util.*" %>
 
 
 
@@ -33,6 +34,7 @@
         <input type="submit" value="Consultar" />
         <input type="hidden" value="conEntidade" name="acao" />
     </fieldset>
+    <%--
     <%
     
         List<EntidadeBean> listaEntidade = (List<EntidadeBean>) request.getAttribute("entidadeBean");
@@ -63,7 +65,7 @@
         <% }%>
 
     </table>
-    <% }%>
+    <% }%> --%>
     <br />
 
 </form>
