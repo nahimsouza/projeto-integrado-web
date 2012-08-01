@@ -97,7 +97,7 @@ public class EntidadeDAO {
 
         try {
             // Busca ABSOLUTA por entidade:
-            String SQL = "SELECT displayname,descricao FROM entidade WHERE displayname = '" + displayname + "'";
+            String SQL = "SELECT displayname, descricao FROM entidade WHERE displayname = '" + displayname + "'";
             conn = this.conn;
             ps = conn.prepareStatement(SQL);
             rs = ps.executeQuery();
