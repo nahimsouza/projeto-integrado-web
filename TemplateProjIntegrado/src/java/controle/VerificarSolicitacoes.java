@@ -33,14 +33,14 @@ public class VerificarSolicitacoes extends HttpServlet {
         try {
             EntidadeDAO entidade = new EntidadeDAO();
             List<EntidadeBean> lista = (List<EntidadeBean>) entidade.listaEntidades(displayname);
-            request.setAttribute("entidadeBean", this);
+            request.setAttribute("EntidadeBean", lista);
             
         } catch (Exception sqle) {
-            request.setAttribute("entidadeBean", null);
+            request.setAttribute("EntidadeBean", null);
         }
         RequestDispatcher rd = null;
 
-        rd = request.getRequestDispatcher("/consulta_user.jsp");
+        rd = request.getRequestDispatcher("/viewEntidadeConsultaMultipla.jsp");
 
         rd.forward(request, response);
 
