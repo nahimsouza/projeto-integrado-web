@@ -97,14 +97,14 @@ public class EntidadeDAO {
 
         try {
             // Busca ABSOLUTA por entidade:
-            String SQL = "SELECT displayname,description FROM entities WHERE displayname = '" + displayname + "'";
+            String SQL = "SELECT displayname,descricao FROM entidade WHERE displayname = '" + displayname + "'";
             conn = this.conn;
             ps = conn.prepareStatement(SQL);
             rs = ps.executeQuery();
             List<EntidadeBean> list = new ArrayList<EntidadeBean>();
             while (rs.next()) {
                 String name = rs.getObject("displayname").toString(); // o nome entre aspas é o nome do campo no BD
-                String desc = rs.getObject("description").toString();
+                String desc = rs.getObject("descricao").toString();
                 
                 list.add(new EntidadeBean(name,desc));
             }
