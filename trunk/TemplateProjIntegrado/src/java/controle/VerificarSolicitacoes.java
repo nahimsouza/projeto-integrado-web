@@ -26,6 +26,10 @@ public class VerificarSolicitacoes extends HttpServlet {
             String displayname = request.getParameter("nomeEntidade");
             acaoConsultarEntidade(request, response, displayname);
         }
+        if (acao.compareTo("conEntidadeR") == 0) {
+            String displayname = request.getParameter("nomeEntidade");
+            acaoConsultarEntidadeR(request, response, displayname);
+        }
         else if(acao.compareTo("conTipo") == 0) {
             String descTipo = request.getParameter("nomeTipo");
             acaoConsultarTipo(request, response, descTipo);
@@ -43,6 +47,23 @@ public class VerificarSolicitacoes extends HttpServlet {
         try {
             EntidadeDAO entidade = new EntidadeDAO();
             List<EntidadeBean> lista = (List<EntidadeBean>) entidade.listaEntidades(displayname);
+            request.setAttribute("EntidadeBean", lista);
+
+        } catch (Exception sqle) {
+            request.setAttribute("EntidadeBean", null);
+        }
+        RequestDispatcher rd = null;
+
+        rd = request.getRequestDispatcher("/viewEntidadeConsultaMultipla.jsp");
+
+        rd.forward(request, response);
+
+    } private void acaoConsultarEntidadeR(HttpServletRequest request, HttpServletResponse response, String displayname)
+            throws ServletException, IOException {
+
+        try {
+            EntidadeDAO entidade = new EntidadeDAO();
+            List<EntidadeBean> lista = (List<EntidadeBean>) entidade.listaEntidadesR(displayname);
             request.setAttribute("EntidadeBean", lista);
 
         } catch (Exception sqle) {
