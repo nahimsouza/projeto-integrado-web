@@ -15,7 +15,7 @@
                             <form id="search-form">
                                 <fieldset> 
                                     <p>
-                                        Categoria: <br><input type="text" id="ncateg" name="display" onmouseover="helpText(15);" onmouseout="helpText(12)"/>
+                                        Categoria: <br><input type="text" id="ncateg" />
                                         <input type="button" value="Adicionar" onclick="catListInsere();"/>
                                     </p>
                                     <table>
@@ -23,7 +23,7 @@
                                         <tr>
 
                                             <td>
-                                                <select id="listaCategorias" name="tipos" size="5">
+                                                <select id="listaCategorias"  size="5">
 
                                                 </select>
                                                 <input type="button" value="Remover" onclick="catListRemove();"/>

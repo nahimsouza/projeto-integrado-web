@@ -103,7 +103,7 @@ function VerificaCadastro(){
 }
 
 function catListInsere(){
-     alert("Senhas inválidas!");
+   
     var texto = document.getElementById("ncateg").value;
     var valor = texto;
     
