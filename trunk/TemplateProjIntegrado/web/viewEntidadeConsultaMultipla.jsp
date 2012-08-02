@@ -25,10 +25,10 @@
                         %>
 
                         <h2> Resultado da consulta: </h2>
-                        <table border=1>
+                        <table border=8>
                             <tr>
-                                <td> Descrição </td>
-                                <td> Displayname  </td>
+                                <th> Descrição </th>
+                                <th> Displayname  </th>
                             </tr>
 
                             <% for (Iterator i = listaEntidade.iterator(); i.hasNext();) {
