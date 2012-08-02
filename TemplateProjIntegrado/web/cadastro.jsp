@@ -11,9 +11,9 @@
             <div class="middle">
                 <div class="container">
                     <h2>Insira seus Dados</h2>
-                    <div class="grid12">(*) = Preenchimento Obrigatório <br>Datas devem estar no formato dd/mm/aaaa</div>
+                    <div class="grid12">(*) = Preenchimento Obrigatório <br>Datas devem estar no formato dd/mm/aaaa <br> A senha deve conter no mínimo 6 dígitos</div>
                     <form id="search-form" method="post" action="ValidarCadastro">
-                        <br><br>Nome Completo * :<br><input name="cadNome" id="cadNome" type="text" size="25" />
+                        <br><br><br>Nome Completo * :<br><input name="cadNome" id="cadNome" type="text" size="25" />
                         <br><br> E-Mail * :<br><input name="cadEMail" id="cadEMail" type="text" size="25" />
                         <br><br> Senha * :<br><input name="cadSenha" id="cadSenha" type="password" maxlength="20" size="25" />
                         <br><br> Corfimar a Senha * :<br><input name="cadRSenha" id="cadRSenha" type="password" maxlength="20" size="25" />
