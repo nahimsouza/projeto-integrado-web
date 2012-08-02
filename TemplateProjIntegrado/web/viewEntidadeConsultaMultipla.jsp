@@ -31,7 +31,9 @@
                                 <th> Displayname  </th>
                             </tr>
 
-                            <% for (Iterator i = listaEntidade.iterator(); i.hasNext();) {
+                            <%int j = 0;
+                            for (Iterator i = listaEntidade.iterator(); i.hasNext();) {
+                            //for (Iterator i = listaEntidade.iterator(); j < 10 && i.hasNext(); j++) {
                                     EntidadeBean l = (EntidadeBean) i.next();%>
 
                             <tr>

@@ -4,6 +4,6 @@
     <fieldset> 
         <input type="text" name="nomeEntidade" value="" />
         <input type="submit" value="Consultar" />
-        <input type="hidden" value="conEntidade" name="acao" />
+        <input type="hidden" value="conEntidadeR" name="acao" />
     </fieldset>
 </form>
