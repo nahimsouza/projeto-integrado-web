@@ -11,14 +11,16 @@
             <div class="middle">
                 <div class="container">
                     <h2>Insira seus Dados</h2>
-                    <div class="grid12">(*) = Preenchimento Obrigatório <br>Datas devem estar no formato dd/mm/aaaa <br> A senha deve conter no mínimo 6 dígitos</div>
+                    <br>(*) = Preenchimento Obrigatório
                     <form id="search-form" method="post" action="ValidarCadastro">
                         <br><br><br>Nome Completo * :<br><input name="cadNome" id="cadNome" type="text" size="25" />
                         <br><br> E-Mail * :<br><input name="cadEMail" id="cadEMail" type="text" size="25" />
                         <br><br> Senha * :<br><input name="cadSenha" id="cadSenha" type="password" maxlength="20" size="25" />
-                        <br><br> Corfimar a Senha * :<br><input name="cadRSenha" id="cadRSenha" type="password" maxlength="20" size="25" />
+                        deve conter no mínimo 6 dígitos
+                        <br><br><br> Corfimar a Senha * :<br><input name="cadRSenha" id="cadRSenha" type="password" maxlength="20" size="25" />
                         <br><br> Data de nascimento * :<br><input name="cadData" id="cadData" type="text" size="10"/>
-                        <br><br> <input type="button" value="Cadastrar" onclick="VerificaCadastro();" /> 
+                        dd/mm/aaaa
+                        <br><br><br> <input type="button" value="Cadastrar" onclick="VerificaCadastro();" /> 
                     </form>
                 </div>
             </div>
