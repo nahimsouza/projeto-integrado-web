@@ -1,3 +1,4 @@
+<%@page import="modelo.CategoriaTipoBean"%>
 <%@page language="java" contentType="text/html; charset=ISO-8859-1"
         pageEncoding="ISO-8859-1"%>
 <%@page import="modelo.EntidadeBean" %>
@@ -13,9 +14,9 @@
             <div class="container"><%-- inserido --%>
                 <div class="wrapper"><%-- inserido --%>
                         <%
-                            List<EntidadeBean> listaEntidade = (List<EntidadeBean>) request.getAttribute("EntidadeBean");
+                            List<CategoriaTipoBean> listaCategoria = (List<CategoriaTipoBean>) request.getAttribute("CategoriaTipoBean");
 
-                            if (listaEntidade.isEmpty()) {
+                            if (listaCategoria.isEmpty()) {
 
                         %>
                         <h2> Não existem itens cadastrados!!! </h2>
@@ -27,16 +28,16 @@
                         <h2> Resultado da consulta: </h2>
                         <table border=1>
                             <tr>
-                                <td> Descrição </td>
-                                <td> Displayname  </td>
+                                <td> Id Categoria </td>
+                                <td> Categoria  </td>
                             </tr>
 
-                            <% for (Iterator i = listaEntidade.iterator(); i.hasNext();) {
-                                    EntidadeBean l = (EntidadeBean) i.next();%>
+                            <% for (Iterator i = listaCategoria.iterator(); i.hasNext();) {
+                                    CategoriaTipoBean l = (CategoriaTipoBean) i.next();%>
 
                             <tr>
-                                <td><%= l.getDescricao()%></td>
-                                <td><%= l.getDisplayname()%></td>
+                                <td><%= l.getIdCategoria() %></td>
+                                <td><%= l.getCategoria() %></td>
 
                             </tr>
                             <% }%>
@@ -56,6 +57,8 @@
     <%@include file="include_files/footer.jsp" %><%-- inserido --%>
 </body>
 </html>
+
+
 
 
 
