@@ -42,7 +42,7 @@ public class Validacao {
         return false;
     }
 
-    public static boolean getTipo(String email, String senha) {
+    public static String getTipo(String email, String senha) {
         //Objeto que guarda informacoes da conexao com o SGBD.
         Connection conn;
         //Objeto usado para enviar comandos SQL no SGBD
@@ -62,10 +62,12 @@ public class Validacao {
                 String tipo = rs.getString("tipo_usuario");
 
                 if (tipo.equals("Colaborador")) {
-                    return true;
+                    return "Colaborador";
                 }
+                else if(tipo.equals("Usuario"))
+                    return "Usuario";
                 else
-                    return false;
+                    return "Administrador";
             }
             conn.close();
         } catch (Exception e) {
@@ -73,11 +75,11 @@ public class Validacao {
             System.out.println("Erro.");
         }
 
-        return false;
+        return "";
 
     }
 
-    public static boolean inserirUsuario(UsuarioBean u) {
+    public static int inserirUsuario(UsuarioBean u) {
 
         //Objeto que guarda informacoes da conexao com o SGBD.
         Connection conn;
@@ -95,6 +97,7 @@ public class Validacao {
         String data = dataNascimento[2] + "-" + dataNascimento[1] + "-" + dataNascimento[0];
         
         String sql = "INSERT INTO usuario(tipo_usuario, nome, email, senha, data_nasc) VALUES ( '" + tipo + "', '" + nome + "', '" + email + "', '" + senha + "', '"+ data + "')";
+        String sql2 = "SELECT * FROM usuario WHERE email = '" + email +"'";
 
 
         try {
@@ -104,14 +107,18 @@ public class Validacao {
 
             conn = DriverManager.getConnection(conexao, user, password);
             stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sql2);
+            if(rs.next()) {
+                return 0;
+            }
             stmt.executeUpdate(sql);
             conn.close();
-            return true;
+            return 1;
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("Erro.");
         }
 
-        return false;
+        return -1;
     }
 }

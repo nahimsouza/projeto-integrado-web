@@ -17,15 +17,17 @@ public class ValidarCadastro extends HttpServlet {
         String email = request.getParameter("cadEMail");
         String senha = request.getParameter("cadSenha");
         String dataNasc = request.getParameter("cadData");
-        boolean tipo = true;
+        String tipo = "Usuario";
         UsuarioBean u = new UsuarioBean(nome, email, senha, dataNasc, tipo);
 
-        if (Validacao.inserirUsuario(u)) {
-            response.sendRedirect("index.jsp");
-        }//fim if
-        else {
+        int v = Validacao.inserirUsuario(u);
+        
+        if (v == 1) {
+            response.sendRedirect("sucessoCad.jsp");
+        }else if(v == -1) {
             response.sendRedirect("erroCad.jsp");
         }
-
+        else
+            response.sendRedirect("erroCad2.jsp");
     }
 }
