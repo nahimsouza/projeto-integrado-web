@@ -91,7 +91,10 @@ public class Validacao {
         String dataNasc = u.getDataNasc();
         String tipo = u.getTipo();
 
-        String sql = "INSERT INTO usuario(tipo_usuario, nome, email, senha) VALUES ( '" + tipo + "', '" + nome + "', '" + email + "', '" + senha + "')";
+        String[] dataNascimento = dataNasc.split("/");
+        String data = dataNascimento[2] + "-" + dataNascimento[1] + "-" + dataNascimento[0];
+        
+        String sql = "INSERT INTO usuario(tipo_usuario, nome, email, senha, data_nasc) VALUES ( '" + tipo + "', '" + nome + "', '" + email + "', '" + senha + "', '"+ data + "')";
 
 
         try {
