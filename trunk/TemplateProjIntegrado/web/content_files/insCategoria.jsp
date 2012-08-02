@@ -16,7 +16,7 @@
                                 <fieldset> 
                                     <p>
                                         Categoria: <br><input type="text" id="ncateg" name="display" onmouseover="helpText(15);" onmouseout="helpText(12)"/>
-                                        <input type="button" value="Adicionar"/>
+                                        <input type="button" value="Adicionar" onclick="catListInsere();"/>
                                     </p>
                                     <table>
 
@@ -26,7 +26,7 @@
                                                 <select id="listaCategorias" name="tipos" size="5">
 
                                                 </select>
-                                                <input type="button" value="Remover" />
+                                                <input type="button" value="Remover" onclick="catListRemove();"/>
                                             </td>
                                         </tr>
                                         <tr>
