@@ -38,7 +38,7 @@ public class UsuarioDAO {
                 String login = rs.getObject("email").toString();
                 UsuarioBean uB = new UsuarioBean();
                 uB.setLogin(login);
-                uB.setTipo(true);
+                uB.setTipo("Colaborador");
                 list.add(uB);
             }
 

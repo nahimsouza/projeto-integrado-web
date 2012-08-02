@@ -6,13 +6,13 @@ public class UsuarioBean {
     private String email;
     private String senha;
     private String dataNasc;
-    private boolean tipo;
+    private String tipo;
 
     public UsuarioBean(){
         
     }
     
-    public UsuarioBean(String nome, String email, String senha, String dataNasc, boolean tipo) {
+    public UsuarioBean(String nome, String email, String senha, String dataNasc, String tipo) {
         this.nome = nome;
         this.email = email;
         this.senha = senha;
@@ -45,14 +45,10 @@ public class UsuarioBean {
     }
 
     public String getTipo() {
-        if (tipo) {
-            return "Colaborador";
-        } else {
-            return "Administrador";
-        }
+        return tipo;
     }
 
-    public void setTipo(boolean tipo) {
+    public void setTipo(String tipo) {
         this.tipo = tipo;
     }
 
