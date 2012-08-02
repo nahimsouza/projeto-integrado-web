@@ -11,17 +11,30 @@ package modelo;
 public class CategoriaTipoBean {
     private int idTipo;
     private int idCategoria;
-    private String Categoria;
-    private String Tipo;
+    private String categoria;
+    private String tipo;
+
+    public CategoriaTipoBean() {
+    }
+    
+    public CategoriaTipoBean(int idTipo, String tipo) {
+        this.idTipo = idTipo;
+        this.tipo = tipo;
+    }
+
+    public CategoriaTipoBean(String categoria, int idCategoria) {
+        this.idCategoria = idCategoria;
+        this.categoria = categoria;
+    }
 
 
 
     public String getCategoria() {
-        return Categoria;
+        return categoria;
     }
 
     public String getTipo() {
-        return Tipo;
+        return tipo;
     }
 
     public int getIdCategoria() {
@@ -32,12 +45,12 @@ public class CategoriaTipoBean {
         return idTipo;
     }
 
-    public void setCategoria(String Categoria) {
-        this.Categoria = Categoria;
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
     }
 
-    public void setTipo(String Tipo) {
-        this.Tipo = Tipo;
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
     
 }

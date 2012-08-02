@@ -8,21 +8,21 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.ArrayList;
 
-public class EntidadeDAO {
+public class CategoriaTipoDAO {
 
     private Connection conn;
 
-    public EntidadeDAO() throws EntidadeDAOException {
+    public CategoriaTipoDAO() throws CategoriaTipoDAOException {
         try {
             this.conn = ConnectionUsuarioFactory.getConnection();
 
         } catch (Exception e) {
-            throw new EntidadeDAOException("Erro: "
+            throw new CategoriaTipoDAOException("Erro: "
                     + ":\n" + e.getMessage());
         }
     }
 
-    public List<EntidadeBean> listaEntidades(String displayname) throws EntidadeDAOException, UsuarioDAOException {
+    public List<CategoriaTipoBean> listaTipo(String tipo) throws CategoriaTipoDAOException, UsuarioDAOException {
         PreparedStatement ps = null;
         Connection conn = null;
         ResultSet rs = null;
@@ -30,36 +30,70 @@ public class EntidadeDAO {
         try {
             // Busca ABSOLUTA por entidade:
             //String SQL = "SELECT displayname, descricao FROM entidade WHERE displayname = '" + displayname + "'";
-            String SQL = "EXEC usp_cons_busca_absoluta'" + displayname + "'";
+            String SQL = "EXEC usp_cons_busca_absoluta_tipo'/" + tipo + "'";
             conn = this.conn;
             ps = conn.prepareStatement(SQL);
             rs = ps.executeQuery();
-            List<EntidadeBean> list = new ArrayList<EntidadeBean>();
+            List<CategoriaTipoBean> list = new ArrayList<CategoriaTipoBean>();
             while (rs.next()) {
-                String name = rs.getObject("displayname").toString(); // o nome entre aspas é o nome do campo no BD
-                String desc = rs.getObject("descricao").toString();
+                int idTipo = (Integer) rs.getObject("id_tipo"); // o nome entre aspas é o nome do campo no BD
+                String nome = rs.getObject("tipo").toString();
                 
-                list.add(new EntidadeBean(name,desc));
+                list.add(new CategoriaTipoBean(idTipo,nome));
             }
 
             return list;
 
         } catch (SQLException sqle) {
-            throw new EntidadeDAOException(sqle);
+            throw new CategoriaTipoDAOException(sqle);
         } finally {
             ConnectionUsuarioFactory.closeConnection(conn, ps, rs);
         }
     } // fim
+    
+        public List<CategoriaTipoBean> listaCategoria(String cat) throws CategoriaTipoDAOException, UsuarioDAOException {
+        PreparedStatement ps = null;
+        Connection conn = null;
+        ResultSet rs = null;
+
+        try {
+            // Busca ABSOLUTA por entidade:
+            //String SQL = "SELECT displayname, descricao FROM entidade WHERE displayname = '" + displayname + "'";
+            String SQL = "EXEC usp_cons_busca_absoluta_categoria'/" + cat + "'";
+            conn = this.conn;
+            ps = conn.prepareStatement(SQL);
+            rs = ps.executeQuery();
+            List<CategoriaTipoBean> list = new ArrayList<CategoriaTipoBean>();
+            while (rs.next()) {
+                String categoria = rs.getObject("categoria").toString(); // o nome entre aspas é o nome do campo no BD
+                int idCategoria = (Integer) rs.getObject("id_cat");
+                
+                list.add(new CategoriaTipoBean(categoria,idCategoria));
+            }
+
+            return list;
+
+        } catch (SQLException sqle) {
+            throw new CategoriaTipoDAOException(sqle);
+        } finally {
+            ConnectionUsuarioFactory.closeConnection(conn, ps, rs);
+        }
+    } // fim
+    
+    
+    
+    
+    
 }
 
 
     // inclui filme no BD
- /*   public void salvar(EntidadeBean entidade, CategoriaTipoBean categoria) throws EntidadeDAOException {
+ /*   public void salvar(CategoriaTipoBean entidade, CategoriaTipoBean categoria) throws CategoriaTipoDAOException {
         PreparedStatement ps = null;
         Connection conn = null;
         ResultSet rs = null;
         if (entidade == null) {
-            throw new EntidadeDAOException("O valor passado não pode ser nulo");
+            throw new CategoriaTipoDAOException("O valor passado não pode ser nulo");
         }
 
         try {
@@ -79,7 +113,7 @@ public class EntidadeDAO {
             }
 
         } catch (SQLException sqle) {
-            throw new EntidadeDAOException("Erro ao inserir dados " + sqle);
+            throw new CategoriaTipoDAOException("Erro ao inserir dados " + sqle);
         } finally {
             ConnectionUsuarioFactory.closeConnection(conn, ps);
 
@@ -87,11 +121,11 @@ public class EntidadeDAO {
     }// fim salvar
 
     // consulta filmes por código
-    public EntidadeBean consultar(int cod) throws EntidadeDAOException {
+    public CategoriaTipoBean consultar(int cod) throws CategoriaTipoDAOException {
         PreparedStatement ps = null;
         Connection conn = null;
         ResultSet rs = null;
-        EntidadeBean novo = null;
+        CategoriaTipoBean novo = null;
 
         try {
             String SQL = "Select * from LocaLuciana where codigo=" + cod;
@@ -105,13 +139,13 @@ public class EntidadeDAO {
                 int ano_prod = (Integer) rs.getObject("ano");
                 double preco = rs.getDouble("preco");
                 String categoria = rs.getObject("categoria").toString();
-                novo = new EntidadeBean(cod, titulo, categoria, ano_prod, preco);
+                novo = new CategoriaTipoBean(cod, titulo, categoria, ano_prod, preco);
             }
 
             return novo;
 
         } catch (SQLException sqle) {
-            throw new EntidadeDAOException(sqle);
+            throw new CategoriaTipoDAOException(sqle);
         } finally {
             ConnectionUsuarioFactory.closeConnection(conn, ps, rs);
         }
