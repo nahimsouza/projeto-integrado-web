@@ -1,4 +1,4 @@
-<h2>Consulta Absoluta por Entidade</h2>
+<h2>Consulta Relativa por Entidade</h2>
 <p> 
 <form id="search-form" method="post" action="VerificarSolicitacoes">
     <fieldset> 
