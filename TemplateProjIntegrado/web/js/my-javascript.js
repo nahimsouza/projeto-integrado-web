@@ -100,5 +100,29 @@ function VerificaCadastro(){
         alert("Cadastro solicitado com sucesso!");
         return document.getElementById("search-form").submit();
     }
+}
+
+function catListInsere(){
+     alert("Senhas inválidas!");
+    var texto = document.getElementById("ncateg").value;
+    var valor = texto;
     
+    document.getElementById("listaCategorias").options[document.getElementById("listaCategorias").options.length] = new Option (texto, valor, true, true);
+}
+
+function catListRemove(){
+    document.getElementById("listaCategorias").remove(document.getElementById("listaCategorias").selectedIndex);
+}
+
+
+function tipoCatListInsere(){
+    var texto = "/"+document.getElementById("categ").value + "/" + document.getElementById("ntipo").value;
+    var valor = texto;
+
+    document.getElementById("categoriass").options[document.getElementById("categoriass").options.length] = new Option (texto, valor, true, true);
+
+}
+
+function tipoCatListRemove(){
+    document.getElementById("categoriass").remove(document.getElementById("categoriass").selectedIndex);
 }
