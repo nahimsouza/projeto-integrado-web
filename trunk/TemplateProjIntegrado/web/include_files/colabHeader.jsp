@@ -36,7 +36,7 @@
                 <fieldset>
                     email <input type="text" value="" name="email"><!--<input type="submit" value="">-->
                     senha <input type="password" value="" name="senha">
-                    <input type="submit" value="ir"/>
+                    <input type="submit" value="ir" />
                     <input type="hidden" name="tipo" value="login">
                 </fieldset>
                 <% }%>

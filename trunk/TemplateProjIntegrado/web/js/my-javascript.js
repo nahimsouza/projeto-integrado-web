@@ -97,8 +97,8 @@ function VerificaCadastro(){
         alert("Data de Nascimento deve estar no formato dd/mm/aaaa!");
         return false;
     }else{
-        return alert("Cadastro solicitado com sucesso!");
-        document.getElementById("search-form").submit();
+        alert("Cadastro solicitado com sucesso!");
+        return document.getElementById("search-form").submit();
     }
     
 }

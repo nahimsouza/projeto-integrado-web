@@ -2,10 +2,46 @@ package modelo;
 
 public class UsuarioBean {
 
-    private String login;
+    private String nome;
+    private String email;
+    private String senha;
+    private String dataNasc;
     private boolean tipo;
 
-    public UsuarioBean() {
+    public UsuarioBean(){
+        
+    }
+    
+    public UsuarioBean(String nome, String email, String senha, String dataNasc, boolean tipo) {
+        this.nome = nome;
+        this.email = email;
+        this.senha = senha;
+        this.dataNasc = dataNasc;
+        this.tipo = tipo;
+    }
+
+    public String getDataNasc() {
+        return dataNasc;
+    }
+
+    public void setDataNasc(String dataNasc) {
+        this.dataNasc = dataNasc;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
     }
 
     public String getTipo() {
@@ -21,10 +57,10 @@ public class UsuarioBean {
     }
 
     public String getLogin() {
-        return login;
+        return email;
     }
 
     public void setLogin(String login) {
-        this.login = login;
+        this.email = login;
     }
 }

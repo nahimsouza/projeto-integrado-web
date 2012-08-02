@@ -36,12 +36,12 @@ public class ValidarLogin extends HttpServlet {
             HttpSession session = request.getSession();
             UsuarioBean user = new UsuarioBean();
             user.setLogin(email);
-            user.setTipo(Validacao.getTipo());
+            user.setTipo(Validacao.getTipo(email, senha));
             session.setAttribute("Usuario", user);
             response.sendRedirect("colabIndex.jsp");
         }//fim if
         else {
-            response.sendRedirect("erro.html");
+            response.sendRedirect("erro.jsp");
         }
     }//fim login 
 }

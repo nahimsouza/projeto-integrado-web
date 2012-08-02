@@ -16,6 +16,10 @@
         <servlet-name>ValidarUsuario</servlet-name>
         <servlet-class>controle.ValidarUsuario</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ValidarCadastro</servlet-name>
+        <servlet-class>controle.ValidarCadastro</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ValidarLogin</servlet-name>
         <url-pattern>/ValidarLogin</url-pattern>
@@ -31,6 +35,10 @@
     <servlet-mapping>
         <servlet-name>ValidarUsuario</servlet-name>
         <url-pattern>/ValidarUsuario</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ValidarCadastro</servlet-name>
+        <url-pattern>/ValidarCadastro</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
