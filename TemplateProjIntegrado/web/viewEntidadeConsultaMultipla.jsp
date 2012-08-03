@@ -35,7 +35,12 @@
                         <%
                             List<EntidadeBean> listaEntidade = (List<EntidadeBean>) request.getAttribute("EntidadeBean");
 
-                            if (listaEntidade.isEmpty()) {
+                           if (listaEntidade == null) {
+
+                        %>
+                        <h2> Não existem itens cadastrados!!! </h2>
+                        <% } // fim do if
+                        else if (listaEntidade.isEmpty()) {
 
                         %>
                         <h2> Não existem itens cadastrados!!! </h2>
