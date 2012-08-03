@@ -28,7 +28,7 @@
 						<div class="inner">
 							<h2>Conhecimento<br /> & Colaboração<span>participe!</span></h2>
 							<p>Um mundo cheio de conhecimento e você aí parado?<br /> Você tem muita coisa a aprender e, com certeza, muita coisa para ensinar também! Por que não compartilhar todo o seu conhecimento com o mundo e com as próximas gerações?  </p>
-							<a href="#" class="extra-button">Saiba mais</a>
+							<a href="sobre.jsp" class="extra-button">Saiba mais</a>
 						</div>
 					</section>
 				</div>
