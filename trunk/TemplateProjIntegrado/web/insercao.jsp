@@ -30,7 +30,7 @@
                 <jsp:include page="include_files/adminHeaderIns.jsp" />  
             <%} }   
            } catch (NullPointerException e) {
-                 response.sendRedirect("index.jsp");
+                 response.sendRedirect("oops.jsp");
             }%>
         
         <section id="content">

@@ -13,9 +13,9 @@
                     log = (UsuarioBean) sessao.getAttribute("Usuario");
                     String tipo = log.getTipo();
             if (tipo.equals("Colaborador")) {
-                response.sendRedirect("index.jsp");
+                response.sendRedirect("oops.jsp");
             } else if (tipo.equals("Administrador")) {
-                response.sendRedirect("index.jsp");
+                response.sendRedirect("oops.jsp");
                 } 
             }   
            } catch (NullPointerException e) { %>
