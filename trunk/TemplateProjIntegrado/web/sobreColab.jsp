@@ -16,7 +16,7 @@
     <%@include file="include_files/head.jsp" %>
 
     <body>
-        <%@include file = "include_files/colabHeader.jsp" %>
+        <%@include file = "include_files/colabHeaderSobre.jsp" %>
         <section id="content">
             <div class="middle">
                 <div class="container">

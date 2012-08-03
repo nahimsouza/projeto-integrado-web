@@ -5,9 +5,9 @@
             <div class="wrapper">
                 <h1><a href="index.jsp"><b>Chico</b>Base</a></h1>
                 <ul>
-                    <li><a href="colabIndex.jsp" class="current">início</a></li>
+                    <li><a href="colabIndex.jsp">início</a></li>
                     <li><a href="consulta.jsp">consultas</a></li>
-                    <li><a href="insercao.jsp">inserção</a></li>
+                    <li><a href="insercao.jsp" class="current">inserção</a></li>
                     <li><a href="alteracao.jsp">alteração</a></li>
                     <li><a href="remocao.jsp">remoção</a></li>
                     <li><a href="sobreColab.jsp">sobre</a></li>
