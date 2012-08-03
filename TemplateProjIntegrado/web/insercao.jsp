@@ -13,7 +13,7 @@
     <%@include file="include_files/head.jsp" %>
 
     <body>
-        <%@include file = "include_files/colabHeader.jsp" %>
+        <%@include file = "include_files/colabHeaderIns.jsp" %>
         <section id="content">
             <!--		<div class="top">
                              <div class="container">

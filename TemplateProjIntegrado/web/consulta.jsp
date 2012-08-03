@@ -9,7 +9,7 @@
 <html lang="en">
     <%@include file="include_files/head.jsp" %>
     <body>
-        <%@include file = "include_files/colabHeader.jsp" %>
+        <%@include file = "include_files/colabHeaderConsulta.jsp" %>
         <section id="content">
             <div class="middle">
                 <div class="container">
