@@ -19,15 +19,17 @@
                 if (sessao != null) {
                     log = (UsuarioBean) sessao.getAttribute("Usuario");
                     String tipo = log.getTipo();
-                    if (tipo.equals("Colaborador")) {
-                        response.sendRedirect("oops.jsp");
-                               } else if (tipo.equals("Administrador")) {%>
-        <jsp:include page="include_files/adminHeaderUsuario.jsp" />
-        <% }
-                }
-            } catch (NullPointerException e) {
-                response.sendRedirect("oops.jsp");
-                    }%> 
+            if (tipo.equals("Colaborador")) {
+        %>   
+                <jsp:include page="include_files/colabHeaderIns.jsp" />  
+        <% 
+            } else if (tipo.equals("Administrador")) {
+        %>   
+                <jsp:include page="include_files/adminHeaderIns.jsp" />  
+            <%} }   
+           } catch (NullPointerException e) {
+                 response.sendRedirect("oops.jsp");
+            }%>
         <section id="content">
             <div class="middle">
                 <div class="container">
@@ -42,9 +44,13 @@
                             </ul>
                         </div>
                         <div class="grid9" id="solicitacoes">
-                            <form id="formulario" nome ="formulario" method="post" action="VerificarSolicitacoes" >
-                                <script language="JavaScript">document.forms['formulario'].submit();</script>
+                             
+                           <form id="formulario" nome ="formulario" method="post" action="VerificarSolicitacoes" >
+                               <input type="hidden" value="usuarios" name="acao" />
+                                <input type="submit" value="Mostrar Usuarios Pendentes" />
+                                
                             </form>
+                            
 
                         </div>
                         <div class="grid9" id="conUsuario" style="display: none">
