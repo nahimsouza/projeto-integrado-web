@@ -36,7 +36,12 @@
                         <%
                             List<CategoriaTipoBean> listaTipo = (List<CategoriaTipoBean>) request.getAttribute("CategoriaTipoBean");
 
-                            if (listaTipo.isEmpty()) {
+                             if (listaTipo == null) {
+
+                        %>
+                        <h2> Não existem itens cadastrados!!! </h2>
+                        <% } // fim do if
+                        else if (listaTipo.isEmpty()) {
 
                         %>
                         <h2> Não existem itens cadastrados!!! </h2>

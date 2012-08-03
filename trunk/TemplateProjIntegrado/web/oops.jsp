@@ -4,13 +4,32 @@
     Author     : Fernando
 --%>
 
+<%@page import="modelo.UsuarioBean"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <%@include file="include_files/head.jsp" %>
-    <%@include file="include_files/userHeader.jsp" %>
     <body>
-         <section id="content">
+        <% //Recupera a Session
+            try {
+                HttpSession sessao = request.getSession(false);
+                UsuarioBean log = null;
+                if (sessao != null) {
+                    log = (UsuarioBean) sessao.getAttribute("Usuario");
+                    String tipo = log.getTipo();
+                    if (tipo.equals("Colaborador")) {
+        %>   
+        <jsp:include page="include_files/colabHeader.jsp" />  
+        <%        } else if (tipo.equals("Administrador")) {
+        %>   
+        <jsp:include page="include_files/adminHeader.jsp" />  
+        <%}
+                }
+            } catch (NullPointerException e) {%>
+        <jsp:include page="include_files/userHeader.jsp" />  
+        <% }%> 
+
+        <section id="content">
             <div class="top">
                 <div class="container">
                     <div class="clearfix">
@@ -25,11 +44,6 @@
                                 <h2>
                                     Acesso negado!
                                 </h2>
-                                <h3>
-                                <span>
-                                    Faça login acima ou <a href="cadastro.jsp">cadastre-se</a> gratuitamente.
-                                </span>
-                                </h3>
                                 </p>
                                 <br/>
                                 <br/>
