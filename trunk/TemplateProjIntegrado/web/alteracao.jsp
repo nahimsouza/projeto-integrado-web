@@ -7,12 +7,30 @@
 
 --%>
 
+<%@page import="modelo.UsuarioBean"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
     <%@include file="include_files/head.jsp" %>
-    <body>
-        <%@include file = "include_files/colabHeader.jsp" %>
+    <body><% //Recupera a Session
+            try {
+                HttpSession sessao = request.getSession(false);
+                UsuarioBean log = null;
+                if (sessao != null) {
+                    log = (UsuarioBean) sessao.getAttribute("Usuario");
+                    String tipo = log.getTipo();
+            if (tipo.equals("Colaborador")) {
+        %>   
+                <jsp:include page="include_files/colabHeaderAlt.jsp" />  
+        <% 
+            } else if (tipo.equals("Administrador")) {
+        %>   
+                <jsp:include page="include_files/adminHeaderAlt.jsp" />  
+            <%} }   
+           } catch (NullPointerException e) {%>
+                 <jsp:include page="include_files/userHeaderAlt.jsp" />
+        <% }%> 
+
         <section id="content">
             <div class="middle">
                 <div class="container">

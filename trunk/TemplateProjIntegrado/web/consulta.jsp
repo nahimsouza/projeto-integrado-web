@@ -4,8 +4,6 @@
 
 <%@page import="modelo.UsuarioBean"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="modelo.EntidadeBean" %>
-<%@page import="java.util.*" %>
 <!DOCTYPE html>
 <html lang="en">
     <%@include file="include_files/head.jsp" %>
@@ -28,45 +26,59 @@
                  <jsp:include page="include_files/userHeaderConsulta.jsp" />
         <% }%>
         
+
         <section id="content">
             <div class="middle">
                 <div class="container">
                     <div class="wrapper">
                         <div class="grid3 first">
                             <ul class="categories">
-                                       <li><a href="javascript:void(0)" onclick="showDiv( 'conEntidade', true );
+                                   <li><a href="javascript:void(0)" onclick="showDiv( 'conEntidade', true );
+                                                            showDiv( 'conEntidadeR', false );
                                                             showDiv( 'conCategoria', false );
                                                             showDiv( 'conTipo', false );
-                                                            showDiv( 'conAvancada', false );">Consulta por Entidade</a></li>
+                                                            showDiv( 'conAvancada', false );">Consulta Absoluta por Entidade</a></li>
+                                   
+                                   <li><a href="javascript:void(0)" onclick="showDiv( 'conEntidade', false );
+                                                            showDiv( 'conEntidadeR', true );
+                                                            showDiv( 'conCategoria', false );
+                                                            showDiv( 'conTipo', false );
+                                                            showDiv( 'conAvancada', false );">Consulta Relativa por Entidade</a></li>
 
                                        <li><a href="javascript:void(0)" onclick="showDiv( 'conEntidade', false );
+                                                            showDiv( 'conEntidadeR', false );
                                                             showDiv( 'conCategoria', true );
                                                             showDiv( 'conTipo', false );
                                                             showDiv( 'conAvancada', false );">Consulta por Categoria</a></li>
 
                                        <li><a href="javascript:void(0)" onclick="showDiv( 'conEntidade', false );
+                                                            showDiv( 'conEntidadeR', false );
                                                             showDiv( 'conCategoria', false );
                                                             showDiv( 'conTipo', true );
                                                             showDiv( 'conAvancada', false );">Consulta por Tipo</a></li>
 
                                        <li><a href="javascript:void(0)" onclick="showDiv( 'conEntidade', false );
+                                                            showDiv( 'conEntidadeR', false );
                                                             showDiv( 'conCategoria', false );
                                                             showDiv( 'conTipo', false );
                                                             showDiv( 'conAvancada', true );">Consulta Avançada</a></li>
                             </ul>
                         </div>
                         <div class="grid9" id="conEntidade">
-                            <%@include file="content_files/conEntidade.jsp" %>
+                            <%@include file="content_files\conEntidade.jsp" %>
+                        </div>
+                        <div class="grid9" id="conEntidadeR" style="display: none">
+                            <%@include file="content_files\conEntidadeR.jsp" %>
                         </div>
                         <div class="grid9" id="conCategoria" style="display: none">
-                            <%@include file="content_files/conCategoria.jsp" %>
-                        </div> 
+                            <%@include file="content_files\conCategoria.jsp" %>
+                        </div>
                         <div class="grid9" id="conTipo" style="display: none">
-                            <%@include file="content_files/conTipo.jsp" %>
-                        </div> 
-                        <div class="grid9" id="conAvancada" style="display: none" >
-                            <%@include file="content_files/conAvancada.jsp"  %>
-                        </div> 
+                            <%@include file="content_files\conTipo.jsp" %>
+                        </div>
+                        <div class="grid9" id="conAvancada" style="display: none">
+                            <%@include file="content_files\conAvancada.jsp" %>
+                        </div>
                     </div>
                 </div>
             </div>

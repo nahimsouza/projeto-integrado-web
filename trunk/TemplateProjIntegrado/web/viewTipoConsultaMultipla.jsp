@@ -1,3 +1,4 @@
+<%@page import="modelo.UsuarioBean"%>
 <%@page import="modelo.CategoriaTipoBean"%>
 <%@page language="java" contentType="text/html; charset=ISO-8859-1"
         pageEncoding="ISO-8859-1"%>
@@ -64,7 +65,7 @@
                         </table>
                         <% }%>
                         <br>
-                        <p><a href="consulta_user.jsp"> Nova Consulta </a> </p>
+                        <p><a href="consulta.jsp"> Nova Consulta </a> </p>
 
 
                 </div><%-- inserido --%>
