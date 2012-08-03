@@ -42,10 +42,7 @@ public class ValidarLogin extends HttpServlet {
                 user.setLogin(email);
                 user.setTipo(tipo);
                 session.setAttribute("Usuario", user);
-                if(tipo == "Colaborador")
-                    response.sendRedirect("colabIndex.jsp");
-                else if(tipo == "Administrador")
-                    response.sendRedirect("colabIndex.jsp");
+                response.sendRedirect("index.jsp");
             }
         }
         else {

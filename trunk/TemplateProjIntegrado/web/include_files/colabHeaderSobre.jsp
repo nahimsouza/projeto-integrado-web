@@ -3,9 +3,9 @@
     <nav>
         <div class="container">
             <div class="wrapper">
-                <h1><a href="colabIndex.jsp"><b>Chico</b>Base</a></h1>
+                <h1><a href="index.jsp"><b>Chico</b>Base</a></h1>
                 <ul>
-                    <li><a href="colabIndex.jsp">início</a></li>
+                    <li><a href="index.jsp">início</a></li>
                     <li><a href="consulta.jsp">consultas</a></li>
                     <li><a href="insercao.jsp">inserção</a></li>
                     <li><a href="alteracao.jsp">alteração</a></li>
