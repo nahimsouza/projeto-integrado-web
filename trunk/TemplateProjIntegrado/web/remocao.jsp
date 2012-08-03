@@ -29,9 +29,9 @@
         %>   
                 <jsp:include page="include_files/adminHeaderRem.jsp" />  
             <%} }   
-           } catch (NullPointerException e) {%>
-                 <jsp:include page="include_files/userHeaderRem.jsp" />
-        <% }%>
+           } catch (NullPointerException e) {
+               response.sendRedirect("index.jsp");
+            }%>
         
 
 	<section id="content">

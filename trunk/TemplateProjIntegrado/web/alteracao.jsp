@@ -12,7 +12,8 @@
 <!DOCTYPE html>
 <html lang="en">
     <%@include file="include_files/head.jsp" %>
-    <body><% //Recupera a Session
+    <body>
+        <% //Recupera a Session
             try {
                 HttpSession sessao = request.getSession(false);
                 UsuarioBean log = null;
@@ -27,9 +28,9 @@
         %>   
                 <jsp:include page="include_files/adminHeaderAlt.jsp" />  
             <%} }   
-           } catch (NullPointerException e) {%>
-                 <jsp:include page="include_files/userHeaderAlt.jsp" />
-        <% }%> 
+           } catch (NullPointerException e) {
+                 response.sendRedirect("index.jsp");
+            }%> 
 
         <section id="content">
             <div class="middle">
