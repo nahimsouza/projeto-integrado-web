@@ -66,7 +66,7 @@
                         </table>
                         <% }%>
                         <br>
-                        <p><a href="consulta_user.jsp"> Nova Consulta </a> </p>
+                        <p><a href="consulta.jsp"> Nova Consulta </a> </p>
 
 
                 </div><%-- inserido --%>

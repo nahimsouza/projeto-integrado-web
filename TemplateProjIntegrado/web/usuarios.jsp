@@ -11,7 +11,7 @@
 <html lang="en">
     <%@include file="include_files/head.jsp" %>
     <body>
-        <%@include file="include_files/adminHeader.jsp" %>
+        <%@include file="include_files/adminHeaderUsuario.jsp" %>
         <section id="content">
             <div class="middle">
                 <div class="container">

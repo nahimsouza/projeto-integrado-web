@@ -10,7 +10,7 @@
                     <li><a href="insercao.jsp">inserção</a></li>
                     <li><a href="alteracao.jsp">alteração</a></li>
                     <li><a href="remocao.jsp">remoção</a></li>
-                    <li><a href="sobreColab.jsp" class="current">sobre</a></li>
+                    <li><a href="sobre.jsp" class="current">sobre</a></li>
                 </ul> 
             </div>
         </div>
