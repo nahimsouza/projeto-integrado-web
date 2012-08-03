@@ -4,7 +4,7 @@
     <%@include file="include_files/head.jsp" %>
 
     <body>
-        <%@include file="include_files/userHeader.jsp" %>
+        <%@include file="include_files/userHeaderCadastro.jsp" %>
 
 
         <section id="content"> 

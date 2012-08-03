@@ -11,7 +11,7 @@
     <%@include file="include_files/head.jsp" %>
 
     <body>
-        <%@include file = "include_files/userHeader.jsp" %>
+        <%@include file = "include_files/userHeaderSobre.jsp" %>
         <section id="content">
             <div class="middle">
                 <div class="container">
