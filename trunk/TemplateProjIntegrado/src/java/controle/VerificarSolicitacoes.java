@@ -38,6 +38,11 @@ public class VerificarSolicitacoes extends HttpServlet {
             String desCat = request.getParameter("nomeCategoria");
             acaoConsultarCategoria(request, response, desCat);
         }
+         else if(acao.compareTo("conAvancada") == 0) {
+             int in = Integer.parseInt(request.getParameter("catIn"));
+             int not = Integer.parseInt(request.getParameter("catNot"));
+             acaoConsultaAvancada(request, response, in, not);
+         }
 
     }
 
@@ -110,6 +115,24 @@ public class VerificarSolicitacoes extends HttpServlet {
         RequestDispatcher rd = null;
 
         rd = request.getRequestDispatcher("/viewCategoriaConsultaMultipla.jsp");
+
+        rd.forward(request, response);
+
+    }
+    private void acaoConsultaAvancada(HttpServletRequest request, HttpServletResponse response, int in, int not)
+            throws ServletException, IOException {
+
+        try {
+            EntidadeDAO entidade = new EntidadeDAO();
+            List<EntidadeBean> lista = (List<EntidadeBean>) entidade.listaAvancada(in, not);
+            request.setAttribute("EntidadeBean", lista);
+
+        } catch (Exception sqle) {
+            request.setAttribute("EntidadeBean", null);
+        }
+        RequestDispatcher rd = null;
+
+        rd = request.getRequestDispatcher("/viewEntidadeConsultaMultipla.jsp");
 
         rd.forward(request, response);
 
