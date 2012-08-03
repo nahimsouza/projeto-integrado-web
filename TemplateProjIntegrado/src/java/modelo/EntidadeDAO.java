@@ -78,6 +78,35 @@ public class EntidadeDAO {
             ConnectionUsuarioFactory.closeConnection(conn, ps, rs);
         }
     } // fim
+        
+        public List<EntidadeBean> listaAvancada(int in, int not) throws EntidadeDAOException, UsuarioDAOException {
+        PreparedStatement ps = null;
+        Connection conn = null;
+        ResultSet rs = null;
+
+        try {
+            // Busca avancada:
+            //String SQL = "SELECT displayname, descricao FROM entidade WHERE displayname = '" + displayname + "'";
+            String SQL = "EXEC usp_cons_xdify " + in + "," + not;
+            conn = this.conn;
+            ps = conn.prepareStatement(SQL);
+            rs = ps.executeQuery();
+            List<EntidadeBean> list = new ArrayList<EntidadeBean>();
+            while (rs.next()) {
+                String name = rs.getObject("displayname").toString(); // o nome entre aspas é o nome do campo no BD
+                String desc = rs.getObject("descricao").toString();
+                
+                list.add(new EntidadeBean(name,desc));
+            }
+
+            return list;
+
+        } catch (SQLException sqle) {
+            throw new EntidadeDAOException(sqle);
+        } finally {
+            ConnectionUsuarioFactory.closeConnection(conn, ps, rs);
+        }
+    } // fim
 }
 
 
