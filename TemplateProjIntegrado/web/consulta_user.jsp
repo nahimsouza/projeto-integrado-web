@@ -7,7 +7,7 @@
 <html lang="en">
     <%@include file="include_files/head.jsp" %>
     <body>
-        <%@include file = "include_files/userHeader.jsp" %>
+        <%@include file = "include_files/userHeaderConsulta.jsp" %>
         <section id="content">
             <div class="middle">
                 <div class="container">
