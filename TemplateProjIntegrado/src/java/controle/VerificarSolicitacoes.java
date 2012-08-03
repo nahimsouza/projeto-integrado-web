@@ -13,6 +13,7 @@ import modelo.CategoriaTipoDAO;
 import modelo.EntidadeBean;
 import modelo.EntidadeDAO;
 import modelo.UsuarioBean;
+import modelo.UsuarioDAO;
 
 public class VerificarSolicitacoes extends HttpServlet {
 
@@ -43,6 +44,9 @@ public class VerificarSolicitacoes extends HttpServlet {
              int not = Integer.parseInt(request.getParameter("catNot"));
              acaoConsultaAvancada(request, response, in, not);
          }
+          else if(acao.compareTo("usuarios") == 0) {
+            acaoConsultarUsuario(request, response, "");
+        }
 
     }
 
@@ -63,7 +67,8 @@ public class VerificarSolicitacoes extends HttpServlet {
 
         rd.forward(request, response);
 
-    } private void acaoConsultarEntidadeR(HttpServletRequest request, HttpServletResponse response, String displayname)
+    } 
+    private void acaoConsultarEntidadeR(HttpServletRequest request, HttpServletResponse response, String displayname)
             throws ServletException, IOException {
 
         try {
@@ -137,4 +142,22 @@ public class VerificarSolicitacoes extends HttpServlet {
         rd.forward(request, response);
 
     }
+      private void acaoConsultarUsuario(HttpServletRequest request, HttpServletResponse response, String displayname)
+            throws ServletException, IOException {
+
+        try {
+            UsuarioDAO usuario = new UsuarioDAO();
+            List<UsuarioBean> lista = (List<UsuarioBean>) usuario.solicitacoes();
+            request.setAttribute("UsuarioBean", lista);
+
+        } catch (Exception sqle) {
+            request.setAttribute("UsuarioBean", null);
+        }
+        RequestDispatcher rd = null;
+
+        rd = request.getRequestDispatcher("/viewSolicitacoes.jsp");
+
+        rd.forward(request, response);
+
+    } 
 }
