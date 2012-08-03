@@ -1,3 +1,4 @@
+<%@page import="modelo.UsuarioBean"%>
 <%@page import="modelo.CategoriaTipoBean"%>
 <%@page language="java" contentType="text/html; charset=ISO-8859-1"
         pageEncoding="ISO-8859-1"%>
@@ -8,7 +9,25 @@
 <html>
     <%@include file="include_files/head.jsp" %> <%-- inserido --%>
     <body>
-        <%@include file = "include_files/userHeader.jsp" %><%-- inserido --%>
+       <% //Recupera a Session
+            try {
+                HttpSession sessao = request.getSession(false);
+                UsuarioBean log = null;
+                if (sessao != null) {
+                    log = (UsuarioBean) sessao.getAttribute("Usuario");
+                    String tipo = log.getTipo();
+            if (tipo.equals("Colaborador")) {
+        %>   
+                <jsp:include page="include_files/colabHeaderConsulta.jsp" />  
+        <% 
+            } else if (tipo.equals("Administrador")) {
+        %>   
+                <jsp:include page="include_files/adminHeaderConsulta.jsp" />  
+            <%} }   
+           } catch (NullPointerException e) {%>
+                 <jsp:include page="include_files/userHeaderConsulta.jsp" />
+        <% }%>
+        
     <section id="content"><%-- inserido --%>
         <div class="middle"><%-- inserido --%>
             <div class="container"><%-- inserido --%>
