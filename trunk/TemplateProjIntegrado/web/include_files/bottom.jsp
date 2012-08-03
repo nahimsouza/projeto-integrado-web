@@ -18,7 +18,7 @@
 						<ul class="list2">
 							<li><a href="http://www.google.com.br">Google</a></li>
 							<li><a href="http://www.bing.com">Bing</a></li>
-							<li><a href="http://www.wipedia.com">Wikipedia</a></li>
+							<li><a href="http://www.wikipedia.com">Wikipedia</a></li>
 							<li><a href="http://www.ufscar.br">UFSCar</a></li>
 							<li><a href="http://www.moodle.ufscar.br">Moodle</a></li>
 							<li><a href="http://www.w3c.com">World Wide Web Consortium</a></li>
