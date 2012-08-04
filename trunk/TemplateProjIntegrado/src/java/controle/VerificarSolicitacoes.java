@@ -2,6 +2,7 @@ package controle;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -30,22 +31,23 @@ public class VerificarSolicitacoes extends HttpServlet {
         if (acao.compareTo("conEntidadeR") == 0) {
             String displayname = request.getParameter("nomeEntidade");
             acaoConsultarEntidadeR(request, response, displayname);
-        }
-        else if(acao.compareTo("conTipo") == 0) {
+        } else if (acao.compareTo("conTipo") == 0) {
             String descTipo = request.getParameter("nomeTipo");
             acaoConsultarTipo(request, response, descTipo);
-        }
-         else if(acao.compareTo("conCategoria") == 0) {
+        } else if (acao.compareTo("conCategoria") == 0) {
             String desCat = request.getParameter("nomeCategoria");
             acaoConsultarCategoria(request, response, desCat);
-        }
-         else if(acao.compareTo("conAvancada") == 0) {
-             int in = Integer.parseInt(request.getParameter("catIn"));
-             int not = Integer.parseInt(request.getParameter("catNot"));
-             acaoConsultaAvancada(request, response, in, not);
-         }
-          else if(acao.compareTo("usuarios") == 0) {
+        } else if (acao.compareTo("conAvancada") == 0) {
+            int in = Integer.parseInt(request.getParameter("catIn"));
+            int not = Integer.parseInt(request.getParameter("catNot"));
+            acaoConsultaAvancada(request, response, in, not);
+        } else if (acao.compareTo("usuarios") == 0) {
             acaoConsultarUsuario(request, response, "");
+        } else if (acao.compareTo("carregaCategorias") == 0) {
+            acaoCarregaCategorias(request, response);
+        }else if (acao.compareTo("carregaTipos") == 0) {
+            int idcat = Integer.parseInt(request.getParameter("cat"));
+            acaoCarregaTipos(request, response, idcat);
         }
 
     }
@@ -67,7 +69,8 @@ public class VerificarSolicitacoes extends HttpServlet {
 
         rd.forward(request, response);
 
-    } 
+    }
+
     private void acaoConsultarEntidadeR(HttpServletRequest request, HttpServletResponse response, String displayname)
             throws ServletException, IOException {
 
@@ -124,6 +127,7 @@ public class VerificarSolicitacoes extends HttpServlet {
         rd.forward(request, response);
 
     }
+
     private void acaoConsultaAvancada(HttpServletRequest request, HttpServletResponse response, int in, int not)
             throws ServletException, IOException {
 
@@ -142,7 +146,8 @@ public class VerificarSolicitacoes extends HttpServlet {
         rd.forward(request, response);
 
     }
-      private void acaoConsultarUsuario(HttpServletRequest request, HttpServletResponse response, String displayname)
+
+    private void acaoConsultarUsuario(HttpServletRequest request, HttpServletResponse response, String displayname)
             throws ServletException, IOException {
 
         try {
@@ -159,5 +164,53 @@ public class VerificarSolicitacoes extends HttpServlet {
 
         rd.forward(request, response);
 
-    } 
+    }
+
+    private void acaoCarregaCategorias(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        List<CategoriaTipoBean> lista = null;
+
+        try {
+            CategoriaTipoDAO categoria = new CategoriaTipoDAO();
+            lista = (List<CategoriaTipoBean>) categoria.listaTodasCategorias();
+            request.setAttribute("CategoriaTipoBean", lista);
+
+        } catch (Exception sqle) {
+            request.setAttribute("CategoriaTipoBean", null);
+        }
+
+        String html="<option value=''></optiion>";
+        for (Iterator i = lista.iterator(); i.hasNext();) {
+            CategoriaTipoBean l = (CategoriaTipoBean) i.next();
+            html += "<option value=" + l.getIdCategoria() + ">" + l.getCategoria() + "</option>";
+        }
+
+        response.getWriter().write(html);
+    }
+    
+    private void acaoCarregaTipos(HttpServletRequest request, HttpServletResponse response, int idcat)
+            throws ServletException, IOException {
+
+        List<CategoriaTipoBean> lista = null;
+
+        try {
+            CategoriaTipoDAO categoria = new CategoriaTipoDAO();
+            lista = (List<CategoriaTipoBean>) categoria.listaTipoPorCategoria(idcat);
+            request.setAttribute("CategoriaTipoBean", lista);
+
+        } catch (Exception sqle) {
+            request.setAttribute("CategoriaTipoBean", null);
+        }
+
+        String html="<option value=''></optiion>";
+        for (Iterator i = lista.iterator(); i.hasNext();) {
+            CategoriaTipoBean l = (CategoriaTipoBean) i.next();
+            html += "<option value=" + l.getIdTipo() + ">" + l.getTipo() + "</option>";
+        }
+
+        response.getWriter().write(html);
+    }
+    
+    
 }

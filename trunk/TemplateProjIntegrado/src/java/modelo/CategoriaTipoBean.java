@@ -27,8 +27,6 @@ public class CategoriaTipoBean {
         this.categoria = categoria;
     }
 
-
-
     public String getCategoria() {
         return categoria;
     }
