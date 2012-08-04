@@ -60,8 +60,15 @@ function tipoListInsere(){
     var texto = txtCat + txtTipo;
     var valor = cat.value + '/' + tipo.value;
 
-    document.getElementById("listaTipos").options[document.getElementById("listaTipos").options.length] = new Option (texto, valor, true, true);
+    var lista = document.getElementById("listaTipos");
 
+    for(i=0; i<lista.options.length; i++){
+        if(lista[lista.selectedIndex].value == valor)
+            i = lista.options.length+1;
+    }
+    
+    if(i==lista.options.length)
+        lista.options[lista.options.length] = new Option (texto, valor, true, true);
 }
 
 function tipoListRemove(){
