@@ -13,7 +13,7 @@
 <html lang="en">
     <%@include file="include_files/head.jsp" %>
 
-    <body>
+    <body  onload="chamaServlet(carregaCategorias,'carregaCategorias')">
         <% //Recupera a Session
             try {
                 HttpSession sessao = request.getSession(false);
@@ -23,16 +23,16 @@
                     String tipo = log.getTipo();
             if (tipo.equals("Colaborador")) {
         %>   
-                <jsp:include page="include_files/colabHeaderIns.jsp" />  
+        <jsp:include page="include_files/colabHeaderIns.jsp" />  
         <% 
             } else if (tipo.equals("Administrador")) {
         %>   
-                <jsp:include page="include_files/adminHeaderIns.jsp" />  
-            <%} }   
-           } catch (NullPointerException e) {
-                 response.sendRedirect("oops.jsp");
-            }%>
-        
+        <jsp:include page="include_files/adminHeaderIns.jsp" />  
+        <%} }   
+       } catch (NullPointerException e) {
+             response.sendRedirect("oops.jsp");
+        }%>
+
         <section id="content">
             <!--		<div class="top">
                              <div class="container">
@@ -64,17 +64,17 @@
                     <div class="wrapper">
                         <div class="grid3 first">
                             <ul class="categories">
-                                <li><a href="javascript:void(0)" onclick="showDiv( 'insEntidade', true );
-                                       showDiv( 'insCategoria', false );
-                                       showDiv( 'insTipo', false );">Inserir Entidade</a></li>
+                                   <li><a href="javascript:void(0)" onclick="showDiv( 'insEntidade', true );
+                                    showDiv( 'insCategoria', false );
+                                    showDiv( 'insTipo', false );">Inserir Entidade</a></li>
 
-                                <li><a href="javascript:void(0)" onclick="showDiv( 'insEntidade', false );
-                                           showDiv( 'insCategoria', true );
-                                           showDiv( 'insTipo', false );">Inserir Categoria</a></li>
+                                       <li><a href="javascript:void(0)" onclick="showDiv( 'insEntidade', false );
+                                    showDiv( 'insCategoria', true );
+                                    showDiv( 'insTipo', false );">Inserir Categoria</a></li>
 
-                                <li><a href="javascript:void(0)" onclick="showDiv( 'insEntidade', false );
-                                           showDiv( 'insCategoria', false );
-                                           showDiv( 'insTipo', true );">Inserir Tipo</a></li>
+                                       <li><a href="javascript:void(0)" onclick="showDiv( 'insEntidade', false );
+                                    showDiv( 'insCategoria', false );
+                                    showDiv( 'insTipo', true );">Inserir Tipo</a></li>
 
 
                                 <!--	<li><a href="#">Communications</a></li>
@@ -99,6 +99,6 @@
 
             <%@include file="include_files/bottom.jsp" %>
         </section>
-            <%@include file="include_files/footer.jsp" %>
+        <%@include file="include_files/footer.jsp" %>
     </body>
 </html>

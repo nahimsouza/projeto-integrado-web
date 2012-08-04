@@ -38,8 +38,8 @@ public class CategoriaTipoDAO {
             while (rs.next()) {
                 int idTipo = (Integer) rs.getObject("id_tipo"); // o nome entre aspas é o nome do campo no BD
                 String nome = rs.getObject("tipo").toString();
-                
-                list.add(new CategoriaTipoBean(idTipo,nome));
+
+                list.add(new CategoriaTipoBean(idTipo, nome));
             }
 
             return list;
@@ -50,8 +50,8 @@ public class CategoriaTipoDAO {
             ConnectionUsuarioFactory.closeConnection(conn, ps, rs);
         }
     } // fim
-    
-        public List<CategoriaTipoBean> listaCategoria(String cat) throws CategoriaTipoDAOException, UsuarioDAOException {
+
+    public List<CategoriaTipoBean> listaCategoria(String cat) throws CategoriaTipoDAOException, UsuarioDAOException {
         PreparedStatement ps = null;
         Connection conn = null;
         ResultSet rs = null;
@@ -67,8 +67,8 @@ public class CategoriaTipoDAO {
             while (rs.next()) {
                 String categoria = rs.getObject("categoria").toString(); // o nome entre aspas é o nome do campo no BD
                 int idCategoria = (Integer) rs.getObject("id_cat");
-                
-                list.add(new CategoriaTipoBean(categoria,idCategoria));
+
+                list.add(new CategoriaTipoBean(categoria, idCategoria));
             }
 
             return list;
@@ -81,13 +81,60 @@ public class CategoriaTipoDAO {
     } // fim
     
     
+     public List<CategoriaTipoBean> listaTodasCategorias() throws CategoriaTipoDAOException, UsuarioDAOException {
+        PreparedStatement ps = null;
+        Connection conn = null;
+        ResultSet rs = null;
+
+        try {
+            String SQL = "EXEC usp_cons_categoria";
+            conn = this.conn;
+            ps = conn.prepareStatement(SQL);
+            rs = ps.executeQuery();
+            List<CategoriaTipoBean> list = new ArrayList<CategoriaTipoBean>();
+            while (rs.next()) {
+                String categoria = rs.getObject("categoria").toString(); // o nome entre aspas é o nome do campo no BD
+                int idCategoria = (Integer) rs.getObject("id_cat");
+                list.add(new CategoriaTipoBean(categoria, idCategoria));
+            }
+
+            return list;
+
+        } catch (SQLException sqle) {
+            throw new CategoriaTipoDAOException(sqle);
+        } finally {
+            ConnectionUsuarioFactory.closeConnection(conn, ps, rs);
+        }
+    }// fim
     
-    
-    
+    public List<CategoriaTipoBean> listaTipoPorCategoria(int idcat) throws CategoriaTipoDAOException, UsuarioDAOException {
+        PreparedStatement ps = null;
+        Connection conn = null;
+        ResultSet rs = null;
+
+        try {
+            String SQL = "EXEC usp_cons_tipos_cat " + idcat;
+            conn = this.conn;
+            ps = conn.prepareStatement(SQL);
+            rs = ps.executeQuery();
+            List<CategoriaTipoBean> list = new ArrayList<CategoriaTipoBean>();
+            while (rs.next()) {
+                int idTipo = (Integer) rs.getObject("id_tipo");
+                String tipo = rs.getObject("tipo").toString(); // o nome entre aspas é o nome do campo no BD
+                list.add(new CategoriaTipoBean(idTipo, tipo));
+            }
+
+            return list;
+
+        } catch (SQLException sqle) {
+            throw new CategoriaTipoDAOException(sqle);
+        } finally {
+            ConnectionUsuarioFactory.closeConnection(conn, ps, rs);
+        }
+    }// fim
+     
 }
-
-
-    // inclui filme no BD
+// inclui filme no BD
  /*   public void salvar(CategoriaTipoBean entidade, CategoriaTipoBean categoria) throws CategoriaTipoDAOException {
         PreparedStatement ps = null;
         Connection conn = null;
