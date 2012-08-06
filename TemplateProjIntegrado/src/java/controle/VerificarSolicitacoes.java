@@ -71,11 +71,13 @@ public class VerificarSolicitacoes extends HttpServlet {
             acaoInserirTipo(request, response, list);
         }else if (acao.compareTo("insTipo") == 0) {
             String[] insTipo;
+            String[] temp;
             List<CategoriaTipoBean> list = new ArrayList<CategoriaTipoBean>();
             insTipo = request.getParameterValues("categoriass");
             if (insTipo != null) {
                 for (int i = 0; i < insTipo.length; i++) {
-                    list.add(new CategoriaTipoBean(insTipo[i]));//falta descobrir como separar as strings
+                    temp =insTipo[i].split("/");
+                    list.add(new CategoriaTipoBean(temp[1],temp[2]));//falta descobrir como separar as strings
                 }
             }
             acaoInserirTipo(request, response, list);
