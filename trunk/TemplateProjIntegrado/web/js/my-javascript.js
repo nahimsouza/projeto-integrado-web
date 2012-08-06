@@ -178,3 +178,7 @@ function carregaTipos(){
         document.getElementById("tipo").innerHTML=txt;
     }
 }
+
+function mudaPagina(ent){
+    location.href="?nomeEntidade="+ent+"&pag="+document.getElementById("npag").value;
+}
