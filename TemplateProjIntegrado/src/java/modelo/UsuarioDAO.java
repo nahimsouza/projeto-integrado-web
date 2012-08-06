@@ -26,16 +26,18 @@ public class UsuarioDAO {
 
 
         try {
-            String SQL = "Select * from UsuariosPendentes";
+            String SQL = "SELECT email, nome FROM usuario WHERE tipo_usuario = 'Usuario'";
             conn = this.conn;
             ps = conn.prepareStatement(SQL);
             rs = ps.executeQuery();
             List<UsuarioBean> list = new ArrayList<UsuarioBean>();
             while (rs.next()) {
                 String login = rs.getObject("email").toString();
+                String nome = rs.getObject("nome").toString();
                 UsuarioBean uB = new UsuarioBean();
                 uB.setLogin(login);
-                uB.setTipo("Colaborador");
+                uB.setNome(nome);
+                uB.setTipo("Usuario");
                 list.add(uB);
             }
 
@@ -83,6 +85,52 @@ public class UsuarioDAO {
 
         return "";
 
+    }
+
+    public static void aceitarUsuario(String email) {
+        //Objeto que guarda informacoes da conexao com o SGBD.
+        Connection conn;
+        //Objeto usado para enviar comandos SQL no SGBD
+        java.sql.Statement stmt;
+
+        String sql = "UPDATE usuario SET tipo_usuario='Colaborador' WHERE email ='" + email + "'";
+
+        try {
+            Class.forName("com.microsoft.jdbc.sqlserver.SQLServerDriver").newInstance();
+            String conexao = "jdbc:sqlserver://5.176.252.221:1433;databaseName=labbd01";
+            String user = "sa", password = "admin";
+
+            conn = DriverManager.getConnection(conexao, user, password);
+            stmt = conn.createStatement();
+            stmt.executeUpdate(sql);
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Erro.");
+        }
+    }
+
+    public static void rejeitarUsuario(String email) {
+        //Objeto que guarda informacoes da conexao com o SGBD.
+        Connection conn;
+        //Objeto usado para enviar comandos SQL no SGBD
+        java.sql.Statement stmt;
+
+        String sql = "DELETE FROM usuario WHERE email ='" + email + "'";
+
+        try {
+            Class.forName("com.microsoft.jdbc.sqlserver.SQLServerDriver").newInstance();
+            String conexao = "jdbc:sqlserver://5.176.252.221:1433;databaseName=labbd01";
+            String user = "sa", password = "admin";
+
+            conn = DriverManager.getConnection(conexao, user, password);
+            stmt = conn.createStatement();
+            stmt.executeUpdate(sql);
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Erro.");
+        }
     }
 
     public static int inserirUsuario(UsuarioBean u) {

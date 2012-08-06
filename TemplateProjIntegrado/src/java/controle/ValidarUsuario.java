@@ -1,11 +1,9 @@
 package controle;
 
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * To change this template, choose Tools | Templates and open the template in
+ * the editor.
  */
-
-
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -14,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import auxiliar.*;
 import javax.servlet.RequestDispatcher;
 import java.util.List;
+import javax.servlet.http.HttpSession;
 import modelo.*;
 
 public class ValidarUsuario extends HttpServlet {
@@ -27,30 +26,58 @@ public class ValidarUsuario extends HttpServlet {
         if (tipo.compareTo("aceitar") == 0) {
             acaoSalvar(request, response);
         }
+
+        if (tipo.compareTo("rejeitar") == 0) {
+            acaoRejeitar(request, response);
+        }
     }
 
     private void acaoSalvar(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        UsuarioBean objUsuario = (UsuarioBean) request.getAttribute("usuario");
-        //try {
-        //UsuarioDAO user = new UsuarioDAO();
-        //user.salvar(objUsuario);
-        List<UsuarioBean> list = (List<UsuarioBean>) request.getAttribute("usuarioBean");
-        if(list != null){
+        HttpSession sessao = request.getSession(false);
+        UsuarioBean objUsuario = (UsuarioBean) sessao.getAttribute("usuario");
+        UsuarioDAO.aceitarUsuario(objUsuario.getLogin());
+        List<UsuarioBean> list;
+        try {
+            UsuarioDAO u = new UsuarioDAO();
+            list = (List<UsuarioBean>) u.solicitacoes();
+        } catch (UsuarioDAOException e) {
+            list = null;
+        }
+        if (list != null) {
             list.remove(objUsuario);
-            request.setAttribute("usuarioBean", list);
+            request.setAttribute("UsuarioBean", list);
         }
-
-        /*
-         * } catch (UsuarioDAOException e) { request.setAttribute("usuarioBean",
-         * null);
-        }
-         */
 
         RequestDispatcher rd = null;
 
-        rd = request.getRequestDispatcher("/solicitacoes.jsp");
+        rd = request.getRequestDispatcher("/viewSolicitacoes.jsp");
+
+        rd.forward(request, response);
+    }
+
+        private void acaoRejeitar(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        
+        HttpSession sessao = request.getSession(false);
+        UsuarioBean objUsuario = (UsuarioBean) sessao.getAttribute("usuario");
+        UsuarioDAO.rejeitarUsuario(objUsuario.getLogin());
+        List<UsuarioBean> list;
+        try {
+            UsuarioDAO u = new UsuarioDAO();
+            list = (List<UsuarioBean>) u.solicitacoes();
+        } catch (UsuarioDAOException e) {
+            list = null;
+        }
+        if (list != null) {
+            list.remove(objUsuario);
+            request.setAttribute("UsuarioBean", list);
+        }
+
+        RequestDispatcher rd = null;
+
+        rd = request.getRequestDispatcher("/viewSolicitacoes.jsp");
 
         rd.forward(request, response);
     }
