@@ -24,6 +24,7 @@ function showDiv( idName, value ){
         objDiv.style.display = "none";
 }
 
+/*
 function abrirPag(valor){
     var url = valor;
 
@@ -39,6 +40,7 @@ function mudancaEstado(){
         document.getElementById("conteudo").innerHTML = xmlRequest.responseText;
     }
 }
+*/
 
 function wikiListInsere(){
     var texto = document.getElementById("wiki").value;
@@ -142,8 +144,12 @@ var xmlHttpReq;
 function chamaServlet(param,param2){
     
     try {
-        var dado = "acao="+param2+"&cat="+ document.getElementById("categoria").value;
-        
+        try{
+            var dado = "acao="+param2+"&cat="+ document.getElementById("categoria").value;
+        }catch(e){
+            // funciona quando nao tem o parametro cat
+            var dado = "acao="+param2;
+        }
         xmlHttpReq = new XMLHttpRequest();  // Não funciona em versoes antigas do IE
 
         // Abre uma conexão com o servidor usando o método GET
@@ -167,6 +173,10 @@ function carregaCategorias(){
     {
         var txt = xmlHttpReq.responseText;
         document.getElementById("categoria").innerHTML=txt;
+        
+        // Para funcionar com a combo que carrega as categorias na insercao de tipo:
+        document.getElementById("categ").innerHTML=txt;
+        
     }
 }
 
@@ -176,6 +186,28 @@ function carregaTipos(){
     {
         var txt = xmlHttpReq.responseText;
         document.getElementById("tipo").innerHTML=txt;
+    }
+}
+
+function carregaTiposConsulta(){
+    
+    if (xmlHttpReq.readyState==4 && xmlHttpReq.status==200)
+    {
+        var txt = xmlHttpReq.responseText;
+        document.getElementById("tipoP").innerHTML=txt;
+        document.getElementById("tipoNP").innerHTML=txt;
+    }
+}
+
+function inserirEntidade(){
+    if(document.getElementById("displayname").value==""){
+        alert("Informe o displayname");
+        return false;
+    }else if(document.getElementById("listaTipos").options.length == 0){
+        alert("Defina uma categoria e um tipo para a entidade");
+        return false;
+    }else{
+        return document.getElementById("search-form").submit();
     }
 }
 

@@ -132,6 +132,32 @@ public class CategoriaTipoDAO {
             ConnectionUsuarioFactory.closeConnection(conn, ps, rs);
         }
     }// fim
+    
+    public List<CategoriaTipoBean> listaTodosTipos() throws CategoriaTipoDAOException, UsuarioDAOException {
+        PreparedStatement ps = null;
+        Connection conn = null;
+        ResultSet rs = null;
+
+        try {
+            String SQL = "SELECT * from tipo";
+            conn = this.conn;
+            ps = conn.prepareStatement(SQL);
+            rs = ps.executeQuery();
+            List<CategoriaTipoBean> list = new ArrayList<CategoriaTipoBean>();
+            while (rs.next()) {
+                int idTipo = (Integer) rs.getObject("id_tipo");
+                String tipo = rs.getObject("tipo").toString(); // o nome entre aspas é o nome do campo no BD
+                list.add(new CategoriaTipoBean(idTipo, tipo));
+            }
+
+            return list;
+
+        } catch (SQLException sqle) {
+            throw new CategoriaTipoDAOException(sqle);
+        } finally {
+            ConnectionUsuarioFactory.closeConnection(conn, ps, rs);
+        }
+    }// fim
      
 }
 // inclui filme no BD
