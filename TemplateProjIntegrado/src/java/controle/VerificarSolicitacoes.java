@@ -17,14 +17,16 @@ import modelo.UsuarioBean;
 import modelo.UsuarioDAO;
 
 public class VerificarSolicitacoes extends HttpServlet {
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String displayname = request.getParameter("nomeEntidade");
-       String pag = request.getParameter("pag");
-       acaoConsultarEntidadeR(request, response, displayname, pag);
-       
+        String pag = request.getParameter("pag");
+        acaoConsultarEntidadeR(request, response, displayname, pag);
+
     }
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -52,11 +54,25 @@ public class VerificarSolicitacoes extends HttpServlet {
             acaoConsultarUsuario(request, response, "");
         } else if (acao.compareTo("carregaCategorias") == 0) {
             acaoCarregaCategorias(request, response);
-        }else if (acao.compareTo("carregaTipos") == 0) {
+        } else if (acao.compareTo("carregaTipos") == 0) {
             int idcat = Integer.parseInt(request.getParameter("cat"));
             acaoCarregaTipos(request, response, idcat);
-        }else if (acao.compareTo("carregaTiposConsulta") == 0) {
+        } else if (acao.compareTo("carregaTiposConsulta") == 0) {
             acaoCarregaTiposConsulta(request, response);
+        } else if (acao.compareTo("insCategoria") == 0) {
+
+            String[] insCat;
+            List<CategoriaTipoBean> list = new ArrayList<CategoriaTipoBean>();
+            insCat = request.getParameterValues("listaCategorias");
+            if (insCat != null) {
+                for (int i = 0; i < insCat.length; i++) {
+
+                    list.add(new CategoriaTipoBean(insCat[i]));
+
+                }
+            }
+            acaoInserirConsulta(request, response, list);
+
         }
 
     }
@@ -99,6 +115,7 @@ public class VerificarSolicitacoes extends HttpServlet {
         rd.forward(request, response);
 
     }
+
     private void acaoConsultarEntidadeR(HttpServletRequest request, HttpServletResponse response, String displayname, String pag)
             throws ServletException, IOException {
 
@@ -106,7 +123,7 @@ public class VerificarSolicitacoes extends HttpServlet {
             EntidadeDAO entidade = new EntidadeDAO();
             List<EntidadeBean> lista = (List<EntidadeBean>) entidade.listaEntidadesR(displayname);
             request.setAttribute("EntidadeBean", lista);
-            request.setAttribute("pag", pag);   
+            request.setAttribute("pag", pag);
             request.setAttribute("dn", displayname);
         } catch (Exception sqle) {
             request.setAttribute("EntidadeBean", null);
@@ -209,7 +226,7 @@ public class VerificarSolicitacoes extends HttpServlet {
             request.setAttribute("CategoriaTipoBean", null);
         }
 
-        String html="<option value=''></option>";
+        String html = "<option value=''></option>";
         for (Iterator i = lista.iterator(); i.hasNext();) {
             CategoriaTipoBean l = (CategoriaTipoBean) i.next();
             html += "<option value=" + l.getIdCategoria() + ">" + l.getCategoria() + "</option>";
@@ -217,7 +234,7 @@ public class VerificarSolicitacoes extends HttpServlet {
 
         response.getWriter().write(html);
     }
-    
+
     private void acaoCarregaTipos(HttpServletRequest request, HttpServletResponse response, int idcat)
             throws ServletException, IOException {
 
@@ -232,7 +249,7 @@ public class VerificarSolicitacoes extends HttpServlet {
             request.setAttribute("CategoriaTipoBean", null);
         }
 
-        String html="<option value=''></option>";
+        String html = "<option value=''></option>";
         for (Iterator i = lista.iterator(); i.hasNext();) {
             CategoriaTipoBean l = (CategoriaTipoBean) i.next();
             html += "<option value=" + l.getIdTipo() + ">" + l.getTipo() + "</option>";
@@ -242,7 +259,7 @@ public class VerificarSolicitacoes extends HttpServlet {
     }
 
     private void acaoCarregaTiposConsulta(HttpServletRequest request, HttpServletResponse response) throws IOException {
-               List<CategoriaTipoBean> lista = null;
+        List<CategoriaTipoBean> lista = null;
 
         try {
             CategoriaTipoDAO categoria = new CategoriaTipoDAO();
@@ -253,7 +270,7 @@ public class VerificarSolicitacoes extends HttpServlet {
             request.setAttribute("CategoriaTipoBean", null);
         }
 
-        String html="<option value=''></option>";
+        String html = "<option value=''></option>";
         for (Iterator i = lista.iterator(); i.hasNext();) {
             CategoriaTipoBean l = (CategoriaTipoBean) i.next();
             html += "<option value=" + l.getIdTipo() + ">" + l.getTipo() + "</option>";
@@ -261,6 +278,20 @@ public class VerificarSolicitacoes extends HttpServlet {
 
         response.getWriter().write(html);
     }
-    
-    
+
+    private void acaoInserirConsulta(HttpServletRequest request, HttpServletResponse response, List<CategoriaTipoBean> list)  throws IOException {
+
+
+        try {
+            CategoriaTipoDAO categoria = new CategoriaTipoDAO();
+            categoria.inserirCategoria(list);
+
+
+        } catch (Exception sqle) {
+        }
+
+
+
+
+    }
 }
