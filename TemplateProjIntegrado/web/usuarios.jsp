@@ -20,12 +20,10 @@
                     log = (UsuarioBean) sessao.getAttribute("Usuario");
                     String tipo = log.getTipo();
             if (tipo.equals("Colaborador")) {
-        %>   
-                <jsp:include page="include_files/colabHeaderIns.jsp" />  
-        <% 
+                response.sendRedirect("oops.jsp");
             } else if (tipo.equals("Administrador")) {
         %>   
-                <jsp:include page="include_files/adminHeaderIns.jsp" />  
+                <jsp:include page="include_files/adminHeaderUsuario.jsp" />  
             <%} }   
            } catch (NullPointerException e) {
                  response.sendRedirect("oops.jsp");
