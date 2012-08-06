@@ -55,6 +55,8 @@ public class VerificarSolicitacoes extends HttpServlet {
         }else if (acao.compareTo("carregaTipos") == 0) {
             int idcat = Integer.parseInt(request.getParameter("cat"));
             acaoCarregaTipos(request, response, idcat);
+        }else if (acao.compareTo("carregaTiposConsulta") == 0) {
+            acaoCarregaTiposConsulta(request, response);
         }
 
     }
@@ -207,7 +209,7 @@ public class VerificarSolicitacoes extends HttpServlet {
             request.setAttribute("CategoriaTipoBean", null);
         }
 
-        String html="<option value=''></optiion>";
+        String html="<option value=''></option>";
         for (Iterator i = lista.iterator(); i.hasNext();) {
             CategoriaTipoBean l = (CategoriaTipoBean) i.next();
             html += "<option value=" + l.getIdCategoria() + ">" + l.getCategoria() + "</option>";
@@ -230,7 +232,28 @@ public class VerificarSolicitacoes extends HttpServlet {
             request.setAttribute("CategoriaTipoBean", null);
         }
 
-        String html="<option value=''></optiion>";
+        String html="<option value=''></option>";
+        for (Iterator i = lista.iterator(); i.hasNext();) {
+            CategoriaTipoBean l = (CategoriaTipoBean) i.next();
+            html += "<option value=" + l.getIdTipo() + ">" + l.getTipo() + "</option>";
+        }
+
+        response.getWriter().write(html);
+    }
+
+    private void acaoCarregaTiposConsulta(HttpServletRequest request, HttpServletResponse response) throws IOException {
+               List<CategoriaTipoBean> lista = null;
+
+        try {
+            CategoriaTipoDAO categoria = new CategoriaTipoDAO();
+            lista = (List<CategoriaTipoBean>) categoria.listaTodosTipos();
+            request.setAttribute("CategoriaTipoBean", lista);
+
+        } catch (Exception sqle) {
+            request.setAttribute("CategoriaTipoBean", null);
+        }
+
+        String html="<option value=''></option>";
         for (Iterator i = lista.iterator(); i.hasNext();) {
             CategoriaTipoBean l = (CategoriaTipoBean) i.next();
             html += "<option value=" + l.getIdTipo() + ">" + l.getTipo() + "</option>";

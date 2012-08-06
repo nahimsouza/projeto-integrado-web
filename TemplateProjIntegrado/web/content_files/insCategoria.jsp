@@ -1,46 +1,19 @@
-<%-- 
-    Página de Inserção de Categorias
+<h2>Inserir Categoria</h2>
 
-    : falta criar os campos
+<form id="search-form">
+    <fieldset> 
 
---%>
+        Categoria: <br>
+        <input type="text" id="ncateg" />
+        <input type="button" value="Adicionar" onclick="catListInsere();"/>
 
-        <section id="content">
-            <div>
-                <div class="container">
-                    <div class="wrapper">
-                        <div class="grid9" id="insCategoria">
-                            <h2>Inserir Categoria</h2>
-                            <p> 
-                            <form id="search-form">
-                                <fieldset> 
-                                    <p>
-                                        Categoria: <br><input type="text" id="ncateg" />
-                                        <input type="button" value="Adicionar" onclick="catListInsere();"/>
-                                    </p>
-                                    <table>
+        <br /><br />
+        <select id="listaCategorias"  size="5">
+        </select>
 
-                                        <tr>
-
-                                            <td>
-                                                <select id="listaCategorias"  size="5">
-
-                                                </select>
-                                                <input type="button" value="Remover" onclick="catListRemove();"/>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <input type="submit" value="Confirmar">
-                                            </td>
-                                        </tr>
-                                    </table>
-
-                                </fieldset>
-                            </form>
-                            </p>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
+        <input type="button" value="Remover" onclick="catListRemove();"/>
+        
+        <br /><br />
+        <input type="submit" value="Confirmar">
+    </fieldset>
+</form>
