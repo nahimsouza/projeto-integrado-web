@@ -1,90 +1,119 @@
-<%@page import="modelo.UsuarioBean"%>
-<%@page import="modelo.CategoriaTipoBean"%>
-<%@page language="java" contentType="text/html; charset=ISO-8859-1"
-        pageEncoding="ISO-8859-1"%>
-<%@page import="modelo.EntidadeBean" %>
-<%@page import="java.util.*" %>
+<%-- 
+    Página do administrador para consultar usuários
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-    <%@include file="include_files/head.jsp" %> <%-- inserido --%>
+    : falta modificar as páginas de solicitacoes e consultas
+        - arrumar as divs
+
+--%>
+
+<%@page import="modelo.UsuarioBean"%>
+<%@page import="java.util.List"%>
+<%@page import="java.util.Iterator"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html lang="en">
+    <%@include file="include_files/head.jsp" %>
     <body>
-    <% //Recupera a Session
+        <% //Recupera a Session
             try {
                 HttpSession sessao = request.getSession(false);
                 UsuarioBean log = null;
                 if (sessao != null) {
                     log = (UsuarioBean) sessao.getAttribute("Usuario");
                     String tipo = log.getTipo();
-            if (tipo.equals("Colaborador")) {
-        %>   
-                <jsp:include page="include_files/colabHeaderConsulta.jsp" />  
-        <% 
-            } else if (tipo.equals("Administrador")) {
-        %>   
-                <jsp:include page="include_files/adminHeaderConsulta.jsp" />  
-            <%} }   
-           } catch (NullPointerException e) {%>
-                 <jsp:include page="include_files/userHeaderConsulta.jsp" />
-        <% }%>
-        
-  
-    <section id="content"><%-- inserido --%>
-        <div class="middle"><%-- inserido --%>
-            <div class="container"><%-- inserido --%>
-                <div class="wrapper"><%-- inserido --%>
-                        <%
-                            List<UsuarioBean> listaUsuario = (List<UsuarioBean>) request.getAttribute("UsuarioBean");
+                    if (tipo.equals("Colaborador")) {
+                        response.sendRedirect("oops.jsp");
+                    } else if (tipo.equals("Administrador")) {%>
+        <jsp:include page="include_files/adminHeaderUsuario.jsp" />
+        <% }
+                }
+            } catch (NullPointerException e) {
+                response.sendRedirect("oops.jsp");
+            }%> 
 
-                             if (listaUsuario == null) {
+        <section id="content">
+            <div class="middle">
+                <div class="container">
+                    <div class="wrapper">
+                        <div class="grid3 first">
+                            <ul class="categories">
+                                <li><a href="javascript:void(0)" onclick="showDiv( 'solicitacoes', true );
+                                    showDiv( 'conUsuario', false );">Novas Solicitações</a></li>
 
-                        %>
-                        <h2> N�o existem itens cadastrados!!! </h2>
-                        <% } // fim do if
-                        else if (listaUsuario.isEmpty()) {
+                                <li><a href="javascript:void(0)" onclick="showDiv( 'solicitacoes', false );
+                                    showDiv( 'conUsuario', true );">Consultar Usuários</a></li>
+                            </ul>
+                        </div>
+                        <div class="grid9" id="solicitacoes">
+                            <section id="content">
+                                <div>
+                                    <div class="container">
+                                        <div class="wrapper">
+                                            <div class="grid9" id="conEntidade">
+                                                <h2><strong>Novas Solicitações</strong></h2>
+                                                <p> 
+                                                <form id="search-form" action="ValidarUsuario" method="post">
+                                                    <fieldset> 
+                                                        <%
+                                                            if (request.getAttribute("UsuarioBean") == null) {%>
+                                                        <h3> Não existem usuários pendentes!! </h3>
+                                                        <%} else {
+                                                            List<UsuarioBean> listaUsuario = (List<UsuarioBean>) request.getAttribute("UsuarioBean");
+                                                            if (listaUsuario.isEmpty()) {
 
-                        %>
-                        <h2> N�o existem itens cadastrados!!! </h2>
-                        <% } // fim do if
-                        else { // caso existam registros
+                                                        %>
+                                                        <h2> Não existem usuários pendentes!! </h2>
+                                                        <% } // fim do if
+                                                        else { // caso existam registros
 
-                        %>
+                                                        %>
 
-                        <h2> Resultado da consulta: </h2>
-                        <table border=1>
-                            <tr>
-                                <td> Id Usuario </td>
-                                <td> Usuario  </td>
-                            </tr>
+                                                        <table border=1>
+                                                            <% for (Iterator i = listaUsuario.iterator(); i.hasNext();) {
+                                                                    UsuarioBean l = (UsuarioBean) i.next();%>
 
-                            <% for (Iterator i = listaUsuario.iterator(); i.hasNext();) {
-                                
-                                    UsuarioBean l = (UsuarioBean) i.next();%>
+                                                            <tr>
+                                                            <fieldset>
+                                                                <h3><%= l.getLogin()%></h3>
+                                                                <%
+                                                                    try {
+                                                                        HttpSession sessao = request.getSession(false);
+                                                                        if (sessao != null) {
+                                                                            sessao.setAttribute("usuario", l);
+                                                                        }
+                                                                    } catch (NullPointerException e) {
+                                                                        response.sendRedirect("oops.jsp");
+                                                                    }%> 
+                                                                <input type="hidden" value="aceitar" name="tipo" id="tipo" />
+                                                                <input type="submit" value="aceitar" onClick="document.getElementById('tipo').value = 'aceitar'"/>
+                                                                <input type="submit" value="rejeitar" onClick="document.getElementById('tipo').value = 'rejeitar'"/>
 
-                            <tr>
-                                <td><%= l.getNome() %></td>
-                                <td><%= l.getLogin() %></td>
+                                                            </fieldset> 
+                                                            </tr>
+                                                            <% }%>
 
-                            </tr>
-                            <% }%>
+                                                        </table>
+                                                        <% }
+                                                            }%>
+                                                    </fieldset>
+                                                </form>
+                                                </p>
+                                            </div>
+                                        </div>
 
-                        </table>
-                        <% }%>
-                        <br>
-                        <p><a href="consulta.jsp"> Nova Consulta </a> </p>
+                                    </div>
+                                </div>
 
 
-                </div><%-- inserido --%>
-            </div><%-- inserido --%>
-        </div><%-- inserido --%>
-
-        <%@include file="include_files/bottom.jsp" %><%-- inserido --%>
-    </section><%-- inserido --%>
-    <%@include file="include_files/footer.jsp" %><%-- inserido --%>
-</body>
+                        </div>
+                        <div class="grid9" id="conUsuario" style="display: none">
+                            <%@include file="content_files/conUsuario.jsp" %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <%@include file="include_files/bottom.jsp" %>
+        </section>
+        <%@include file="include_files/footer.jsp" %>
+    </body>
 </html>
-
-
-
-
-

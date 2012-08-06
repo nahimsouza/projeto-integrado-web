@@ -45,7 +45,7 @@
                              
                            <form id="formulario" nome ="formulario" method="post" action="VerificarSolicitacoes" >
                                <input type="hidden" value="usuarios" name="acao" />
-                                <input type="submit" value="Mostrar Usuarios Pendentes" />
+                               <input type="submit" value="Mostrar Usuarios Pendentes" />
                                 
                             </form>
                             
