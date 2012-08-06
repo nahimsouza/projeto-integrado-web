@@ -16,11 +16,14 @@ public class CategoriaTipoBean {
 
     public CategoriaTipoBean() {
     }
-    
+    public CategoriaTipoBean(String tipo) {
+        this.tipo = tipo;
+    }
     public CategoriaTipoBean(int idTipo, String tipo) {
         this.idTipo = idTipo;
         this.tipo = tipo;
     }
+    
 
     public CategoriaTipoBean(String categoria, int idCategoria) {
         this.idCategoria = idCategoria;

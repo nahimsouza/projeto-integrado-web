@@ -79,9 +79,8 @@ public class CategoriaTipoDAO {
             ConnectionUsuarioFactory.closeConnection(conn, ps, rs);
         }
     } // fim
-    
-    
-     public List<CategoriaTipoBean> listaTodasCategorias() throws CategoriaTipoDAOException, UsuarioDAOException {
+
+    public List<CategoriaTipoBean> listaTodasCategorias() throws CategoriaTipoDAOException, UsuarioDAOException {
         PreparedStatement ps = null;
         Connection conn = null;
         ResultSet rs = null;
@@ -106,7 +105,7 @@ public class CategoriaTipoDAO {
             ConnectionUsuarioFactory.closeConnection(conn, ps, rs);
         }
     }// fim
-    
+
     public List<CategoriaTipoBean> listaTipoPorCategoria(int idcat) throws CategoriaTipoDAOException, UsuarioDAOException {
         PreparedStatement ps = null;
         Connection conn = null;
@@ -132,7 +131,7 @@ public class CategoriaTipoDAO {
             ConnectionUsuarioFactory.closeConnection(conn, ps, rs);
         }
     }// fim
-    
+
     public List<CategoriaTipoBean> listaTodosTipos() throws CategoriaTipoDAOException, UsuarioDAOException {
         PreparedStatement ps = null;
         Connection conn = null;
@@ -158,7 +157,26 @@ public class CategoriaTipoDAO {
             ConnectionUsuarioFactory.closeConnection(conn, ps, rs);
         }
     }// fim
-     
+
+    public void inserirCategoria(List<CategoriaTipoBean> c) throws CategoriaTipoDAOException, UsuarioDAOException {
+        
+       PreparedStatement ps = null;
+        Connection conn = null;
+        ResultSet rs = null;
+        
+         try {
+            String SQL = "";
+            conn = this.conn;
+            ps = conn.prepareStatement(SQL);
+            rs = ps.executeQuery();
+            
+            
+         } catch (SQLException sqle) {
+            throw new CategoriaTipoDAOException(sqle);
+        } finally {
+            ConnectionUsuarioFactory.closeConnection(conn, ps, rs);
+        }
+    }
 }
 // inclui filme no BD
  /*   public void salvar(CategoriaTipoBean entidade, CategoriaTipoBean categoria) throws CategoriaTipoDAOException {
