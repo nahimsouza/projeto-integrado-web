@@ -29,6 +29,10 @@ public class CategoriaTipoBean {
         this.idCategoria = idCategoria;
         this.categoria = categoria;
     }
+    public CategoriaTipoBean(String categoria, String Tipo) {
+        this.tipo = tipo;
+        this.categoria = categoria;
+    }
 
     public String getCategoria() {
         return categoria;

@@ -164,7 +164,26 @@ public class CategoriaTipoDAO {
         Connection conn = null;
         ResultSet rs = null;
         
-         try {
+         try {//falta terminar
+            String SQL = "";
+            conn = this.conn;
+            ps = conn.prepareStatement(SQL);
+            rs = ps.executeQuery();
+            
+            
+         } catch (SQLException sqle) {
+            throw new CategoriaTipoDAOException(sqle);
+        } finally {
+            ConnectionUsuarioFactory.closeConnection(conn, ps, rs);
+        }
+    }
+    public void inserirTipo(List<CategoriaTipoBean> t) throws CategoriaTipoDAOException, UsuarioDAOException {
+        
+       PreparedStatement ps = null;
+        Connection conn = null;
+        ResultSet rs = null;
+        
+         try {//falta terminar
             String SQL = "";
             conn = this.conn;
             ps = conn.prepareStatement(SQL);

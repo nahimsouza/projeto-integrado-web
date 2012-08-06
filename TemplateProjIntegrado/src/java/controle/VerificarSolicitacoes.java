@@ -60,22 +60,28 @@ public class VerificarSolicitacoes extends HttpServlet {
         } else if (acao.compareTo("carregaTiposConsulta") == 0) {
             acaoCarregaTiposConsulta(request, response);
         } else if (acao.compareTo("insCategoria") == 0) {
-
             String[] insCat;
             List<CategoriaTipoBean> list = new ArrayList<CategoriaTipoBean>();
             insCat = request.getParameterValues("listaCategorias");
             if (insCat != null) {
                 for (int i = 0; i < insCat.length; i++) {
-
                     list.add(new CategoriaTipoBean(insCat[i]));
-
                 }
             }
-            acaoInserirConsulta(request, response, list);
-
+            acaoInserirTipo(request, response, list);
+        }else if (acao.compareTo("insTipo") == 0) {
+            String[] insTipo;
+            List<CategoriaTipoBean> list = new ArrayList<CategoriaTipoBean>();
+            insTipo = request.getParameterValues("categoriass");
+            if (insTipo != null) {
+                for (int i = 0; i < insTipo.length; i++) {
+                    list.add(new CategoriaTipoBean(insTipo[i]));//falta descobrir como separar as strings
+                }
+            }
+            acaoInserirTipo(request, response, list);
         }
-
     }
+    
 
     private void acaoConsultarEntidade(HttpServletRequest request, HttpServletResponse response, String displayname)
             throws ServletException, IOException {
@@ -285,6 +291,21 @@ public class VerificarSolicitacoes extends HttpServlet {
         try {
             CategoriaTipoDAO categoria = new CategoriaTipoDAO();
             categoria.inserirCategoria(list);
+
+
+        } catch (Exception sqle) {
+        }
+
+
+
+
+    }
+    private void acaoInserirTipo(HttpServletRequest request, HttpServletResponse response, List<CategoriaTipoBean> list)  throws IOException {
+
+
+        try {
+            CategoriaTipoDAO categoria = new CategoriaTipoDAO();
+            categoria.inserirTipo(list);
 
 
         } catch (Exception sqle) {
