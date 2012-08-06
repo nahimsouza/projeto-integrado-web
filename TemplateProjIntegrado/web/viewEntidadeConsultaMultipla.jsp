@@ -1,3 +1,5 @@
+<%@page import="javax.swing.text.Document"%>
+<%@page import="sun.swing.PrintColorUIResource"%>
 <%@page import="modelo.UsuarioBean"%>
 <%@page language="java" contentType="text/html; charset=ISO-8859-1"
         pageEncoding="ISO-8859-1"%>
@@ -31,10 +33,18 @@
     <section id="content"><%-- inserido --%>
         <div class="middle"><%-- inserido --%>
             <div class="container"><%-- inserido --%>
-                <div class="wrapper"><%-- inserido --%>
-                        <%
+                <div class="wrapper"><%-- inserido --%>   
+                    
+                    <%
                             List<EntidadeBean> listaEntidade = (List<EntidadeBean>) request.getAttribute("EntidadeBean");
-
+                            int pag = request.getParameter("pag") == null ? 1 : Integer.parseInt(request.getParameter("pag"));
+                            String displayname = request.getAttribute("dn").toString();
+                            int totalLinhas = listaEntidade.size();
+                            int limite = 10;
+                            int totalPaginas = (totalLinhas % limite > 0) ? (totalLinhas/limite) + 1 : (totalLinhas/limite);
+                            
+                            //out.println("olha aqui: " + totalPaginas);
+                            
                            if (listaEntidade == null) {
 
                         %>
@@ -56,24 +66,47 @@
                                 <th> Displayname  </th>
                             </tr>
 
-                            <%int j = 0;
-                            for (Iterator i = listaEntidade.iterator(); i.hasNext();) {
-                            //for (Iterator i = listaEntidade.iterator(); j < 10 && i.hasNext(); j++) {
-                                    EntidadeBean l = (EntidadeBean) i.next();%>
+                            <%
+                            Iterator i = listaEntidade.listIterator((pag * limite) - limite);
+                            for (int j = 0; j < limite && i.hasNext();j++) {
+                                    EntidadeBean l = (EntidadeBean) i.next();
+                                    
+        %>
 
                             <tr>
                                 <td><%= l.getDescricao()%></td>
                                 <td><%= l.getDisplayname()%></td>
 
                             </tr>
+                            <tr></tr>
                             <% }%>
 
                         </table>
                         <% }%>
                         <br>
-                        <p><a href="consulta.jsp"> Nova Consulta </a> </p>
+                        <% if(pag > 1){ 
+                            String cons = "<a href=?nomeEntidade="+ displayname +"&pag="+(pag-1)+">Anterior</a>";
 
-
+                            out.print(cons);
+                         }else{ 
+                                out.print("Anterior");
+                         } 
+                            String espaco = "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp";
+                            out.print(espaco+ "Página " + pag + " de " + totalPaginas + espaco);
+                            if(pag * limite < listaEntidade.size()){  
+                                String cons = "<a href=?nomeEntidade="+ displayname +"&pag="+(pag+1)+">Proximo</a>";
+                                out.print(cons);
+                            }else{
+                                out.print("Proximo");
+                            }
+                            out.print(espaco+"Ir para a página: ");
+                            out.print("<input type='text' id='npag'  size='1' maxlength='3' />");
+                            out.print("<input type='button' onclick='mudaPagina(&#39;" + displayname + "&#39;)' value='ok!'/>");
+                        %>
+                        
+                        <div id="teste" name="teste"><br><br>
+                            <p><a href="consulta.jsp"> Nova Consulta </a> </p>
+                        </div>
                 </div><%-- inserido --%>
             </div><%-- inserido --%>
         </div><%-- inserido --%>

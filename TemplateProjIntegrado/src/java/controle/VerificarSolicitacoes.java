@@ -17,7 +17,14 @@ import modelo.UsuarioBean;
 import modelo.UsuarioDAO;
 
 public class VerificarSolicitacoes extends HttpServlet {
-
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String displayname = request.getParameter("nomeEntidade");
+       String pag = request.getParameter("pag");
+       acaoConsultarEntidadeR(request, response, displayname, pag);
+       
+    }
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -78,7 +85,27 @@ public class VerificarSolicitacoes extends HttpServlet {
             EntidadeDAO entidade = new EntidadeDAO();
             List<EntidadeBean> lista = (List<EntidadeBean>) entidade.listaEntidadesR(displayname);
             request.setAttribute("EntidadeBean", lista);
+            request.setAttribute("dn", displayname);
 
+        } catch (Exception sqle) {
+            request.setAttribute("EntidadeBean", null);
+        }
+        RequestDispatcher rd = null;
+
+        rd = request.getRequestDispatcher("/viewEntidadeConsultaMultipla.jsp");
+
+        rd.forward(request, response);
+
+    }
+    private void acaoConsultarEntidadeR(HttpServletRequest request, HttpServletResponse response, String displayname, String pag)
+            throws ServletException, IOException {
+
+        try {
+            EntidadeDAO entidade = new EntidadeDAO();
+            List<EntidadeBean> lista = (List<EntidadeBean>) entidade.listaEntidadesR(displayname);
+            request.setAttribute("EntidadeBean", lista);
+            request.setAttribute("pag", pag);   
+            request.setAttribute("dn", displayname);
         } catch (Exception sqle) {
             request.setAttribute("EntidadeBean", null);
         }
