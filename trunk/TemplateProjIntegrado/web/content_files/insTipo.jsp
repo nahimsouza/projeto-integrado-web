@@ -1,10 +1,10 @@
 
 <h2>Inserir Tipo</h2>
 <p> 
-<form id="search-form">
+<form id="search-form" onload="chamaServlet(carregaCategorias,'carregaCategorias')" >
     <fieldset> 
         Categoria:<br />
-        <select id="categ" name="categ" onchange="chamaServlet(carregaCategorias,'carregaCategorias')"  >
+        <select id="categ" name="categ">
         </select>
 
         <br /><br />
