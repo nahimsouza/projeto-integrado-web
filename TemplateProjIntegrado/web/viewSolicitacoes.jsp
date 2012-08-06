@@ -62,7 +62,7 @@
                                                             if (listaUsuario.isEmpty()) {
 
                                                         %>
-                                                        <h2> Não existem usuários pendentes!! </h2>
+                                                        <h3> Não existem usuários pendentes!! </h3>
                                                         <% } // fim do if
                                                         else { // caso existam registros
 
