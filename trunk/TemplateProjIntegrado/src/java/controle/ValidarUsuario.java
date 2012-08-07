@@ -22,22 +22,23 @@ public class ValidarUsuario extends HttpServlet {
             throws ServletException, IOException {
 
         String tipo = request.getParameter("tipo");
-
+        String user = request.getParameter("user");
+        
         if (tipo.compareTo("aceitar") == 0) {
-            acaoSalvar(request, response);
+            acaoSalvar(request, response, user);
         }
 
         if (tipo.compareTo("rejeitar") == 0) {
-            acaoRejeitar(request, response);
+            acaoRejeitar(request, response, user);
         }
     }
 
-    private void acaoSalvar(HttpServletRequest request, HttpServletResponse response)
+    private void acaoSalvar(HttpServletRequest request, HttpServletResponse response, String user)
             throws ServletException, IOException {
         
         HttpSession sessao = request.getSession(false);
-        UsuarioBean objUsuario = (UsuarioBean) sessao.getAttribute("usuario");
-        UsuarioDAO.aceitarUsuario(objUsuario.getLogin());
+        UsuarioBean objUsuario = (UsuarioBean) sessao.getAttribute("user");
+        UsuarioDAO.aceitarUsuario(user);
         List<UsuarioBean> list;
         try {
             UsuarioDAO u = new UsuarioDAO();
@@ -57,12 +58,12 @@ public class ValidarUsuario extends HttpServlet {
         rd.forward(request, response);
     }
 
-        private void acaoRejeitar(HttpServletRequest request, HttpServletResponse response)
+        private void acaoRejeitar(HttpServletRequest request, HttpServletResponse response, String user)
             throws ServletException, IOException {
         
         HttpSession sessao = request.getSession(false);
-        UsuarioBean objUsuario = (UsuarioBean) sessao.getAttribute("usuario");
-        UsuarioDAO.rejeitarUsuario(objUsuario.getLogin());
+        UsuarioBean objUsuario = (UsuarioBean) sessao.getAttribute("user");
+        UsuarioDAO.rejeitarUsuario(user);
         List<UsuarioBean> list;
         try {
             UsuarioDAO u = new UsuarioDAO();
