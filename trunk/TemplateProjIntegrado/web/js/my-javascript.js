@@ -118,26 +118,33 @@ function VerificaCadastro(){
 function catListInsere(){
    
     var texto = document.getElementById("ncateg").value;
-    var valor = texto;
+    var valor = "/" + texto;
     
-    document.getElementById("listaCategorias").options[document.getElementById("listaCategorias").options.length] = new Option (texto, valor, true, true);
+    var cat = document.getElementById("listaCategorias");
+    cat.options[cat.options.length] = new Option (texto, valor, true, true);
 }
 
 function catListRemove(){
-    document.getElementById("listaCategorias").remove(document.getElementById("listaCategorias").selectedIndex);
+    var cat = document.getElementById("listaCategorias");
+    cat.remove(cat.selectedIndex);
 }
 
 
 function tipoCatListInsere(){
-    var texto = "/"+document.getElementById("categ").value + "/" + document.getElementById("ntipo").value;
-    var valor = texto;
-
-    document.getElementById("categoriass").options[document.getElementById("categoriass").options.length] = new Option (texto, valor, true, true);
-
+    var categ = document.getElementById("categ");
+    var ntipo = document.getElementById("ntipo");
+    
+    var texto = categ[categ.selectedIndex].text + "/" + ntipo.value;
+    var valor = categ.value + "/" + ntipo.value;;
+    
+    var cat = document.getElementById("categoriass");
+    cat.options[cat.options.length] = new Option (texto, valor, true, true);
+    
 }
 
 function tipoCatListRemove(){
-    document.getElementById("categoriass").remove(document.getElementById("categoriass").selectedIndex);
+    var cat = document.getElementById("categoriass");
+    cat.remove(cat.selectedIndex);
 }
 
 var xmlHttpReq;
