@@ -67,7 +67,10 @@
                                                         else { // caso existam registros
 
                                                         %>
-
+                                                            <%-- Minha alteração --%>
+                                                            <input type="hidden" name="tipo" id="tipo" />
+                                                            <input type="hidden" name="user" id="user" />
+                                                            <%-- Fim Minha alteração --%>
                                                         <table border=1>
                                                             <% for (Iterator i = listaUsuario.iterator(); i.hasNext();) {
                                                                     UsuarioBean l = (UsuarioBean) i.next();%>
@@ -85,9 +88,9 @@
                                                                         response.sendRedirect("oops.jsp");
                                                                     }%> 
                                                                     
-                                                                <input type="hidden" value="aceitar" name="tipo" id="tipo" />
-                                                                <input type="submit" value="aceitar" onClick="document.getElementById('tipo').value = 'aceitar'"/>
-                                                                <input type="submit" value="rejeitar" onClick="document.getElementById('tipo').value = 'rejeitar'"/>
+                                                                    <%-- <input type="hidden" value="aceitar" name="tipo" id="tipo" /> --%>
+                                                                    <input type="submit" value="aceitar" onClick="document.getElementById('tipo').value = 'aceitar'; document.getElementById('user').value = '<%= l.getLogin() %>'"/>
+                                                                <input type="submit" value="rejeitar" onClick="document.getElementById('tipo').value = 'rejeitar'; document.getElementById('user').value = '<%= l.getLogin() %>'"/>
 
                                                             </fieldset> 
                                                             </tr>
