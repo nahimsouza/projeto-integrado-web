@@ -37,7 +37,7 @@
                     <div class="wrapper">
                         <div class="grid3 first">
                             <ul class="categories">
-                                <li><a href="javascript:void(0)" onclick="showDiv( 'solicitacoes', true );
+                                <li><a href="usuarios.jsp" onclick="showDiv( 'solicitacoes', false);
                                     showDiv( 'conUsuario', false );">Novas Solicitações</a></li>
 
                                 <li><a href="javascript:void(0)" onclick="showDiv( 'solicitacoes', false );
@@ -84,6 +84,7 @@
                                                                     } catch (NullPointerException e) {
                                                                         response.sendRedirect("oops.jsp");
                                                                     }%> 
+                                                                    
                                                                 <input type="hidden" value="aceitar" name="tipo" id="tipo" />
                                                                 <input type="submit" value="aceitar" onClick="document.getElementById('tipo').value = 'aceitar'"/>
                                                                 <input type="submit" value="rejeitar" onClick="document.getElementById('tipo').value = 'rejeitar'"/>

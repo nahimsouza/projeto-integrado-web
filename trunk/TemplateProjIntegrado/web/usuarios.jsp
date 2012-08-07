@@ -41,16 +41,14 @@
                                     showDiv( 'conUsuario', true );">Consultar Usuários</a></li>
                             </ul>
                         </div>
-                        <div class="grid9" id="solicitacoes">
-                             
+                        
+                        <div class="grid9" id="solicitacoes">    
                            <form id="formulario" nome ="formulario" method="post" action="VerificarSolicitacoes" >
                                <input type="hidden" value="usuarios" name="acao" />
-                               <input type="submit" value="Mostrar Usuarios Pendentes" />
-                                
+                               <script language="JavaScript">document.forms['formulario'].submit();</script> 
                             </form>
-                            
-
                         </div>
+                        
                         <div class="grid9" id="conUsuario" style="display: none">
                             <%@include file="content_files/conUsuario.jsp" %>
                         </div>
