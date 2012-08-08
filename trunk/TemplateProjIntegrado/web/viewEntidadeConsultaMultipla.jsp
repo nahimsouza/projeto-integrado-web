@@ -34,7 +34,6 @@
         <div class="middle"><%-- inserido --%>
             <div class="container"><%-- inserido --%>
                 <div class="wrapper"><%-- inserido --%>   
-                    
                     <%
                             List<EntidadeBean> listaEntidade = (List<EntidadeBean>) request.getAttribute("EntidadeBean");
                             int pag = request.getParameter("pag") == null ? 1 : Integer.parseInt(request.getParameter("pag"));
@@ -85,7 +84,7 @@
                         <% }%>
                         <br>
                         <% if(pag > 1){ 
-                            String cons = "<a href=?nomeEntidade="+ displayname +"&pag="+(pag-1)+">Anterior</a>";
+                            String cons = "<a href=?acao=conEntidadeR&nomeEntidade="+ displayname +"&pag="+(pag-1)+">Anterior</a>";
 
                             out.print(cons);
                          }else{ 
@@ -94,7 +93,7 @@
                             String espaco = "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp";
                             out.print(espaco+ "Página " + pag + " de " + totalPaginas + espaco);
                             if(pag * limite < listaEntidade.size()){  
-                                String cons = "<a href=?nomeEntidade="+ displayname +"&pag="+(pag+1)+">Proximo</a>";
+                                String cons = "<a href=?acao=conEntidadeR&nomeEntidade="+ displayname +"&pag="+(pag+1)+">Proximo</a>";
                                 out.print(cons);
                             }else{
                                 out.print("Proximo");

@@ -21,10 +21,14 @@ public class VerificarSolicitacoes extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String displayname = request.getParameter("nomeEntidade");
-        String pag = request.getParameter("pag");
-        acaoConsultarEntidadeR(request, response, displayname, pag);
 
+        String acao = request.getParameter("acao");
+
+        if (acao.compareTo("conEntidadeR") == 0) {
+            String displayname = request.getParameter("nomeEntidade");
+            String pag = request.getParameter("pag");
+            acaoConsultarEntidadeR(request, response, displayname, pag);
+        }
     }
 
     @Override
@@ -69,15 +73,15 @@ public class VerificarSolicitacoes extends HttpServlet {
                 }
             }
             acaoInserirTipo(request, response, list);
-        }else if (acao.compareTo("insTipo") == 0) {
+        } else if (acao.compareTo("insTipo") == 0) {
             String[] insTipo;
             String[] temp;
             List<CategoriaTipoBean> list = new ArrayList<CategoriaTipoBean>();
             insTipo = request.getParameterValues("categoriass");
             if (insTipo != null) {
                 for (int i = 0; i < insTipo.length; i++) {
-                    temp =insTipo[i].split("/");
-                    list.add(new CategoriaTipoBean(temp[1],temp[2]));//falta descobrir como separar as strings
+                    temp = insTipo[i].split("/");
+                    list.add(new CategoriaTipoBean(temp[1], temp[2]));//falta descobrir como separar as strings
                 }
             }
             acaoInserirTipo(request, response, list);
@@ -85,7 +89,6 @@ public class VerificarSolicitacoes extends HttpServlet {
             acaoCarregaUsuario(request, response);
         } 
     }
-    
 
     private void acaoConsultarEntidade(HttpServletRequest request, HttpServletResponse response, String displayname)
             throws ServletException, IOException {
@@ -289,7 +292,7 @@ public class VerificarSolicitacoes extends HttpServlet {
         response.getWriter().write(html);
     }
 
-    private void acaoInserirConsulta(HttpServletRequest request, HttpServletResponse response, List<CategoriaTipoBean> list)  throws IOException {
+    private void acaoInserirConsulta(HttpServletRequest request, HttpServletResponse response, List<CategoriaTipoBean> list) throws IOException {
 
 
         try {
@@ -304,7 +307,8 @@ public class VerificarSolicitacoes extends HttpServlet {
 
 
     }
-    private void acaoInserirTipo(HttpServletRequest request, HttpServletResponse response, List<CategoriaTipoBean> list)  throws IOException {
+
+    private void acaoInserirTipo(HttpServletRequest request, HttpServletResponse response, List<CategoriaTipoBean> list) throws IOException {
 
 
         try {
