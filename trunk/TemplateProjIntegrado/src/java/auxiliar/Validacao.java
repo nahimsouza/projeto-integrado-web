@@ -15,7 +15,7 @@ public class Validacao {
         //Objeto usado para enviar comandos SQL no SGBD
         java.sql.Statement stmt;
 
-        String sql = "SELECT email, senha FROM usuario where  email='" + usuario + "' AND senha='" + senha + "'";
+        String sql = "EXEC usp_login '" + usuario + "', '" + senha + "'";
 
         try {
             Class.forName("com.microsoft.jdbc.sqlserver.SQLServerDriver").newInstance();
@@ -25,15 +25,21 @@ public class Validacao {
             conn = DriverManager.getConnection(conexao, user, password);
             stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(sql);
-            while (rs.next()) {
+            rs.next();
+           
+            boolean ret = rs.getBoolean(1);
+            conn.close();
+            
+            return (ret);
+            /*while (rs.next()) {
                 String email = rs.getString("email");
                 String s = rs.getString("senha");
 
                 if ((usuario.equals(email)) && (senha.equals(s))) {
                     return true;
                 }
-            }
-            conn.close();
+            }*/
+            
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("Erro.");
