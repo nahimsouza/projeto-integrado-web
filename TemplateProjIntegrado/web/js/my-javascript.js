@@ -135,7 +135,8 @@ function tipoCatListInsere(){
     var ntipo = document.getElementById("ntipo");
     
     var texto = categ[categ.selectedIndex].text + "/" + ntipo.value;
-    var valor = categ.value + "/" + ntipo.value;;
+    var valor = categ.value + "/" + ntipo.value;
+    ;
     
     var cat = document.getElementById("categoriass");
     cat.options[cat.options.length] = new Option (texto, valor, true, true);
@@ -149,7 +150,7 @@ function tipoCatListRemove(){
 
 var xmlHttpReq;
 function chamaServlet(param,param2){
-    
+   
     try {
         try{
             var dado = "acao="+param2+"&cat="+ document.getElementById("categoria").value;
@@ -196,16 +197,6 @@ function carregaTipos(){
     }
 }
 
-function carregaTiposConsulta(){
-    
-    if (xmlHttpReq.readyState==4 && xmlHttpReq.status==200)
-    {
-        var txt = xmlHttpReq.responseText;
-        document.getElementById("tipoP").innerHTML=txt;
-        document.getElementById("tipoNP").innerHTML=txt;
-    }
-}
-
 function inserirEntidade(){
     if(document.getElementById("displayname").value==""){
         alert("Informe o displayname");
@@ -220,4 +211,66 @@ function inserirEntidade(){
 
 function mudaPagina(ent){
     location.href="?nomeEntidade="+ent+"&pag="+document.getElementById("npag").value;
+}
+
+function mudaPagina(tipoP, tipoNP){
+    location.href="?tipoP="+tipoP+"&tipoNP="+tipoNP+"&pag="+document.getElementById("npag").value;
+    
+}
+
+function carregaCategoriasConsulta(){
+    
+    if (xmlHttpReq.readyState==4 && xmlHttpReq.status==200)
+    {
+        var txt = xmlHttpReq.responseText;
+        // Carrega as duas combos de categorias
+        document.getElementById("catP").innerHTML=txt;
+        document.getElementById("catNP").innerHTML=txt;
+        
+    }
+}
+
+function chamaServletConsulta(param,param2,cat){
+    
+    try {
+        try{
+            // para funcionar genericamente com catP e catNP
+            var dado = "acao="+param2+"&cat="+ document.getElementById(cat).value;
+        }catch(e){
+            var dado = "acao="+param2;
+        }
+          
+        xmlHttpReq = new XMLHttpRequest();  // Não funciona em versoes antigas do IE
+
+        // Abre uma conexão com o servidor usando o método GET
+        xmlHttpReq.open("POST",'VerificarSolicitacoes',true);
+        
+        xmlHttpReq.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+
+        // Define uma função que o servidor chama qdo estiver pronto (recebida como parametro)
+        xmlHttpReq.onreadystatechange = param;
+
+        // Faz a requisição ao servidor
+        xmlHttpReq.send(dado);
+    } catch(exception){
+        alert("Requisição falhou");
+    }
+}
+
+function carregaTiposConsultaP(){
+    
+    if (xmlHttpReq.readyState==4 && xmlHttpReq.status==200)
+    {
+        var txt = xmlHttpReq.responseText;
+        document.getElementById('tipoP').innerHTML=txt;
+    }
+}
+
+function carregaTiposConsultaNP(){
+    
+    if (xmlHttpReq.readyState==4 && xmlHttpReq.status==200)
+    {
+        var txt = xmlHttpReq.responseText;
+        document.getElementById('tipoNP').innerHTML=txt;
+    }
 }
