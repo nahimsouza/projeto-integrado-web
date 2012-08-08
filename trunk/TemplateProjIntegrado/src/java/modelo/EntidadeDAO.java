@@ -38,8 +38,8 @@ public class EntidadeDAO {
             while (rs.next()) {
                 String name = rs.getObject("displayname").toString(); // o nome entre aspas é o nome do campo no BD
                 String desc = rs.getObject("descricao").toString();
-                
-                list.add(new EntidadeBean(name,desc));
+
+                list.add(new EntidadeBean(name, desc));
             }
 
             return list;
@@ -50,7 +50,8 @@ public class EntidadeDAO {
             ConnectionUsuarioFactory.closeConnection(conn, ps, rs);
         }
     } // fim
-        public List<EntidadeBean> listaEntidadesR(String displayname) throws EntidadeDAOException, UsuarioDAOException {
+
+    public List<EntidadeBean> listaEntidadesR(String displayname) throws EntidadeDAOException, UsuarioDAOException {
         PreparedStatement ps = null;
         Connection conn = null;
         ResultSet rs = null;
@@ -66,8 +67,8 @@ public class EntidadeDAO {
             while (rs.next()) {
                 String name = rs.getObject("displayname").toString(); // o nome entre aspas é o nome do campo no BD
                 String desc = rs.getObject("descricao").toString();
-                
-                list.add(new EntidadeBean(name,desc));
+
+                list.add(new EntidadeBean(name, desc));
             }
 
             return list;
@@ -78,8 +79,8 @@ public class EntidadeDAO {
             ConnectionUsuarioFactory.closeConnection(conn, ps, rs);
         }
     } // fim
-        
-        public List<EntidadeBean> listaAvancada(int in, int not) throws EntidadeDAOException, UsuarioDAOException {
+
+    public List<EntidadeBean> listaAvancada(int tipoP,int tipoNP) throws EntidadeDAOException, UsuarioDAOException {
         PreparedStatement ps = null;
         Connection conn = null;
         ResultSet rs = null;
@@ -87,7 +88,7 @@ public class EntidadeDAO {
         try {
             // Busca avancada:
             //String SQL = "SELECT displayname, descricao FROM entidade WHERE displayname = '" + displayname + "'";
-            String SQL = "EXEC usp_cons_xdify " + in + "," + not;
+            String SQL = "EXEC usp_cons_xdify " +  tipoP + "," + tipoNP;
             conn = this.conn;
             ps = conn.prepareStatement(SQL);
             rs = ps.executeQuery();
@@ -95,8 +96,7 @@ public class EntidadeDAO {
             while (rs.next()) {
                 String name = rs.getObject("displayname").toString(); // o nome entre aspas é o nome do campo no BD
                 String desc = rs.getObject("descricao").toString();
-                
-                list.add(new EntidadeBean(name,desc));
+                list.add(new EntidadeBean(name, desc));
             }
 
             return list;
@@ -108,9 +108,7 @@ public class EntidadeDAO {
         }
     } // fim
 }
-
-
-    // inclui filme no BD
+// inclui filme no BD
  /*   public void salvar(EntidadeBean entidade, CategoriaTipoBean categoria) throws EntidadeDAOException {
         PreparedStatement ps = null;
         Connection conn = null;

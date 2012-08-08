@@ -7,25 +7,25 @@
 <!DOCTYPE html>
 <html lang="en">
     <%@include file="include_files/head.jsp" %>
-    <body><% //Recupera a Session
-            try {
-                HttpSession sessao = request.getSession(false);
-                UsuarioBean log = null;
-                if (sessao != null) {
-                    log = (UsuarioBean) sessao.getAttribute("Usuario");
-                    String tipo = log.getTipo();
-            if (tipo.equals("Colaborador")) {
+    <body  onload="chamaServletConsulta(carregaCategoriasConsulta,'carregaCategoriasConsulta',' ')"><% //Recupera a Session
+        try {
+            HttpSession sessao = request.getSession(false);
+            UsuarioBean log = null;
+            if (sessao != null) {
+                log = (UsuarioBean) sessao.getAttribute("Usuario");
+                String tipo = log.getTipo();
+                if (tipo.equals("Colaborador")) {
         %>   
-                <jsp:include page="include_files/colabHeaderConsulta.jsp" />  
-        <% 
-            } else if (tipo.equals("Administrador")) {
+        <jsp:include page="include_files/colabHeaderConsulta.jsp" />  
+        <%        } else if (tipo.equals("Administrador")) {
         %>   
-                <jsp:include page="include_files/adminHeaderConsulta.jsp" />  
-            <%} }   
-           } catch (NullPointerException e) {%>
-                 <jsp:include page="include_files/userHeaderConsulta.jsp" />
+        <jsp:include page="include_files/adminHeaderConsulta.jsp" />  
+        <%}
+            }
+        } catch (NullPointerException e) {%>
+        <jsp:include page="include_files/userHeaderConsulta.jsp" />
         <% }%>
-        
+
 
         <section id="content">
             <div class="middle">
@@ -33,35 +33,35 @@
                     <div class="wrapper">
                         <div class="grid3 first">
                             <ul class="categories">
-                                   <li><a href="javascript:void(0)" onclick="showDiv( 'conEntidade', true );
-                                                            showDiv( 'conEntidadeR', false );
-                                                            showDiv( 'conCategoria', false );
-                                                            showDiv( 'conTipo', false );
-                                                            showDiv( 'conAvancada', false );">Consulta Absoluta por Entidade</a></li>
-                                   
-                                   <li><a href="javascript:void(0)" onclick="showDiv( 'conEntidade', false );
-                                                            showDiv( 'conEntidadeR', true );
-                                                            showDiv( 'conCategoria', false );
-                                                            showDiv( 'conTipo', false );
-                                                            showDiv( 'conAvancada', false );">Consulta Relativa por Entidade</a></li>
+                                <li><a href="javascript:void(0)" onclick="showDiv( 'conEntidade', true );
+                                    showDiv( 'conEntidadeR', false );
+                                    showDiv( 'conCategoria', false );
+                                    showDiv( 'conTipo', false );
+                                    showDiv( 'conAvancada', false );">Consulta Absoluta por Entidade</a></li>
 
-                                       <li><a href="javascript:void(0)" onclick="showDiv( 'conEntidade', false );
-                                                            showDiv( 'conEntidadeR', false );
-                                                            showDiv( 'conCategoria', true );
-                                                            showDiv( 'conTipo', false );
-                                                            showDiv( 'conAvancada', false );">Consulta por Categoria</a></li>
+                                <li><a href="javascript:void(0)" onclick="showDiv( 'conEntidade', false );
+                                    showDiv( 'conEntidadeR', true );
+                                    showDiv( 'conCategoria', false );
+                                    showDiv( 'conTipo', false );
+                                    showDiv( 'conAvancada', false );">Consulta Relativa por Entidade</a></li>
 
-                                       <li><a href="javascript:void(0)" onclick="showDiv( 'conEntidade', false );
-                                                            showDiv( 'conEntidadeR', false );
-                                                            showDiv( 'conCategoria', false );
-                                                            showDiv( 'conTipo', true );
-                                                            showDiv( 'conAvancada', false );">Consulta por Tipo</a></li>
+                                <li><a href="javascript:void(0)" onclick="showDiv( 'conEntidade', false );
+                                    showDiv( 'conEntidadeR', false );
+                                    showDiv( 'conCategoria', true );
+                                    showDiv( 'conTipo', false );
+                                    showDiv( 'conAvancada', false );">Consulta por Categoria</a></li>
 
-                                       <li><a href="javascript:void(0)" onclick="showDiv( 'conEntidade', false );
-                                                            showDiv( 'conEntidadeR', false );
-                                                            showDiv( 'conCategoria', false );
-                                                            showDiv( 'conTipo', false );
-                                                            showDiv( 'conAvancada', true );">Consulta Avançada</a></li>
+                                <li><a href="javascript:void(0)" onclick="showDiv( 'conEntidade', false );
+                                    showDiv( 'conEntidadeR', false );
+                                    showDiv( 'conCategoria', false );
+                                    showDiv( 'conTipo', true );
+                                    showDiv( 'conAvancada', false );">Consulta por Tipo</a></li>
+
+                                <li><a href="javascript:void(0)" onclick="showDiv( 'conEntidade', false );
+                                    showDiv( 'conEntidadeR', false );
+                                    showDiv( 'conCategoria', false );
+                                    showDiv( 'conTipo', false );
+                                    showDiv( 'conAvancada', true );">Consulta Avançada</a></li>
                             </ul>
                         </div>
                         <div class="grid9" id="conEntidade">
