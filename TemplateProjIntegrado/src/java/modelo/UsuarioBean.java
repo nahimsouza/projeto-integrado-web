@@ -11,6 +11,12 @@ public class UsuarioBean {
     public UsuarioBean(){
         
     }
+
+    public UsuarioBean(String nome, String email, String dataNasc) {
+        this.nome = nome;
+        this.email = email;
+        this.dataNasc = dataNasc;
+    }
     
     public UsuarioBean(String nome, String email, String senha, String dataNasc, String tipo) {
         this.nome = nome;

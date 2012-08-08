@@ -85,9 +85,10 @@ public class VerificarSolicitacoes extends HttpServlet {
                 }
             }
             acaoInserirTipo(request, response, list);
-        } else if (acao.compareTo("conUsuario") == 0) {
-            acaoCarregaUsuario(request, response);
-        } 
+        } else if (acao.compareTo("consUsuarioEmail") == 0) {
+            String email = request.getParameter("email");
+            consultarUsuarioEmail(request, response, email);
+        }
     }
 
     private void acaoConsultarEntidade(HttpServletRequest request, HttpServletResponse response, String displayname)
@@ -308,7 +309,8 @@ public class VerificarSolicitacoes extends HttpServlet {
 
     }
 
-    private void acaoInserirTipo(HttpServletRequest request, HttpServletResponse response, List<CategoriaTipoBean> list) throws IOException {
+    private void acaoInserirTipo(HttpServletRequest request, HttpServletResponse response, List<CategoriaTipoBean> list)
+            throws ServletException, IOException {
 
 
         try {
@@ -323,13 +325,13 @@ public class VerificarSolicitacoes extends HttpServlet {
 
 
     }
-    private void acaoCarregaUsuario(HttpServletRequest request, HttpServletResponse response, String displayname)  throws IOException {
 
-
-       try {
+    private void consultarUsuarioEmail(HttpServletRequest request, HttpServletResponse response, String email) 
+            throws ServletException, IOException {
+        try {
             UsuarioDAO usuario = new UsuarioDAO();
-            List<UsuarioBean> lista = (List<UsuarioBean>) usuario.funcao();
-            request.setAttribute("UsuarioBean", lista);
+            UsuarioBean user = usuario.consultarUsuario(email);
+            request.setAttribute("UsuarioBean", user);
 
         } catch (Exception sqle) {
             request.setAttribute("UsuarioBean", null);
@@ -339,7 +341,5 @@ public class VerificarSolicitacoes extends HttpServlet {
         rd = request.getRequestDispatcher("/viewUsuario.jsp");
 
         rd.forward(request, response);
-
-
     }
 }
