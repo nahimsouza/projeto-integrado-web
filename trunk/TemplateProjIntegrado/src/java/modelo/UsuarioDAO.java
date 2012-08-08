@@ -51,6 +51,74 @@ public class UsuarioDAO {
         }
     }
 
+    public UsuarioBean consultarUsuario(String email) throws UsuarioDAOException {
+        PreparedStatement ps = null;
+        Connection conn = null;
+        ResultSet rs = null;
+        UsuarioBean usuario = null;
+
+        try {
+            String SQL = "EXEC usp_cons_usuario '" + email + "'";
+            conn = this.conn;
+            ps = conn.prepareStatement(SQL);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+
+                String nome = rs.getObject("nome").toString();
+                String e_mail = rs.getObject("email").toString();
+                String dataNasc = rs.getString("data_nasc");
+
+                String[] dataNascimento = dataNasc.split("-");
+                String data = dataNascimento[2] + "/" + dataNascimento[1] + "/" + dataNascimento[0];
+
+                usuario = new UsuarioBean(nome, e_mail, data);
+            }
+
+            return usuario;
+
+        } catch (SQLException sqle) {
+            throw new UsuarioDAOException(sqle);
+        } finally {
+            ConnectionUsuarioFactory.closeConnection(conn, ps, rs);
+        }
+    } // fim 
+    
+    public UsuarioBean consultarColaborador(String email) throws UsuarioDAOException {
+        PreparedStatement ps = null;
+        Connection conn = null;
+        ResultSet rs = null;
+        UsuarioBean usuario = null;
+
+        try {
+            String SQL = "EXEC usp_cons_colaborador";
+            conn = this.conn;
+            ps = conn.prepareStatement(SQL);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+
+                String nome = rs.getObject("nome").toString();
+                String e_mail = rs.getObject("email").toString();
+                String dataNasc = rs.getString("data_nasc");
+
+                String[] dataNascimento = dataNasc.split("-");
+                String data = dataNascimento[2] + "/" + dataNascimento[1] + "/" + dataNascimento[0];
+
+                usuario = new UsuarioBean(nome, e_mail, data);
+            }
+
+            return usuario;
+
+        } catch (SQLException sqle) {
+            throw new UsuarioDAOException(sqle);
+        } finally {
+            ConnectionUsuarioFactory.closeConnection(conn, ps, rs);
+        }
+    } // fim 
+    
+    
+
     public static String getTipo(String email) {
         //Objeto que guarda informacoes da conexao com o SGBD.
         Connection conn;
@@ -69,7 +137,7 @@ public class UsuarioDAO {
             stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(sql);
             String tipo;
-            
+
             while (rs.next()) {
                 tipo = rs.getString("tipo_usuario");
 
