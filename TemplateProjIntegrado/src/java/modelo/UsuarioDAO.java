@@ -50,14 +50,14 @@ public class UsuarioDAO {
         }
     }
 
-    public static String getTipo(String email, String senha) {
+    public static String getTipo(String email) {
         //Objeto que guarda informacoes da conexao com o SGBD.
         Connection conn;
         //Objeto usado para enviar comandos SQL no SGBD
         java.sql.Statement stmt;
 
-        String sql = "SELECT tipo_usuario FROM usuario where  email='" + email + "' AND senha='" + senha + "'";
-
+        String sql = "SELECT tipo_usuario FROM usuario where  email='" + email + "'";
+        String ret = "";
         try {
             Class.forName("com.microsoft.jdbc.sqlserver.SQLServerDriver").newInstance();
             String conexao = "jdbc:sqlserver://5.176.252.221:1433;databaseName=labbd01";
@@ -66,15 +66,17 @@ public class UsuarioDAO {
             conn = DriverManager.getConnection(conexao, user, password);
             stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(sql);
+            String tipo;
+            
             while (rs.next()) {
-                String tipo = rs.getString("tipo_usuario");
+                tipo = rs.getString("tipo_usuario");
 
                 if (tipo.equals("Colaborador")) {
-                    return "Colaborador";
+                    ret = "Colaborador";
                 } else if (tipo.equals("Usuario")) {
-                    return "Usuario";
+                    ret = "Usuario";
                 } else {
-                    return "Administrador";
+                    ret = "Administrador";
                 }
             }
             conn.close();
@@ -83,7 +85,7 @@ public class UsuarioDAO {
             System.out.println("Erro.");
         }
 
-        return "";
+        return ret;
 
     }
 
@@ -150,7 +152,7 @@ public class UsuarioDAO {
         String[] dataNascimento = dataNasc.split("/");
         String data = dataNascimento[2] + "-" + dataNascimento[1] + "-" + dataNascimento[0];
 
-        String sql = "INSERT INTO usuario(tipo_usuario, nome, email, senha, data_nasc) VALUES ( '" + tipo + "', '" + nome + "', '" + email + "', '" + senha + "', '" + data + "')";
+        String sql = "EXEC usp_ins_usuario '" + nome + "', '" + email + "', '" + senha + "', '" + data + "' ";
         String sql2 = "SELECT * FROM usuario WHERE email = '" + email + "'";
 
 
