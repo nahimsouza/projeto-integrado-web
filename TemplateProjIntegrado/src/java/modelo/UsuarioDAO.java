@@ -26,7 +26,8 @@ public class UsuarioDAO {
 
 
         try {
-            String SQL = "SELECT email, nome FROM usuario WHERE tipo_usuario = 'Usuario'";
+            //String SQL = "SELECT email, nome FROM usuario WHERE tipo_usuario = 'Usuario'";
+            String SQL = "EXEC usp_cons_novos_usuarios";
             conn = this.conn;
             ps = conn.prepareStatement(SQL);
             rs = ps.executeQuery();
@@ -56,7 +57,8 @@ public class UsuarioDAO {
         //Objeto usado para enviar comandos SQL no SGBD
         java.sql.Statement stmt;
 
-        String sql = "SELECT tipo_usuario FROM usuario where  email='" + email + "'";
+        //String sql = "SELECT tipo_usuario FROM usuario where  email='" + email + "'";
+        String sql = "EXEC usp_cons_tipo_usuario '" + email + "'";
         String ret = "";
         try {
             Class.forName("com.microsoft.jdbc.sqlserver.SQLServerDriver").newInstance();
@@ -95,8 +97,8 @@ public class UsuarioDAO {
         //Objeto usado para enviar comandos SQL no SGBD
         java.sql.Statement stmt;
 
-        String sql = "UPDATE usuario SET tipo_usuario='Colaborador' WHERE email ='" + email + "'";
-
+        //String sql = "UPDATE usuario SET tipo_usuario='Colaborador' WHERE email ='" + email + "'";
+        String sql = "EXEC usp_aceitar_usuario '" + email + "'";
         try {
             Class.forName("com.microsoft.jdbc.sqlserver.SQLServerDriver").newInstance();
             String conexao = "jdbc:sqlserver://5.176.252.221:1433;databaseName=labbd01";
@@ -118,8 +120,9 @@ public class UsuarioDAO {
         //Objeto usado para enviar comandos SQL no SGBD
         java.sql.Statement stmt;
 
-        String sql = "DELETE FROM usuario WHERE email ='" + email + "'";
-
+        //String sql = "DELETE FROM usuario WHERE email ='" + email + "'";
+        String sql = "EXEC usp_rem_usuario '" + email + "'";
+        
         try {
             Class.forName("com.microsoft.jdbc.sqlserver.SQLServerDriver").newInstance();
             String conexao = "jdbc:sqlserver://5.176.252.221:1433;databaseName=labbd01";
@@ -153,8 +156,8 @@ public class UsuarioDAO {
         String data = dataNascimento[2] + "-" + dataNascimento[1] + "-" + dataNascimento[0];
 
         String sql = "EXEC usp_ins_usuario '" + nome + "', '" + email + "', '" + senha + "', '" + data + "' ";
-        String sql2 = "SELECT * FROM usuario WHERE email = '" + email + "'";
-
+        //String sql2 = "SELECT * FROM usuario WHERE email = '" + email + "'";
+        String sql2 = "EXEC usp_cons_usuario '" + email + "'";
 
         try {
             Class.forName("com.microsoft.jdbc.sqlserver.SQLServerDriver").newInstance();
