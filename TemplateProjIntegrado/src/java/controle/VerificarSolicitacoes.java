@@ -81,7 +81,9 @@ public class VerificarSolicitacoes extends HttpServlet {
                 }
             }
             acaoInserirTipo(request, response, list);
-        }
+        } else if (acao.compareTo("conUsuario") == 0) {
+            acaoCarregaUsuario(request, response);
+        } 
     }
     
 
@@ -314,6 +316,25 @@ public class VerificarSolicitacoes extends HttpServlet {
         }
 
 
+
+
+    }
+    private void acaoCarregaUsuario(HttpServletRequest request, HttpServletResponse response, String displayname)  throws IOException {
+
+
+       try {
+            UsuarioDAO usuario = new UsuarioDAO();
+            List<UsuarioBean> lista = (List<UsuarioBean>) usuario.funcao();
+            request.setAttribute("UsuarioBean", lista);
+
+        } catch (Exception sqle) {
+            request.setAttribute("UsuarioBean", null);
+        }
+        RequestDispatcher rd = null;
+
+        rd = request.getRequestDispatcher("/viewUsuario.jsp");
+
+        rd.forward(request, response);
 
 
     }
