@@ -40,7 +40,7 @@
                             if (objUsuario == null) {
 
                         %>
-                        <h3> Usuário não encontrado! </h3>
+                        <h2> Usuário não encontrado! </h2>
                         <% } else {%>
 
                         <h2> Dados Usuário: </h2>
