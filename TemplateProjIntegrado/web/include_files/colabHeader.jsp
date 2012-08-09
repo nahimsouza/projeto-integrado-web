@@ -33,7 +33,10 @@
                     <input type="submit" value="logout"/>
                     <input type="hidden" name="tipo" value="logout">
                 </fieldset>
-                <h2><%="Bem vindo(a), " + tipo + "(a) " + nome %> </h2>
+                        <%
+                            String txt = "Bem vindo(a), " + tipo + "(a) " + nome; 
+                        %>
+                        <h2><%= txt %> </h2>
                 <% }
             } catch (NullPointerException e) {%>
                 <fieldset>
@@ -42,14 +45,6 @@
                     <input type="submit" value="ir" />
                     <input type="hidden" name="tipo" value="login">
                 </fieldset>
-                    <% }
-                        } catch (NullPointerException e) {%>
-                    <fieldset>
-                        email <input type="text" value="" name="email"><!--<input type="submit" value="">-->
-                        senha <input type="password" value="" name="senha">
-                        <input type="submit" value="ir" />
-                        <input type="hidden" name="tipo" value="login">
-                    </fieldset>
                     <% }%>
 
             </form>

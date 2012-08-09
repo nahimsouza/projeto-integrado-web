@@ -1,3 +1,4 @@
+
 <%@page import="modelo.UsuarioBean"%>
 <header>
     <nav>
@@ -28,22 +29,14 @@
                             String nome = login.getNome();
                 %>
                 <fieldset>
-                    <table >
-                        <% String espaco = "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp";%>
-                        <td><h2><%="Bem vindo(a), " + tipo + "(a) " + nome %> </h2></td>
-                        <td> <%=espaco%></td><td> <%=espaco%></td><td> <%=espaco%></td><td> <%=espaco%></td><td> <%=espaco%></td>
-                        <td> <%=espaco%></td><td> <%=espaco%></td><td> <%=espaco%></td><td> <%=espaco%></td><td> <%=espaco%></td>
-                        <td> <%=espaco%></td><td> <%=espaco%></td><td> <%=espaco%></td><td> <%=espaco%></td><td> <%=espaco%></td><td> <%=espaco%></td>
-
-                        <td> <a href="altCadastro.jsp"/> Alterar Cadastro </td>
-                        <td> <%=espaco%></td>
-                        <td><input type="submit" value="logout"/>
-                            <input type="hidden" name="tipo" value="logout">
-                        </td>
-
-                    </table>
+                    <a href="altCadastro.jsp">alterar cadastro</a>
+                    <input type="submit" value="logout"/>
+                    <input type="hidden" name="tipo" value="logout">
                 </fieldset>
-                <h2><%="Bem vindo(a), " + tipo + "(a) " + nome %> </h2>
+                        <%
+                            String txt = "Bem vindo(a), " + tipo + "(a) " + nome; 
+                        %>
+                        <h2><%= txt %> </h2>
                 <% }
             } catch (NullPointerException e) {%>
                 <fieldset>
@@ -52,7 +45,7 @@
                     <input type="submit" value="ir" />
                     <input type="hidden" name="tipo" value="login">
                 </fieldset>
-                <% }%>
+                    <% }%>
 
             </form>
         </div>

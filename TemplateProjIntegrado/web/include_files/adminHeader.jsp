@@ -32,7 +32,10 @@
                     <input type="submit" value="logout"/>
                     <input type="hidden" name="tipo" value="logout">
                 </fieldset>
-                <h2><%="Bem vindo(a), " + tipo + "(a) " + nome %> </h2>
+                <%
+                    String txt = "Bem vindo(a), " + tipo + "(a) " + nome; 
+                %>
+                <h2><%= txt %> </h2>
                 <% }
             } catch (NullPointerException e) {%>
                 <fieldset>
