@@ -286,17 +286,17 @@ function carregaTiposConsultaNP(){
     }
 }
 
-function acaoAlterarSenha(){
+function acaoAlterarSenha(userId){
     
     if(confirm("Sim")){
         document.getElementById("tipo").value = 'alterarSenha';
-        document.getElementById('user').value = '<%= objUsuario.getEmail() %>';
+        document.getElementById('user').value = userId;
         document.getElementById("search-form").submit();
         alert("Será que submeteu????");
     }
 }
 
-function acaoExcluirUsuario(){
+function acaoExcluirUsuario(userId){
     
     alert("Entrou no acaoExcluirUsuario");
     
@@ -304,7 +304,7 @@ function acaoExcluirUsuario(){
         alert("Entrou dentro do if!!!!")
         document.getElementById('tipo').value = 'rejeitar';
         alert("Passou pelo rejeitar")
-        document.getElementById('user').value = '<%= objUsuario.getEmail()%>';
+        document.getElementById('user').value = userId;
         alert("Passou pelo user")
         document.getElementById("search-form").submit();
         alert("Será que submeteu????");
