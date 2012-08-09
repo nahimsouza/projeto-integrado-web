@@ -97,7 +97,7 @@ public class VerificarSolicitacoes extends HttpServlet {
             acaoInserirTipo(request, response, list);
         } else if (acao.compareTo("consUsuarioEmail") == 0) {
             String email = request.getParameter("email");
-            consultarUsuarioEmail(request, response, email);
+            acaoConsultarUsuarioEmail(request, response, email);
         }
     }
 
@@ -365,19 +365,21 @@ public class VerificarSolicitacoes extends HttpServlet {
 
     }
 
-    private void consultarUsuarioEmail(HttpServletRequest request, HttpServletResponse response, String email) 
+    private void acaoConsultarUsuarioEmail(HttpServletRequest request, HttpServletResponse response, String email) 
             throws ServletException, IOException {
         try {
             UsuarioDAO usuario = new UsuarioDAO();
             UsuarioBean user = usuario.consultarUsuario(email);
             request.setAttribute("UsuarioBean", user);
+            //UsuarioBean user = usuario.consultarUsuario(email);
+            //request.setAttribute("UsuarioBean", user);
 
         } catch (Exception sqle) {
             request.setAttribute("UsuarioBean", null);
         }
         RequestDispatcher rd = null;
 
-        rd = request.getRequestDispatcher("/viewUsuario.jsp");
+        rd = request.getRequestDispatcher("/viewUsuarioConsultaMultipla.jsp");
 
         rd.forward(request, response);
     }
