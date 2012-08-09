@@ -44,6 +44,8 @@ public class ValidarLogin extends HttpServlet {
             try {
                 u = new UsuarioDAO();
                 String tipo = u.getTipo(email);
+                u = new UsuarioDAO();
+                String nome = u.getNome(email);
                 if (tipo.equals("Usuario")) {
                     response.sendRedirect("index.jsp");
                 } else {
@@ -51,6 +53,7 @@ public class ValidarLogin extends HttpServlet {
                     UsuarioBean user = new UsuarioBean();
                     user.setLogin(email);
                     user.setTipo(tipo);
+                    user.setNome(nome);
                     session.setAttribute("Usuario", user);
                     response.sendRedirect("index.jsp");
                 }

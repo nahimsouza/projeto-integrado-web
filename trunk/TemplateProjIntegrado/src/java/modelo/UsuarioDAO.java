@@ -289,4 +289,31 @@ public class UsuarioDAO {
             ConnectionUsuarioFactory.closeConnection(conn, ps, rs);
         }
     }
+
+    public String getNome(String email) throws UsuarioDAOException {
+
+        PreparedStatement ps = null;
+        Connection conn = null;
+        ResultSet rs = null;
+        String ret = "";
+
+        try {
+            //String sql = "SELECT tipo_usuario FROM usuario where  email='" + email + "'";
+            String SQL = "EXEC usp_cons_nome '" + email + "'";
+            conn = this.conn;
+            ps = conn.prepareStatement(SQL);
+            rs = ps.executeQuery();
+            String name;
+            while (rs.next()) {
+                name = rs.getString("nome");
+                ret = name + "";
+            }
+
+        } catch (SQLException sqle) {
+            throw new UsuarioDAOException(sqle);
+        } finally {
+            ConnectionUsuarioFactory.closeConnection(conn, ps, rs);
+        }
+        return ret;
+    }
 }
