@@ -18,20 +18,31 @@
     <section class="adv-content">
         <div class="container">
             <form id="email-form" method="post" action="ValidarLogin" >
-                <% //Recupera a Session
+               <% //Recupera a Session
                     try {
                         HttpSession s = request.getSession(false);
                         UsuarioBean login = null;
                         if (s != null) {
                             login = (UsuarioBean) s.getAttribute("Usuario");
                             String tipo = login.getTipo();
+                            String name = login.getNome();
+                            String espaco = "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp";
                 %>
                 <fieldset>
-                    <a href="altCadastro.jsp">alterar cadastro</a>
-                    <input type="submit" value="logout"/>
-                    <input type="hidden" name="tipo" value="logout">
+                    <table >
+                        <td><h2><%="Bem vindo, " + tipo%> </h2></td>
+                        <td> <%=espaco%></td><td> <%=espaco%></td><td> <%=espaco%></td><td> <%=espaco%></td><td> <%=espaco%></td>
+                        <td> <%=espaco%></td><td> <%=espaco%></td><td> <%=espaco%></td><td> <%=espaco%></td><td> <%=espaco%></td>
+                        <td> <%=espaco%></td><td> <%=espaco%></td><td> <%=espaco%></td><td> <%=espaco%></td><td> <%=espaco%></td><td> <%=espaco%></td>
+
+                        <td> <a href="altCadastro.jsp"/> Alterar Cadastro </td>
+                        <td> <%=espaco%></td>
+                        <td><input type="submit" value="logout"/>
+                            <input type="hidden" name="tipo" value="logout">
+                        </td>
+
+                    </table>
                 </fieldset>
-                <h2><%="Bem vindo, " + tipo%> </h2>
                 <% }
             } catch (NullPointerException e) {%>
                 <fieldset>
