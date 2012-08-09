@@ -1,10 +1,6 @@
 package auxiliar;
 
-import java.beans.Statement;
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
-import modelo.UsuarioBean;
 import modelo.UsuarioDAOException;
 
 public class Validacao {
