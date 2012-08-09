@@ -18,7 +18,7 @@
     <section class="adv-content">
         <div class="container">
             <form id="email-form" method="post" action="ValidarLogin" >
-               <% //Recupera a Session
+              <% //Recupera a Session
                     try {
                         HttpSession s = request.getSession(false);
                         UsuarioBean login = null;
@@ -26,10 +26,11 @@
                             login = (UsuarioBean) s.getAttribute("Usuario");
                             String tipo = login.getTipo();
                             String name = login.getNome();
-                            String espaco = "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp";
+                           
                 %>
                 <fieldset>
                     <table >
+                        <% String espaco = "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp";%>
                         <td><h2><%="Bem vindo, " + tipo%> </h2></td>
                         <td> <%=espaco%></td><td> <%=espaco%></td><td> <%=espaco%></td><td> <%=espaco%></td><td> <%=espaco%></td>
                         <td> <%=espaco%></td><td> <%=espaco%></td><td> <%=espaco%></td><td> <%=espaco%></td><td> <%=espaco%></td>

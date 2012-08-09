@@ -26,10 +26,11 @@
                             login = (UsuarioBean) s.getAttribute("Usuario");
                             String tipo = login.getTipo();
                             String name = login.getNome();
-                            String espaco = "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp";
+                           
                 %>
                 <fieldset>
                     <table >
+                        <% String espaco = "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp";%>
                         <td><h2><%="Bem vindo, " + tipo%> </h2></td>
                         <td> <%=espaco%></td><td> <%=espaco%></td><td> <%=espaco%></td><td> <%=espaco%></td><td> <%=espaco%></td>
                         <td> <%=espaco%></td><td> <%=espaco%></td><td> <%=espaco%></td><td> <%=espaco%></td><td> <%=espaco%></td>
