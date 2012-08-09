@@ -26,6 +26,10 @@ public class UsuarioBean {
         this.tipo = tipo;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
     public String getDataNasc() {
         return dataNasc;
     }

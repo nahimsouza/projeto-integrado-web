@@ -274,3 +274,28 @@ function carregaTiposConsultaNP(){
         document.getElementById('tipoNP').innerHTML=txt;
     }
 }
+
+function acaoAlterarSenha(){
+    
+    if(confirm("Sim")){
+        document.getElementById("tipo").value = 'alterarSenha';
+        document.getElementById('user').value = '<%= objUsuario.getEmail() %>';
+        document.getElementById("search-form").submit();
+        alert("Será que submeteu????");
+    }
+}
+
+function acaoExcluirUsuario(){
+    
+    alert("Entrou no acaoExcluirUsuario");
+    
+    if(confirm("Deseja Excluir o Usuário?")){
+        alert("Entrou dentro do if!!!!")
+        document.getElementById('tipo').value = 'rejeitar';
+        alert("Passou pelo rejeitar")
+        document.getElementById('user').value = '<%= objUsuario.getEmail()%>';
+        alert("Passou pelo user")
+        document.getElementById("search-form").submit();
+        alert("Será que submeteu????");
+    }
+}

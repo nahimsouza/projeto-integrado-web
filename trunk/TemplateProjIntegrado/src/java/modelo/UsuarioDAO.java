@@ -67,7 +67,7 @@ public class UsuarioDAO {
 
                 String nome = rs.getObject("nome").toString();
                 String e_mail = rs.getObject("email").toString();
-                String dataNasc = rs.getString("data_nasc");
+                String dataNasc = rs.getObject("data_nasc").toString();
 
                 String[] dataNascimento = dataNasc.split("-");
                 String data = dataNascimento[2] + "/" + dataNascimento[1] + "/" + dataNascimento[0];
