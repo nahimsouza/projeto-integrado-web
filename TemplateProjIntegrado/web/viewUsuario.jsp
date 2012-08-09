@@ -17,7 +17,7 @@
                     if (tipo.equals("Colaborador")) {
                         response.sendRedirect("oops.jsp");
                     } else if (tipo.equals("Administrador")) {%>
-        <jsp:include page="include_files/adminHeaderUsuario.jsp" />
+                        <jsp:include page="include_files/adminHeaderUsuario.jsp" />
         <% }
                 }
             } catch (NullPointerException e) {
@@ -49,13 +49,13 @@
                                                     <fieldset> 
                                                         <%
                                                             if (request.getAttribute("UsuarioBean") == null) {%>
-                                                        <h3> Não existem usuários!! </h3>
+                                                        <h3> Não existem usuários pendentes!! </h3>
                                                         <%} else {
                                                             List<UsuarioBean> listaUsuario = (List<UsuarioBean>) request.getAttribute("UsuarioBean");
                                                             if (listaUsuario.isEmpty()) {
 
                                                         %>
-                                                        <h3> Não existem usuários!! </h3>
+                                                        <h3> Não existem usuários pendentes!! </h3>
                                                         <% } // fim do if
                                                         else { // caso existam registros
 
