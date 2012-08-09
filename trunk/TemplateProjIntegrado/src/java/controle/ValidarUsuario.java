@@ -38,10 +38,10 @@ public class ValidarUsuario extends HttpServlet {
         
         HttpSession sessao = request.getSession(false);
         UsuarioBean objUsuario = (UsuarioBean) sessao.getAttribute("user");
-        UsuarioDAO.aceitarUsuario(user);
         List<UsuarioBean> list;
         try {
             UsuarioDAO u = new UsuarioDAO();
+            u.aceitarUsuario(user);
             list = (List<UsuarioBean>) u.solicitacoes();
         } catch (UsuarioDAOException e) {
             list = null;
@@ -63,10 +63,10 @@ public class ValidarUsuario extends HttpServlet {
         
         HttpSession sessao = request.getSession(false);
         UsuarioBean objUsuario = (UsuarioBean) sessao.getAttribute("user");
-        UsuarioDAO.rejeitarUsuario(user);
         List<UsuarioBean> list;
         try {
             UsuarioDAO u = new UsuarioDAO();
+            u.rejeitarUsuario(user);
             list = (List<UsuarioBean>) u.solicitacoes();
         } catch (UsuarioDAOException e) {
             list = null;

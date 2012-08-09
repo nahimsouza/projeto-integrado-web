@@ -83,7 +83,7 @@ public class UsuarioDAO {
             ConnectionUsuarioFactory.closeConnection(conn, ps, rs);
         }
     } // fim 
-    
+
     public UsuarioBean consultarColaborador(String email) throws UsuarioDAOException {
         PreparedStatement ps = null;
         Connection conn = null;
@@ -116,28 +116,21 @@ public class UsuarioDAO {
             ConnectionUsuarioFactory.closeConnection(conn, ps, rs);
         }
     } // fim 
-    
-    
 
-    public static String getTipo(String email) {
-        //Objeto que guarda informacoes da conexao com o SGBD.
-        Connection conn;
-        //Objeto usado para enviar comandos SQL no SGBD
-        java.sql.Statement stmt;
+    public String getTipo(String email) throws UsuarioDAOException {
 
-        //String sql = "SELECT tipo_usuario FROM usuario where  email='" + email + "'";
-        String sql = "EXEC usp_cons_tipo_usuario '" + email + "'";
+        PreparedStatement ps = null;
+        Connection conn = null;
+        ResultSet rs = null;
         String ret = "";
+
         try {
-            Class.forName("com.microsoft.jdbc.sqlserver.SQLServerDriver").newInstance();
-            String conexao = "jdbc:sqlserver://5.176.252.221:1433;databaseName=labbd01";
-            String user = "sa", password = "admin";
-
-            conn = DriverManager.getConnection(conexao, user, password);
-            stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery(sql);
+            //String sql = "SELECT tipo_usuario FROM usuario where  email='" + email + "'";
+            String SQL = "EXEC usp_cons_tipo_usuario '" + email + "'";
+            conn = this.conn;
+            ps = conn.prepareStatement(SQL);
+            rs = ps.executeQuery();
             String tipo;
-
             while (rs.next()) {
                 tipo = rs.getString("tipo_usuario");
 
@@ -149,103 +142,85 @@ public class UsuarioDAO {
                     ret = "Administrador";
                 }
             }
-            conn.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println("Erro.");
-        }
 
+        } catch (SQLException sqle) {
+            throw new UsuarioDAOException(sqle);
+        } finally {
+            ConnectionUsuarioFactory.closeConnection(conn, ps, rs);
+        }
         return ret;
-
     }
 
-    public static void aceitarUsuario(String email) {
-        //Objeto que guarda informacoes da conexao com o SGBD.
-        Connection conn;
-        //Objeto usado para enviar comandos SQL no SGBD
-        java.sql.Statement stmt;
+    public void aceitarUsuario(String email) throws UsuarioDAOException {
+        PreparedStatement ps = null;
+        Connection conn = null;
+        ResultSet rs = null;
 
-        //String sql = "UPDATE usuario SET tipo_usuario='Colaborador' WHERE email ='" + email + "'";
-        String sql = "EXEC usp_aceitar_usuario '" + email + "'";
         try {
-            Class.forName("com.microsoft.jdbc.sqlserver.SQLServerDriver").newInstance();
-            String conexao = "jdbc:sqlserver://5.176.252.221:1433;databaseName=labbd01";
-            String user = "sa", password = "admin";
+            //String sql = "UPDATE usuario SET tipo_usuario='Colaborador' WHERE email='" + email + "'";
+            String SQL = "EXEC usp_aceitar_usuario '" + email + "'";
+            conn = this.conn;
+            ps = conn.prepareStatement(SQL);
+            ps.executeUpdate();
 
-            conn = DriverManager.getConnection(conexao, user, password);
-            stmt = conn.createStatement();
-            stmt.executeUpdate(sql);
-            conn.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println("Erro.");
+        } catch (SQLException sqle) {
+            throw new UsuarioDAOException(sqle);
+        } finally {
+            ConnectionUsuarioFactory.closeConnection(conn, ps, rs);
+        }
+    }
+  
+    public void rejeitarUsuario(String email) throws UsuarioDAOException {
+        PreparedStatement ps = null;
+        Connection conn = null;
+        ResultSet rs = null;
+
+        try {
+            //String sql = "DELETE FROM usuario WHERE email ='" + email + "'";
+	    String SQL = "EXEC usp_rem_usuario '" + email + "'";
+            conn = this.conn;
+            ps = conn.prepareStatement(SQL);
+            ps.executeUpdate();
+
+        } catch (SQLException sqle) {
+            throw new UsuarioDAOException(sqle);
+        } finally {
+            ConnectionUsuarioFactory.closeConnection(conn, ps, rs);
         }
     }
 
-    public static void rejeitarUsuario(String email) {
-        //Objeto que guarda informacoes da conexao com o SGBD.
-        Connection conn;
-        //Objeto usado para enviar comandos SQL no SGBD
-        java.sql.Statement stmt;
-
-        //String sql = "DELETE FROM usuario WHERE email ='" + email + "'";
-        String sql = "EXEC usp_rem_usuario '" + email + "'";
-        
-        try {
-            Class.forName("com.microsoft.jdbc.sqlserver.SQLServerDriver").newInstance();
-            String conexao = "jdbc:sqlserver://5.176.252.221:1433;databaseName=labbd01";
-            String user = "sa", password = "admin";
-
-            conn = DriverManager.getConnection(conexao, user, password);
-            stmt = conn.createStatement();
-            stmt.executeUpdate(sql);
-            conn.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println("Erro.");
-        }
-    }
-
-    public static int inserirUsuario(UsuarioBean u) {
-
-        //Objeto que guarda informacoes da conexao com o SGBD.
-        Connection conn;
-        //Objeto usado para enviar comandos SQL no SGBD
-        java.sql.Statement stmt;
-
-
-        String nome = u.getNome();
-        String email = u.getLogin();
-        String senha = u.getSenha();
-        String dataNasc = u.getDataNasc();
-        String tipo = u.getTipo();
-
-        String[] dataNascimento = dataNasc.split("/");
-        String data = dataNascimento[2] + "-" + dataNascimento[1] + "-" + dataNascimento[0];
-
-        String sql = "EXEC usp_ins_usuario '" + nome + "', '" + email + "', '" + senha + "', '" + data + "' ";
-        //String sql2 = "SELECT * FROM usuario WHERE email = '" + email + "'";
-        String sql2 = "EXEC usp_cons_usuario '" + email + "'";
+    public int inserirUsuario(UsuarioBean u) throws UsuarioDAOException {
+        PreparedStatement ps = null;
+        Connection conn = null;
+        ResultSet rs = null;
 
         try {
-            Class.forName("com.microsoft.jdbc.sqlserver.SQLServerDriver").newInstance();
-            String conexao = "jdbc:sqlserver://5.176.252.221:1433;databaseName=labbd01";
-            String user = "sa", password = "admin";
+	    String nome = u.getNome();
+            String email = u.getLogin();
+            String senha = u.getSenha();
+            String dataNasc = u.getDataNasc();
+            String tipo = u.getTipo();
 
-            conn = DriverManager.getConnection(conexao, user, password);
-            stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery(sql2);
+            String[] dataNascimento = dataNasc.split("/");
+            String data = dataNascimento[2] + "-" + dataNascimento[1] + "-" + dataNascimento[0];
+
+            String sql = "EXEC usp_ins_usuario '" + nome + "', '" + email + "', '" + senha + "', '" + data + "' ";
+            //String sql2 = "SELECT * FROM usuario WHERE email = '" + email + "'";
+            String sql2 = "EXEC usp_cons_usuario '" + email + "'";
+	    conn = this.conn;
+            ps = conn.prepareStatement(sql2);
+            rs = ps.executeQuery();
             if (rs.next()) {
                 return 0;
             }
-            stmt.executeUpdate(sql);
-            conn.close();
+	    ps = conn.prepareStatement(sql);
+            ps.executeUpdate();
             return 1;
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println("Erro.");
-        }
 
-        return -1;
+        } catch (SQLException sqle) {
+            throw new UsuarioDAOException(sqle);
+        } finally {
+            ConnectionUsuarioFactory.closeConnection(conn, ps, rs);
+        }
     }
 }

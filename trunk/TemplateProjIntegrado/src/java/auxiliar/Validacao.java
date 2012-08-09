@@ -1,36 +1,35 @@
 package auxiliar;
 
 import java.beans.Statement;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 import modelo.UsuarioBean;
+import modelo.UsuarioDAOException;
 
 public class Validacao {
 
-    public static boolean isUsuarioValido(String usuario, String senha) {
+    public static boolean isUsuarioValido(String usuario, String senha) throws UsuarioDAOException {
 
-        //Objeto que guarda informacoes da conexao com o SGBD.
-        Connection conn;
-        //Objeto usado para enviar comandos SQL no SGBD
-        java.sql.Statement stmt;
+        PreparedStatement ps = null;
+        Connection conn = null;
+        ResultSet rs = null;
 
-        String sql = "EXEC usp_login '" + usuario + "', '" + senha + "'";
 
         try {
-            Class.forName("com.microsoft.jdbc.sqlserver.SQLServerDriver").newInstance();
-            String conexao = "jdbc:sqlserver://5.176.252.221:1433;databaseName=labbd01";
-            String user = "sa", password = "admin";
-
-            conn = DriverManager.getConnection(conexao, user, password);
-            stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery(sql);
+            String SQL = "EXEC usp_login '" + usuario + "', '" + senha + "'";
+            try {
+                conn = ConnectionUsuarioFactory.getConnection();
+            } catch (Exception e) {
+                throw new UsuarioDAOException("Erro: "
+                        + ":\n" + e.getMessage());
+            }
+            ps = conn.prepareStatement(SQL);
+            rs = ps.executeQuery();
             rs.next();
-           
             boolean ret = rs.getBoolean(1);
-            conn.close();
-            
             return (ret);
+            
             /*while (rs.next()) {
                 String email = rs.getString("email");
                 String s = rs.getString("senha");
@@ -38,13 +37,13 @@ public class Validacao {
                 if ((usuario.equals(email)) && (senha.equals(s))) {
                     return true;
                 }
-            }*/
+             }
+            */
             
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println("Erro.");
+        } catch (SQLException sqle) {
+            throw new UsuarioDAOException(sqle);
+        } finally {
+            ConnectionUsuarioFactory.closeConnection(conn, ps, rs);
         }
-
-        return false;
     }
 }

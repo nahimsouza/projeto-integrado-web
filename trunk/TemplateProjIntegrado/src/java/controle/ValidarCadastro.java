@@ -20,14 +20,17 @@ public class ValidarCadastro extends HttpServlet {
         String tipo = "Usuario";
         UsuarioBean u = new UsuarioBean(nome, email, senha, dataNasc, tipo);
 
-        int v = UsuarioDAO.inserirUsuario(u);
-        
-        if (v == 1) {
-            response.sendRedirect("sucessoCad.jsp");
-        }else if(v == -1) {
+        try {
+            UsuarioDAO user = new UsuarioDAO();
+            int v = user.inserirUsuario(u);
+
+            if (v == 1) {
+                response.sendRedirect("sucessoCad.jsp");
+            }else {
+                response.sendRedirect("erroCad2.jsp");
+            }
+        } catch (UsuarioDAOException e) {
             response.sendRedirect("erroCad.jsp");
         }
-        else
-            response.sendRedirect("erroCad2.jsp");
     }
 }
