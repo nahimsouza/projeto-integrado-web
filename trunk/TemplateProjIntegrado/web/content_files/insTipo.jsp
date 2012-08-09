@@ -1,7 +1,7 @@
 
 <h2>Inserir Tipo</h2>
 <p> 
-<form id="search-form" method="POST" action="VerificarSolicitacoes" onload="chamaServlet(carregaCategorias,'carregaCategorias')">
+<form id="search-form" method="post" action="VerificarSolicitacoes" onload="chamaServlet(carregaCategorias,'carregaCategorias')">
     <fieldset> 
         Categoria:<br />
         <select id="categ" name="categ">

@@ -34,31 +34,6 @@
         }%>
 
         <section id="content">
-            <!--		<div class="top">
-                             <div class="container">
-                                     <div class="clearfix">
-                                             <section id="gallery">
-                                                     <div class="pics">
-                                                             <img src="images/slide1.jpg" alt="" width="495" height="329">
-                                                             <img src="images/slide3.jpg" alt="" width="495" height="329">
-                                                             <img src="images/slide2.jpg" alt="" width="495" height="329">
-                                                             <img src="images/slide4.jpg" alt="" width="495" height="329">
-                                                             <img src="images/slide5.jpg" alt="" width="495" height="329">
-                                                     </div>
-                                                     <a href="#" id="prev"></a>
-                                                     <a href="#" id="next"></a>
-                                             </section>
-                                             <section id="intro">
-                                                     <div class="inner">
-                                                             <h2>Conhecimento<br /> & Colaboração<span>participe!</span></h2>
-                                                             <p>Um mundo cheio de conhecimento e você aí parado?<br /> Você tem muita coisa a aprender e, com certeza, muita coisa para ensinar também! Por que não compartilhar todo o seu conhecimento com o mundo e com as próximas gerações?  </p>
-                                                             <a href="#" class="extra-button">Saiba mais</a>
-                                                     </div>
-                                             </section>
-                                     </div>
-                             </div>
-                     </div>
-            --> 
             <div class="middle">
                 <div class="container">
                     <div class="wrapper">
@@ -75,13 +50,6 @@
                                        <li><a href="javascript:void(0)" onclick="showDiv( 'insEntidade', false );
                                     showDiv( 'insCategoria', false );
                                     showDiv( 'insTipo', true );">Inserir Tipo</a></li>
-
-
-                                <!--	<li><a href="#">Communications</a></li>
-                                            <li><a href="#">Education and Research</a></li>
-                                            <li><a href="#">Engineering and Construction</a></li>
-                                            <li><a href="#">High Technology</a></li>
-                                            <li><a href="#">Industrial Manufacturing</a></li>  -->
                             </ul>
                         </div>
                         <div class="grid9" id="insEntidade">
