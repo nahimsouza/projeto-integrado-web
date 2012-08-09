@@ -59,18 +59,20 @@ function tipoListInsere(){
     var tipo = document.getElementById("tipo");
     var txtTipo = tipo[tipo.selectedIndex].text;
     
-    var texto = txtCat + txtTipo;
-    var valor = cat.value + '/' + tipo.value;
+    if(cat.selectedIndex > 0 && tipo.selectedIndex > 0){
+        var texto = txtCat + txtTipo;
+        var valor = cat.value + '/' + tipo.value;
 
-    var lista = document.getElementById("listaTipos");
+        var lista = document.getElementById("listaTipos");
 
-    for(i=0; i<lista.options.length; i++){
-        if(lista[lista.selectedIndex].value == valor)
-            i = lista.options.length+1;
-    }
+        for(i=0; i<lista.options.length; i++){
+            if(lista[lista.selectedIndex].value == valor)
+                i = lista.options.length+1;
+        }
     
-    if(i==lista.options.length)
-        lista.options[lista.options.length] = new Option (texto, valor, true, true);
+        if(i==lista.options.length)
+            lista.options[lista.options.length] = new Option (texto, valor, true, true);
+    }
 }
 
 function tipoListRemove(){
@@ -134,13 +136,22 @@ function tipoCatListInsere(){
     var categ = document.getElementById("categ");
     var ntipo = document.getElementById("ntipo");
     
-    var texto = categ[categ.selectedIndex].text + "/" + ntipo.value;
-    var valor = categ.value + "/" + ntipo.value;
-    ;
+    if(categ.selectedIndex > 0){
+        var texto = categ[categ.selectedIndex].text + "/" + ntipo.value;
+        var valor = categ.value + "/" + ntipo.value;
     
-    var cat = document.getElementById("categoriass");
-    cat.options[cat.options.length] = new Option (texto, valor, true, true);
     
+        var cat = document.getElementById("categoriass");
+    
+        for(i=0; i<cat.options.length; i++){
+            if(cat[cat.selectedIndex].value == valor)
+                i = cat.options.length+1;
+        }
+    
+        if(i==cat.options.length)
+            cat.options[cat.options.length] = new Option (texto, valor, true, true);
+        
+    }
 }
 
 function tipoCatListRemove(){

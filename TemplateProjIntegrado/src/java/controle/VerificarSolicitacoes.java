@@ -22,6 +22,7 @@ public class VerificarSolicitacoes extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String acao = request.getParameter("acao");
+        System.out.print(acao);
         
         
         if(acao.compareTo("conEntidadeR")==0){
@@ -87,11 +88,11 @@ public class VerificarSolicitacoes extends HttpServlet {
             String[] insTipo;
             String[] temp;
             List<CategoriaTipoBean> list = new ArrayList<CategoriaTipoBean>();
-            insTipo = request.getParameterValues("categoriass");
+            insTipo = request.getParameterValues("categorias");
             if (insTipo != null) {
                 for (int i = 0; i < insTipo.length; i++) {
                     temp = insTipo[i].split("/");
-                    list.add(new CategoriaTipoBean(temp[1], temp[2]));//falta descobrir como separar as strings
+                    list.add(new CategoriaTipoBean(temp[0], temp[1]));//falta descobrir como separar as strings
                 }
             }
             acaoInserirTipo(request, response, list);
@@ -348,9 +349,6 @@ public class VerificarSolicitacoes extends HttpServlet {
 
     private void acaoInserirTipo(HttpServletRequest request, HttpServletResponse response, List<CategoriaTipoBean> list)
             throws ServletException, IOException {
-
-  
-
 
         try {
             CategoriaTipoDAO categoria = new CategoriaTipoDAO();

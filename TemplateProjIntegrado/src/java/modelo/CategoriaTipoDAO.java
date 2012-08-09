@@ -159,38 +159,41 @@ public class CategoriaTipoDAO {
     }// fim
 
     public void inserirCategoria(List<CategoriaTipoBean> c) throws CategoriaTipoDAOException, UsuarioDAOException {
-        
-       PreparedStatement ps = null;
+
+        PreparedStatement ps = null;
         Connection conn = null;
         ResultSet rs = null;
-        
-         try {//falta terminar
+
+        try {//falta terminar
             String SQL = "";
             conn = this.conn;
             ps = conn.prepareStatement(SQL);
             rs = ps.executeQuery();
-            
-            
-         } catch (SQLException sqle) {
+
+
+        } catch (SQLException sqle) {
             throw new CategoriaTipoDAOException(sqle);
         } finally {
             ConnectionUsuarioFactory.closeConnection(conn, ps, rs);
         }
     }
+
     public void inserirTipo(List<CategoriaTipoBean> t) throws CategoriaTipoDAOException, UsuarioDAOException {
-        
-       PreparedStatement ps = null;
+
+        PreparedStatement ps = null;
         Connection conn = null;
         ResultSet rs = null;
-        
-         try {//falta terminar
-            String SQL = "";
-            conn = this.conn;
-            ps = conn.prepareStatement(SQL);
-            rs = ps.executeQuery();
-            
-            
-         } catch (SQLException sqle) {
+        CategoriaTipoBean temp;
+        try {//falta terminar
+            for (int i = 0; i < t.size(); i++) {
+                temp = t.get(i);
+                String SQL = "EXEC usp_ins_tipo '" + temp.getTipo() + "', " + temp.getIdCategoria();
+                conn = this.conn;
+                ps = conn.prepareStatement(SQL);
+                rs = ps.executeQuery();
+            }
+
+        } catch (SQLException sqle) {
             throw new CategoriaTipoDAOException(sqle);
         } finally {
             ConnectionUsuarioFactory.closeConnection(conn, ps, rs);
