@@ -12,6 +12,7 @@
 		<div class="wrapper">
                     <div class="grid9" id="conUsuario" >
 			<h2>Consultar Usuários</h2>
+                        <h3>Digite o email do usuário</h3>
                         <p> 
                             <form id="search-form" method="post" action="VerificarSolicitacoes">
                                 <fieldset> 
