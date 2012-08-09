@@ -32,6 +32,8 @@
             <div class="container"><%-- inserido --%>
                 <div class="wrapper"><%-- inserido --%> 
                     <form id="search-form" action="ValidarUsuario" method="post">
+                        <input type="hidden" name="tipo" id="tipo" >
+                        <input type="hidden" name="user" id="user" >
                         <%
                             UsuarioBean objUsuario = (UsuarioBean) request.getAttribute("UsuarioBean");
 
@@ -50,8 +52,8 @@
                             }
                         %>
                         
-                        <input type="button" value="Alterar senha" onClick="acaoAlterarSenha()">
-                        <input type="button" value="Excluir usuário" onClick="acaoExcluirUsuario()">
+                        <input type="button" value="Alterar senha" onClick="acaoAlterarSenha(<%=objUsuario.getEmail()%>)">
+                        <input type="button" value="Excluir usuário" onClick="acaoExcluirUsuario(<%=objUsuario.getEmail()%>)">
                         
                     </form>
                     
