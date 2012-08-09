@@ -40,7 +40,7 @@
                             if (objUsuario == null) {
 
                         %>
-                        <h2> Ação Ineficaz </h2>
+                        <h3> Usuário não encontrado! </h3>
                         <% } else {%>
 
                         <h2> Dados Usuário: </h2>
@@ -48,13 +48,13 @@
                         <p> Nome: <%=objUsuario.getNome()%> </p>
                         <p> e-mail: <%=objUsuario.getEmail()%> </p>
                         <p> Data Nascimento: <%=objUsuario.getDataNasc()%> </p>
-                        <%
-                            }
-                        %>
+
                         
                         <input type="button" value="Alterar senha" onClick="acaoAlterarSenha(<%=objUsuario.getEmail()%>)">
                         <input type="button" value="Excluir usuário" onClick="acaoExcluirUsuario(<%=objUsuario.getEmail()%>)">
-                        
+                        <%
+                            }
+                        %>
                     </form>
                     
                     <div id="teste" name="teste"><br><br>
