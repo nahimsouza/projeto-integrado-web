@@ -210,11 +210,11 @@ function inserirEntidade(){
 }
 
 function mudaPagina(ent){
-    location.href="?nomeEntidade="+ent+"&pag="+document.getElementById("npag").value;
+    location.href="?acao="+document.getElementById("acao")+"nomeEntidade="+ent+"&pag="+document.getElementById("npag").value;
 }
 
 function mudaPagina(tipoP, tipoNP){
-    location.href="?tipoP="+tipoP+"&tipoNP="+tipoNP+"&pag="+document.getElementById("npag").value;
+    location.href="?acao=conAvancada&tipoP="+tipoP+"&tipoNP="+tipoNP+"&pag="+document.getElementById("npag").value;
     
 }
 
