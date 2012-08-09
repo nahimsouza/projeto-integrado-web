@@ -86,7 +86,7 @@
                         <% }%>
                         <br>
                         <% if(pag > 1){ 
-                            String cons = "<a href=?tipoP="+tipoP+"&tipoNP="+tipoNP+"&pag="+(pag-1)+">Anterior</a>";
+                            String cons = "<a href=?acao=conAvancada&tipoP="+tipoP+"&tipoNP="+tipoNP+"&pag="+(pag-1)+">Anterior</a>";
 
                             out.print(cons);
                          }else{ 
@@ -95,7 +95,7 @@
                             String espaco = "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp";
                             out.print(espaco+ "Página " + pag + " de " + totalPaginas + espaco);
                             if(pag * limite < listaEntidade.size()){  
-                                String cons = "<a href=?tipoP="+tipoP+"&tipoNP="+tipoNP+"&pag="+(pag+1)+">Proximo</a>";
+                                String cons = "<a href=?acao=conAvancada&tipoP="+tipoP+"&tipoNP="+tipoNP+"&pag="+(pag+1)+">Proximo</a>";
                                 out.print(cons);
                             }else{
                                 out.print("Proximo");

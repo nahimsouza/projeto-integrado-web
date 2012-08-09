@@ -33,7 +33,8 @@
     <section id="content"><%-- inserido --%>
         <div class="middle"><%-- inserido --%>
             <div class="container"><%-- inserido --%>
-                <div class="wrapper"><%-- inserido --%>   
+                <div class="wrapper"><%-- inserido --%>
+                    <input type="hidden" name="acao" id="acao" value="conEntidade" />
                     <%
                             List<EntidadeBean> listaEntidade = (List<EntidadeBean>) request.getAttribute("EntidadeBean");
                             int pag = request.getParameter("pag") == null ? 1 : Integer.parseInt(request.getParameter("pag"));
