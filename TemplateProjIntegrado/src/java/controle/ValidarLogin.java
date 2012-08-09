@@ -33,14 +33,16 @@ public class ValidarLogin extends HttpServlet {
         String email = request.getParameter("email");
         String senha = request.getParameter("senha");
         boolean v;
+        UsuarioDAO u = null;
         try {
-            v = Validacao.isUsuarioValido(email, senha);
+            u = new UsuarioDAO();
+            v = u.isUsuarioValido(email, senha);
         } catch (UsuarioDAOException ex) {
             v = false;
         }
         if (v) {
             try {
-                UsuarioDAO u = new UsuarioDAO();
+                u = new UsuarioDAO();
                 String tipo = u.getTipo(email);
                 if (tipo.equals("Usuario")) {
                     response.sendRedirect("index.jsp");

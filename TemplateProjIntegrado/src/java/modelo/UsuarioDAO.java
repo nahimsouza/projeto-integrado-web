@@ -169,7 +169,7 @@ public class UsuarioDAO {
             ConnectionUsuarioFactory.closeConnection(conn, ps, rs);
         }
     }
-  
+
     public void rejeitarUsuario(String email) throws UsuarioDAOException {
         PreparedStatement ps = null;
         Connection conn = null;
@@ -177,7 +177,7 @@ public class UsuarioDAO {
 
         try {
             //String sql = "DELETE FROM usuario WHERE email ='" + email + "'";
-	    String SQL = "EXEC usp_rem_usuario '" + email + "'";
+            String SQL = "EXEC usp_rem_usuario '" + email + "'";
             conn = this.conn;
             ps = conn.prepareStatement(SQL);
             ps.executeUpdate();
@@ -195,7 +195,7 @@ public class UsuarioDAO {
         ResultSet rs = null;
 
         try {
-	    String nome = u.getNome();
+            String nome = u.getNome();
             String email = u.getLogin();
             String senha = u.getSenha();
             String dataNasc = u.getDataNasc();
@@ -207,15 +207,46 @@ public class UsuarioDAO {
             String sql = "EXEC usp_ins_usuario '" + nome + "', '" + email + "', '" + senha + "', '" + data + "' ";
             //String sql2 = "SELECT * FROM usuario WHERE email = '" + email + "'";
             String sql2 = "EXEC usp_cons_usuario '" + email + "'";
-	    conn = this.conn;
+            conn = this.conn;
             ps = conn.prepareStatement(sql2);
             rs = ps.executeQuery();
             if (rs.next()) {
                 return 0;
             }
-	    ps = conn.prepareStatement(sql);
+            ps = conn.prepareStatement(sql);
             ps.executeUpdate();
             return 1;
+
+        } catch (SQLException sqle) {
+            throw new UsuarioDAOException(sqle);
+        } finally {
+            ConnectionUsuarioFactory.closeConnection(conn, ps, rs);
+        }
+    }
+
+    public boolean isUsuarioValido(String usuario, String senha) throws UsuarioDAOException {
+
+        PreparedStatement ps = null;
+        Connection conn = null;
+        ResultSet rs = null;
+
+
+        try {
+            String SQL = "EXEC usp_login '" + usuario + "', '" + senha + "'";
+            conn = this.conn;
+            ps = conn.prepareStatement(SQL);
+            rs = ps.executeQuery();
+            rs.next();
+            boolean ret = rs.getBoolean(1);
+            return (ret);
+
+            /*
+             * while (rs.next()) { String email = rs.getString("email"); String
+             * s = rs.getString("senha");
+             *
+             * if ((usuario.equals(email)) && (senha.equals(s))) { return true;
+             * } }
+             */
 
         } catch (SQLException sqle) {
             throw new UsuarioDAOException(sqle);
