@@ -7,8 +7,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import auxiliar.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import modelo.*;
 
 public class ValidarLogin extends HttpServlet {
