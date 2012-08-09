@@ -310,3 +310,41 @@ function acaoExcluirUsuario(userId){
         alert("Será que submeteu????");
     }
 }
+
+function VerificaAltCadastro(){
+    var erMail, erNome, erSenha, erData;
+    erMail = /^([\w\.?]+@[\w]+\.[\w]{2,4}\b(\.[\w]+)?\b)?$/;
+    erNome = /^([\w +]+)?$/;
+    erSenha = /^(.{6,10})?$/;
+    erData = /^([0-9]{2}\/[0-9]{2}\/[0-9]{4})?$/
+    
+    var nome, email, senha, rsenha;
+    
+    nome = trim(document.getElementById("cadNome").value);
+    email = trim(document.getElementById("cadEMail").value);
+    senha = trim(document.getElementById("cadSenha").value);
+    rsenha = trim(document.getElementById("cadRSenha").value);
+    edata = trim(document.getElementById("cadData").value);
+    if(nome.match(erNome)==null){
+        alert("Nome inválido!");
+        return false;
+    }
+    else if(email.match(erMail)==null){
+        alert("Email inválido!");
+        return false;
+    }   
+    else if(senha.match(erSenha) == null){
+        alert("Senhas inválidas!");
+        return false;
+    }
+    else if(rsenha != senha ){
+        alert("As senhas não coincidem!");
+        return false;
+    }
+    else if(edata.match(erData)==null){
+        alert("Data de Nascimento deve estar no formato dd/mm/aaaa!");
+        return false;
+    }else{
+        return document.getElementById("search-form").submit();
+    }
+}

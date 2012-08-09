@@ -27,6 +27,7 @@
                             String tipo = login.getTipo();
                 %>
                 <fieldset>
+                    <a href="altCadastro.jsp">alterar cadastro</a>
                     <input type="submit" value="logout"/>
                     <input type="hidden" name="tipo" value="logout">
                 </fieldset>
