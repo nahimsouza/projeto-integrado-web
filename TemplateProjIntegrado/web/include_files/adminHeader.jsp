@@ -26,12 +26,13 @@
                         if (s != null) {
                             login = (UsuarioBean) s.getAttribute("Usuario");
                             String tipo = login.getTipo();
+                            String nome = login.getNome();
                 %>
                 <fieldset>
                     <input type="submit" value="logout"/>
                     <input type="hidden" name="tipo" value="logout">
                 </fieldset>
-                <h2><%="Bem vindo, " + tipo%> </h2>
+                <h2><%="Bem vindo(a), " + tipo + "(a) " + nome %> </h2>
                 <% }
             } catch (NullPointerException e) {%>
                 <fieldset>

@@ -25,13 +25,12 @@
                         if (s != null) {
                             login = (UsuarioBean) s.getAttribute("Usuario");
                             String tipo = login.getTipo();
-                            String name = login.getNome();
-                           
+                            String nome = login.getNome();
                 %>
                 <fieldset>
                     <table >
                         <% String espaco = "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp";%>
-                        <td><h2><%="Bem vindo, " + tipo%> </h2></td>
+                        <td><h2><%="Bem vindo(a), " + tipo + "(a) " + nome %> </h2></td>
                         <td> <%=espaco%></td><td> <%=espaco%></td><td> <%=espaco%></td><td> <%=espaco%></td><td> <%=espaco%></td>
                         <td> <%=espaco%></td><td> <%=espaco%></td><td> <%=espaco%></td><td> <%=espaco%></td><td> <%=espaco%></td>
                         <td> <%=espaco%></td><td> <%=espaco%></td><td> <%=espaco%></td><td> <%=espaco%></td><td> <%=espaco%></td><td> <%=espaco%></td>
@@ -44,6 +43,7 @@
 
                     </table>
                 </fieldset>
+                <h2><%="Bem vindo(a), " + tipo + "(a) " + nome %> </h2>
                 <% }
             } catch (NullPointerException e) {%>
                 <fieldset>
