@@ -46,7 +46,7 @@ public class ValidarLogin extends HttpServlet {
                 u = new UsuarioDAO();
                 String nome = u.getNome(email);
                 if (tipo.equals("Usuario")) {
-                    response.sendRedirect("index.jsp");
+                    response.sendRedirect("aguarde.jsp");
                 } else {
                     HttpSession session = request.getSession();
                     UsuarioBean user = new UsuarioBean();
