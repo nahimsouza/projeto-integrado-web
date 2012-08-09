@@ -298,7 +298,7 @@ public class UsuarioDAO {
         String ret = "";
 
         try {
-            //String sql = "SELECT tipo_usuario FROM usuario where  email='" + email + "'";
+            //String sql = "SELECT nome FROM usuario where  email='" + email + "'";
             String SQL = "EXEC usp_cons_nome '" + email + "'";
             conn = this.conn;
             ps = conn.prepareStatement(SQL);
