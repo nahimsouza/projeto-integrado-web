@@ -42,6 +42,7 @@
                         </td>
 
                     </table>
+                </fieldset>
                     <% }
                         } catch (NullPointerException e) {%>
                     <fieldset>
