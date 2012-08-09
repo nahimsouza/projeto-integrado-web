@@ -30,8 +30,8 @@ public class CategoriaTipoBean {
         this.categoria = categoria;
     }
     public CategoriaTipoBean(String categoria, String Tipo) {
-        this.tipo = tipo;
-        this.categoria = categoria;
+        this.tipo = Tipo;
+        this.idCategoria = Integer.parseInt(categoria);
     }
 
     public String getCategoria() {
