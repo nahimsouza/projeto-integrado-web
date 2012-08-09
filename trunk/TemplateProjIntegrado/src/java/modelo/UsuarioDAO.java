@@ -223,6 +223,41 @@ public class UsuarioDAO {
             ConnectionUsuarioFactory.closeConnection(conn, ps, rs);
         }
     }
+    
+    public int alterarUsuario(UsuarioBean u) throws UsuarioDAOException {
+        PreparedStatement ps = null;
+        Connection conn = null;
+        ResultSet rs = null;
+
+        try {
+            String nome = u.getNome();
+            String email = u.getLogin();
+            String senha = u.getSenha();
+            String dataNasc = u.getDataNasc();
+            String tipo = u.getTipo();
+
+            String[] dataNascimento = dataNasc.split("/");
+            String data = dataNascimento[2] + "-" + dataNascimento[1] + "-" + dataNascimento[0];
+
+            String sql = "";
+            //String sql2 = "SELECT * FROM usuario WHERE email = '" + email + "'";
+            String sql2 = "";
+            conn = this.conn;
+            ps = conn.prepareStatement(sql2);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                return 0;
+            }
+            ps = conn.prepareStatement(sql);
+            ps.executeUpdate();
+            return 1;
+
+        } catch (SQLException sqle) {
+            throw new UsuarioDAOException(sqle);
+        } finally {
+            ConnectionUsuarioFactory.closeConnection(conn, ps, rs);
+        }
+    }
 
     public boolean isUsuarioValido(String usuario, String senha) throws UsuarioDAOException {
 
