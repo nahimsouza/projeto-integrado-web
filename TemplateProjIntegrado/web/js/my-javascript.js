@@ -123,7 +123,14 @@ function catListInsere(){
     var valor = "/" + texto;
     
     var cat = document.getElementById("listaCategorias");
-    cat.options[cat.options.length] = new Option (texto, valor, true, true);
+    
+    for(i=0; i<cat.options.length; i++){
+        if(cat[cat.selectedIndex].value == valor)
+            i = cat.options.length+1;
+    }
+    
+    if(i==cat.options.length)
+        cat.options[cat.options.length] = new Option (texto, valor, true, true);
 }
 
 function catListRemove(){
@@ -346,5 +353,27 @@ function VerificaAltCadastro(){
         return false;
     }else{
         return document.getElementById("search-form").submit();
+    }
+}
+
+
+function VerificaCategoria(){
+    // Para fazer a validação dos campos na inserção de categorias
+    
+    var arrayCat = new Array();
+    
+    
+    var cat = document.getElementById("listaCategorias");
+    
+    for(i=0; i<cat.options.length; i++){
+       arrayCat[i] = (cat[cat.selectedIndex].value);
+    }
+ 
+    // categoria = trim(document.getElementById("cadData").value);
+    
+    if(document.getElementById("listaCategorias").options.length == 0){
+        alert("Adicione pelo menos uma categoria à lista")
+    }else{
+        return document.getElementById("search-form").submit(arrayCat);
     }
 }

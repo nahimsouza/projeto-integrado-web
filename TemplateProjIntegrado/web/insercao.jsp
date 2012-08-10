@@ -1,12 +1,3 @@
-<%-- 
-    De modo semelhante à página de consultas, esta página deve 
-    exibir as opções de inserção (entidade, tipo ou categoria)
-
-    : falta arrumar as divs que indicam qual insercao será feita
-        - ins. entidade, tipo, categoria
-
---%>
-
 <%@page import="modelo.UsuarioBean"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -21,17 +12,17 @@
                 if (sessao != null) {
                     log = (UsuarioBean) sessao.getAttribute("Usuario");
                     String tipo = log.getTipo();
-            if (tipo.equals("Colaborador")) {
+                    if (tipo.equals("Colaborador")) {
         %>   
         <jsp:include page="include_files/colabHeaderIns.jsp" />  
-        <% 
-            } else if (tipo.equals("Administrador")) {
+        <%        } else if (tipo.equals("Administrador")) {
         %>   
         <jsp:include page="include_files/adminHeaderIns.jsp" />  
-        <%} }   
-       } catch (NullPointerException e) {
-             response.sendRedirect("oops.jsp");
-        }%>
+        <%}
+                }
+            } catch (NullPointerException e) {
+                response.sendRedirect("oops.jsp");
+            }%>
 
         <section id="content">
             <div class="middle">
@@ -39,15 +30,15 @@
                     <div class="wrapper">
                         <div class="grid3 first">
                             <ul class="categories">
-                                   <li><a href="javascript:void(0)" onclick="showDiv( 'insEntidade', true );
+                                <li><a href="javascript:void(0)" onclick="showDiv( 'insEntidade', true );
                                     showDiv( 'insCategoria', false );
                                     showDiv( 'insTipo', false );">Inserir Entidade</a></li>
 
-                                       <li><a href="javascript:void(0)" onclick="showDiv( 'insEntidade', false );
+                                <li><a href="javascript:void(0)" onclick="showDiv( 'insEntidade', false );
                                     showDiv( 'insCategoria', true );
                                     showDiv( 'insTipo', false );">Inserir Categoria</a></li>
 
-                                       <li><a href="javascript:void(0)" onclick="showDiv( 'insEntidade', false );
+                                <li><a href="javascript:void(0)" onclick="showDiv( 'insEntidade', false );
                                     showDiv( 'insCategoria', false );
                                     showDiv( 'insTipo', true );">Inserir Tipo</a></li>
                             </ul>
