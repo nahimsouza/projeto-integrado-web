@@ -158,25 +158,6 @@ public class CategoriaTipoDAO {
         }
     }// fim
 
-    public void inserirCategoria(List<CategoriaTipoBean> c) throws CategoriaTipoDAOException, UsuarioDAOException {
-
-        PreparedStatement ps = null;
-        Connection conn = null;
-        ResultSet rs = null;
-
-        try {//falta terminar
-            String SQL = "";
-            conn = this.conn;
-            ps = conn.prepareStatement(SQL);
-            rs = ps.executeQuery();
-
-
-        } catch (SQLException sqle) {
-            throw new CategoriaTipoDAOException(sqle);
-        } finally {
-            ConnectionUsuarioFactory.closeConnection(conn, ps, rs);
-        }
-    }
 
     public void inserirTipo(List<CategoriaTipoBean> t) throws CategoriaTipoDAOException, UsuarioDAOException {
 
@@ -199,68 +180,24 @@ public class CategoriaTipoDAO {
             ConnectionUsuarioFactory.closeConnection(conn, ps, rs);
         }
     }
-}
-// inclui filme no BD
- /*   public void salvar(CategoriaTipoBean entidade, CategoriaTipoBean categoria) throws CategoriaTipoDAOException {
+
+    public void inserirCategoria(String categoria) throws CategoriaTipoDAOException, UsuarioDAOException {
         PreparedStatement ps = null;
         Connection conn = null;
-        ResultSet rs = null;
-        if (entidade == null) {
+        if (categoria == null) {
             throw new CategoriaTipoDAOException("O valor passado não pode ser nulo");
         }
 
         try {
-
-            String nomeEntidade = entidade.getDisplayname();
-            String descEntidade = entidade.getDescricao();
-            String SQL = "INSERT INTO entidade(displayname,descricao)"
-                    + "values ('" + titulo + "','" + categoria + "')";
+            String SQL = "EXEC usp_ins_categoria'" + categoria + "'";
             conn = this.conn;
-            ps = conn.prepareStatement(SQL, ps.RETURN_GENERATED_KEYS);
+            ps = conn.prepareStatement(SQL);
             ps.executeUpdate();
-            rs = ps.getGeneratedKeys();
-            if (rs.next()) {
-                categoria.setIdEntidade(rs.getInt("nomeEntidade"));
-            } else {
-                throw new SQLException("Creating user failed, no generated key obtained.");
-            }
 
         } catch (SQLException sqle) {
             throw new CategoriaTipoDAOException("Erro ao inserir dados " + sqle);
         } finally {
             ConnectionUsuarioFactory.closeConnection(conn, ps);
-
         }
-    }// fim salvar
-
-    // consulta filmes por código
-    public CategoriaTipoBean consultar(int cod) throws CategoriaTipoDAOException {
-        PreparedStatement ps = null;
-        Connection conn = null;
-        ResultSet rs = null;
-        CategoriaTipoBean novo = null;
-
-        try {
-            String SQL = "Select * from LocaLuciana where codigo=" + cod;
-            conn = this.conn;
-            ps = conn.prepareStatement(SQL);
-            rs = ps.executeQuery();
-
-            while (rs.next()) {
-
-                String titulo = rs.getObject("titulo").toString();
-                int ano_prod = (Integer) rs.getObject("ano");
-                double preco = rs.getDouble("preco");
-                String categoria = rs.getObject("categoria").toString();
-                novo = new CategoriaTipoBean(cod, titulo, categoria, ano_prod, preco);
-            }
-
-            return novo;
-
-        } catch (SQLException sqle) {
-            throw new CategoriaTipoDAOException(sqle);
-        } finally {
-            ConnectionUsuarioFactory.closeConnection(conn, ps, rs);
-        }
-    } // fim 
-*/
+    }
+}

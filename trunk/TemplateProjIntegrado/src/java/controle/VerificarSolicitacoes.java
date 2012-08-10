@@ -4,17 +4,14 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import modelo.CategoriaTipoBean;
-import modelo.CategoriaTipoDAO;
-import modelo.EntidadeBean;
-import modelo.EntidadeDAO;
-import modelo.UsuarioBean;
-import modelo.UsuarioDAO;
+import modelo.*;
 
 public class VerificarSolicitacoes extends HttpServlet {
 
@@ -29,13 +26,13 @@ public class VerificarSolicitacoes extends HttpServlet {
             String displayname = request.getParameter("nomeEntidade");
             String pag = request.getParameter("pag");
             acaoConsultarEntidadeR(request, response, displayname, pag);
-        }else if(acao.compareTo("conAvancada")==0){
+        } else if (acao.compareTo("conAvancada") == 0) {
             int tipoP = Integer.parseInt(request.getParameter("tipoP"));
             int tipoNP = Integer.parseInt(request.getParameter("tipoNP"));
             String pag = request.getParameter("pag");
-            acaoConsultaAvancada(request, response, tipoP, tipoNP,pag);
+            acaoConsultaAvancada(request, response, tipoP, tipoNP, pag);
         }
-        
+
 
         if (acao.compareTo("conEntidadeR") == 0) {
             String displayname = request.getParameter("nomeEntidade");
@@ -75,15 +72,12 @@ public class VerificarSolicitacoes extends HttpServlet {
             int idcat = Integer.parseInt(request.getParameter("cat"));
             acaoCarregaTipos(request, response, idcat);
         } else if (acao.compareTo("insCategoria") == 0) {
-            String[] insCat;
-            List<CategoriaTipoBean> list = new ArrayList<CategoriaTipoBean>();
-            insCat = request.getParameterValues("listaCategorias");
-            if (insCat != null) {
-                for (int i = 0; i < insCat.length; i++) {
-                    list.add(new CategoriaTipoBean(insCat[i]));
-                }
+            try {
+                acaoInserirCategoria(request, response);
+            } catch (UsuarioDAOException ex) {
+                Logger.getLogger(VerificarSolicitacoes.class.getName()).log(Level.SEVERE, null, ex);
             }
-            acaoInserirTipo(request, response, list);
+            acaoInserirCategoria(request, response);
         } else if (acao.compareTo("insTipo") == 0) {
             String[] insTipo;
             String[] temp;
@@ -204,7 +198,7 @@ public class VerificarSolicitacoes extends HttpServlet {
 
         try {
             EntidadeDAO entidade = new EntidadeDAO();
-            List<EntidadeBean> lista = (List<EntidadeBean>) entidade.listaAvancada(tipoP,tipoNP);
+            List<EntidadeBean> lista = (List<EntidadeBean>) entidade.listaAvancada(tipoP, tipoNP);
             request.setAttribute("EntidadeBean", lista);
             request.setAttribute("pag", pag);
             request.setAttribute("tipoP", tipoP);
@@ -226,7 +220,7 @@ public class VerificarSolicitacoes extends HttpServlet {
 
         try {
             EntidadeDAO entidade = new EntidadeDAO();
-            List<EntidadeBean> lista = (List<EntidadeBean>) entidade.listaAvancada(tipoP,tipoNP);
+            List<EntidadeBean> lista = (List<EntidadeBean>) entidade.listaAvancada(tipoP, tipoNP);
             request.setAttribute("EntidadeBean", lista);
             request.setAttribute("tipoP", tipoP);
             request.setAttribute("tipoNP", tipoNP);
@@ -241,8 +235,7 @@ public class VerificarSolicitacoes extends HttpServlet {
         rd.forward(request, response);
 
     }
-    
-    
+
     private void acaoConsultarUsuario(HttpServletRequest request, HttpServletResponse response, String displayname)
             throws ServletException, IOException {
 
@@ -308,77 +301,60 @@ public class VerificarSolicitacoes extends HttpServlet {
         response.getWriter().write(html);
     }
 
-/*    private void acaoCarregaTiposConsulta(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        List<CategoriaTipoBean> lista = null;
-
-        try {
-            CategoriaTipoDAO categoria = new CategoriaTipoDAO();
-            lista = (List<CategoriaTipoBean>) categoria.listaTodosTipos();
-            request.setAttribute("CategoriaTipoBean", lista);
-
-        } catch (Exception sqle) {
-            request.setAttribute("CategoriaTipoBean", null);
-        }
-
-        String html = "<option value=''></option>";
-        for (Iterator i = lista.iterator(); i.hasNext();) {
-            CategoriaTipoBean l = (CategoriaTipoBean) i.next();
-            html += "<option value=" + l.getIdTipo() + ">" + l.getTipo() + "</option>";
-        }
-
-        response.getWriter().write(html);
-    }
-*/
-    private void acaoInserirConsulta(HttpServletRequest request, HttpServletResponse response, List<CategoriaTipoBean> list) throws IOException {
-
-    
-
-
-        try {
-            CategoriaTipoDAO categoria = new CategoriaTipoDAO();
-            categoria.inserirCategoria(list);
-
-
-        } catch (Exception sqle) {
-        }
-
-
-
-
-    }
-
-    private void acaoInserirTipo(HttpServletRequest request, HttpServletResponse response, List<CategoriaTipoBean> list)
-            throws ServletException, IOException {
-
-        try {
-            CategoriaTipoDAO categoria = new CategoriaTipoDAO();
-            categoria.inserirTipo(list);
-
-
-        } catch (Exception sqle) {
-        }
-
-
-
-
-    }
-
-    private void acaoConsultarUsuarioEmail(HttpServletRequest request, HttpServletResponse response, String email) 
+    private void consultarUsuarioEmail(HttpServletRequest request, HttpServletResponse response, String email)
             throws ServletException, IOException {
         try {
             UsuarioDAO usuario = new UsuarioDAO();
             UsuarioBean user = usuario.consultarUsuario(email);
             request.setAttribute("UsuarioBean", user);
-            //UsuarioBean user = usuario.consultarUsuario(email);
-            //request.setAttribute("UsuarioBean", user);
 
         } catch (Exception sqle) {
             request.setAttribute("UsuarioBean", null);
         }
         RequestDispatcher rd = null;
 
-        rd = request.getRequestDispatcher("/viewUsuarioConsultaMultipla.jsp");
+        rd = request.getRequestDispatcher("/viewUsuario.jsp");
 
         rd.forward(request, response);
+    }
+
+    private void acaoInserirCategoria(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException, UsuarioDAOException {
+
+
+        String[] insCat;
+        List<CategoriaTipoBean> list = new ArrayList<CategoriaTipoBean>();
+        insCat = request.getParameterValues("listaCategorias");
+
+        if (insCat != null) {
+            for (int i = 0; i < insCat.length; i++) {
+                list.add(new CategoriaTipoBean(insCat[i]));
+            }
+        }
+
+
+        
+        
+        for (CategoriaTipoBean categ : list) {
+            String c = categ.getCategoria();
+            try {
+                CategoriaTipoDAO cat = new CategoriaTipoDAO();
+                cat.inserirCategoria(c);
+                request.setAttribute("CategoriaTipoBean", categ);
+
+            } catch (CategoriaTipoDAOException e) {
+                request.setAttribute("CategoriaTipoBean", null);
+            }
+            //UsuarioBean user = usuario.consultarUsuario(email);
+            //request.setAttribute("UsuarioBean", user);
+
+        }
+ 
+        RequestDispatcher rd = null;
+
+        rd = request.getRequestDispatcher("/sucessoCad.jsp");
+
+        rd.forward(request, response);
+
     }
 }
