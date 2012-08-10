@@ -310,7 +310,7 @@ public class VerificarSolicitacoes extends HttpServlet {
         }
         RequestDispatcher rd = null;
 
-        rd = request.getRequestDispatcher("/viewUsuario.jsp");
+        rd = request.getRequestDispatcher("/viewUsuarioConsultaMultipla.jsp");
 
         rd.forward(request, response);
     }
