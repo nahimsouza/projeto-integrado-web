@@ -21,7 +21,6 @@ public class VerificarSolicitacoes extends HttpServlet {
         String acao = request.getParameter("acao");
         System.out.print(acao);
         
-        
         if(acao.compareTo("conEntidadeR")==0){
             String displayname = request.getParameter("nomeEntidade");
             String pag = request.getParameter("pag");
@@ -77,7 +76,6 @@ public class VerificarSolicitacoes extends HttpServlet {
             } catch (UsuarioDAOException ex) {
                 Logger.getLogger(VerificarSolicitacoes.class.getName()).log(Level.SEVERE, null, ex);
             }
-            acaoInserirCategoria(request, response);
         } else if (acao.compareTo("insTipo") == 0) {
             String[] insTipo;
             String[] temp;
@@ -89,7 +87,6 @@ public class VerificarSolicitacoes extends HttpServlet {
                     list.add(new CategoriaTipoBean(temp[0], temp[1]));//falta descobrir como separar as strings
                 }
             }
-            acaoInserirTipo(request, response, list);
         } else if (acao.compareTo("consUsuarioEmail") == 0) {
             String email = request.getParameter("email");
             acaoConsultarUsuarioEmail(request, response, email);
@@ -301,7 +298,7 @@ public class VerificarSolicitacoes extends HttpServlet {
         response.getWriter().write(html);
     }
 
-    private void consultarUsuarioEmail(HttpServletRequest request, HttpServletResponse response, String email)
+    private void acaoConsultarUsuarioEmail(HttpServletRequest request, HttpServletResponse response, String email)
             throws ServletException, IOException {
         try {
             UsuarioDAO usuario = new UsuarioDAO();
@@ -319,7 +316,7 @@ public class VerificarSolicitacoes extends HttpServlet {
     }
 
     private void acaoInserirCategoria(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, UsuarioDAOException {
+            throws ServletException, IOException, UsuarioDAOException{
 
 
         String[] insCat;
@@ -331,15 +328,12 @@ public class VerificarSolicitacoes extends HttpServlet {
                 list.add(new CategoriaTipoBean(insCat[i]));
             }
         }
-
-
-        
-        
         for (CategoriaTipoBean categ : list) {
             String c = categ.getCategoria();
             try {
+                
                 CategoriaTipoDAO cat = new CategoriaTipoDAO();
-                cat.inserirCategoria(c);
+                cat.inserirCategoria(c); //temos que verificar com o Nahim o que é isso???
                 request.setAttribute("CategoriaTipoBean", categ);
 
             } catch (CategoriaTipoDAOException e) {
