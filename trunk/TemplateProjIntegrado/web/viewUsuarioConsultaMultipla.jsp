@@ -50,8 +50,8 @@
                         <p> Data Nascimento: <%=objUsuario.getDataNasc()%> </p>
 
                         
-                        <input type="button" value="Alterar senha" onClick="acaoAlterarSenha(<%=objUsuario.getEmail()%>)">
-                        <input type="button" value="Excluir usuário" onClick="acaoExcluirUsuario(<%=objUsuario.getEmail()%>)">
+                        <input type="button" value="Alterar senha" onClick="alterarSenha('<%=objUsuario.getEmail()%>')">
+                        <input type="button" value="Excluir usuário" onClick="excluirUsuario('<%=objUsuario.getEmail()%>')">
                         <%
                             }
                         %>
