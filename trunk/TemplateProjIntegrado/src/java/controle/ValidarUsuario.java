@@ -22,7 +22,7 @@ public class ValidarUsuario extends HttpServlet {
 
         String tipo = request.getParameter("tipo");
         String user = request.getParameter("user");
-        
+
         if (tipo.compareTo("aceitar") == 0) {
             acaoSalvar(request, response, user);
         }
@@ -34,7 +34,7 @@ public class ValidarUsuario extends HttpServlet {
 
     private void acaoSalvar(HttpServletRequest request, HttpServletResponse response, String user)
             throws ServletException, IOException {
-        
+
         HttpSession sessao = request.getSession(false);
         UsuarioBean objUsuario = (UsuarioBean) sessao.getAttribute("user");
         List<UsuarioBean> list;
@@ -57,9 +57,9 @@ public class ValidarUsuario extends HttpServlet {
         rd.forward(request, response);
     }
 
-        private void acaoRejeitar(HttpServletRequest request, HttpServletResponse response, String user)
+    private void acaoRejeitar(HttpServletRequest request, HttpServletResponse response, String user)
             throws ServletException, IOException {
-        
+
         HttpSession sessao = request.getSession(false);
         UsuarioBean objUsuario = (UsuarioBean) sessao.getAttribute("user");
         List<UsuarioBean> list;
@@ -77,7 +77,8 @@ public class ValidarUsuario extends HttpServlet {
 
         RequestDispatcher rd = null;
 
-        rd = request.getRequestDispatcher("/viewSolicitacoes.jsp");
+        if(list==null)
+            rd = request.getRequestDispatcher("/sucessoOperacao.jsp");
 
         rd.forward(request, response);
     }

@@ -181,7 +181,17 @@ public class UsuarioDAO {
             conn = this.conn;
             ps = conn.prepareStatement(SQL);
             ps.executeUpdate();
-
+            
+          // realiza uma consulta para confirmar se foi excluido -- é necessario?
+          /*  
+            SQL = "EXEC usp_cons_usuario '" + email + "'";
+            ps = conn.prepareStatement(SQL);
+            rs = ps.executeQuery();
+            if(rs.next()!=null){
+               FAZ ALGUMA COISA QUE RETORNE QUE A OPERAÇÃO NÃO FOI REALIZADA
+            }
+            
+            */
         } catch (SQLException sqle) {
             throw new UsuarioDAOException(sqle);
         } finally {

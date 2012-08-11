@@ -36,14 +36,13 @@
                             <ul class="categories">
                                 <li><a href="javascript:void(0)" onclick="showDiv( 'solicitacoes', true );
                                     showDiv( 'conUsuario', false );">Novas Solicitações</a></li>
-
                                 <li><a href="javascript:void(0)" onclick="showDiv( 'solicitacoes', false );
                                     showDiv( 'conUsuario', true );">Consultar Usuários</a></li>
                             </ul>
                         </div>
                         
                         <div class="grid9" id="solicitacoes">    
-                           <form id="formulario" nome ="formulario" method="post" action="VerificarSolicitacoes" >
+                           <form id="formulario" name ="formulario" method="post" action="VerificarSolicitacoes" >
                                <input type="hidden" value="usuarios" name="acao" />
                                <script language="JavaScript">document.forms['formulario'].submit();</script> 
                             </form>
