@@ -8,6 +8,18 @@
             <web-module-libraries>
                 <library dirs="200">
                     <file>${libs.MyLibrary.classpath}</file>
+                </library>
+                <library dirs="200">
+                    <file>${file.reference.msbase.jar}</file>
+                </library>
+                <library dirs="200">
+                    <file>${file.reference.mssqlserver.jar}</file>
+                </library>
+                <library dirs="200">
+                    <file>${file.reference.msutil.jar}</file>
+                </library>
+                <library dirs="200">
+                    <file>${libs.MyLibrary.classpath}</file>
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
             </web-module-libraries>
