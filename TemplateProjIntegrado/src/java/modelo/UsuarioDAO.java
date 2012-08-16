@@ -181,17 +181,15 @@ public class UsuarioDAO {
             conn = this.conn;
             ps = conn.prepareStatement(SQL);
             ps.executeUpdate();
-            
-          // realiza uma consulta para confirmar se foi excluido -- é necessario?
-          /*  
-            SQL = "EXEC usp_cons_usuario '" + email + "'";
-            ps = conn.prepareStatement(SQL);
-            rs = ps.executeQuery();
-            if(rs.next()!=null){
-               FAZ ALGUMA COISA QUE RETORNE QUE A OPERAÇÃO NÃO FOI REALIZADA
-            }
-            
-            */
+
+            // realiza uma consulta para confirmar se foi excluido -- é necessario?
+          /*
+             * SQL = "EXEC usp_cons_usuario '" + email + "'"; ps =
+             * conn.prepareStatement(SQL); rs = ps.executeQuery();
+             * if(rs.next()!=null){ FAZ ALGUMA COISA QUE RETORNE QUE A OPERAÇÃO
+             * NÃO FOI REALIZADA }
+             *
+             */
         } catch (SQLException sqle) {
             throw new UsuarioDAOException(sqle);
         } finally {
@@ -233,8 +231,8 @@ public class UsuarioDAO {
             ConnectionUsuarioFactory.closeConnection(conn, ps, rs);
         }
     }
-    
-    public int alterarUsuario(UsuarioBean u) throws UsuarioDAOException {
+
+    public void alterarUsuario(UsuarioBean u, String e) throws UsuarioDAOException {
         PreparedStatement ps = null;
         Connection conn = null;
         ResultSet rs = null;
@@ -244,24 +242,29 @@ public class UsuarioDAO {
             String email = u.getLogin();
             String senha = u.getSenha();
             String dataNasc = u.getDataNasc();
-            String tipo = u.getTipo();
-
-            String[] dataNascimento = dataNasc.split("/");
-            String data = dataNascimento[2] + "-" + dataNascimento[1] + "-" + dataNascimento[0];
-
-            String sql = "";
-            //String sql2 = "SELECT * FROM usuario WHERE email = '" + email + "'";
-            String sql2 = "";
-            conn = this.conn;
-            ps = conn.prepareStatement(sql2);
-            rs = ps.executeQuery();
-            if (rs.next()) {
-                return 0;
+            List<String> sql = new ArrayList<String>();
+            
+            if (nome != "") {
+                sql.add("UPDATE usuario SET nome='" + nome + "' WHERE email='" + e + "'");
             }
-            ps = conn.prepareStatement(sql);
-            ps.executeUpdate();
-            return 1;
+            if (email != "") {
+                sql.add("UPDATE usuario SET email='" + email + "' WHERE email='" + e + "'");
+            }
+            if (senha != "") {
+                sql.add("UPDATE usuario SET senha='" + senha + "' WHERE email='" + e + "'");
+            }
+            if (dataNasc != "") {
+                String[] dataNascimento = dataNasc.split("/");
+                String data = dataNascimento[2] + "-" + dataNascimento[1] + "-" + dataNascimento[0];
+                sql.add("UPDATE usuario SET data_nasc='" + data + "' WHERE email='" + e + "'");
+            }
 
+            conn = this.conn;
+            for(int i = 0;i<sql.size();i++){
+                ps = conn.prepareStatement(sql.get(i));
+                ps.executeUpdate();
+            }
+        
         } catch (SQLException sqle) {
             throw new UsuarioDAOException(sqle);
         } finally {

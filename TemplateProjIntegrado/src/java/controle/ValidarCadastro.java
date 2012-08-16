@@ -15,7 +15,7 @@ public class ValidarCadastro extends HttpServlet {
         String email = request.getParameter("cadEMail");
         String senha = request.getParameter("cadSenha");
         String dataNasc = request.getParameter("cadData");
-        String tipo = "Usuario";
+        String tipo = "Colaborador";
         UsuarioBean u = new UsuarioBean(nome, email, senha, dataNasc, tipo);
 
         try {
