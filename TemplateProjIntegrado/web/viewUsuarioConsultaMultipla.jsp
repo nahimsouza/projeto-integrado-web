@@ -58,7 +58,7 @@
                     </form>
                     
                     <div id="teste" name="teste"><br><br>
-                        <p><a href="usuarios.jsp"> Nova Consulta </a> </p>
+                        <p><h3><a href="usuarios.jsp"> Nova Consulta </a></h3> </p>
                     </div>
                 </div><%-- inserido --%>
             </div><%-- inserido --%>
