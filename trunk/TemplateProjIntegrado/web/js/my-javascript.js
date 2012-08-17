@@ -354,7 +354,13 @@ function VerificaAltCadastro(){
         alert("Data de Nascimento deve estar no formato dd/mm/aaaa!");
         return false;
     }else{
-        return document.getElementById("search-form").submit();
+        if(nome == "" && email == "" && senha == "" && rsenha == "" && edata == ""){
+            alert("Preencha pelo menos um campo para que a alteração seja realizada!");
+            return false;
+        }
+        else{
+            return document.getElementById("search-form").submit();
+        }
     }
 }
 
