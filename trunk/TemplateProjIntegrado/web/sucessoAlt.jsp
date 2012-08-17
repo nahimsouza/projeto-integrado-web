@@ -13,7 +13,7 @@
                     log = (UsuarioBean) sessao.getAttribute("Usuario");
                     String tipo = log.getTipo();
             if (tipo.equals("Colaborador")) { %>
-                <jsp:include page="include_files/colabHeader.jsp" />
+                <jsp:include page="include_files/colabHeaderAlt.jsp" />
             <%} else if (tipo.equals("Administrador")) {
                 response.sendRedirect("oops.jsp");
                 } 
