@@ -39,9 +39,8 @@
             <div class="middle">
                 <div class="container">
                     <h2>Insira os Dados à Serem Alterados</h2>
-                    <br>(*) = Preenchimento Obrigatório
                     <form id="search-form" method="post" action="ValidarAltCadastro">
-                        <br><br><br>Nome Completo * :<br><input name="cadNome" id="cadNome" type="text" size="25" />
+                        <br><br><br>Nome Completo  :<br><input name="cadNome" id="cadNome" type="text" size="25" />
                         <br><br> E-Mail  :<br><input name="cadEMail" id="cadEMail" type="text" size="25" />
                         <br><br> Senha  :<br><input name="cadSenha" id="cadSenha" type="password" maxlength="20" size="25" />
                         deve conter no mínimo 6 dígitos
