@@ -52,8 +52,8 @@ public class ValidarUsuario extends HttpServlet {
 
         RequestDispatcher rd = null;
 
-        rd = request.getRequestDispatcher("/viewSolicitacoes.jsp");
-
+        rd = request.getRequestDispatcher("/sucessoOperacao.jsp");
+        
         rd.forward(request, response);
     }
 
@@ -77,8 +77,7 @@ public class ValidarUsuario extends HttpServlet {
 
         RequestDispatcher rd = null;
 
-        if(list==null)
-            rd = request.getRequestDispatcher("/sucessoOperacao.jsp");
+        rd = request.getRequestDispatcher("/sucessoOperacao.jsp");
 
         rd.forward(request, response);
     }
