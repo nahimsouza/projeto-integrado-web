@@ -314,7 +314,7 @@ function excluirUsuario(userId){
         document.getElementById('user').value = userId;
         //alert("Passou pelo user")
         document.getElementById("search-form").submit();
-        //alert("Será que submeteu????");
+    //alert("Será que submeteu????");
 
     }
     
@@ -374,7 +374,7 @@ function VerificaCategoria(){
     var cat = document.getElementById("listaCategorias");
     
     for(i=0; i<cat.options.length; i++){
-       arrayCat[i] = (cat[cat.selectedIndex].value);
+        arrayCat[i] = (cat[cat.selectedIndex].value);
     }
  
     // categoria = trim(document.getElementById("cadData").value);
@@ -383,5 +383,20 @@ function VerificaCategoria(){
         alert("Adicione pelo menos uma categoria à lista")
     }else{
         return document.getElementById("search-form").submit(arrayCat);
+    }
+}
+
+function VerificaEMail(){
+    var erMail;
+    erMail = /^[\w\.?]+@[\w]+\.[\w]{2,4}\b(\.[\w]+)?\b$/;
+    
+    var email;
+
+    email = trim(document.getElementById("email").value);
+    if(email.match(erMail)==null){
+        alert("Email inválido!");
+        return false;
+    }else{ 
+        return document.getElementsByName('conUsuario').item(0).submit();
     }
 }
