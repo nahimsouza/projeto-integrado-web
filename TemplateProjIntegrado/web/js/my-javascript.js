@@ -82,7 +82,7 @@ function tipoListRemove(){
 function VerificaCadastro(){
     var erMail, erNome, erSenha, erData;
     erMail = /^[\w\.?]+@[\w]+\.[\w]{2,4}\b(\.[\w]+)?\b$/;
-    erNome = /^[\w +]+$/;
+    erNome = /^[A-Z a-z]+$/;             // /^[\w +]+$/;
     erSenha = /^.{6,10}$/;
     erData = /^[0-9]{2}\/[0-9]{2}\/[0-9]{4}$/
     
@@ -323,7 +323,7 @@ function excluirUsuario(userId){
 function VerificaAltCadastro(){
     var erMail, erNome, erSenha, erData;
     erMail = /^([\w\.?]+@[\w]+\.[\w]{2,4}\b(\.[\w]+)?\b)?$/;
-    erNome = /^([\w +]+)?$/;
+    erNome = /^[A-Z a-z]+$/;            //   /^([\w +]+)?$/;
     erSenha = /^(.{6,10})?$/;
     erData = /^([0-9]{2}\/[0-9]{2}\/[0-9]{4})?$/
     
