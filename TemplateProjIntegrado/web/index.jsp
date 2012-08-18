@@ -34,11 +34,11 @@
                     <div class="clearfix">
                         <section id="gallery">
                             <div class="pics">
-                                <img src="images/slide1.jpg" alt="" width="495" height="329">
-                                <img src="images/slide3.jpg" alt="" width="495" height="329">
-                                <img src="images/slide2.jpg" alt="" width="495" height="329">
-                                <img src="images/slide4.jpg" alt="" width="495" height="329">
-                                <img src="images/slide5.jpg" alt="" width="495" height="329">
+                                <img src="images/Beatles-na-Calçada-da-Fama.jpg" alt="" width="495" height="329">
+                                <img src="images/paris_night.jpg" alt="" width="495" height="329">
+                                <img src="images/violino.jpg" alt="" width="495" height="329">
+                                <img src="images/monalisa.jpg" alt="" width="495" height="329">
+                                <img src="images/einstein.jpg" alt="" width="495" height="329">
                             </div>
                             <a href="#" id="prev"></a>
 
