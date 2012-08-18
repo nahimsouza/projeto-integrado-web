@@ -1,4 +1,5 @@
 <h2>Consulta Relativa por Entidade</h2>
+<h3>Faça uma consulta buscando pelas palavras dadas, nao <br>necessariamente em ordem ou juntas na mesma frase.</h3>
 <p> 
 <form id="search-form" method="post" action="VerificarSolicitacoes">
     <fieldset> 
