@@ -21,8 +21,8 @@
         <input type="button" value="Remover" onclick="tipoCatListRemove();"/>
 
         <br /><br />
+        
         <input type="button" value="Confirmar" onclick="VerificaTipo()" />
-        <input type="hidden" name="acao" value="insTipo" />
 
     </fieldset>
 </form>

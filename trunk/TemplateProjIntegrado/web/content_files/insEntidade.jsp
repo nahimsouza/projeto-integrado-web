@@ -32,8 +32,9 @@
     <select id="listaTipos" name="tipos" size="5">
     </select>
     <input type="button" value="Remover" onclick="tipoListRemove();"/>
-    <input type="hidden" name="acao" value="insEntidade" />
+    
     <br /><br /><br /><br />
+    <input type="hidden" name="acao" id="acao" value="insEntidade" />
     <input type="button" value="Confirmar" onclick="inserirEntidade();"/>
     <input type="reset" value="Cancelar" />
 </form>

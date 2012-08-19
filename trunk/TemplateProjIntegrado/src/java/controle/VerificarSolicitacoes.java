@@ -20,8 +20,8 @@ public class VerificarSolicitacoes extends HttpServlet {
             throws ServletException, IOException {
         String acao = request.getParameter("acao");
         System.out.print(acao);
-        
-        if(acao.compareTo("conEntidadeR")==0){
+
+        if (acao.compareTo("conEntidadeR") == 0) {
             String displayname = request.getParameter("nomeEntidade");
             String pag = request.getParameter("pag");
             acaoConsultarEntidadeR(request, response, displayname, pag);
@@ -77,7 +77,7 @@ public class VerificarSolicitacoes extends HttpServlet {
                 Logger.getLogger(VerificarSolicitacoes.class.getName()).log(Level.SEVERE, null, ex);
             }
         } else if (acao.compareTo("insTipo") == 0) {
-            String[] insTipo;
+          /*  String[] insTipo;
             String[] temp;
             List<CategoriaTipoBean> list = new ArrayList<CategoriaTipoBean>();
             insTipo = request.getParameterValues("categorias");
@@ -86,13 +86,22 @@ public class VerificarSolicitacoes extends HttpServlet {
                     temp = insTipo[i].split("/");
                     list.add(new CategoriaTipoBean(temp[0], temp[1]));//falta descobrir como separar as strings
                 }
+                acaoInserirTipo(request, response, list);
             }
+            else{
+                acaoInserirTipo(request, response, null);
+            }*/
+            RequestDispatcher rd = null; 
+            rd = request.getRequestDispatcher("/index.jsp");
+            rd.forward(request, response);
+            
+            
         } else if (acao.compareTo("consUsuarioEmail") == 0) {
             String email = request.getParameter("email");
             acaoConsultarUsuarioEmail(request, response, email);
         } else if (acao.compareTo("insEntidade") == 0) {
-            String displayname = (String)request.getParameter("displayname");
-            String descricao = (String)request.getParameter("descricao");
+            String displayname = (String) request.getParameter("displayname");
+            String descricao = (String) request.getParameter("descricao");
             EntidadeBean e = new EntidadeBean(displayname, descricao);
             acaoInserirEntidade(request, response, e);
         }
@@ -321,7 +330,7 @@ public class VerificarSolicitacoes extends HttpServlet {
     }
 
     private void acaoInserirCategoria(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, UsuarioDAOException{
+            throws ServletException, IOException, UsuarioDAOException {
 
 
         String[] insCat;
@@ -336,7 +345,7 @@ public class VerificarSolicitacoes extends HttpServlet {
         for (CategoriaTipoBean categ : list) {
             String c = categ.getCategoria();
             try {
-                
+
                 CategoriaTipoDAO cat = new CategoriaTipoDAO();
                 cat.inserirCategoria(c); //temos que verificar com o Nahim o que é isso???
                 request.setAttribute("CategoriaTipoBean", categ);
@@ -348,7 +357,7 @@ public class VerificarSolicitacoes extends HttpServlet {
             //request.setAttribute("UsuarioBean", user);
 
         }
- 
+
         RequestDispatcher rd = null;
 
         rd = request.getRequestDispatcher("/sucessoCad.jsp");
@@ -356,7 +365,7 @@ public class VerificarSolicitacoes extends HttpServlet {
         rd.forward(request, response);
 
     }
-    
+
     private void acaoInserirEntidade(HttpServletRequest request, HttpServletResponse response, EntidadeBean e)
             throws ServletException, IOException {
 
@@ -364,6 +373,24 @@ public class VerificarSolicitacoes extends HttpServlet {
         try {
             EntidadeDAO entidade = new EntidadeDAO();
             entidade.inserirEntidade(e);
+            rd = request.getRequestDispatcher("/sucessoCad.jsp");
+
+
+        } catch (Exception sqle) {
+            rd = request.getRequestDispatcher("/oops.jsp");
+        }
+
+        rd.forward(request, response);
+
+    }
+
+    private void acaoInserirTipo(HttpServletRequest request, HttpServletResponse response, List<CategoriaTipoBean> l)
+            throws ServletException, IOException {
+
+        RequestDispatcher rd = null;
+        try {
+            CategoriaTipoDAO tipo = new CategoriaTipoDAO();
+            tipo.inserirTipo(l);
             rd = request.getRequestDispatcher("/sucessoCad.jsp");
 
 
