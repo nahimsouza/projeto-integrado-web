@@ -17,96 +17,97 @@
                 if (sessao != null) {
                     log = (UsuarioBean) sessao.getAttribute("Usuario");
                     String tipo = log.getTipo();
-            if (tipo.equals("Colaborador")) {
+                    if (tipo.equals("Colaborador")) {
         %>   
-                <jsp:include page="include_files/colabHeaderConsulta.jsp" />  
-        <% 
-            } else if (tipo.equals("Administrador")) {
+        <jsp:include page="include_files/colabHeaderConsulta.jsp" />  
+        <%        } else if (tipo.equals("Administrador")) {
         %>   
-                <jsp:include page="include_files/adminHeaderConsulta.jsp" />  
-            <%} }   
-           } catch (NullPointerException e) {%>
-                 <jsp:include page="include_files/userHeaderConsulta.jsp" />
+        <jsp:include page="include_files/adminHeaderConsulta.jsp" />  
+        <%}
+                }
+            } catch (NullPointerException e) {%>
+        <jsp:include page="include_files/userHeaderConsulta.jsp" />
         <% }%>
-        
+
 
     <section id="content"><%-- inserido --%>
         <div class="middle"><%-- inserido --%>
             <div class="container"><%-- inserido --%>
                 <div class="wrapper"><%-- inserido --%>
-                    <input type="hidden" name="acao" id="acao" value="conEntidade" />
+                    <input type="hidden" name="acao" id="acao" value="<%= request.getAttribute("tipoConsulta")%>" />
                     <%
-                            List<EntidadeBean> listaEntidade = (List<EntidadeBean>) request.getAttribute("EntidadeBean");
-                            int pag = request.getParameter("pag") == null ? 1 : Integer.parseInt(request.getParameter("pag"));
-                            String displayname = request.getAttribute("dn").toString();
-                            int totalLinhas = listaEntidade.size();
-                            int limite = 10;
-                            int totalPaginas = (totalLinhas % limite > 0) ? (totalLinhas/limite) + 1 : (totalLinhas/limite);
-                            
-                            //out.println("olha aqui: " + totalPaginas);
-                            
-                           if (listaEntidade == null) {
+                        List<EntidadeBean> listaEntidade = (List<EntidadeBean>) request.getAttribute("EntidadeBean");
+                        int pag = request.getParameter("pag") == null ? 1 : Integer.parseInt(request.getParameter("pag"));
+                        String displayname = request.getAttribute("dn").toString();
+                        int totalLinhas = listaEntidade.size();
+                        int limite = 10;
+                        int totalPaginas = (totalLinhas % limite > 0) ? (totalLinhas / limite) + 1 : (totalLinhas / limite);
 
-                        %>
-                        <h2> Não existem itens cadastrados!!! </h2>
-                        <% } // fim do if
-                        else if (listaEntidade.isEmpty()) {
+                        //out.println("olha aqui: " + totalPaginas);
 
-                        %>
-                        <h2> Não existem itens cadastrados!!! </h2>
-                        <% } // fim do if
-                        else { // caso existam registros
+                        if (listaEntidade == null) {
 
-                        %>
+                    %>
+                    <h2> Não existem itens cadastrados!!! </h2>
+                    <% } // fim do if
+                    else if (listaEntidade.isEmpty()) {
 
-                        <h2> Resultado da consulta: </h2>
-                        <table border=8>
-                            <tr>
-                                <th> Descrição </th>
-                                <th> Displayname  </th>
-                            </tr>
+                    %>
+                    <h2> Não existem itens cadastrados!!! </h2>
+                    <% } // fim do if
+                    else { // caso existam registros
 
-                            <%
+                    %>
+
+                    <h2> Resultado da consulta: </h2>
+                    <table border=8>
+                        <tr>
+                            <th> Descrição </th>
+                            <th> Displayname  </th>
+                        </tr>
+
+                        <%
                             Iterator i = listaEntidade.listIterator((pag * limite) - limite);
-                            for (int j = 0; j < limite && i.hasNext();j++) {
-                                    EntidadeBean l = (EntidadeBean) i.next();
-                                    
-        %>
+                            for (int j = 0; j < limite && i.hasNext(); j++) {
+                                EntidadeBean l = (EntidadeBean) i.next();
 
-                            <tr>
-                                <td><%= l.getDescricao()%></td>
-                                <td><%= l.getDisplayname()%></td>
-
-                            </tr>
-                            <tr></tr>
-                            <% }%>
-
-                        </table>
-                        <% }%>
-                        <br>
-                        <% if(pag > 1){ 
-                            String cons = "<a href=?acao=conEntidadeR&nomeEntidade="+ displayname +"&pag="+(pag-1)+">Anterior</a>";
-
-                            out.print(cons);
-                         }else{ 
-                                out.print("Anterior");
-                         } 
-                            String espaco = "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp";
-                            out.print(espaco+ "Página " + pag + " de " + totalPaginas + espaco);
-                            if(pag * limite < listaEntidade.size()){  
-                                String cons = "<a href=?acao=conEntidadeR&nomeEntidade="+ displayname +"&pag="+(pag+1)+">Proximo</a>";
-                                out.print(cons);
-                            }else{
-                                out.print("Proximo");
-                            }
-                            out.print(espaco+"Ir para a página: ");
-                            out.print("<input type='text' id='npag'  size='1' maxlength='3' />");
-                            out.print("<input type='button' onclick='mudaPagina(&#39;" + displayname + "&#39;)' value='ok!'/>");
                         %>
-                        
-                        <div id="teste" name="teste"><br><br>
-                            <p><a href="consulta.jsp"> Nova Consulta </a> </p>
-                        </div>
+
+                        <tr>
+                            <td><%= l.getDescricao()%></td>
+                            <td><%= l.getDisplayname()%></td>
+
+                        </tr>
+                        <tr></tr>
+                        <% }%>
+
+                    </table>
+                    <% }%>
+                    <br>
+                    <% 
+                    String tipoConsulta = request.getAttribute("tipoConsulta").toString();
+                        if (pag > 1) {
+                            String cons = "<a href=?acao=" + tipoConsulta + "&nomeEntidade=" + displayname + "&pag=" + (pag - 1) + ">Anterior</a>";
+                            out.print(cons);
+                        } else {
+                            out.print("Anterior");
+                        }
+                        String espaco = "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp";
+                        out.print(espaco + "Página " + pag + " de " + totalPaginas + espaco);
+                        if (pag * limite < listaEntidade.size()) {
+                            String cons = "<a href=?acao=" + tipoConsulta + "&nomeEntidade=" + displayname + "&pag=" + (pag + 1) + ">Proximo</a>";
+                            out.print(cons);
+                        } else {
+                            out.print("Proximo");
+                        }
+                        out.print(espaco + "Ir para a página: ");
+                        out.print("<input type='text' id='npag'  size='1' maxlength='3' />");
+                        out.print("<input type='button' onclick='mudaPagina(&#39;" + displayname + "&#39;)' value='ok!'/>");
+                    %>
+
+                    <div id="teste" name="teste"><br><br>
+                        <p><a href="consulta.jsp"> Nova Consulta </a> </p>
+                    </div>
                 </div><%-- inserido --%>
             </div><%-- inserido --%>
         </div><%-- inserido --%>

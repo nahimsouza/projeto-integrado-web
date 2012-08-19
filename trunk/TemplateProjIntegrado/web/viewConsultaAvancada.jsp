@@ -102,7 +102,7 @@
                             }
                             out.print(espaco+"Ir para a página: ");
                             out.print("<input type='text' id='npag'  size='1' maxlength='3' />");
-                            out.print("<input type='button' onclick='mudaPagina(" + tipoP + ',' + tipoNP + ")' value='ok!'/>");
+                            out.print("<input type='button' onclick='mudaPaginaAvancada(" + tipoP + ',' + tipoNP + ")' value='ok!'/>");
                         %>
                         
                         <div id="teste" name="teste"><br><br>

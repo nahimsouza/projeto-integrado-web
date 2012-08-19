@@ -22,7 +22,11 @@ public class VerificarSolicitacoes extends HttpServlet {
         String acao = request.getParameter("acao");
         System.out.print(acao);
 
-        if (acao.compareTo("conEntidadeR") == 0) {
+        if (acao.compareTo("conEntidade") == 0) {
+            String displayname = request.getParameter("nomeEntidade");
+            String pag = request.getParameter("pag");
+            acaoConsultarEntidade(request, response, displayname, pag);
+        } else if (acao.compareTo("conEntidadeR") == 0) {
             String displayname = request.getParameter("nomeEntidade");
             String pag = request.getParameter("pag");
             acaoConsultarEntidadeR(request, response, displayname, pag);
@@ -34,11 +38,7 @@ public class VerificarSolicitacoes extends HttpServlet {
         }
 
 
-        if (acao.compareTo("conEntidadeR") == 0) {
-            String displayname = request.getParameter("nomeEntidade");
-            String pag = request.getParameter("pag");
-            acaoConsultarEntidadeR(request, response, displayname, pag);
-        }
+
     }
 
     @Override
@@ -146,6 +146,8 @@ public class VerificarSolicitacoes extends HttpServlet {
             EntidadeDAO entidade = new EntidadeDAO();
             List<EntidadeBean> lista = (List<EntidadeBean>) entidade.listaEntidades(displayname);
             request.setAttribute("EntidadeBean", lista);
+            request.setAttribute("tipoConsulta", "conEntidade");
+            request.setAttribute("dn", displayname);
 
         } catch (Exception sqle) {
             request.setAttribute("EntidadeBean", null);
@@ -158,6 +160,28 @@ public class VerificarSolicitacoes extends HttpServlet {
 
     }
 
+        private void acaoConsultarEntidade(HttpServletRequest request, HttpServletResponse response, String displayname, String pag)
+            throws ServletException, IOException {
+
+        try {
+            EntidadeDAO entidade = new EntidadeDAO();
+            List<EntidadeBean> lista = (List<EntidadeBean>) entidade.listaEntidades(displayname);
+            request.setAttribute("EntidadeBean", lista);
+            request.setAttribute("tipoConsulta", "conEntidade");
+            request.setAttribute("dn", displayname);
+            request.setAttribute("pag", pag);
+
+        } catch (Exception sqle) {
+            request.setAttribute("EntidadeBean", null);
+        }
+        RequestDispatcher rd = null;
+
+        rd = request.getRequestDispatcher("/viewEntidadeConsultaMultipla.jsp");
+
+        rd.forward(request, response);
+
+    }
+    
     private void acaoConsultarEntidadeR(HttpServletRequest request, HttpServletResponse response, String displayname)
             throws ServletException, IOException {
 
@@ -166,6 +190,7 @@ public class VerificarSolicitacoes extends HttpServlet {
             List<EntidadeBean> lista = (List<EntidadeBean>) entidade.listaEntidadesR(displayname);
             request.setAttribute("EntidadeBean", lista);
             request.setAttribute("dn", displayname);
+            request.setAttribute("tipoConsulta", "conEntidadeR");
 
         } catch (Exception sqle) {
             request.setAttribute("EntidadeBean", null);
