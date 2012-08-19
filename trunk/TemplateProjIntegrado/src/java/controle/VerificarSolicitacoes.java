@@ -11,6 +11,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import modelo.*;
 
 public class VerificarSolicitacoes extends HttpServlet {
@@ -437,17 +438,17 @@ public class VerificarSolicitacoes extends HttpServlet {
     private void acaoAlterarCategoria(HttpServletRequest request, HttpServletResponse response, String desCat)
             throws ServletException, IOException, UsuarioDAOException {
 
-
-
-
+        HttpSession sessao = request.getSession(false);
         CategoriaTipoBean categ = new CategoriaTipoBean(desCat);
-
+        CategoriaTipoBean oldcateg = new CategoriaTipoBean(sessao.getAttribute("Categoria").toString());
+        sessao.removeAttribute("Categoria");
 
 
         try {
 
             CategoriaTipoDAO cat = new CategoriaTipoDAO();
-            //cat.alterarCategoria(categ); //temos que verificar com o Nahim o que é isso???
+            cat.alterarCategoria(categ, oldcateg);
+
             request.setAttribute("CategoriaTipoBean", categ);
 
         } catch (CategoriaTipoDAOException e) {
@@ -483,18 +484,19 @@ public class VerificarSolicitacoes extends HttpServlet {
             throws ServletException, IOException, UsuarioDAOException {
 
 
-
-
-        CategoriaTipoBean categ = new CategoriaTipoBean(desTipo);
-
+        HttpSession sessao = request.getSession(false);
+        CategoriaTipoBean tip = new CategoriaTipoBean(desTipo);
+        CategoriaTipoBean oldtip = new CategoriaTipoBean(sessao.getAttribute("Tipo").toString());
+        sessao.removeAttribute("Tipo");
 
 
         try {
 
-            CategoriaTipoDAO cat = new CategoriaTipoDAO();
-            //cat.alterarCategoria(categ); //temos que verificar com o Nahim o que é isso???
-            request.setAttribute("CategoriaTipoBean", categ);
+            CategoriaTipoDAO tipo = new CategoriaTipoDAO();
+            tipo.alterarTipo(tip, oldtip); //temos que verificar com o Nahim o que é isso???
 
+            request.setAttribute("CategoriaTipoBean", tip);
+         
         } catch (CategoriaTipoDAOException e) {
             request.setAttribute("CategoriaTipoBean", null);
         }
