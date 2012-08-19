@@ -32,15 +32,15 @@
                             <ul class="categories">
                                 <li><a href="javascript:void(0)" onclick="showDiv( 'insEntidade', true );
                                     showDiv( 'insCategoria', false );
-                                    showDiv( 'insTipo', false );">Inserir Entidade</a></li>
+                                    showDiv( 'insTipo', false ); document.getElementById('acao').value ='insEntidade';">Inserir Entidade</a></li>
 
                                 <li><a href="javascript:void(0)" onclick="showDiv( 'insEntidade', false );
                                     showDiv( 'insCategoria', true );
-                                    showDiv( 'insTipo', false );">Inserir Categoria</a></li>
+                                    showDiv( 'insTipo', false ); document.getElementById('acao').value ='insCategoria'; ">Inserir Categoria</a></li>
 
                                 <li><a href="javascript:void(0)" onclick="showDiv( 'insEntidade', false );
                                     showDiv( 'insCategoria', false );
-                                    showDiv( 'insTipo', true );">Inserir Tipo</a></li>
+                                    showDiv( 'insTipo', true ); document.getElementById('acao').value ='insTipo';">Inserir Tipo</a></li>
                             </ul>
                         </div>
                         <div class="grid9" id="insEntidade">
