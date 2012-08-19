@@ -146,8 +146,7 @@ function tipoCatListInsere(){
     if(categ.selectedIndex > 0){
         var texto = categ[categ.selectedIndex].text + "/" + ntipo.value;
         var valor = categ.value + "/" + ntipo.value;
-    
-    
+        
         var cat = document.getElementById("categoriass");
     
         for(i=0; i<cat.options.length; i++){
@@ -155,9 +154,9 @@ function tipoCatListInsere(){
                 i = cat.options.length+1;
         }
     
-        if(i==cat.options.length)
-            cat.options[cat.options.length] = new Option (texto, valor, true, true);
-        
+        if(i==cat.options.length){
+            cat.options[cat.options.length] = new Option (texto, valor, true, true);         
+        }
     }
 }
 

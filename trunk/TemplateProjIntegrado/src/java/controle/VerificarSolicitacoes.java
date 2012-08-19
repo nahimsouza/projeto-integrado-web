@@ -77,6 +77,26 @@ public class VerificarSolicitacoes extends HttpServlet {
                 Logger.getLogger(VerificarSolicitacoes.class.getName()).log(Level.SEVERE, null, ex);
             }
         } else if (acao.compareTo("insTipo") == 0) {
+            List<String> insTipo;
+            String[] temp;
+            List<CategoriaTipoBean> list = new ArrayList<CategoriaTipoBean>();
+            insTipo = (List<String>)request.getSession().getAttribute("list_aux");
+            if (insTipo != null) {
+                for (String i : insTipo){
+                    temp = i.split(",");
+                    String a = temp[0];
+                    String b = temp[1];
+                    list.add(new CategoriaTipoBean(a,b));
+                } 
+                acaoInserirTipo(request, response, list);
+            } else {
+                acaoInserirTipo(request, response, null);
+
+                RequestDispatcher rd = null;
+                rd = request.getRequestDispatcher("/index.jsp");
+                rd.forward(request, response);
+            }
+
             /*  String[] insTipo;
              String[] temp;
              List<CategoriaTipoBean> list = new ArrayList<CategoriaTipoBean>();
@@ -94,7 +114,6 @@ public class VerificarSolicitacoes extends HttpServlet {
             RequestDispatcher rd = null;
             rd = request.getRequestDispatcher("/index.jsp");
             rd.forward(request, response);
-
 
         } else if (acao.compareTo("consUsuarioEmail") == 0) {
             String email = request.getParameter("email");
@@ -492,7 +511,7 @@ public class VerificarSolicitacoes extends HttpServlet {
         RequestDispatcher rd = null;
         try {
             CategoriaTipoDAO tipo = new CategoriaTipoDAO();
-            tipo.inserirTipo(l);
+            //tipo.inserirTipo(l);
             rd = request.getRequestDispatcher("/sucessoCad.jsp");
 
 
