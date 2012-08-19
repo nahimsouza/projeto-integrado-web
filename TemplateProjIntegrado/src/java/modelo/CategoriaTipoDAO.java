@@ -200,4 +200,44 @@ public class CategoriaTipoDAO {
             ConnectionUsuarioFactory.closeConnection(conn, ps);
         }
     }
+     public void alterarCategoria(CategoriaTipoBean novaCategoria,CategoriaTipoBean categoria) throws CategoriaTipoDAOException, UsuarioDAOException {
+        PreparedStatement ps = null;
+        Connection conn = null;
+        
+        if (categoria == null) {
+            throw new CategoriaTipoDAOException("O valor passado não pode ser nulo");
+        }
+
+        try {
+           String SQL = "UPDATE categoria SET categoria='"+ novaCategoria.getCategoria() +"' WHERE categoria='" + categoria.getCategoria() + "'";
+            conn = this.conn;
+            ps = conn.prepareStatement(SQL);
+            ps.executeUpdate();
+
+        } catch (SQLException sqle) {
+            throw new CategoriaTipoDAOException("Erro ao inserir dados " + sqle);
+        } finally {
+            ConnectionUsuarioFactory.closeConnection(conn, ps);
+        }
+    }
+       public void alterarTipo(CategoriaTipoBean novoTipo,CategoriaTipoBean tipo) throws CategoriaTipoDAOException, UsuarioDAOException {
+        PreparedStatement ps = null;
+        Connection conn = null;
+        
+        if (novoTipo == null) {
+            throw new CategoriaTipoDAOException("O valor passado não pode ser nulo");
+        }
+
+        try {
+           String SQL = "UPDATE tipo SET tipo='"+ novoTipo.getTipo() +"' WHERE tipo='" + tipo.getTipo() + "'";
+            conn = this.conn;
+            ps = conn.prepareStatement(SQL);
+            ps.executeUpdate();
+
+        } catch (SQLException sqle) {
+            throw new CategoriaTipoDAOException("Erro ao inserir dados " + sqle);
+        } finally {
+            ConnectionUsuarioFactory.closeConnection(conn, ps);
+        }
+    }
 }
