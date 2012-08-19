@@ -386,6 +386,25 @@ function VerificaCategoria(){
     }
 }
 
+function VerificaTipo(){
+    // Para fazer a validação dos campos na inserção de tipos
+
+    var arrayTipo = new Array();
+    
+    var tipo = document.getElementById("categoriass");
+    
+    
+    for(i=0; i<tipo.options.length; i++){
+        arrayTipo[i] = (tipo[tipo.selectedIndex].value);
+    }
+ 
+    if(document.getElementById("categoriass").options.length == 0){
+        alert("Adicione pelo menos um tipo à lista")
+    }else{
+        return document.getElementById("search-form").submit(arrayTipo);
+    }
+}
+
 function VerificaEMail(){
     var erMail;
     erMail = /^[\w\.?]+@[\w]+\.[\w]{2,4}\b(\.[\w]+)?\b$/;
@@ -398,5 +417,15 @@ function VerificaEMail(){
         return false;
     }else{ 
         return document.getElementsByName('conUsuario').item(0).submit();
+    }
+}
+
+function VerificaIns(){
+    if(document.getElementById("categ").selectedIndex == 0){
+        alert("Selecione pelo menos uma categoria"); 
+    }else if(document.getElementById("ntipo").value == ""){ 
+        alert("Escreva o nome do tipo"); 
+    }else { 
+        tipoCatListInsere();
     }
 }

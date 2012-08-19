@@ -19,7 +19,7 @@
 
     <br /><br />Categoria/Tipo * <br /> <!-- Precisa pegar do BD -->
 
-    <select id="categoria" name="categoria"  onchange="chamaServlet(carregaTipos,'carregaTipos')">
+    <select id="categoria" name="categoria" onchange="chamaServlet(carregaTipos,'carregaTipos')">
 
     </select>
 
