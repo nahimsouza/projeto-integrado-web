@@ -90,6 +90,11 @@ public class VerificarSolicitacoes extends HttpServlet {
         } else if (acao.compareTo("consUsuarioEmail") == 0) {
             String email = request.getParameter("email");
             acaoConsultarUsuarioEmail(request, response, email);
+        } else if (acao.compareTo("insEntidade") == 0) {
+            String displayname = (String)request.getParameter("displayname");
+            String descricao = (String)request.getParameter("descricao");
+            EntidadeBean e = new EntidadeBean(displayname, descricao);
+            acaoInserirEntidade(request, response, e);
         }
     }
 
@@ -347,6 +352,24 @@ public class VerificarSolicitacoes extends HttpServlet {
         RequestDispatcher rd = null;
 
         rd = request.getRequestDispatcher("/sucessoCad.jsp");
+
+        rd.forward(request, response);
+
+    }
+    
+    private void acaoInserirEntidade(HttpServletRequest request, HttpServletResponse response, EntidadeBean e)
+            throws ServletException, IOException {
+
+        RequestDispatcher rd = null;
+        try {
+            EntidadeDAO entidade = new EntidadeDAO();
+            entidade.inserirEntidade(e);
+            rd = request.getRequestDispatcher("/sucessoCad.jsp");
+
+
+        } catch (Exception sqle) {
+            rd = request.getRequestDispatcher("/oops.jsp");
+        }
 
         rd.forward(request, response);
 

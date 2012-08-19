@@ -106,5 +106,25 @@ public class EntidadeDAO {
         } finally {
             ConnectionUsuarioFactory.closeConnection(conn, ps, rs);
         }
-    } // fim
+    }
+    
+    public void inserirEntidade(EntidadeBean e) throws EntidadeDAOException, UsuarioDAOException {
+        PreparedStatement ps = null;
+        Connection conn = null;
+        if (e.getDisplayname() == null) {
+            throw new EntidadeDAOException("O valor passado não pode ser nulo");
+        }
+
+        try {
+            String SQL = "EXEC usp_ins_entidade'" + e.getDisplayname() +"','"+ e.getDescricao() + "'";
+            conn = this.conn;
+            ps = conn.prepareStatement(SQL);
+            ps.executeUpdate();
+
+        } catch (SQLException sqle) {
+            throw new EntidadeDAOException("Erro ao inserir dados " + sqle);
+        } finally {
+            ConnectionUsuarioFactory.closeConnection(conn, ps);
+        }
+    }
 }
