@@ -77,25 +77,25 @@ public class VerificarSolicitacoes extends HttpServlet {
                 Logger.getLogger(VerificarSolicitacoes.class.getName()).log(Level.SEVERE, null, ex);
             }
         } else if (acao.compareTo("insTipo") == 0) {
-          /*  String[] insTipo;
-            String[] temp;
-            List<CategoriaTipoBean> list = new ArrayList<CategoriaTipoBean>();
-            insTipo = request.getParameterValues("categorias");
-            if (insTipo != null) {
-                for (int i = 0; i < insTipo.length; i++) {
-                    temp = insTipo[i].split("/");
-                    list.add(new CategoriaTipoBean(temp[0], temp[1]));//falta descobrir como separar as strings
-                }
-                acaoInserirTipo(request, response, list);
-            }
-            else{
-                acaoInserirTipo(request, response, null);
-            }*/
-            RequestDispatcher rd = null; 
+            /*  String[] insTipo;
+             String[] temp;
+             List<CategoriaTipoBean> list = new ArrayList<CategoriaTipoBean>();
+             insTipo = request.getParameterValues("categorias");
+             if (insTipo != null) {
+             for (int i = 0; i < insTipo.length; i++) {
+             temp = insTipo[i].split("/");
+             list.add(new CategoriaTipoBean(temp[0], temp[1]));//falta descobrir como separar as strings
+             }
+             acaoInserirTipo(request, response, list);
+             }
+             else{
+             acaoInserirTipo(request, response, null);
+             }*/
+            RequestDispatcher rd = null;
             rd = request.getRequestDispatcher("/index.jsp");
             rd.forward(request, response);
-            
-            
+
+
         } else if (acao.compareTo("consUsuarioEmail") == 0) {
             String email = request.getParameter("email");
             acaoConsultarUsuarioEmail(request, response, email);
@@ -104,6 +104,18 @@ public class VerificarSolicitacoes extends HttpServlet {
             String descricao = (String) request.getParameter("descricao");
             EntidadeBean e = new EntidadeBean(displayname, descricao);
             acaoInserirEntidade(request, response, e);
+        } else if (acao.compareTo("altCategoria") == 0) {
+            String desCat = request.getParameter("nomeCategoria");
+            acaoConsultaAlterarCategoria(request, response, desCat);
+        } else if (acao.compareTo("altResultadoCategoria") == 0) {
+            String desCat = request.getParameter("ncateg");
+            //acaoAlterarCategoria(request, response, desCat);
+        } else if (acao.compareTo("altTipo") == 0) {
+            String desCat = request.getParameter("nomeTipo");
+            acaoConsultaAlterarTipo(request, response, desCat);
+        } else if (acao.compareTo("altResultadoTipo") == 0) {
+            String desTipo = request.getParameter("nTipo");
+            //acaoAlterarCategoria(request, response, desCat);
         }
     }
 
@@ -381,6 +393,96 @@ public class VerificarSolicitacoes extends HttpServlet {
         }
 
         rd.forward(request, response);
+
+    }
+
+    private void acaoConsultaAlterarCategoria(HttpServletRequest request, HttpServletResponse response, String desCat)
+            throws ServletException, IOException {
+
+        try {
+            CategoriaTipoDAO categoria = new CategoriaTipoDAO();
+            List<CategoriaTipoBean> lista = (List<CategoriaTipoBean>) categoria.listaCategoria(desCat);
+            request.setAttribute("CategoriaTipoBean", lista);
+
+        } catch (Exception sqle) {
+            request.setAttribute("CategoriaTipoBean", null);
+        }
+        RequestDispatcher rd = null;
+
+        rd = request.getRequestDispatcher("/viewAlteracaoCategoria.jsp");
+
+        rd.forward(request, response);
+
+    }
+
+    private void acaoAlterarCategoria(HttpServletRequest request, HttpServletResponse response, String desCat)
+            throws ServletException, IOException, UsuarioDAOException {
+
+
+
+
+        CategoriaTipoBean categ = new CategoriaTipoBean(desCat);
+
+
+
+        try {
+
+            CategoriaTipoDAO cat = new CategoriaTipoDAO();
+            //cat.alterarCategoria(categ); //temos que verificar com o Nahim o que é isso???
+            request.setAttribute("CategoriaTipoBean", categ);
+
+        } catch (CategoriaTipoDAOException e) {
+            request.setAttribute("CategoriaTipoBean", null);
+        }
+        //UsuarioBean user = usuario.consultarUsuario(email);
+        //request.setAttribute("UsuarioBean", user);
+
+
+
+    }
+
+    private void acaoConsultaAlterarTipo(HttpServletRequest request, HttpServletResponse response, String desTipo)
+            throws ServletException, IOException {
+
+        try {
+            CategoriaTipoDAO tipo = new CategoriaTipoDAO();
+            List<CategoriaTipoBean> lista = (List<CategoriaTipoBean>) tipo.listaTipo(desTipo);
+            request.setAttribute("CategoriaTipoBean", lista);
+
+        } catch (Exception sqle) {
+            request.setAttribute("CategoriaTipoBean", null);
+        }
+        RequestDispatcher rd = null;
+
+        rd = request.getRequestDispatcher("/viewAlteracaoTipo.jsp");
+
+        rd.forward(request, response);
+
+    }
+
+    private void acaoAlterarTipo(HttpServletRequest request, HttpServletResponse response, String desTipo)
+            throws ServletException, IOException, UsuarioDAOException {
+
+
+
+
+        CategoriaTipoBean categ = new CategoriaTipoBean(desTipo);
+
+
+
+        try {
+
+            CategoriaTipoDAO cat = new CategoriaTipoDAO();
+            //cat.alterarCategoria(categ); //temos que verificar com o Nahim o que é isso???
+            request.setAttribute("CategoriaTipoBean", categ);
+
+        } catch (CategoriaTipoDAOException e) {
+            request.setAttribute("CategoriaTipoBean", null);
+        }
+        //UsuarioBean user = usuario.consultarUsuario(email);
+        //request.setAttribute("UsuarioBean", user);
+
+
 
     }
 
