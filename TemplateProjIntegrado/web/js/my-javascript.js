@@ -147,6 +147,7 @@ function tipoCatListInsere(){
         var texto = categ[categ.selectedIndex].text + "/" + ntipo.value;
         var valor = categ.value + "/" + ntipo.value;
         
+    
         var cat = document.getElementById("categoriass");
     
         for(i=0; i<cat.options.length; i++){
@@ -155,7 +156,8 @@ function tipoCatListInsere(){
         }
     
         if(i==cat.options.length){
-            cat.options[cat.options.length] = new Option (texto, valor, true, true);         
+            cat.options[cat.options.length] = new Option (texto, valor, true, true);
+            cat.options[(cat.options.length) - 1].name = "tipocat";
         }
     }
 }
@@ -226,14 +228,16 @@ function inserirEntidade(){
     }
 }
 
-function mudaPagina(ent){
-    location.href="?acao="+document.getElementById("acao")+"nomeEntidade="+ent+"&pag="+document.getElementById("npag").value;
-}
 
-function mudaPagina(tipoP, tipoNP){
+function mudaPaginaAvancada(tipoP, tipoNP){
     location.href="?acao=conAvancada&tipoP="+tipoP+"&tipoNP="+tipoNP+"&pag="+document.getElementById("npag").value;
     
+};
+
+function mudaPagina(ent){
+    location.href="?acao="+document.getElementById("acao").value+"&nomeEntidade="+ent+"&pag="+document.getElementById("npag").value;
 }
+
 
 function carregaCategoriasConsulta(){
     
