@@ -14,7 +14,6 @@ public class EntidadeBean {
    // private String mid;
     private String descricao;
     
-    
     // construtor sem parâmetros:
     public EntidadeBean(){
     }
@@ -24,7 +23,7 @@ public class EntidadeBean {
         this.displayname = displayname;
         this.descricao = descricao;
     }
-
+    
     public String getDescricao() {
         return descricao;
     }
@@ -40,6 +39,8 @@ public class EntidadeBean {
     public void setDisplayname(String displayname) {
         this.displayname = displayname;
     }
+    
+    
 
   /*  public int getIdEntidade() {
         return idEntidade;

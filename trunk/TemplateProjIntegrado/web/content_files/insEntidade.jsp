@@ -1,17 +1,17 @@
 
 <h2>Inserir Entidade</h2>
 <p> 
-<form id="search-form">
+<form id="search-form" action="VerificarSolicitacoes" method="post">
     (*) = Preenchimento obrigatório
     <br /><br />
-    Displayname * <br /> 
+    Displayname (nome da entidade) * <br /> 
     <input id="displayname" name="displayname" type="text" size="50" maxlength="50"/>
     <br /><br /> 
 
-    Descrição <br /> <textarea id="description" cols="35" rows="5"></textarea>
+    Descrição <br /> <textarea id="description" name ="descricao" cols="35" rows="5"></textarea>
     <br /><br /> 
 
-    Wikikey <br /><input id="wiki" type="text" size="28" maxlength="30"/> <input type="button" value="Adicionar" onclick="wikiListInsere();"/>
+    Wikikey <br /><input id="wiki" name="wikikey" type="text" size="28" maxlength="30"/> <input type="button" value="Adicionar" onclick="wikiListInsere();"/>
     <br /><br />
     <select id ="wikis" name="wikis" size="5">
     </select>
@@ -32,8 +32,8 @@
     <select id="listaTipos" name="tipos" size="5">
     </select>
     <input type="button" value="Remover" onclick="tipoListRemove();"/>
-
+    <input type="hidden" name="acao" value="insEntidade" />
     <br /><br /><br /><br />
-    <input type="submit" value="Confirmar" onclick="inserirEntidade();"/>
+    <input type="button" value="Confirmar" onclick="inserirEntidade();"/>
     <input type="reset" value="Cancelar" />
 </form>
