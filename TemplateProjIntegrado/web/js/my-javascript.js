@@ -434,3 +434,22 @@ function VerificaIns(){
         return document.getElementById("search-form").submit();
     }
 }
+
+function RemoverTipo(a){
+     alert("Requisição falhou");
+   document.getElementById("search-form").
+   
+    document.getElementById("search-form").submit();
+ 
+   
+}
+
+function RemoverCategoria(a){
+    
+    
+
+    var valor=document.getElementsByName('valor');
+    valor.value=a;
+    document.getElementById("search-form").submit();
+    
+}

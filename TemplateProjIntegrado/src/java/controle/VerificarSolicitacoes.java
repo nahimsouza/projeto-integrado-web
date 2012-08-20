@@ -81,7 +81,7 @@ public class VerificarSolicitacoes extends HttpServlet {
             List<String> insTipo;
             String[] temp;
             List<CategoriaTipoBean> list = new ArrayList<CategoriaTipoBean>();
-            insTipo = (List<String>)request.getSession().getAttribute("list_aux");
+            insTipo = (List<String>) request.getSession().getAttribute("list_aux");
             if (insTipo != null && !insTipo.isEmpty()) {
             for (String i : insTipo) {
                     temp = i.split(",");
@@ -122,11 +122,32 @@ public class VerificarSolicitacoes extends HttpServlet {
             String desCat = request.getParameter("ncateg");
             //acaoAlterarCategoria(request, response, desCat);
         } else if (acao.compareTo("altTipo") == 0) {
-            String desCat = request.getParameter("nomeTipo");
-            acaoConsultaAlterarTipo(request, response, desCat);
+            String desTipo = request.getParameter("nomeTipo");
+            acaoConsultaAlterarTipo(request, response, desTipo);
         } else if (acao.compareTo("altResultadoTipo") == 0) {
             String desTipo = request.getParameter("nTipo");
             //acaoAlterarCategoria(request, response, desCat);
+        }else if (acao.compareTo("remTipo") == 0) {
+            String desTipo = request.getParameter("nomeTipo");
+            acaoConsultaRemoverTipo(request, response, desTipo);
+        }else if (acao.compareTo("remCategoria") == 0) {
+            String desCat = request.getParameter("nomeCategoria");
+            acaoConsultaRemoverCategoria(request, response, desCat);
+        }
+        else if (acao.compareTo("remResultadoCategoria") == 0) {
+            String desCat = request.getParameter("name");
+                    try {
+                        acaoRemoverCategoria(request, response, desCat);
+                    } catch (UsuarioDAOException ex) {
+                        Logger.getLogger(VerificarSolicitacoes.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+        }else if (acao.compareTo("remResultadoTipo") == 0) {
+            String desTipo = request.getParameter("valor");
+                    try {
+                        acaoRemoverTipo(request, response, desTipo);
+                    } catch (UsuarioDAOException ex) {
+                        Logger.getLogger(VerificarSolicitacoes.class.getName()).log(Level.SEVERE, null, ex);
+                    }
         }
     }
 
@@ -512,14 +533,10 @@ public class VerificarSolicitacoes extends HttpServlet {
             tipo.alterarTipo(tip, oldtip); //temos que verificar com o Nahim o que é isso???
 
             request.setAttribute("CategoriaTipoBean", tip);
-         
+
         } catch (CategoriaTipoDAOException e) {
             request.setAttribute("CategoriaTipoBean", null);
         }
-        //UsuarioBean user = usuario.consultarUsuario(email);
-        //request.setAttribute("UsuarioBean", user);
-
-
 
     }
 
@@ -540,4 +557,89 @@ public class VerificarSolicitacoes extends HttpServlet {
         rd.forward(request, response);
 
     }
+
+    private void acaoConsultaRemoverTipo(HttpServletRequest request, HttpServletResponse response, String desTipo)
+            throws ServletException, IOException {
+
+        try {
+            CategoriaTipoDAO tipo = new CategoriaTipoDAO();
+            List<CategoriaTipoBean> lista = (List<CategoriaTipoBean>) tipo.listaTipo(desTipo);
+            request.setAttribute("CategoriaTipoBean", lista);
+
+        } catch (Exception sqle) {
+            request.setAttribute("CategoriaTipoBean", null);
+        }
+        RequestDispatcher rd = null;
+
+        rd = request.getRequestDispatcher("/viewRemocaoTipo.jsp");
+
+        rd.forward(request, response);
+
+    }
+
+    private void acaoConsultaRemoverCategoria(HttpServletRequest request, HttpServletResponse response, String desCat)
+            throws ServletException, IOException {
+
+        try {
+            CategoriaTipoDAO categoria = new CategoriaTipoDAO();
+            List<CategoriaTipoBean> lista = (List<CategoriaTipoBean>) categoria.listaCategoria(desCat);
+            request.setAttribute("CategoriaTipoBean", lista);
+
+        } catch (Exception sqle) {
+            request.setAttribute("CategoriaTipoBean", null);
+        }
+        RequestDispatcher rd = null;
+
+        rd = request.getRequestDispatcher("/viewRemocaoCategoria.jsp");
+
+        rd.forward(request, response);
+
+    }
+    
+       private void acaoRemoverTipo(HttpServletRequest request, HttpServletResponse response, String desTipo)
+            throws ServletException, IOException, UsuarioDAOException{
+
+
+       
+        CategoriaTipoBean tip = new CategoriaTipoBean(desTipo);
+        
+      
+
+
+        try {
+
+            CategoriaTipoDAO tipo = new CategoriaTipoDAO();
+            tipo.removerTipo(tip); //temos que verificar com o Nahim o que é isso???
+
+            request.setAttribute("CategoriaTipoBean", tip);
+
+        } catch (CategoriaTipoDAOException e) {
+            request.setAttribute("CategoriaTipoBean", null);
+        }
+ 
+
+
+    }
+       private void acaoRemoverCategoria(HttpServletRequest request, HttpServletResponse response, String desCat)
+            throws ServletException, IOException , UsuarioDAOException{
+
+
+        
+        CategoriaTipoBean categoria = new CategoriaTipoBean(desCat);
+       
+
+
+        try {
+
+            CategoriaTipoDAO cat = new CategoriaTipoDAO();
+            cat.removerCategoria(categoria); //temos que verificar com o Nahim o que é isso???
+
+            request.setAttribute("CategoriaTipoBean", categoria);
+
+        } catch (CategoriaTipoDAOException e) {
+            request.setAttribute("CategoriaTipoBean", null);
+        }
+    }
+
+
 }

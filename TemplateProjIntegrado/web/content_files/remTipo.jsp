@@ -33,10 +33,11 @@
                     <div class="grid9" id="conEntidade">
 			<h2>Remover Tipo</h2>
                         <p> 
-                            <form id="search-form">
+                            <form id="search-form" method="post" action="VerificarSolicitacoes">
                                 <fieldset> 
-                                    <input type="text">
-                                    <input type="submit" value="Consultar">
+                                    <input type="text" name="nomeTipo" value="" />
+                                    <input type="submit" value="Procurar" />
+                                    <input type="hidden" value="remTipo" name="acao" />
                                 </fieldset>
                             </form>
                         </p>
