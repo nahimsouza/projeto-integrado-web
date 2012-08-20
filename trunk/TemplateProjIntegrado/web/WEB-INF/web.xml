@@ -18,11 +18,19 @@
     </servlet>
     <servlet>
         <servlet-name>ValidarCadastro</servlet-name>
-        <servlet-class>controle.ValidarCadastro</servlet-class>
+        <servlet-class>controle.ValidarInsercao</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ValidarAltCadastro</servlet-name>
         <servlet-class>controle.ValidarAltCadastro</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>VerificarInsercao</servlet-name>
+        <servlet-class>controle.VerificarInsercao</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ValidarInsercao</servlet-name>
+        <servlet-class>controle.ValidarInsercao</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ValidarLogin</servlet-name>
@@ -47,6 +55,14 @@
     <servlet-mapping>
         <servlet-name>ValidarAltCadastro</servlet-name>
         <url-pattern>/ValidarAltCadastro</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>VerificarInsercao</servlet-name>
+        <url-pattern>/VerificarInsercao</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ValidarInsercao</servlet-name>
+        <url-pattern>/ValidarInsercao</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

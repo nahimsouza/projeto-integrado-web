@@ -82,8 +82,8 @@ public class VerificarSolicitacoes extends HttpServlet {
             String[] temp;
             List<CategoriaTipoBean> list = new ArrayList<CategoriaTipoBean>();
             insTipo = (List<String>)request.getSession().getAttribute("list_aux");
-            if (insTipo != null) {
-                for (String i : insTipo){
+            if (insTipo != null && !insTipo.isEmpty()) {
+            for (String i : insTipo) {
                     temp = i.split(",");
                     String a = temp[0];
                     String b = temp[1];
@@ -91,11 +91,7 @@ public class VerificarSolicitacoes extends HttpServlet {
                 } 
                 acaoInserirTipo(request, response, list);
             } else {
-                acaoInserirTipo(request, response, null);
-
-                RequestDispatcher rd = null;
-                rd = request.getRequestDispatcher("/index.jsp");
-                rd.forward(request, response);
+                response.sendRedirect("index.jsp");
             }
 
             /*  String[] insTipo;
@@ -112,9 +108,6 @@ public class VerificarSolicitacoes extends HttpServlet {
              else{
              acaoInserirTipo(request, response, null);
              }*/
-            RequestDispatcher rd = null;
-            rd = request.getRequestDispatcher("/index.jsp");
-            rd.forward(request, response);
 
         } else if (acao.compareTo("consUsuarioEmail") == 0) {
             String email = request.getParameter("email");
@@ -340,7 +333,7 @@ public class VerificarSolicitacoes extends HttpServlet {
         String html = "<option value=''></option>";
         for (Iterator i = lista.iterator(); i.hasNext();) {
             CategoriaTipoBean l = (CategoriaTipoBean) i.next();
-            html += "<option value=" + l.getIdCategoria() + ">" + l.getCategoria() + "</option>";
+            html += "<option name='" + l.getIdCategoria() + "' value='" + l.getCategoria() +"'>" + l.getCategoria() + "</option>";
         }
 
         response.getWriter().write(html);

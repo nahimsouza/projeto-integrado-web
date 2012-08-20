@@ -4,36 +4,18 @@
 <h2>Inserir Tipo</h2>
 <p> 
     
-    <%
-            List<String> list_aux = new ArrayList<String>();
-            request.getSession().setAttribute("list_aux", list_aux);
-    %>
-    
-<form id="search-form" method="post" action="VerificarSolicitacoes" onload="chamaServlet(carregaCategorias,'carregaCategorias')">
+<form id="search-form" method="post" action="VerificarSolicitacoes" onload="chamaServlet(carregaCategorias,'carregaCategorias'); "/>
     <fieldset> 
         (*) = Preenchimento obrigatório<br><br>
         Categoria*<br />
-        <select id="categ" name="categ">
+        <select id="categ" name="categ" onblur="document.getElementById('catid').value = this[this.selectedIndex].value; "/>
         </select>
 
         <br /><br />
         Tipo* <br />
 
-        <input type="text" id="ntipo" name="display" />
-        <input type="button" value="Adicionar" onclick="VerificaIns();
-        
-        <%
-            String tipo_lista = request.getParameter("display");
-            if(tipo_lista != ""){
-                List<String> list = (List<String>)request.getSession().getAttribute("list_aux");
-                String categoria_lista = request.getParameter("categ");
-                list.add(categoria_lista + "," + tipo_lista);
-                request.getSession().setAttribute("list_aux", list);
-            }
-        %>
-
-        "/>
-        
+        <input type="text" id="ntipo" name="display" onblur="document.getElementById('tipoid').value = this.value; "/>
+        <input type="button" value="Adicionar" onclick="VerificaIns(); "/>
         <br /><br />
         <select id ="categoriass" name="categorias" size="5" >
         </select>

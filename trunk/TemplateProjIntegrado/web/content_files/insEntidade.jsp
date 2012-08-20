@@ -1,6 +1,13 @@
 
+<%@page import="java.util.List"%>
+<%@page import="java.util.ArrayList"%>
 <h2>Inserir Entidade</h2>
 <p> 
+
+    <%
+        List<String> list_aux = new ArrayList<String>();
+        request.getSession().setAttribute("list_aux", list_aux);
+    %>
 <form id="search-form" action="VerificarSolicitacoes" method="post">
     (*) = Preenchimento obrigatório
     <br /><br />
@@ -32,9 +39,11 @@
     <select id="listaTipos" name="tipos" size="5">
     </select>
     <input type="button" value="Remover" onclick="tipoListRemove();"/>
-    
+
     <br /><br /><br /><br />
     <input type="hidden" name="acao" id="acao" value="insEntidade" />
+    <input type="hidden" name="tipoid" id="tipoid" />
+    <input type="hidden" name="catid" id="catid" />
     <input type="button" value="Confirmar" onclick="inserirEntidade();"/>
     <input type="reset" value="Cancelar" />
 </form>
