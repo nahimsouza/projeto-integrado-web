@@ -164,7 +164,11 @@ function tipoCatListInsere(){
 
 function tipoCatListRemove(){
     cat = document.getElementById("categoriass");
+    document.getElementById("metodo").value = "remove";
+    document.getElementById("selected").value = document.getElementById('categoriass').value;
     cat.remove(cat.selectedIndex);
+    document.getElementById("search-form").action = "ValidarInsercao";
+    return document.getElementById("search-form").submit();
 }
 
 var xmlHttpReq;
@@ -430,6 +434,7 @@ function VerificaIns(){
         alert("Escreva o nome do tipo"); 
     }else { 
         tipoCatListInsere();
+        document.getElementById("metodo").value = "insere";
         document.getElementById("search-form").action = "ValidarInsercao";
         return document.getElementById("search-form").submit();
     }

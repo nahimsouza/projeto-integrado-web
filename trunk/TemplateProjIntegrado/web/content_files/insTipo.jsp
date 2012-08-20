@@ -25,7 +25,7 @@
                         String[] a = i.split(",");
                         String b = "/"+a[2]+"/"+a[1];
             %>
-            <option value='<%=i%>'><%=b%></option>               
+            <option value='<%=i%>' SELECTED><%=b%></option>               
             <% } } %>
         
         </select>
