@@ -168,10 +168,10 @@ public class CategoriaTipoDAO {
         try {//falta terminar
             for (int i = 0; i < t.size(); i++) {
                 temp = t.get(i);
-                String SQL = "EXEC usp_ins_tipo '" + temp.getTipo() + "', " + temp.getIdCategoria();
+                String SQL = "EXEC usp_ins_tipo '" + temp.getTipo() + "'," + temp.getIdCategoria();
                 conn = this.conn;
                 ps = conn.prepareStatement(SQL);
-                rs = ps.executeQuery();
+                ps.executeUpdate();
             }
 
         } catch (SQLException sqle) {
