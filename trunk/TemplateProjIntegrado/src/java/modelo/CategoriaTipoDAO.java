@@ -240,4 +240,41 @@ public class CategoriaTipoDAO {
             ConnectionUsuarioFactory.closeConnection(conn, ps);
         }
     }
+       public void removerTipo(CategoriaTipoBean tipo) throws CategoriaTipoDAOException, UsuarioDAOException {
+        PreparedStatement ps = null;
+        Connection conn = null;
+        
+       
+
+        try {
+           String SQL = "";
+            conn = this.conn;
+            ps = conn.prepareStatement(SQL);
+            ps.executeUpdate();
+
+        } catch (SQLException sqle) {
+            throw new CategoriaTipoDAOException("Erro ao inserir dados " + sqle);
+        } finally {
+            ConnectionUsuarioFactory.closeConnection(conn, ps);
+        }
+    }
+       public void removerCategoria(CategoriaTipoBean categoria) throws CategoriaTipoDAOException, UsuarioDAOException {
+        PreparedStatement ps = null;
+        Connection conn = null;
+        
+       
+
+        try {
+           String SQL = "";
+            conn = this.conn;
+            ps = conn.prepareStatement(SQL);
+            ps.executeUpdate();
+
+        } catch (SQLException sqle) {
+            throw new CategoriaTipoDAOException("Erro ao inserir dados " + sqle);
+        } finally {
+            ConnectionUsuarioFactory.closeConnection(conn, ps);
+        }
+    }
+       
 }
