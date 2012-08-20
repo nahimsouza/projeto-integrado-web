@@ -135,7 +135,11 @@ function catListInsere(){
 
 function catListRemove(){
     var cat = document.getElementById("listaCategorias");
+    document.getElementById("metodo").value = "removeCat";
+    document.getElementById("selected").value = document.getElementById('listaCategorias').value;
     cat.remove(cat.selectedIndex);
+    document.getElementById("search-form").action = "ValidarInsercao";
+    return document.getElementById("search-form").submit();
 }
 
 
@@ -387,7 +391,8 @@ function VerificaCategoria(){
     // categoria = trim(document.getElementById("cadData").value);
     
     if(document.getElementById("listaCategorias").options.length == 0){
-        alert("Adicione pelo menos uma categoria à lista")
+        alert("Adicione pelo menos uma categoria à lista");
+        return false;
     }else{
         return document.getElementById("search-form").submit(arrayCat);
     }
@@ -406,7 +411,8 @@ function VerificaTipo(){
     }
  
     if(document.getElementById("categoriass").options.length == 0){
-        alert("Adicione pelo menos um tipo à lista")
+        alert("Adicione pelo menos um tipo à lista");
+        return false;
     }else{
         return document.getElementById("search-form").submit(arrayTipo);
     }
@@ -429,12 +435,26 @@ function VerificaEMail(){
 
 function VerificaIns(){
     if(document.getElementById("categ").selectedIndex == 0){
-        alert("Selecione pelo menos uma categoria"); 
+        alert("Selecione pelo menos uma categoria");
+        return false;
     }else if(document.getElementById("ntipo").value == ""){ 
         alert("Escreva o nome do tipo"); 
+        return false;
     }else { 
         tipoCatListInsere();
         document.getElementById("metodo").value = "insere";
+        document.getElementById("search-form").action = "ValidarInsercao";
+        return document.getElementById("search-form").submit();
+    }
+}
+
+function VerificaCatIns(){
+    if(document.getElementById("ncateg").value == ""){ 
+        alert("Escreva o nome da categoria"); 
+        return false;
+    }else { 
+        catListInsere();
+        document.getElementById("metodo").value = "insereCat";
         document.getElementById("search-form").action = "ValidarInsercao";
         return document.getElementById("search-form").submit();
     }

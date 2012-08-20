@@ -72,10 +72,11 @@ public class VerificarSolicitacoes extends HttpServlet {
             int idcat = Integer.parseInt(request.getParameter("cat"));
             acaoCarregaTipos(request, response, idcat);
         } else if (acao.compareTo("insCategoria") == 0) {
+            List<String> insCat = (List<String>) request.getSession().getAttribute("list_cat");
             try {
-                acaoInserirCategoria(request, response);
+                acaoInserirCategoria(request, response, insCat);
             } catch (UsuarioDAOException ex) {
-                Logger.getLogger(VerificarSolicitacoes.class.getName()).log(Level.SEVERE, null, ex);
+                response.sendRedirect("/oops.jsp");
             }
         } else if (acao.compareTo("insTipo") == 0) {
             List<String> insTipo;
@@ -89,24 +90,8 @@ public class VerificarSolicitacoes extends HttpServlet {
                 } 
                 acaoInserirTipo(request, response, list);
             } else {
-                response.sendRedirect("index.jsp");
+                response.sendRedirect("oops.jsp");
             }
-
-            /*  String[] insTipo;
-             String[] temp;
-             List<CategoriaTipoBean> list = new ArrayList<CategoriaTipoBean>();
-             insTipo = request.getParameterValues("categorias");
-             if (insTipo != null) {
-             for (int i = 0; i < insTipo.length; i++) {
-             temp = insTipo[i].split("/");
-             list.add(new CategoriaTipoBean(temp[0], temp[1]));//falta descobrir como separar as strings
-             }
-             acaoInserirTipo(request, response, list);
-             }
-             else{
-             acaoInserirTipo(request, response, null);
-             }*/
-
         } else if (acao.compareTo("consUsuarioEmail") == 0) {
             String email = request.getParameter("email");
             acaoConsultarUsuarioEmail(request, response, email);
@@ -399,41 +384,27 @@ public class VerificarSolicitacoes extends HttpServlet {
         rd.forward(request, response);
     }
 
-    private void acaoInserirCategoria(HttpServletRequest request, HttpServletResponse response)
+    private void acaoInserirCategoria(HttpServletRequest request, HttpServletResponse response, List<String> l)
             throws ServletException, IOException, UsuarioDAOException {
 
-
-        String[] insCat;
-        List<CategoriaTipoBean> list = new ArrayList<CategoriaTipoBean>();
-        insCat = request.getParameterValues("listaCategorias");
-
-        if (insCat != null) {
-            for (int i = 0; i < insCat.length; i++) {
-                list.add(new CategoriaTipoBean(insCat[i]));
-            }
-        }
-        for (CategoriaTipoBean categ : list) {
-            String c = categ.getCategoria();
-            try {
-
-                CategoriaTipoDAO cat = new CategoriaTipoDAO();
-                cat.inserirCategoria(c); //temos que verificar com o Nahim o que é isso???
-                request.setAttribute("CategoriaTipoBean", categ);
-
-            } catch (CategoriaTipoDAOException e) {
-                request.setAttribute("CategoriaTipoBean", null);
-            }
-            //UsuarioBean user = usuario.consultarUsuario(email);
-            //request.setAttribute("UsuarioBean", user);
-
-        }
-
         RequestDispatcher rd = null;
+        try {
+            for(String i : l){
+                CategoriaTipoDAO tipo = new CategoriaTipoDAO();
+                tipo.inserirCategoria(i);
+            }
+            rd = request.getRequestDispatcher("/sucessoCad.jsp");
+            request.getSession().setAttribute("list_cat", null);
+            request.getSession().setAttribute("janela", null);
 
-        rd = request.getRequestDispatcher("/sucessoCad.jsp");
+
+        } catch (Exception sqle) {
+            rd = request.getRequestDispatcher("/oops.jsp");
+            request.getSession().setAttribute("list_cat", null);
+            request.getSession().setAttribute("janela", null);
+        }
 
         rd.forward(request, response);
-
     }
 
     private void acaoInserirEntidade(HttpServletRequest request, HttpServletResponse response, EntidadeBean e)
