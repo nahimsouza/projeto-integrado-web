@@ -156,14 +156,14 @@ function tipoCatListInsere(){
         }
     
         if(i==cat.options.length){
-            cat.options[cat.options.length] = new Option (texto, valor, true, true);
+            cat.options[cat.options.length] = new Option(texto, valor, true, true);
             cat.options[(cat.options.length) - 1].name = "tipocat";
         }
     }
 }
 
 function tipoCatListRemove(){
-    var cat = document.getElementById("categoriass");
+    cat = document.getElementById("categoriass");
     cat.remove(cat.selectedIndex);
 }
 
@@ -175,7 +175,7 @@ function chamaServlet(param,param2){
             var dado = "acao="+param2+"&cat="+ document.getElementById("categoria").value;
         }catch(e){
             // funciona quando nao tem o parametro cat
-            var dado = "acao="+param2;
+            dado = "acao="+param2;
         }
         xmlHttpReq = new XMLHttpRequest();  // Não funciona em versoes antigas do IE
 
@@ -258,7 +258,7 @@ function chamaServletConsulta(param,param2,cat){
             // para funcionar genericamente com catP e catNP
             var dado = "acao="+param2+"&cat="+ document.getElementById(cat).value;
         }catch(e){
-            var dado = "acao="+param2;
+            dado = "acao="+param2;
         }
           
         xmlHttpReq = new XMLHttpRequest();  // Não funciona em versoes antigas do IE
@@ -430,5 +430,7 @@ function VerificaIns(){
         alert("Escreva o nome do tipo"); 
     }else { 
         tipoCatListInsere();
+        document.getElementById("search-form").action = "ValidarInsercao";
+        return document.getElementById("search-form").submit();
     }
 }
