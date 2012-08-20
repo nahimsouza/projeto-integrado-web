@@ -549,11 +549,13 @@ public class VerificarSolicitacoes extends HttpServlet {
             tipo.inserirTipo(l);
             rd = request.getRequestDispatcher("/sucessoCad.jsp");
             request.getSession().setAttribute("list_aux", null);
+            request.getSession().setAttribute("janela", null);
 
 
         } catch (Exception sqle) {
             rd = request.getRequestDispatcher("/oops.jsp");
             request.getSession().setAttribute("list_aux", null);
+            request.getSession().setAttribute("janela", null);
         }
 
         rd.forward(request, response);
