@@ -21,6 +21,10 @@ public class ValidarInsercao extends HttpServlet {
             insere(request, response);
         } else if (metodo.equals("remove")) {
             remove(request, response);
+        } else if (metodo.equals("insereCat")) {
+            insereCat(request, response);
+        } else if (metodo.equals("removeCat")) {
+            removeCat(request, response);
         }
     }
 
@@ -32,6 +36,7 @@ public class ValidarInsercao extends HttpServlet {
         categorianome = categorianome.split("/")[1];
         list.add(categoria_lista + "," + tipo_lista + "," + categorianome);
         request.getSession().setAttribute("list_aux", list);
+        request.getSession().setAttribute("janela","b");
         response.sendRedirect("insercao.jsp");
     }
 
@@ -40,6 +45,25 @@ public class ValidarInsercao extends HttpServlet {
         List<String> list = (List<String>) request.getSession().getAttribute("list_aux");
         list.remove(tipo_lista);
         request.getSession().setAttribute("list_aux", list);
+        request.getSession().setAttribute("janela","b");
+        response.sendRedirect("insercao.jsp");
+    }
+    
+        private void insereCat(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        List<String> list = (List<String>) request.getSession().getAttribute("list_cat");
+        String categoria = request.getParameter("catnome");
+        list.add(categoria);
+        request.getSession().setAttribute("list_cat", list);
+        request.getSession().setAttribute("janela","a"); 
+        response.sendRedirect("insercao.jsp");
+    }
+
+    private void removeCat(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String cat_lista = (String)request.getParameter("selected");
+        List<String> list = (List<String>) request.getSession().getAttribute("list_cat");
+        list.remove(cat_lista);
+        request.getSession().setAttribute("list_cat", list);
+        request.getSession().setAttribute("janela","a");
         response.sendRedirect("insercao.jsp");
     }
 }

@@ -6,9 +6,14 @@
 
     <%
         List<String> l = (List<String>) request.getSession().getAttribute("list_aux");
+        List<String> l2 = (List<String>) request.getSession().getAttribute("list_cat");
         if(l == null){
             List<String> list_aux = new ArrayList<String>();
             request.getSession().setAttribute("list_aux", list_aux);
+        }
+        if(l2 == null){
+            List<String> list_cat = new ArrayList<String>();
+            request.getSession().setAttribute("list_cat", list_cat);
         }
     %>
 <form id="search-form" action="VerificarSolicitacoes" method="post">

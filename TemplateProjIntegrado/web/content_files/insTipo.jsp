@@ -15,7 +15,7 @@
         Tipo* <br />
 
         <input type="text" id="ntipo" name="display" onblur="document.getElementById('tipoid').value = this.value; "/>
-        <input type="button" value="Adicionar" onclick="VerificaIns();  <% request.getSession().setAttribute("janela","b"); %> "/>
+        <input type="button" value="Adicionar" onclick="VerificaIns(); "/>
         <br /><br />
         <select id ="categoriass" name="categorias" size="5" >
             <%
