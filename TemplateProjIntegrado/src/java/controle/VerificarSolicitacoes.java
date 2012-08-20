@@ -529,7 +529,7 @@ public class VerificarSolicitacoes extends HttpServlet {
         RequestDispatcher rd = null;
         try {
             CategoriaTipoDAO tipo = new CategoriaTipoDAO();
-            //tipo.inserirTipo(l);
+            tipo.inserirTipo(l);
             rd = request.getRequestDispatcher("/sucessoCad.jsp");
 
 
