@@ -5,8 +5,11 @@
 <p> 
 
     <%
-        List<String> list_aux = new ArrayList<String>();
-        request.getSession().setAttribute("list_aux", list_aux);
+        List<String> l = (List<String>) request.getSession().getAttribute("list_aux");
+        if(l == null){
+            List<String> list_aux = new ArrayList<String>();
+            request.getSession().setAttribute("list_aux", list_aux);
+        }
     %>
 <form id="search-form" action="VerificarSolicitacoes" method="post">
     (*) = Preenchimento obrigatório
@@ -44,6 +47,7 @@
     <input type="hidden" name="acao" id="acao" value="insEntidade" />
     <input type="hidden" name="tipoid" id="tipoid" />
     <input type="hidden" name="catid" id="catid" />
+    <input type="hidden" name="catnome" id="catnome" />
     <input type="button" value="Confirmar" onclick="inserirEntidade();"/>
     <input type="reset" value="Cancelar" />
 </form>

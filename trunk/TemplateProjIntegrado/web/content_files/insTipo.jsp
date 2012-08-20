@@ -8,23 +8,33 @@
     <fieldset> 
         (*) = Preenchimento obrigatório<br><br>
         Categoria*<br />
-        <select id="categ" name="categ" onblur="document.getElementById('catid').value = this[this.selectedIndex].value; "/>
+        <select id="categ" name="categ" onblur="document.getElementById('catid').value = this.selectedIndex; document.getElementById('catnome').value = this[this.selectedIndex].value; "/>
         </select>
 
         <br /><br />
         Tipo* <br />
 
         <input type="text" id="ntipo" name="display" onblur="document.getElementById('tipoid').value = this.value; "/>
-        <input type="button" value="Adicionar" onclick="VerificaIns(); "/>
+        <input type="button" value="Adicionar" onclick="VerificaIns();  <% request.getSession().setAttribute("janela","b"); %> "/>
         <br /><br />
         <select id ="categoriass" name="categorias" size="5" >
+            <%
+                List<String> lista_a = ( List<String>) request.getSession().getAttribute("list_aux");
+                if(lista_a != null){ 
+                    for(String i : lista_a){
+                        String[] a = i.split(",");
+                        String b = "/"+a[2]+"/"+a[1];
+            %>
+            <option value='<%=i%>'><%=b%></option>               
+            <% } } %>
+        
         </select>
 
         <input type="button" value="Remover" onclick="tipoCatListRemove();"/>
 
         <br /><br />
         
-        <input type="button" value="Confirmar" onclick="VerificaTipo()" />
+        <input type="button" value="Confirmar" onclick="VerificaTipo();" />
 
     </fieldset>
 </form>

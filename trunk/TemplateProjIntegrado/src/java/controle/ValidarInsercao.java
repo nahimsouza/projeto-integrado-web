@@ -16,9 +16,10 @@ public class ValidarInsercao extends HttpServlet {
         String tipo_lista = request.getParameter("tipoid");
         List<String> list = (List<String>) request.getSession().getAttribute("list_aux");
         String categoria_lista = request.getParameter("catid");
-        categoria_lista = categoria_lista.split("/")[1];
-        list.add(categoria_lista + "," + tipo_lista);
+        String categorianome = request.getParameter("catnome");
+        categorianome = categorianome.split("/")[1];
+        list.add(categoria_lista + "," + tipo_lista + "," + categorianome);
         request.getSession().setAttribute("list_aux", list);
-        response.sendRedirect("insercaoTipo.jsp");
+        response.sendRedirect("insercao.jsp");
     }
 }

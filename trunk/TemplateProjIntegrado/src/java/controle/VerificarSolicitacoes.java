@@ -85,9 +85,7 @@ public class VerificarSolicitacoes extends HttpServlet {
             if (insTipo != null && !insTipo.isEmpty()) {
             for (String i : insTipo) {
                     temp = i.split(",");
-                    String a = temp[0];
-                    String b = temp[1];
-                    list.add(new CategoriaTipoBean(a,b));
+                    list.add(new CategoriaTipoBean(temp[0],temp[1]));
                 } 
                 acaoInserirTipo(request, response, list);
             } else {
