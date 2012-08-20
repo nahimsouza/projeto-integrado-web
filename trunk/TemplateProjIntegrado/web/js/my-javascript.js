@@ -441,10 +441,15 @@ function VerificaIns(){
 }
 
 function RemoverTipo(a){
+    alert("Requisição falhou");
+    var hid=document.createElement('hidden');
+    hid.value = a;
+    alert("Requisição falhou");
+    document.getElementById("search-form").appendChild(hid);
      alert("Requisição falhou");
-   document.getElementById("search-form").
-   
+     
     document.getElementById("search-form").submit();
+
  
    
 }

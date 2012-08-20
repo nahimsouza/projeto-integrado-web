@@ -52,7 +52,7 @@
                         <h2> Resultado da consulta: </h2>
                        <form id="search-form" method="post" action="VerificarSolicitacoes">
                            <input type="hidden" value="remResultadoTipo" name="acao" />
-                           <input type="hidden" value="" name="valor" />
+                           <input type="hidden" value="nao funcionou" name="valor" />
                            <table border=1>
                             <tr>
                                 <td> Id Tipo </td>

@@ -142,7 +142,8 @@ public class VerificarSolicitacoes extends HttpServlet {
                         Logger.getLogger(VerificarSolicitacoes.class.getName()).log(Level.SEVERE, null, ex);
                     }
         }else if (acao.compareTo("remResultadoTipo") == 0) {
-            String desTipo = request.getParameter("valor");
+            String desTipo;
+                    desTipo = request.getParameter("valor");
                     try {
                         acaoRemoverTipo(request, response, desTipo);
                     } catch (UsuarioDAOException ex) {
