@@ -48,6 +48,8 @@
     <input type="hidden" name="tipoid" id="tipoid" />
     <input type="hidden" name="catid" id="catid" />
     <input type="hidden" name="catnome" id="catnome" />
+    <input type="hidden" name="selected" id="selected" />
+    <input type="hidden" name="metodo" id="metodo" />
     <input type="button" value="Confirmar" onclick="inserirEntidade();"/>
     <input type="reset" value="Cancelar" />
 </form>
