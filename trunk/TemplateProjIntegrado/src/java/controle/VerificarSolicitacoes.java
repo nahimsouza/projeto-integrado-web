@@ -548,10 +548,12 @@ public class VerificarSolicitacoes extends HttpServlet {
             CategoriaTipoDAO tipo = new CategoriaTipoDAO();
             tipo.inserirTipo(l);
             rd = request.getRequestDispatcher("/sucessoCad.jsp");
+            request.getSession().setAttribute("list_aux", null);
 
 
         } catch (Exception sqle) {
             rd = request.getRequestDispatcher("/oops.jsp");
+            request.getSession().setAttribute("list_aux", null);
         }
 
         rd.forward(request, response);
