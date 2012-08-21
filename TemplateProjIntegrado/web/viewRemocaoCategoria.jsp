@@ -50,7 +50,7 @@
                         %>
 
                         <h2> Resultado da consulta: </h2>
-                       <form id="search-form" method="post" action="VerificarSolicitacoes">
+                       <form id="search-form" method="get" action="VerificarSolicitacoes">
                            <input type="hidden" value="remResultadoCategoria" name="acao" />
                            <table border=1>
                             <tr>
@@ -64,7 +64,8 @@
                             <tr>
                                 <td><%= l.getIdCategoria() %></td>
                                 <td><%= l.getCategoria() %></td>
-                                <td><%  out.println("<input type='button' value='Remover' onclick='RemoverCategoria("+ l.getCategoria() +")'");%></td>%></td>
+                                
+                                <td><a href="VerificarSolicitacoes?acao=remResultadoCategoria&valor=<%=l.getIdCategoria()%>">Remover</a></td>
 
                             </tr>
                             <% }%>
