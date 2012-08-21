@@ -116,11 +116,13 @@ public class EntidadeDAO {
         }
 
         try {
-            String SQL = "EXEC usp_ins_entidade'" + e.getDisplayname() + "','" + e.getDescricao() + "'";
+            String SQL = "EXEC usp_ins_entidade '" + e.getDisplayname() +"','"+ e.getDescricao() + "'";
+ 
             conn = this.conn;
             ps = conn.prepareStatement(SQL);
             ps.executeUpdate();
-            int id_ent = this.getIdEntidade(e);
+            int id_ent = this.getIdEntidade(e.getDisplayname());
+            
             for (String k : wiki) {
                 SQL = "EXEC usp_ins_wiki " + id_ent + ",'" + k + "'";
                 conn = this.conn;
@@ -128,10 +130,10 @@ public class EntidadeDAO {
                 ps.executeUpdate();
             }
             CategoriaTipoDAO tipo = new CategoriaTipoDAO();
-            tipo.inserirTipo(l);
+            //tipo.inserirTipo(l);
             for (CategoriaTipoBean a : l) {
                 tipo = new CategoriaTipoDAO();
-                int id_tipo = tipo.getIdTipo(a);
+                int id_tipo = tipo.getIdTipo(a.getTipo());
                 tipo.inserirTipoEntidade(id_ent, id_tipo);
             }
 
@@ -143,19 +145,22 @@ public class EntidadeDAO {
         }
     }
 
-    public int getIdEntidade(EntidadeBean e) throws EntidadeDAOException, UsuarioDAOException {
+    public int getIdEntidade(String displayname) throws EntidadeDAOException, UsuarioDAOException {
         PreparedStatement ps = null;
         Connection conn = null;
         ResultSet rs = null;
         try {
-            String SQL = "EXEC usp_cons_id_entidade '" + e.getDisplayname() + "'";
+            //String SQL = "EXEC usp_cons_id_entidade '" + e.getDisplayname() +"'";
+            String SQL = "SELECT id_ent FROM entidade WHERE displayname='" + displayname +"'";
             conn = this.conn;
             ps = conn.prepareStatement(SQL);
             rs = ps.executeQuery();
-            int id = 0;
+            int id;
+            String a = "";
             while (rs.next()) {
-                id = (Integer) rs.getObject("id_ent");
+                a = rs.getString("id_ent");
             }
+            id = Integer.parseInt(a);
             return id;
 
         } catch (SQLException sqle) {

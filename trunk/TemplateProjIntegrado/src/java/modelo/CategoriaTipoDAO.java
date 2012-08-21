@@ -163,11 +163,10 @@ public class CategoriaTipoDAO {
         PreparedStatement ps = null;
         Connection conn = null;
         ResultSet rs = null;
-        CategoriaTipoBean temp;
-        try {//falta terminar
-            for (int i = 0; i < t.size(); i++) {
-                temp = t.get(i);
-                String SQL = "EXEC usp_ins_tipo '" + temp.getTipo() + "'," + temp.getIdCategoria();
+        try {
+            for (CategoriaTipoBean temp : t) {
+                int id = temp.getIdCategoria();
+                String SQL = "EXEC usp_ins_tipo '" + temp.getTipo() + "'," + id;
                 conn = this.conn;
                 ps = conn.prepareStatement(SQL);
                 ps.executeUpdate();
@@ -298,23 +297,49 @@ public class CategoriaTipoDAO {
         }
     }
 
-    public int getIdTipo(CategoriaTipoBean c) throws EntidadeDAOException, UsuarioDAOException {
+    public int getIdTipo(String tipo) throws UsuarioDAOException, CategoriaTipoDAOException {
         PreparedStatement ps = null;
         Connection conn = null;
         ResultSet rs = null;
         try {
-            String SQL = "EXEC usp_cons_id_tipo '" + c.getTipo() + "'";
+            //String SQL = "EXEC usp_cons_id_tipo '" + c.getTipo() + "'";
+            String SQL = "SELECT id_tipo FROM tipo WHERE tipo='" + tipo + "'";
             conn = this.conn;
             ps = conn.prepareStatement(SQL);
             rs = ps.executeQuery();
             int id = 0;
+            String a = "";
             while (rs.next()) {
-                id = (Integer) rs.getObject("id_tipo");
+                a = rs.getString("id_tipo");
             }
+            id = Integer.parseInt(a);
             return id;
 
         } catch (SQLException sqle) {
-            throw new EntidadeDAOException("Erro ao inserir dados " + sqle);
+            throw new CategoriaTipoDAOException("Erro ao inserir dados " + sqle);
+        } finally {
+            ConnectionUsuarioFactory.closeConnection(conn, ps);
+        }
+    }
+    
+    public String getNomeTipo(int id) throws CategoriaTipoDAOException, UsuarioDAOException {
+        PreparedStatement ps = null;
+        Connection conn = null;
+        ResultSet rs = null;
+        try {
+            //String SQL = "EXEC usp_cons_nome_tipo " + id;
+            String SQL = "SELECT tipo FROM tipo WHERE id_tipo="+ id;
+            String nome = "";
+            conn = this.conn;
+            ps = conn.prepareStatement(SQL);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                nome = (String) rs.getObject("tipo");
+            }
+            return nome;
+
+        } catch (SQLException sqle) {
+            throw new CategoriaTipoDAOException("Erro ao inserir dados " + sqle);
         } finally {
             ConnectionUsuarioFactory.closeConnection(conn, ps);
         }
