@@ -106,13 +106,21 @@ public class VerificarSolicitacoes extends HttpServlet {
             acaoConsultaAlterarCategoria(request, response, desCat);
         } else if (acao.compareTo("altResultadoCategoria") == 0) {
             String desCat = request.getParameter("ncateg");
-            //acaoAlterarCategoria(request, response, desCat);
+                    try {
+                        acaoAlterarCategoria(request, response, desCat);
+                    } catch (UsuarioDAOException ex) {
+                        Logger.getLogger(VerificarSolicitacoes.class.getName()).log(Level.SEVERE, null, ex);
+                    }
         } else if (acao.compareTo("altTipo") == 0) {
             String desTipo = request.getParameter("nomeTipo");
             acaoConsultaAlterarTipo(request, response, desTipo);
         } else if (acao.compareTo("altResultadoTipo") == 0) {
-            String desTipo = request.getParameter("nTipo");
-            //acaoAlterarCategoria(request, response, desCat);
+            String desTipo = request.getParameter("ntipo");
+                    try {
+                        acaoAlterarTipo(request, response, desTipo);
+                    } catch (UsuarioDAOException ex) {
+                        Logger.getLogger(VerificarSolicitacoes.class.getName()).log(Level.SEVERE, null, ex);
+                    }
         }else if (acao.compareTo("remTipo") == 0) {
             String desTipo = request.getParameter("nomeTipo");
             acaoConsultaRemoverTipo(request, response, desTipo);

@@ -63,7 +63,8 @@
                             <tr>
                                 <td><%= l.getIdTipo() %></td>
                                 <td><%= l.getTipo() %></td>
-                                <td><% session.setAttribute("Tipo", l.getTipo());
+                                <td><% String temp []= l.getTipo().toString().split("/");
+                                session.setAttribute("Tipo", temp[1]);
                                 out.println("<a href='altResultadoTipo.jsp'>Alterar</a>");%></td>
 
                             </tr>
