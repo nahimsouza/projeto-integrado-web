@@ -41,9 +41,9 @@
                             (*) = Preenchimento obrigatório<br><br>
                             Categoria* <br />
                             <% 
-                            out.println("<input type='text' name ='ncateg' id='ncateg' value="+ session.getAttribute("Categoria") + " />");%>
+                            out.println("<input type='text' name ='ncateg' id='ncateg' value='"+ session.getAttribute("Categoria") + "' />");%>
                             <input type="submit" value="Alterar"  />
-                            <input type="hidden" value="altResultadoCategoria" name="acao"/>
+                            <input type="hidden" value="altResultadoCategoria" name="acao" />
 
                         </fieldset>
                     </form>
@@ -57,8 +57,3 @@
     <%@include file="include_files/footer.jsp" %><%-- inserido --%>
 </body>
 </html>
-
-
-
-
-

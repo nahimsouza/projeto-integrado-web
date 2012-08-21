@@ -1,3 +1,4 @@
+
 <%@page import="modelo.UsuarioBean"%>
 <%@page import="modelo.CategoriaTipoBean"%>
 <%@page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -9,71 +10,71 @@
 <html>
     <%@include file="include_files/head.jsp" %> <%-- inserido --%>
     <body>
-       <% //Recupera a Session
+        <% //Recupera a Session
             try {
                 HttpSession sessao = request.getSession(false);
                 UsuarioBean log = null;
                 if (sessao != null) {
                     log = (UsuarioBean) sessao.getAttribute("Usuario");
                     String tipo = log.getTipo();
-            if (tipo.equals("Colaborador")) {
+                    if (tipo.equals("Colaborador")) {
         %>   
-                <jsp:include page="include_files/colabHeaderAlt.jsp" />  
-        <% 
-            } else if (tipo.equals("Administrador")) {
+        <jsp:include page="include_files/colabHeaderAlt.jsp" />  
+        <%        } else if (tipo.equals("Administrador")) {
         %>   
-                <jsp:include page="include_files/adminHeaderAlt.jsp" />  
-            <%} }   
-           } catch (NullPointerException e) {
-                 response.sendRedirect("oops.jsp");
-         }%>
-        
+        <jsp:include page="include_files/adminHeaderAlt.jsp" />  
+        <%}
+                }
+            } catch (NullPointerException e) {
+                response.sendRedirect("oops.jsp");
+                }%>
+
     <section id="content"><%-- inserido --%>
         <div class="middle"><%-- inserido --%>
             <div class="container"><%-- inserido --%>
                 <div class="wrapper"><%-- inserido --%>
-                        <%
-                            List<CategoriaTipoBean> listaCategoria = (List<CategoriaTipoBean>) request.getAttribute("CategoriaTipoBean");
+                    <%
+                        List<CategoriaTipoBean> listaCategoria = (List<CategoriaTipoBean>) request.getAttribute("CategoriaTipoBean");
 
-                          if (listaCategoria == null) {
+                        if (listaCategoria == null) {
 
-                        %>
-                        <h2> Não existem itens cadastrados!!! </h2>
-                        <% } // fim do if
-                        else if (listaCategoria.isEmpty()) {
+                    %>
+                    <h2> Não existem itens cadastrados!!! </h2>
+                    <% } // fim do if
+                    else if (listaCategoria.isEmpty()) {
 
-                        %>
-                        <h2> Não existem itens cadastrados!!! </h2>
-                        <% } // fim do if
-                        else { // caso existam registros
+                    %>
+                    <h2> Não existem itens cadastrados!!! </h2>
+                    <% } // fim do if
+                    else { // caso existam registros
 
-                        %>
+                    %>
 
-                        <h2> Resultado da consulta: </h2>
-                        <table border=1>
-                            <tr>
-                                <td> Id Tipo </td>
-                                <td> Tipo  </td>
-                                
-                            </tr>
+                    <h2> Resultado da consulta: </h2>
+                    <table border=1>
+                        <tr>
+                            <td> Id Tipo </td>
+                            <td> Tipo  </td>
 
-                            <% for (Iterator i = listaCategoria.iterator(); i.hasNext();) {
+                        </tr>
+
+                        <% for (Iterator i = listaCategoria.iterator(); i.hasNext();) {
                                     CategoriaTipoBean l = (CategoriaTipoBean) i.next();%>
 
-                            <tr>
-                                <td><%= l.getIdTipo() %></td>
-                                <td><%= l.getTipo() %></td>
-                                <td><% String temp []= l.getTipo().toString().split("/");
-                                session.setAttribute("Tipo", temp[1]);
-                                out.println("<a href='altResultadoTipo.jsp'>Alterar</a>");%></td>
+                        <tr>
+                            <td><%= l.getIdTipo()%></td>
+                            <td><%= l.getTipo()%></td>
+                            <td><% String temp[] = l.getTipo().toString().split("/");
+                                    session.setAttribute("Tipo", temp[1]);
+                                    out.println("<a href='altResultadoTipo.jsp'>Alterar</a>");%></td>
 
-                            </tr>
-                            <% }%>
+                        </tr>
+                        <% session.setAttribute("IdTipo", l.getIdTipo()); }%>
 
-                        </table>
-                        <% }%>
-                        <br>
-                        <p><a href="consulta.jsp"> Nova Consulta </a> </p>
+                    </table>
+                    <% }%>
+                    <br>
+                    <p><a href="consulta.jsp"> Nova Consulta </a> </p>
 
 
                 </div><%-- inserido --%>
