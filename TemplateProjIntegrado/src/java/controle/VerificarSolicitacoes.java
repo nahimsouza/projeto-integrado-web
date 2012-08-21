@@ -51,6 +51,14 @@ public class VerificarSolicitacoes extends HttpServlet {
                 Logger.getLogger(VerificarSolicitacoes.class.getName()).log(Level.SEVERE, null, ex);
             }
 
+        } else if (acao.compareTo("remResultadoEntidade") == 0) {
+            int id = Integer.parseInt(request.getParameter("valor"));
+            try {
+                acaoRemoverEntidade(request, response, id);
+            } catch (UsuarioDAOException ex) {
+                Logger.getLogger(VerificarSolicitacoes.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
         }
 
 
@@ -143,6 +151,12 @@ public class VerificarSolicitacoes extends HttpServlet {
         } else if (acao.compareTo("remCategoria") == 0) {
             String desCat = request.getParameter("nomeCategoria");
             acaoConsultaRemoverCategoria(request, response, desCat);
+        }else if (acao.compareTo("remEntidade") == 0) {
+            String desEnt = request.getParameter("nomeEntidade");
+            acaoConsultaRemoverEntidade(request, response, desEnt);
+        }else if (acao.compareTo("altEntidade") == 0) {
+            String desEnt = request.getParameter("nomeCategoria");
+            acaoConsultaAlterarEntidade(request, response, desEnt);
         }
 
     }
@@ -629,4 +643,76 @@ public class VerificarSolicitacoes extends HttpServlet {
             request.setAttribute("CategoriaTipoBean", null);
         }
     }
+    
+    private void acaoConsultaAlterarEntidade(HttpServletRequest request, HttpServletResponse response, String desEnt)
+            throws ServletException, IOException {
+
+        
+        
+              try {
+            EntidadeDAO entidade = new EntidadeDAO();
+            List<EntidadeBean> lista = (List<EntidadeBean>) entidade.listaEntidades(desEnt);
+            request.setAttribute("EntidadeBean", lista);
+            request.setAttribute("tipoConsulta", "conEntidade");
+            request.setAttribute("dn", desEnt);
+
+        } catch (Exception sqle) {
+            request.setAttribute("EntidadeBean", null);
+        }
+        RequestDispatcher rd = null;
+
+        rd = request.getRequestDispatcher("/viewAlteracaoEntidade.jsp");
+
+        rd.forward(request, response);
+    
+
+    }
+      private void acaoConsultaRemoverEntidade(HttpServletRequest request, HttpServletResponse response, String desEnt)
+            throws ServletException, IOException {
+
+        
+        
+              try {
+            EntidadeDAO entidade = new EntidadeDAO();
+            List<EntidadeBean> lista = (List<EntidadeBean>) entidade.listaEntidades(desEnt);
+            request.setAttribute("EntidadeBean", lista);
+            request.setAttribute("tipoConsulta", "conEntidade");
+            request.setAttribute("dn", desEnt);
+
+        } catch (Exception sqle) {
+            request.setAttribute("EntidadeBean", null);
+        }
+        RequestDispatcher rd = null;
+
+        rd = request.getRequestDispatcher("/viewRemocaoEntidade.jsp");
+
+        rd.forward(request, response);
+    
+
+    }
+       private void acaoRemoverEntidade(HttpServletRequest request, HttpServletResponse response, int desEnt)
+            throws ServletException, IOException, UsuarioDAOException {
+
+
+
+        EntidadeBean ent = new EntidadeBean(desEnt);
+
+
+
+
+        try {
+
+            EntidadeDAO entidade = new EntidadeDAO();
+            entidade.removerEntidade(ent); //temos que verificar com o Nahim o que é isso???
+
+            request.setAttribute("EntidadeBean", ent);
+
+        } catch (EntidadeDAOException e) {
+            request.setAttribute("EntidadeBean", null);
+        }
+
+
+
+    }
+
 }

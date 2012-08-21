@@ -9,7 +9,7 @@ package modelo;
  * @author fguira
  */
 public class EntidadeBean {
-   // private int idEntidade;
+    private int idEntidade;
     private String displayname;
    // private String mid;
     private String descricao;
@@ -22,6 +22,15 @@ public class EntidadeBean {
     public EntidadeBean (String displayname, String descricao){
         this.displayname = displayname;
         this.descricao = descricao;
+    }
+    public EntidadeBean (String displayname, String descricao,int idEntidade){
+        this.displayname = displayname;
+        this.descricao = descricao;
+        this.idEntidade=idEntidade;
+    }
+    public EntidadeBean (int idEntidade){
+        
+        this.idEntidade=idEntidade;
     }
     
     public String getDescricao() {
@@ -42,10 +51,10 @@ public class EntidadeBean {
     
     
 
-  /*  public int getIdEntidade() {
+    public int getIdEntidade() {
         return idEntidade;
     }
-
+/*
     public String getMid() {
         return mid;
     }

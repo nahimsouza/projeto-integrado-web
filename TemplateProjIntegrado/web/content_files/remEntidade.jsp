@@ -33,10 +33,11 @@
                     <div class="grid9" id="conEntidade">
 			<h2>Remover Entidade</h2>
                         <p> 
-                            <form id="search-form">
+                            <form id="search-form" method="post" action="VerificarSolicitacoes">
                                 <fieldset> 
-                                    <input type="text">
-                                    <input type="submit" value="Consultar">
+                                    <input type="text" name="nomeEntidade" value="" />
+                                    <input type="submit" value="Procurar" />
+                                    <input type="hidden" value="remEntidade" name="acao" />
                                 </fieldset>
                             </form>
                         </p>
