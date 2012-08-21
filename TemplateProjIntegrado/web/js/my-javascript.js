@@ -49,7 +49,11 @@ function wikiListInsere(){
 }
 
 function wikiListRemove(){
+    document.getElementById("metodo").value = "removeWiki";
+    document.getElementById("selected").value = document.getElementById('wikis').value;
     document.getElementById("wikis").remove(document.getElementById("wikis").selectedIndex);
+    document.getElementById("search-form").action = "ValidarInsercao";
+    return document.getElementById("search-form").submit();
 }
 
 function tipoListInsere(){
@@ -76,7 +80,11 @@ function tipoListInsere(){
 }
 
 function tipoListRemove(){
+    document.getElementById("metodo").value = "removeCatTipo";
+    document.getElementById("selected").value = document.getElementById('listaTipos').value;
     document.getElementById("listaTipos").remove(document.getElementById("listaTipos").selectedIndex);
+    document.getElementById("search-form").action = "ValidarInsercao";
+    return document.getElementById("search-form").submit();
 }
 
 function VerificaCadastro(){
@@ -460,6 +468,33 @@ function VerificaCatIns(){
     }
 }
 
+function VerificaWikiIns(){
+    if(document.getElementById("wiki").value == ""){ 
+        alert("Escreva o nome da wikikey"); 
+        return false;
+    }else { 
+        wikiListInsere();
+        document.getElementById("metodo").value = "insereWiki";
+        document.getElementById("search-form").action = "ValidarInsercao";
+        return document.getElementById("search-form").submit();
+    }
+}
+
+function VerificaListIns(){
+    if(document.getElementById("categoria").selectedIndex == 0){ 
+        alert("Selecione uma categoria");
+        return false;
+    }else if(document.getElementById("tipo").selectedIndex == 0){
+        alert("Selecione um tipo");
+        return false;
+    }else { 
+        tipoListInsere();
+        document.getElementById("metodo").value = "insereCatTipo";
+        document.getElementById("search-form").action = "ValidarInsercao";
+        return document.getElementById("search-form").submit();
+    }
+}
+
 function RemoverTipo(a){
     alert("Requisição falhou");
     var hid=document.createElement('hidden');
@@ -475,11 +510,10 @@ function RemoverTipo(a){
 }
 
 function RemoverCategoria(a){
-    
-    
 
     var valor=document.getElementsByName('valor');
     valor.value=a;
     document.getElementById("search-form").submit();
     
 }
+

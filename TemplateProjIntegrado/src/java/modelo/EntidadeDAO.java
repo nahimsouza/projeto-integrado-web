@@ -108,7 +108,7 @@ public class EntidadeDAO {
         }
     }
     
-    public void inserirEntidade(EntidadeBean e) throws EntidadeDAOException, UsuarioDAOException {
+    public void inserirEntidade(EntidadeBean e, List<String> wiki, List<CategoriaTipoBean> l) throws EntidadeDAOException, UsuarioDAOException, CategoriaTipoDAOException {
         PreparedStatement ps = null;
         Connection conn = null;
         if (e.getDisplayname() == null) {
@@ -120,6 +120,43 @@ public class EntidadeDAO {
             conn = this.conn;
             ps = conn.prepareStatement(SQL);
             ps.executeUpdate();
+            int id_ent = this.getIdEntidade(e);
+            for(String k : wiki){
+                SQL = "EXEC usp_ins_wiki " + id_ent +",'"+ k + "'";
+                conn = this.conn;
+                ps = conn.prepareStatement(SQL);
+                ps.executeUpdate();
+            }
+            CategoriaTipoDAO tipo = new CategoriaTipoDAO();
+            tipo.inserirTipo(l);
+            for(CategoriaTipoBean a : l){
+                tipo = new CategoriaTipoDAO();
+                int id_tipo = tipo.getIdTipo(a);
+                tipo.inserirTipoEntidade(id_ent, id_tipo);
+            }
+            
+
+        } catch (SQLException sqle) {
+            throw new EntidadeDAOException("Erro ao inserir dados " + sqle);
+        } finally {
+            ConnectionUsuarioFactory.closeConnection(conn, ps);
+        }
+    }
+    
+    public int getIdEntidade(EntidadeBean e) throws EntidadeDAOException, UsuarioDAOException {
+        PreparedStatement ps = null;
+        Connection conn = null;
+        ResultSet rs = null;
+        try {
+            String SQL = "EXEC usp_cons_id_entidade '" + e.getDisplayname() +"'";
+            conn = this.conn;
+            ps = conn.prepareStatement(SQL);
+            rs = ps.executeQuery();
+            int id = 0; 
+            while (rs.next()) {
+                id = (Integer) rs.getObject("id_ent");
+            }
+            return id;
 
         } catch (SQLException sqle) {
             throw new EntidadeDAOException("Erro ao inserir dados " + sqle);

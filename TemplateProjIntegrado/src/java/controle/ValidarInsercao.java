@@ -25,6 +25,14 @@ public class ValidarInsercao extends HttpServlet {
             insereCat(request, response);
         } else if (metodo.equals("removeCat")) {
             removeCat(request, response);
+        } else if (metodo.equals("insereWiki")) {
+            insereWiki(request, response);
+        } else if (metodo.equals("removeWiki")) {
+            removeWiki(request, response);
+        } else if (metodo.equals("insereCatTipo")) {
+            insereCatTipo(request, response);
+        } else if (metodo.equals("removeCatTipo")) {
+            removeCatTipo(request, response);
         }
     }
 
@@ -36,34 +44,75 @@ public class ValidarInsercao extends HttpServlet {
         categorianome = categorianome.split("/")[1];
         list.add(categoria_lista + "," + tipo_lista + "," + categorianome);
         request.getSession().setAttribute("list_aux", list);
-        request.getSession().setAttribute("janela","b");
+        request.getSession().setAttribute("janela", "b");
         response.sendRedirect("insercao.jsp");
     }
 
     private void remove(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        String tipo_lista = (String)request.getParameter("selected");
+        String tipo_lista = (String) request.getParameter("selected");
         List<String> list = (List<String>) request.getSession().getAttribute("list_aux");
         list.remove(tipo_lista);
         request.getSession().setAttribute("list_aux", list);
-        request.getSession().setAttribute("janela","b");
+        request.getSession().setAttribute("janela", "b");
         response.sendRedirect("insercao.jsp");
     }
-    
-        private void insereCat(HttpServletRequest request, HttpServletResponse response) throws IOException {
+
+    private void insereCat(HttpServletRequest request, HttpServletResponse response) throws IOException {
         List<String> list = (List<String>) request.getSession().getAttribute("list_cat");
         String categoria = request.getParameter("catnome");
         list.add(categoria);
         request.getSession().setAttribute("list_cat", list);
-        request.getSession().setAttribute("janela","a"); 
+        request.getSession().setAttribute("janela", "a");
         response.sendRedirect("insercao.jsp");
     }
 
     private void removeCat(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        String cat_lista = (String)request.getParameter("selected");
+        String cat_lista = (String) request.getParameter("selected");
         List<String> list = (List<String>) request.getSession().getAttribute("list_cat");
         list.remove(cat_lista);
         request.getSession().setAttribute("list_cat", list);
-        request.getSession().setAttribute("janela","a");
+        request.getSession().setAttribute("janela", "a");
+        response.sendRedirect("insercao.jsp");
+    }
+
+    private void insereWiki(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        List<String> list = (List<String>) request.getSession().getAttribute("list_cat");
+        String wiki = request.getParameter("catnome");
+        list.add(wiki);
+        request.getSession().setAttribute("list_cat", list);
+        request.getSession().setAttribute("janela", null);
+        response.sendRedirect("insercao.jsp");
+    }
+
+    private void removeWiki(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String cat_lista = (String) request.getParameter("selected");
+        List<String> list = (List<String>) request.getSession().getAttribute("list_cat");
+        list.remove(cat_lista);
+        request.getSession().setAttribute("list_cat", list);
+        request.getSession().setAttribute("janela", null);
+        response.sendRedirect("insercao.jsp");
+    }
+    
+    private void insereCatTipo(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String tipo_lista = request.getParameter("tipoid");
+        String tiponome = request.getParameter("tiponome");
+        List<String> list = (List<String>) request.getSession().getAttribute("list_aux");
+        String categoria_lista = request.getParameter("catid");
+        String categorianome = request.getParameter("catnome");
+        categorianome = categorianome.split("/")[1];
+        tiponome = tiponome.split(";")[1];
+        list.add(categoria_lista + "," + tiponome + "," + categorianome);
+        request.getSession().setAttribute("list_aux", list);
+        request.getSession().setAttribute("janela", null);
+        response.sendRedirect("insercao.jsp");
+    }
+
+    private void removeCatTipo(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String tipo_lista = (String) request.getParameter("selected");
+        List<String> list = (List<String>) request.getSession().getAttribute("list_aux");
+        list.remove(tipo_lista);
+        request.getSession().setAttribute("list_aux", list);
+        request.getSession().setAttribute("janela", null);
         response.sendRedirect("insercao.jsp");
     }
 }

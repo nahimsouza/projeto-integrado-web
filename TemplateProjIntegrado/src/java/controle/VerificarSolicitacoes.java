@@ -69,7 +69,8 @@ public class VerificarSolicitacoes extends HttpServlet {
         } else if (acao.compareTo("carregaCategorias") == 0 || acao.compareTo("carregaCategoriasConsulta") == 0) {
             acaoCarregaCategorias(request, response);
         } else if (acao.compareTo("carregaTipos") == 0 || acao.compareTo("carregaTiposConsulta") == 0) {
-            int idcat = Integer.parseInt(request.getParameter("cat"));
+            String a = request.getParameter("selectedCat");
+            int idcat = Integer.parseInt(a);
             acaoCarregaTipos(request, response, idcat);
         } else if (acao.compareTo("insCategoria") == 0) {
             List<String> insCat = (List<String>) request.getSession().getAttribute("list_cat");
@@ -413,7 +414,9 @@ public class VerificarSolicitacoes extends HttpServlet {
         RequestDispatcher rd = null;
         try {
             EntidadeDAO entidade = new EntidadeDAO();
-            entidade.inserirEntidade(e);
+            List<String> lista_wiki = (List<String>) request.getSession().getAttribute("list_cat");
+            List<CategoriaTipoBean> lista_cat = (List<CategoriaTipoBean>) request.getSession().getAttribute("list_aux");
+            entidade.inserirEntidade(e, lista_wiki, lista_cat);
             rd = request.getRequestDispatcher("/sucessoCad.jsp");
 
 
