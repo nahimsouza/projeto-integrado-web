@@ -121,7 +121,10 @@ function VerificaCadastro(){
         alert("Data de Nascimento deve estar no formato dd/mm/aaaa!");
         return false;
     }else{
-        return document.getElementById("search-form").submit();
+        debugger;
+        alert("vsf codigo dos infernos");
+        return document.getElementById("search-form-Cadastro").submit();
+        alert("e outra vez");
     }
 }
 

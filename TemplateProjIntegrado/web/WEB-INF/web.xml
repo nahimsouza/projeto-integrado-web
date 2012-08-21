@@ -18,7 +18,7 @@
     </servlet>
     <servlet>
         <servlet-name>ValidarCadastro</servlet-name>
-        <servlet-class>controle.ValidarInsercao</servlet-class>
+        <servlet-class>controle.ValidarCadastro</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ValidarAltCadastro</servlet-name>

@@ -158,7 +158,7 @@ public class UsuarioDAO {
 
         try {
             //String sql = "UPDATE usuario SET tipo_usuario='Colaborador' WHERE email='" + email + "'";
-            String SQL = "EXEC usp_aceitar_usuario '" + email + "'";
+            String SQL = "EXEC usp_alt_tipo_usuario '" + email + "'";
             conn = this.conn;
             ps = conn.prepareStatement(SQL);
             ps.executeUpdate();
