@@ -26,31 +26,49 @@
     Descrição <br /> <textarea id="description" name ="descricao" cols="35" rows="5"></textarea>
     <br /><br /> 
 
-    Wikikey <br /><input id="wiki" name="wikikey" type="text" size="28" maxlength="30"/> <input type="button" value="Adicionar" onclick="wikiListInsere();"/>
+    Wikikey <br /><input id="wiki" name="wikikey" type="text" size="28" maxlength="30" onblur="document.getElementById('catnome').value = this.value;" /> 
+    <input type="button" value="Adicionar" onclick="VerificaWikiIns();"/>
     <br /><br />
     <select id ="wikis" name="wikis" size="5">
+            <%
+                List<String> lista_a = ( List<String>) request.getSession().getAttribute("list_cat");
+                if(lista_a != null){ 
+                    for(String i : lista_a){
+            %>
+            <option value='<%=i%>' SELECTED><%=i%></option>               
+            <% } } %>
     </select>
     <input type="button" value="Remover" onclick="wikiListRemove()"/>
 
     <br /><br />Categoria/Tipo * <br /> <!-- Precisa pegar do BD -->
 
-    <select id="categoria" name="categoria" onchange="chamaServlet(carregaTipos,'carregaTipos')">
+    <select id="categoria" name="categoria" onchange="document.getElementById('selectedCat').value = this.selectedIndex; chamaServlet(carregaTipos, 'carregaTipos'); " >
 
     </select>
 
     <!-- Precisa pegar do BD -->
-    <select id="tipo" name="tipo">
+    <select id="tipo" name="tipo" onblur="document.getElementById('tipoid').value = this.selectedIndex; document.getElementById('tiponome').value = this[this.selectedIndex].value;">
 
     </select>
-    <input type="button" name="tipoButton" value="Adicionar" onclick="tipoListInsere();"/>
+    <input type="button" name="tipoButton" value="Adicionar" onclick="VerificaListIns();"/>
     <br /><br />
     <select id="listaTipos" name="tipos" size="5">
+            <%
+                List<String> lista_b = ( List<String>) request.getSession().getAttribute("list_aux");
+                if(lista_b != null){ 
+                    for(String i : lista_b){
+                        String[] a = i.split(",");
+                        String b = "/"+a[2]+"/"+a[1];
+            %>
+            <option value='<%=i%>' SELECTED><%=b%></option>               
+            <% } } %>
     </select>
     <input type="button" value="Remover" onclick="tipoListRemove();"/>
 
     <br /><br /><br /><br />
     <input type="hidden" name="acao" id="acao" value="insEntidade" />
     <input type="hidden" name="tipoid" id="tipoid" />
+    <input type="hidden" name="tiponome" id="tiponome" />
     <input type="hidden" name="catid" id="catid" />
     <input type="hidden" name="catnome" id="catnome" />
     <input type="hidden" name="selected" id="selected" />

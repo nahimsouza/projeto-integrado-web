@@ -158,7 +158,6 @@ public class CategoriaTipoDAO {
         }
     }// fim
 
-
     public void inserirTipo(List<CategoriaTipoBean> t) throws CategoriaTipoDAOException, UsuarioDAOException {
 
         PreparedStatement ps = null;
@@ -200,16 +199,17 @@ public class CategoriaTipoDAO {
             ConnectionUsuarioFactory.closeConnection(conn, ps);
         }
     }
-     public void alterarCategoria(CategoriaTipoBean novaCategoria,CategoriaTipoBean categoria) throws CategoriaTipoDAOException, UsuarioDAOException {
+
+    public void alterarCategoria(CategoriaTipoBean novaCategoria, CategoriaTipoBean categoria) throws CategoriaTipoDAOException, UsuarioDAOException {
         PreparedStatement ps = null;
         Connection conn = null;
-        
+
         if (categoria == null) {
             throw new CategoriaTipoDAOException("O valor passado não pode ser nulo");
         }
 
         try {
-           String SQL = "UPDATE categoria SET categoria='"+ novaCategoria.getCategoria() +"' WHERE categoria='" + categoria.getCategoria() + "'";
+            String SQL = "UPDATE categoria SET categoria='" + novaCategoria.getCategoria() + "' WHERE categoria='" + categoria.getCategoria() + "'";
             conn = this.conn;
             ps = conn.prepareStatement(SQL);
             ps.executeUpdate();
@@ -220,16 +220,17 @@ public class CategoriaTipoDAO {
             ConnectionUsuarioFactory.closeConnection(conn, ps);
         }
     }
-       public void alterarTipo(CategoriaTipoBean novoTipo,CategoriaTipoBean tipo) throws CategoriaTipoDAOException, UsuarioDAOException {
+
+    public void alterarTipo(CategoriaTipoBean novoTipo, CategoriaTipoBean tipo) throws CategoriaTipoDAOException, UsuarioDAOException {
         PreparedStatement ps = null;
         Connection conn = null;
-        
+
         if (novoTipo == null) {
             throw new CategoriaTipoDAOException("O valor passado não pode ser nulo");
         }
 
         try {
-           String SQL = "UPDATE tipo SET tipo='"+ novoTipo.getTipo() +"' WHERE tipo='" + tipo.getTipo() + "'";
+            String SQL = "UPDATE tipo SET tipo='" + novoTipo.getTipo() + "' WHERE tipo='" + tipo.getTipo() + "'";
             conn = this.conn;
             ps = conn.prepareStatement(SQL);
             ps.executeUpdate();
@@ -240,14 +241,15 @@ public class CategoriaTipoDAO {
             ConnectionUsuarioFactory.closeConnection(conn, ps);
         }
     }
-       public void removerTipo(CategoriaTipoBean tipo) throws CategoriaTipoDAOException, UsuarioDAOException {
+
+    public void removerTipo(CategoriaTipoBean tipo) throws CategoriaTipoDAOException, UsuarioDAOException {
         PreparedStatement ps = null;
         Connection conn = null;
-        
-       
+
+
 
         try {
-           String SQL = "";
+            String SQL = "";
             conn = this.conn;
             ps = conn.prepareStatement(SQL);
             ps.executeUpdate();
@@ -258,14 +260,15 @@ public class CategoriaTipoDAO {
             ConnectionUsuarioFactory.closeConnection(conn, ps);
         }
     }
-       public void removerCategoria(CategoriaTipoBean categoria) throws CategoriaTipoDAOException, UsuarioDAOException {
+
+    public void removerCategoria(CategoriaTipoBean categoria) throws CategoriaTipoDAOException, UsuarioDAOException {
         PreparedStatement ps = null;
         Connection conn = null;
-        
-       
+
+
 
         try {
-           String SQL = "";
+            String SQL = "";
             conn = this.conn;
             ps = conn.prepareStatement(SQL);
             ps.executeUpdate();
@@ -276,5 +279,44 @@ public class CategoriaTipoDAO {
             ConnectionUsuarioFactory.closeConnection(conn, ps);
         }
     }
-       
+
+    public void inserirTipoEntidade(int id_ent, int id_tipo) throws CategoriaTipoDAOException, UsuarioDAOException {
+
+        PreparedStatement ps = null;
+        Connection conn = null;
+        ResultSet rs = null;
+        try {
+            String SQL = "EXEC usp_ins_tipo_entidade " + id_ent + "," + id_tipo;
+            conn = this.conn;
+            ps = conn.prepareStatement(SQL);
+            ps.executeUpdate();
+
+        } catch (SQLException sqle) {
+            throw new CategoriaTipoDAOException(sqle);
+        } finally {
+            ConnectionUsuarioFactory.closeConnection(conn, ps, rs);
+        }
+    }
+
+    public int getIdTipo(CategoriaTipoBean c) throws EntidadeDAOException, UsuarioDAOException {
+        PreparedStatement ps = null;
+        Connection conn = null;
+        ResultSet rs = null;
+        try {
+            String SQL = "EXEC usp_cons_id_tipo '" + c.getTipo() + "'";
+            conn = this.conn;
+            ps = conn.prepareStatement(SQL);
+            rs = ps.executeQuery();
+            int id = 0;
+            while (rs.next()) {
+                id = (Integer) rs.getObject("id_tipo");
+            }
+            return id;
+
+        } catch (SQLException sqle) {
+            throw new EntidadeDAOException("Erro ao inserir dados " + sqle);
+        } finally {
+            ConnectionUsuarioFactory.closeConnection(conn, ps);
+        }
+    }
 }

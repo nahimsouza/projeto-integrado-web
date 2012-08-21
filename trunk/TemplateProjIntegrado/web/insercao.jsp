@@ -85,6 +85,7 @@
 
             <%@include file="include_files/bottom.jsp" %>
         </section>
-        <%@include file="include_files/footer.jsp" %>
+        <%@include file="include_files/footer.jsp" %>  
+    <input type="hidden" name="selectedCat" id="selectedCat" />
     </body>
 </html>
