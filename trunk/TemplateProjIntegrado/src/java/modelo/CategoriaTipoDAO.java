@@ -30,7 +30,7 @@ public class CategoriaTipoDAO {
         try {
             // Busca ABSOLUTA por entidade:
             //String SQL = "SELECT displayname, descricao FROM entidade WHERE displayname = '" + displayname + "'";
-            String SQL = "EXEC usp_cons_busca_absoluta_tipo'/" + tipo + "'";
+            String SQL = "EXEC usp_cons_absoluta_tipo'/" + tipo + "'";
             conn = this.conn;
             ps = conn.prepareStatement(SQL);
             rs = ps.executeQuery();
@@ -59,7 +59,7 @@ public class CategoriaTipoDAO {
         try {
             // Busca ABSOLUTA por entidade:
             //String SQL = "SELECT displayname, descricao FROM entidade WHERE displayname = '" + displayname + "'";
-            String SQL = "EXEC usp_cons_busca_absoluta_categoria'/" + cat + "'";
+            String SQL = "EXEC usp_cons_absoluta_categoria'/" + cat + "'";
             conn = this.conn;
             ps = conn.prepareStatement(SQL);
             rs = ps.executeQuery();
@@ -132,7 +132,7 @@ public class CategoriaTipoDAO {
         }
     }// fim
 
-    public List<CategoriaTipoBean> listaTodosTipos() throws CategoriaTipoDAOException, UsuarioDAOException {
+  /*  public List<CategoriaTipoBean> listaTodosTipos() throws CategoriaTipoDAOException, UsuarioDAOException {
         PreparedStatement ps = null;
         Connection conn = null;
         ResultSet rs = null;
@@ -157,7 +157,7 @@ public class CategoriaTipoDAO {
             ConnectionUsuarioFactory.closeConnection(conn, ps, rs);
         }
     }// fim
-
+*/
     public void inserirTipo(List<CategoriaTipoBean> t) throws CategoriaTipoDAOException, UsuarioDAOException {
 
         PreparedStatement ps = null;
@@ -166,7 +166,7 @@ public class CategoriaTipoDAO {
         try {
             for (CategoriaTipoBean temp : t) {
                 int id = temp.getIdCategoria();
-                String SQL = "EXEC usp_ins_tipo '" + temp.getTipo() + "'," + id;
+                String SQL = "EXEC usp_ins_tipo '/" + temp.getTipo() + "'," + id;
                 conn = this.conn;
                 ps = conn.prepareStatement(SQL);
                 ps.executeUpdate();
@@ -187,7 +187,7 @@ public class CategoriaTipoDAO {
         }
 
         try {
-            String SQL = "EXEC usp_ins_categoria'" + categoria + "'";
+            String SQL = "EXEC usp_ins_categoria'/" + categoria + "'";
             conn = this.conn;
             ps = conn.prepareStatement(SQL);
             ps.executeUpdate();
@@ -208,7 +208,8 @@ public class CategoriaTipoDAO {
         }
 
         try {
-            String SQL = "UPDATE categoria SET categoria='" + novaCategoria.getCategoria() + "' WHERE categoria='" + categoria.getCategoria() + "'";
+            // MUDAR O SQL            
+            String SQL = "UPDATE categoria SET categoria='" + novaCategoria.getCategoria() + "' WHERE id_cat=" + categoria.getIdCategoria();
             conn = this.conn;
             ps = conn.prepareStatement(SQL);
             ps.executeUpdate();
@@ -229,7 +230,8 @@ public class CategoriaTipoDAO {
         }
 
         try {
-            String SQL = "UPDATE tipo SET tipo='" + novoTipo.getTipo() + "' WHERE tipo='" + tipo.getTipo() + "'";
+            // MUDAR O SQL
+            String SQL = "UPDATE tipo SET tipo='" + novoTipo.getTipo() + "' WHERE id_tipo=" + tipo.getIdTipo();
             conn = this.conn;
             ps = conn.prepareStatement(SQL);
             ps.executeUpdate();
@@ -245,10 +247,8 @@ public class CategoriaTipoDAO {
         PreparedStatement ps = null;
         Connection conn = null;
 
-
-
         try {
-            String SQL = "";
+            String SQL = "EXEC usp_rem_tipo " + tipo.getIdTipo();
             conn = this.conn;
             ps = conn.prepareStatement(SQL);
             ps.executeUpdate();
@@ -263,11 +263,9 @@ public class CategoriaTipoDAO {
     public void removerCategoria(CategoriaTipoBean categoria) throws CategoriaTipoDAOException, UsuarioDAOException {
         PreparedStatement ps = null;
         Connection conn = null;
-
-
-
+        
         try {
-            String SQL = "";
+            String SQL = "EXEC usp_rem_categoria " + categoria.getIdCategoria();
             conn = this.conn;
             ps = conn.prepareStatement(SQL);
             ps.executeUpdate();

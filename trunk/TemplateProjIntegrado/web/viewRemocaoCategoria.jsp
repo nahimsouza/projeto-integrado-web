@@ -9,45 +9,45 @@
 <html>
     <%@include file="include_files/head.jsp" %> <%-- inserido --%>
     <body>
-       <% //Recupera a Session
+        <% //Recupera a Session
             try {
                 HttpSession sessao = request.getSession(false);
                 UsuarioBean log = null;
                 if (sessao != null) {
                     log = (UsuarioBean) sessao.getAttribute("Usuario");
                     String tipo = log.getTipo();
-            if (tipo.equals("Colaborador")) {
+                    if (tipo.equals("Colaborador")) {
         %>   
-                <jsp:include page="include_files/colabHeaderAlt.jsp" />  
-        <% 
-            } else if (tipo.equals("Administrador")) {
+        <jsp:include page="include_files/colabHeaderAlt.jsp" />  
+        <%        } else if (tipo.equals("Administrador")) {
         %>   
-                <jsp:include page="include_files/adminHeaderAlt.jsp" />  
-            <%} }   
-           } catch (NullPointerException e) {
-                 response.sendRedirect("oops.jsp");
-         }%>
-        
+        <jsp:include page="include_files/adminHeaderAlt.jsp" />  
+        <%}
+                }
+            } catch (NullPointerException e) {
+                response.sendRedirect("oops.jsp");
+                }%>
+
     <section id="content"><%-- inserido --%>
         <div class="middle"><%-- inserido --%>
             <div class="container"><%-- inserido --%>
                 <div class="wrapper"><%-- inserido --%>
-                        <%
-                            List<CategoriaTipoBean> listaCategoria = (List<CategoriaTipoBean>) request.getAttribute("CategoriaTipoBean");
+                    <%
+                        List<CategoriaTipoBean> listaCategoria = (List<CategoriaTipoBean>) request.getAttribute("CategoriaTipoBean");
 
-                          if (listaCategoria == null) {
+                        if (listaCategoria == null) {
 
-                        %>
-                        <h2> Não existem itens cadastrados!!! </h2>
-                        <% } // fim do if
-                        else if (listaCategoria.isEmpty()) {
+                    %>
+                    <h2> Não existem itens cadastrados!!! </h2>
+                    <% } // fim do if
+                    else if (listaCategoria.isEmpty()) {
 
-                        %>
-                        <h2> Não existem itens cadastrados!!! </h2>
-                        <% } // fim do if
-                        else { // caso existam registros
+                    %>
+                    <h2> Não existem itens cadastrados!!! </h2>
+                    <% } // fim do if
+                    else { // caso existam registros
 
-                        %>
+                    %>
 
                         <h2> Resultado da consulta: </h2>
                        <form id="search-form" method="get" action="VerificarSolicitacoes">
@@ -71,10 +71,10 @@
                             <% }%>
 
                         </table>
-                       </form>
-                        <% }%>
-                        <br>
-                        <p><a href="consulta.jsp"> Nova Consulta </a> </p>
+                    </form>
+                    <% }%>
+                    <br>
+                    <p><a href="remocao.jsp"> Nova Consulta </a> </p>
 
 
                 </div><%-- inserido --%>
@@ -86,8 +86,3 @@
     <%@include file="include_files/footer.jsp" %><%-- inserido --%>
 </body>
 </html>
-
-
-
-
-

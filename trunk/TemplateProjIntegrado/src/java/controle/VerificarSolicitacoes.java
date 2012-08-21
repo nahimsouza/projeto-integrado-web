@@ -151,10 +151,10 @@ public class VerificarSolicitacoes extends HttpServlet {
         } else if (acao.compareTo("remCategoria") == 0) {
             String desCat = request.getParameter("nomeCategoria");
             acaoConsultaRemoverCategoria(request, response, desCat);
-        }else if (acao.compareTo("remEntidade") == 0) {
+        } else if (acao.compareTo("remEntidade") == 0) {
             String desEnt = request.getParameter("nomeEntidade");
             acaoConsultaRemoverEntidade(request, response, desEnt);
-        }else if (acao.compareTo("altEntidade") == 0) {
+        } else if (acao.compareTo("altEntidade") == 0) {
             String desEnt = request.getParameter("nomeCategoria");
             acaoConsultaAlterarEntidade(request, response, desEnt);
         }
@@ -440,9 +440,9 @@ public class VerificarSolicitacoes extends HttpServlet {
             List<String> lista_wiki = (List<String>) request.getSession().getAttribute("list_cat");
             List<String> lista_cat = (List<String>) request.getSession().getAttribute("list_aux");
             List<CategoriaTipoBean> list = new ArrayList<CategoriaTipoBean>();
-            for(String w : lista_cat){
+            for (String w : lista_cat) {
                 String[] v = w.split(",");
-                list.add(new CategoriaTipoBean(v[0],v[1]));
+                list.add(new CategoriaTipoBean(v[0], v[1]));
             }
             entidade.inserirEntidade(e, lista_wiki, list);
             rd = request.getRequestDispatcher("/sucessoCad.jsp");
@@ -479,9 +479,11 @@ public class VerificarSolicitacoes extends HttpServlet {
             throws ServletException, IOException, UsuarioDAOException {
 
         HttpSession sessao = request.getSession(false);
-        CategoriaTipoBean categ = new CategoriaTipoBean(desCat);
-        CategoriaTipoBean oldcateg = new CategoriaTipoBean(sessao.getAttribute("Categoria").toString());
+        int idCateg = (Integer) sessao.getAttribute("IdCat");
+        CategoriaTipoBean categ = new CategoriaTipoBean(desCat, idCateg);
+        CategoriaTipoBean oldcateg = new CategoriaTipoBean(sessao.getAttribute("Categoria").toString(), idCateg);
         sessao.removeAttribute("Categoria");
+        sessao.removeAttribute("IdCat");
 
 
         try {
@@ -494,11 +496,12 @@ public class VerificarSolicitacoes extends HttpServlet {
         } catch (CategoriaTipoDAOException e) {
             request.setAttribute("CategoriaTipoBean", null);
         }
-        //UsuarioBean user = usuario.consultarUsuario(email);
-        //request.setAttribute("UsuarioBean", user);
 
+        RequestDispatcher rd = null;
 
+        rd = request.getRequestDispatcher("/sucessoOperacao2.jsp");
 
+        rd.forward(request, response);
     }
 
     private void acaoConsultaAlterarTipo(HttpServletRequest request, HttpServletResponse response, String desTipo)
@@ -523,12 +526,12 @@ public class VerificarSolicitacoes extends HttpServlet {
     private void acaoAlterarTipo(HttpServletRequest request, HttpServletResponse response, String desTipo)
             throws ServletException, IOException, UsuarioDAOException {
 
-
         HttpSession sessao = request.getSession(false);
-        CategoriaTipoBean tip = new CategoriaTipoBean(desTipo);
-        CategoriaTipoBean oldtip = new CategoriaTipoBean(sessao.getAttribute("Tipo").toString());
+        int idTipo = (Integer) sessao.getAttribute("IdTipo");
+        CategoriaTipoBean tip = new CategoriaTipoBean(idTipo, desTipo);
+        CategoriaTipoBean oldtip = new CategoriaTipoBean(idTipo, sessao.getAttribute("Tipo").toString());
         sessao.removeAttribute("Tipo");
-
+        sessao.removeAttribute("IdTipo");
 
         try {
 
@@ -550,7 +553,7 @@ public class VerificarSolicitacoes extends HttpServlet {
         try {
             CategoriaTipoDAO tipo = new CategoriaTipoDAO();
             tipo.inserirTipo(l);
-            rd = request.getRequestDispatcher("/sucessoCad.jsp");
+            rd = request.getRequestDispatcher("sucessoOperacao2.jsp");
             request.getSession().setAttribute("list_aux", null);
             request.getSession().setAttribute("janela", null);
 
@@ -606,55 +609,52 @@ public class VerificarSolicitacoes extends HttpServlet {
     private void acaoRemoverTipo(HttpServletRequest request, HttpServletResponse response, int desTipo)
             throws ServletException, IOException, UsuarioDAOException {
 
-
-
         CategoriaTipoBean tip = new CategoriaTipoBean(desTipo, "Tipo");
-
-
-
+        RequestDispatcher rd = null;
 
         try {
-
             CategoriaTipoDAO tipo = new CategoriaTipoDAO();
-            tipo.removerTipo(tip); //temos que verificar com o Nahim o que é isso???
-
+            tipo.removerTipo(tip);
             request.setAttribute("CategoriaTipoBean", tip);
-
+            rd = request.getRequestDispatcher("/sucessoOperacao2.jsp");
         } catch (CategoriaTipoDAOException e) {
             request.setAttribute("CategoriaTipoBean", null);
+            rd = request.getRequestDispatcher("/falhaOperacao.jsp");
         }
-
-
+        
+        rd.forward(request, response);
 
     }
 
-    private void acaoRemoverCategoria(HttpServletRequest request, HttpServletResponse response, int desCat)
+    private void acaoRemoverCategoria(HttpServletRequest request, HttpServletResponse response, int idCat)
             throws ServletException, IOException, UsuarioDAOException {
 
+        CategoriaTipoBean categoria = new CategoriaTipoBean("Categoria", idCat);
 
-
-        CategoriaTipoBean categoria = new CategoriaTipoBean("Categoria", desCat);
-
-
-
+        RequestDispatcher rd = null;
+        
         try {
 
             CategoriaTipoDAO cat = new CategoriaTipoDAO();
-            cat.removerCategoria(categoria); //temos que verificar com o Nahim o que é isso???
-
+            cat.removerCategoria(categoria);
             request.setAttribute("CategoriaTipoBean", categoria);
+            rd = request.getRequestDispatcher("/sucessoOperacao2.jsp");
 
         } catch (CategoriaTipoDAOException e) {
             request.setAttribute("CategoriaTipoBean", null);
+            rd = request.getRequestDispatcher("/falhaOperacao.jsp");
         }
+
+        rd.forward(request, response);
+
     }
-    
+
     private void acaoConsultaAlterarEntidade(HttpServletRequest request, HttpServletResponse response, String desEnt)
             throws ServletException, IOException {
 
-        
-        
-              try {
+
+
+        try {
             EntidadeDAO entidade = new EntidadeDAO();
             List<EntidadeBean> lista = (List<EntidadeBean>) entidade.listaEntidades(desEnt);
             request.setAttribute("EntidadeBean", lista);
@@ -669,15 +669,14 @@ public class VerificarSolicitacoes extends HttpServlet {
         rd = request.getRequestDispatcher("/viewAlteracaoEntidade.jsp");
 
         rd.forward(request, response);
-    
+
 
     }
-      private void acaoConsultaRemoverEntidade(HttpServletRequest request, HttpServletResponse response, String desEnt)
+
+    private void acaoConsultaRemoverEntidade(HttpServletRequest request, HttpServletResponse response, String desEnt)
             throws ServletException, IOException {
 
-        
-        
-              try {
+        try {
             EntidadeDAO entidade = new EntidadeDAO();
             List<EntidadeBean> lista = (List<EntidadeBean>) entidade.listaEntidades(desEnt);
             request.setAttribute("EntidadeBean", lista);
@@ -692,18 +691,14 @@ public class VerificarSolicitacoes extends HttpServlet {
         rd = request.getRequestDispatcher("/viewRemocaoEntidade.jsp");
 
         rd.forward(request, response);
-    
+
 
     }
-       private void acaoRemoverEntidade(HttpServletRequest request, HttpServletResponse response, int desEnt)
+
+    private void acaoRemoverEntidade(HttpServletRequest request, HttpServletResponse response, int desEnt)
             throws ServletException, IOException, UsuarioDAOException {
 
-
-
         EntidadeBean ent = new EntidadeBean(desEnt);
-
-
-
 
         try {
 
@@ -715,9 +710,5 @@ public class VerificarSolicitacoes extends HttpServlet {
         } catch (EntidadeDAOException e) {
             request.setAttribute("EntidadeBean", null);
         }
-
-
-
     }
-
 }

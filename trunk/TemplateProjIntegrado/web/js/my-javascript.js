@@ -541,6 +541,8 @@ function RemoverTipo(a){
 
 function RemoverCategoria(a){
 
+    alert("Remover Categoria");
+
     var valor=document.getElementsByName('valor');
     valor.value=a;
     document.getElementById("search-form").submit();
