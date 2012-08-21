@@ -42,7 +42,7 @@
 
     <br /><br />Categoria/Tipo * <br /> <!-- Precisa pegar do BD -->
 
-    <select id="categoria" name="categoria" onchange="document.getElementById('selectedCat').value = this.selectedIndex; chamaServlet(carregaTipos, 'carregaTipos'); " >
+    <select id="categoria" name="categoria" onchange="chamaServlet2(carregaTipos, 'carregaTipos');" onblur="document.getElementById('catid').value = this.selectedIndex; document.getElementById('catnome').value = this[this.selectedIndex].value;" >
 
     </select>
 

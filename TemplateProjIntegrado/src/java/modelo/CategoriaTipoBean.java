@@ -35,7 +35,6 @@ public class CategoriaTipoBean {
         this.tipo = Tipo;
         this.idCategoria = Integer.parseInt(categoria);
     }
-
     public String getCategoria() {
         return categoria;
     }

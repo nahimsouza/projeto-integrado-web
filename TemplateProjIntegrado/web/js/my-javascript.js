@@ -213,6 +213,33 @@ function chamaServlet(param,param2){
     }
 }
 
+function chamaServlet2(param,param2){
+        
+    try {
+        try{
+            var dado = "acao="+param2+"&cat="+ document.getElementById("categoria").selectedIndex;
+        }catch(e){
+            // funciona quando nao tem o parametro cat
+            dado = "acao="+param2;
+        }
+        xmlHttpReq = new XMLHttpRequest();  // Não funciona em versoes antigas do IE
+
+        // Abre uma conexão com o servidor usando o método GET
+        xmlHttpReq.open("POST",'VerificarSolicitacoes',true);
+        
+        xmlHttpReq.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+
+        // Define uma função que o servidor chama qdo estiver pronto (recebida como parametro)
+        xmlHttpReq.onreadystatechange = param;
+
+        // Faz a requisição ao servidor
+        xmlHttpReq.send(dado);
+    } catch(exception){
+        alert("Requisição falhou");
+    }
+}
+
+
 function carregaCategorias(){
     
     if (xmlHttpReq.readyState==4 && xmlHttpReq.status==200)
