@@ -35,6 +35,22 @@ public class VerificarSolicitacoes extends HttpServlet {
             int tipoNP = Integer.parseInt(request.getParameter("tipoNP"));
             String pag = request.getParameter("pag");
             acaoConsultaAvancada(request, response, tipoP, tipoNP, pag);
+        } else if (acao.compareTo("remResultadoCategoria") == 0) {
+            int id = Integer.parseInt(request.getParameter("valor"));
+            try {
+                acaoRemoverCategoria(request, response, id);
+            } catch (UsuarioDAOException ex) {
+                Logger.getLogger(VerificarSolicitacoes.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        } else if (acao.compareTo("remResultadoTipo") == 0) {
+            int id = Integer.parseInt(request.getParameter("valor"));
+            try {
+                acaoRemoverTipo(request, response, id);
+            } catch (UsuarioDAOException ex) {
+                Logger.getLogger(VerificarSolicitacoes.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
         }
 
 
@@ -85,10 +101,10 @@ public class VerificarSolicitacoes extends HttpServlet {
             List<CategoriaTipoBean> list = new ArrayList<CategoriaTipoBean>();
             insTipo = (List<String>) request.getSession().getAttribute("list_aux");
             if (insTipo != null && !insTipo.isEmpty()) {
-            for (String i : insTipo) {
+                for (String i : insTipo) {
                     temp = i.split(",");
-                    list.add(new CategoriaTipoBean(temp[0],temp[1]));
-                } 
+                    list.add(new CategoriaTipoBean(temp[0], temp[1]));
+                }
                 acaoInserirTipo(request, response, list);
             } else {
                 response.sendRedirect("oops.jsp");
@@ -106,44 +122,29 @@ public class VerificarSolicitacoes extends HttpServlet {
             acaoConsultaAlterarCategoria(request, response, desCat);
         } else if (acao.compareTo("altResultadoCategoria") == 0) {
             String desCat = request.getParameter("ncateg");
-                    try {
-                        acaoAlterarCategoria(request, response, desCat);
-                    } catch (UsuarioDAOException ex) {
-                        Logger.getLogger(VerificarSolicitacoes.class.getName()).log(Level.SEVERE, null, ex);
-                    }
+            try {
+                acaoAlterarCategoria(request, response, desCat);
+            } catch (UsuarioDAOException ex) {
+                Logger.getLogger(VerificarSolicitacoes.class.getName()).log(Level.SEVERE, null, ex);
+            }
         } else if (acao.compareTo("altTipo") == 0) {
             String desTipo = request.getParameter("nomeTipo");
             acaoConsultaAlterarTipo(request, response, desTipo);
         } else if (acao.compareTo("altResultadoTipo") == 0) {
             String desTipo = request.getParameter("ntipo");
-                    try {
-                        acaoAlterarTipo(request, response, desTipo);
-                    } catch (UsuarioDAOException ex) {
-                        Logger.getLogger(VerificarSolicitacoes.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-        }else if (acao.compareTo("remTipo") == 0) {
+            try {
+                acaoAlterarTipo(request, response, desTipo);
+            } catch (UsuarioDAOException ex) {
+                Logger.getLogger(VerificarSolicitacoes.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else if (acao.compareTo("remTipo") == 0) {
             String desTipo = request.getParameter("nomeTipo");
             acaoConsultaRemoverTipo(request, response, desTipo);
-        }else if (acao.compareTo("remCategoria") == 0) {
+        } else if (acao.compareTo("remCategoria") == 0) {
             String desCat = request.getParameter("nomeCategoria");
             acaoConsultaRemoverCategoria(request, response, desCat);
         }
-        else if (acao.compareTo("remResultadoCategoria") == 0) {
-            String desCat = request.getParameter("name");
-                    try {
-                        acaoRemoverCategoria(request, response, desCat);
-                    } catch (UsuarioDAOException ex) {
-                        Logger.getLogger(VerificarSolicitacoes.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-        }else if (acao.compareTo("remResultadoTipo") == 0) {
-            String desTipo;
-                    desTipo = request.getParameter("valor");
-                    try {
-                        acaoRemoverTipo(request, response, desTipo);
-                    } catch (UsuarioDAOException ex) {
-                        Logger.getLogger(VerificarSolicitacoes.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-        }
+
     }
 
     private void acaoConsultarEntidade(HttpServletRequest request, HttpServletResponse response, String displayname)
@@ -167,7 +168,7 @@ public class VerificarSolicitacoes extends HttpServlet {
 
     }
 
-        private void acaoConsultarEntidade(HttpServletRequest request, HttpServletResponse response, String displayname, String pag)
+    private void acaoConsultarEntidade(HttpServletRequest request, HttpServletResponse response, String displayname, String pag)
             throws ServletException, IOException {
 
         try {
@@ -188,7 +189,7 @@ public class VerificarSolicitacoes extends HttpServlet {
         rd.forward(request, response);
 
     }
-    
+
     private void acaoConsultarEntidadeR(HttpServletRequest request, HttpServletResponse response, String displayname)
             throws ServletException, IOException {
 
@@ -347,7 +348,7 @@ public class VerificarSolicitacoes extends HttpServlet {
         String html = "<option value=''></option>";
         for (Iterator i = lista.iterator(); i.hasNext();) {
             CategoriaTipoBean l = (CategoriaTipoBean) i.next();
-            html += "<option name='" + l.getIdCategoria() + "' value='" + l.getCategoria() +"'>" + l.getCategoria() + "</option>";
+            html += "<option name='" + l.getIdCategoria() + "' value='" + l.getCategoria() + "'>" + l.getCategoria() + "</option>";
         }
 
         response.getWriter().write(html);
@@ -398,7 +399,7 @@ public class VerificarSolicitacoes extends HttpServlet {
 
         RequestDispatcher rd = null;
         try {
-            for(String i : l){
+            for (String i : l) {
                 CategoriaTipoDAO tipo = new CategoriaTipoDAO();
                 tipo.inserirCategoria(i);
             }
@@ -582,15 +583,15 @@ public class VerificarSolicitacoes extends HttpServlet {
         rd.forward(request, response);
 
     }
-    
-       private void acaoRemoverTipo(HttpServletRequest request, HttpServletResponse response, String desTipo)
-            throws ServletException, IOException, UsuarioDAOException{
+
+    private void acaoRemoverTipo(HttpServletRequest request, HttpServletResponse response, int desTipo)
+            throws ServletException, IOException, UsuarioDAOException {
 
 
-       
-        CategoriaTipoBean tip = new CategoriaTipoBean(desTipo);
-        
-      
+
+        CategoriaTipoBean tip = new CategoriaTipoBean(desTipo, "Tipo");
+
+
 
 
         try {
@@ -603,17 +604,18 @@ public class VerificarSolicitacoes extends HttpServlet {
         } catch (CategoriaTipoDAOException e) {
             request.setAttribute("CategoriaTipoBean", null);
         }
- 
+
 
 
     }
-       private void acaoRemoverCategoria(HttpServletRequest request, HttpServletResponse response, String desCat)
-            throws ServletException, IOException , UsuarioDAOException{
+
+    private void acaoRemoverCategoria(HttpServletRequest request, HttpServletResponse response, int desCat)
+            throws ServletException, IOException, UsuarioDAOException {
 
 
-        
-        CategoriaTipoBean categoria = new CategoriaTipoBean(desCat);
-       
+
+        CategoriaTipoBean categoria = new CategoriaTipoBean("Categoria", desCat);
+
 
 
         try {
@@ -627,6 +629,4 @@ public class VerificarSolicitacoes extends HttpServlet {
             request.setAttribute("CategoriaTipoBean", null);
         }
     }
-
-
 }

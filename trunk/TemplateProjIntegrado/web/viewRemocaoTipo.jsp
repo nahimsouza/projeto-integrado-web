@@ -50,9 +50,9 @@
                         %>
 
                         <h2> Resultado da consulta: </h2>
-                       <form id="search-form" method="post" action="VerificarSolicitacoes">
+                       <form id="search-form" method="get" action="VerificarSolicitacoes">
                            <input type="hidden" value="remResultadoTipo" name="acao" />
-                           <input type="hidden" value="nao funcionou" name="valor" />
+                           
                            <table border=1>
                             <tr>
                                 <td> Id Tipo </td>
@@ -65,8 +65,7 @@
                             <tr>
                                 <td><%= l.getIdTipo() %></td>
                                 <td><%= l.getTipo() %></td>
-                                <td>
-                                <input type='button' value='Remover' onclick='RemoverTipo(<%=l.getIdTipo()%>);'/></td>
+                                <td><a href="VerificarSolicitacoes?acao=remResultadoTipo&valor=<%=l.getIdTipo()%>">Remover</a></td>
 
                             </tr>
                             <% }%>
