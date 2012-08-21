@@ -62,7 +62,8 @@
                             <tr>
                                 <td><%= l.getIdCategoria() %></td>
                                 <td><%= l.getCategoria() %></td>
-                                <td><% session.setAttribute("Categoria", l.getCategoria());
+                                <td><% String temp []= l.getCategoria().toString().split("/");
+                                session.setAttribute("Categoria", temp[1]);
                                 out.println("<a href='altResultadoCategoria.jsp'>Alterar</a>");%></td>
 
                             </tr>

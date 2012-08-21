@@ -40,8 +40,8 @@
                         <fieldset> 
                             (*) = Preenchimento obrigatório<br><br>
                             Tipo* <br />
-                            <% String temp []= session.getAttribute("Tipo").toString().split("/");
-                            out.println("<input type='text' id='ntipo' value="+ temp[1] + "/>");%>
+                            <%
+                            out.println("<input type='text' name ='ntipo' id='ntipo' value="+ session.getAttribute("Tipo") + " />");%>
                             <input type="submit" value="Alterar"  />
                             <input type="hidden" value="altResultadoTipo" name="acao"/>
 
