@@ -134,7 +134,7 @@ public class EntidadeDAO {
             for (CategoriaTipoBean a : l) {
                 tipo = new CategoriaTipoDAO();
                 int id_tipo = tipo.getIdTipo(a.getTipo());
-                tipo.inserirTipoEntidade(id_ent, id_tipo);
+                tipo.inserirTipoEntidade(5, 2);
             }
 
 
