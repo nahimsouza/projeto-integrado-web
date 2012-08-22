@@ -1,0 +1,61 @@
+
+<%@page import="modelo.UsuarioBean"%>
+<%@page import="modelo.CategoriaTipoBean"%>
+<%@page language="java" contentType="text/html; charset=ISO-8859-1"
+        pageEncoding="ISO-8859-1"%>
+<%@page import="modelo.EntidadeBean" %>
+<%@page import="java.util.*" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+    <%@include file="include_files/head.jsp" %> <%-- inserido --%>
+    <body>
+        <%
+         EntidadeBean lEntidade = (EntidadeBean) request.getAttribute("l");
+        //Recupera a Session
+            try {
+                HttpSession sessao = request.getSession(false);
+                UsuarioBean log = null;
+                if (sessao != null) {
+                    log = (UsuarioBean) sessao.getAttribute("Usuario");
+                    String tipo = log.getTipo();
+                    if (tipo.equals("Colaborador")) {
+        %>   
+        <jsp:include page="include_files/colabHeaderAlt.jsp" />  
+        <%        } else if (tipo.equals("Administrador")) {
+        %>   
+        <jsp:include page="include_files/adminHeaderAlt.jsp" />  
+        <%}
+                }
+            } catch (NullPointerException e) {
+                response.sendRedirect("oops.jsp");
+                }%>
+
+    <section id="content"><%-- inserido --%>
+        <div class="middle"><%-- inserido --%>
+            <div class="container"><%-- inserido --%>
+                <div class="wrapper"><%-- inserido --%>
+
+                    <h2>Alterar Entidade</h2>
+
+                    <form id="search-form" method="post" action="VerificarSolicitacoes">
+                        <fieldset> 
+                            (*) = Preenchimento obrigatório<br><br>
+                            Entidade* <br />
+                            <input type='text' name ='ncateg' id='ncateg' value="<%=lEntidade.getDisplayname()%>"/>
+                            
+                            <input type="submit" value="Alterar" onclick="location.href=VerificarSolicitacoes?oldEntidade=<%=lEntidade.getIdEntidade()%>" />
+                            <input type="hidden" value="altResultadoEntidade" name="acao" />
+
+                        </fieldset>
+                    </form>
+
+                </div><%-- inserido --%>
+            </div><%-- inserido --%>
+        </div><%-- inserido --%>
+
+        <%@include file="include_files/bottom.jsp" %><%-- inserido --%>
+    </section><%-- inserido --%>
+    <%@include file="include_files/footer.jsp" %><%-- inserido --%>
+</body>
+</html>

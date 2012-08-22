@@ -76,6 +76,7 @@
                         <tr>
                             <td><%= l.getDescricao()%></td>
                             <td><%= l.getDisplayname()%></td>
+                            <td><a href='altResultadoEntidade?oldEntidade=<%=l%>"'>Alterar</a></td>
 
                         </tr>
                         <tr></tr>
