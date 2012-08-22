@@ -26,7 +26,7 @@ public class EntidadeBean {
     public EntidadeBean (String displayname, String descricao,int idEntidade){
         this.displayname = displayname;
         this.descricao = descricao;
-        this.idEntidade=idEntidade;
+        this.idEntidade = idEntidade;
     }
     public EntidadeBean (int idEntidade){
         

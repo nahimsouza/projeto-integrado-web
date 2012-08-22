@@ -116,24 +116,37 @@ public class EntidadeDAO {
         }
 
         try {
-            String SQL = "EXEC usp_ins_entidade '" + e.getDisplayname() +"','"+ e.getDescricao() + "'";
- 
+            String SQL = "EXEC usp_ins_entidade '" + e.getDisplayname() + "','" + e.getDescricao() + "'";
             conn = this.conn;
+            ResultSet rs = null;
             ps = conn.prepareStatement(SQL);
             ps.executeUpdate();
-            int id_ent = this.getIdEntidade(e.getDisplayname());
-            
-           /* for (String k : wiki) {
-                SQL = "EXEC usp_ins_wiki " + id_ent + ",'" + k + "'";
+            SQL = "select id_ent from entidade where displayname = '" + e.getDisplayname() + "'";
+            int id_ent = 0;//= this.getIdEntidade(e.getDisplayname());
+            ps = conn.prepareStatement(SQL);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                id_ent = rs.getInt(1);
+            }
+            for (int i = 0; i < wiki.size(); i++) {
+                //for (String k : wiki) {
+                SQL = "EXEC usp_ins_wiki " + id_ent + ", '" + wiki.get(i) + "'";
+                //SQL = "INSERT INTO entWiki (id_ent, wikikey) VALUES ("+id_ent+",'"+ wiki.get(i)+"')";
                 conn = this.conn;
                 ps = conn.prepareStatement(SQL);
-                ps.executeUpdate(); 
-            }*/
-            CategoriaTipoDAO tipo = new CategoriaTipoDAO();
-            for (CategoriaTipoBean a : l) {
-                tipo = new CategoriaTipoDAO();
-                int id_tipo = tipo.getIdTipo(a.getTipo());
+                ps.executeUpdate();
+            }
+
+            //CategoriaTipoDAO tipo = new CategoriaTipoDAO();
+            //for (CategoriaTipoBean a : l) {
+            for (int i = 0; i < l.size(); i++) {
+                //tipo = new CategoriaTipoDAO();
+                //int id_tipo = tipo.getIdTipo(a.getTipo());
                 //tipo.inserirTipoEntidade(id_ent, id_tipo);
+                SQL = "EXEC usp_ins_tipo_entidade " + id_ent + ", '" + l.get(i).getIdTipo() + "'";
+                conn = this.conn;
+                ps = conn.prepareStatement(SQL);
+                ps.executeUpdate();
             }
         } catch (SQLException sqle) {
             throw new EntidadeDAOException("Erro ao inserir dados " + sqle);
@@ -148,7 +161,7 @@ public class EntidadeDAO {
         ResultSet rs = null;
         try {
             //String SQL = "EXEC usp_cons_id_entidade '" + e.getDisplayname() +"'";
-            String SQL = "SELECT id_ent FROM entidade WHERE displayname= '" + displayname +"'";
+            String SQL = "SELECT id_ent FROM entidade WHERE displayname= '" + displayname + "'";
             conn = this.conn;
             ps = conn.prepareStatement(SQL);
             rs = ps.executeQuery();
