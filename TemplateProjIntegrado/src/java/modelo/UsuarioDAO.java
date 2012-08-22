@@ -248,7 +248,7 @@ public class UsuarioDAO {
                 sql.add("EXEC usp_alt_nome_usuario '" + e +"','"+nome+"'");
             }
             if (!"".equals(email)) {
-                sql.add("EXEC  usp_alt_data_usuario'"+ e+"','"+email+"'");
+                sql.add("EXEC  usp_alt_email_usuario'"+ e+"','"+email+"'");
             }
             if (!"".equals(senha)) {
                 sql.add("EXEC usp_alt_senha_usuario '"+e+"','"+senha+"'");

@@ -118,12 +118,10 @@ function VerificaCadastro(){
         return false;
     }
     else if(edata.match(erData)==null){
-        alert("Data de Nascimento deve estar no formato dd/mm/aaaa!\n\n\
-Ano deve estar entre 1900 e 2099");
+        alert("Data de Nascimento deve estar no formato dd/mm/aaaa!\n\n\Ano deve estar entre 1900 e 2099");
         return false;
     }else{
-        debugger;
-        return document.getElementById("search-form-Cadastro").submit();
+        return document.getElementById("search-form").submit();
     }
 }
 

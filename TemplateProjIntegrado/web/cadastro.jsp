@@ -27,7 +27,7 @@
                 <div class="container">
                     <h2>Insira seus Dados</h2>
                     <br>(*) = Preenchimento Obrigatório
-                    <form id="search-form-Cadastro" method="post" action="ValidarCadastro">
+                    <form id="search-form" method="post" action="ValidarCadastro">
                         <br><br><br>Nome Completo * :<br><input name="cadNome" id="cadNome" type="text" size="25" />
                         apenas letras sem acento
                         <br><br><br> E-Mail * :<br><input name="cadEMail" id="cadEMail" type="text" size="25" />
