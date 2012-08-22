@@ -26,22 +26,34 @@ public class EntidadeDAO {
         PreparedStatement ps = null;
         Connection conn = null;
         ResultSet rs = null;
+        PreparedStatement ps2 = null;
+        ResultSet rs2 = null;
 
         try {
             // Busca ABSOLUTA por entidade:
             //String SQL = "SELECT displayname, descricao FROM entidade WHERE displayname = '" + displayname + "'";
-            String SQL = "EXEC usp_cons_busca_absoluta'" + displayname + "'";
+            //String SQL = "SELECT id_ent, displayname, descricao FROM entidade WHERE displayname='" + displayname +"'";
+             String SQL = "EXEC usp_cons_absoluta_entidade'" + displayname + "'";
             conn = this.conn;
             ps = conn.prepareStatement(SQL);
             rs = ps.executeQuery();
+        
+            
             List<EntidadeBean> list = new ArrayList<EntidadeBean>();
             while (rs.next()) {
                 String name = rs.getObject("displayname").toString(); // o nome entre aspas é o nome do campo no BD
                 String desc = rs.getObject("descricao").toString();
-                int id = rs.getInt("1");
+                //String id = rs.getObject("id_ent").toString();
+                //id = Integer.parseInt(a);
+                int id = 0;//rs.getInt("1");
+                ps2 = conn.prepareStatement("usp_cons_id_entidade '" + name + "'");
+                rs2 = ps2.executeQuery();
+                while(rs2.next()){
+                    id = rs2.getInt(1);
+                }
                 list.add(new EntidadeBean(name, desc, id));
             }
-
+      
             return list;
 
         } catch (SQLException sqle) {
@@ -178,14 +190,14 @@ public class EntidadeDAO {
         }
     }
 
-    public void removerEntidade(EntidadeBean tipo) throws EntidadeDAOException, UsuarioDAOException {
+    public void removerEntidade(EntidadeBean enti) throws EntidadeDAOException, UsuarioDAOException {
         PreparedStatement ps = null;
         Connection conn = null;
 
 
 
         try {
-            String SQL = "";
+            String SQL = "EXEC usp_rem_entidade "+enti.getIdEntidade()+"";
             conn = this.conn;
             ps = conn.prepareStatement(SQL);
             ps.executeUpdate();
