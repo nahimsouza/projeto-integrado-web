@@ -244,19 +244,19 @@ public class UsuarioDAO {
             String dataNasc = u.getDataNasc();
             List<String> sql = new ArrayList<String>();
             
-            if (nome != "") {
-                sql.add("UPDATE usuario SET nome='" + nome + "' WHERE email='" + e + "'");
+            if (!"".equals(nome)) {
+                sql.add("EXEC usp_alt_nome_usuario '" + e +"','"+nome+"'");
             }
-            if (email != "") {
-                sql.add("UPDATE usuario SET email='" + email + "' WHERE email='" + e + "'");
+            if (!"".equals(email)) {
+                sql.add("EXEC  usp_alt_data_usuario'"+ e+"','"+email+"'");
             }
-            if (senha != "") {
-                sql.add("UPDATE usuario SET senha='" + senha + "' WHERE email='" + e + "'");
+            if (!"".equals(senha)) {
+                sql.add("EXEC usp_alt_senha_usuario '"+e+"','"+senha+"'");
             }
-            if (dataNasc != "") {
+            if (!"".equals(dataNasc)) {
                 String[] dataNascimento = dataNasc.split("/");
                 String data = dataNascimento[2] + "-" + dataNascimento[1] + "-" + dataNascimento[0];
-                sql.add("UPDATE usuario SET data_nasc='" + data + "' WHERE email='" + e + "'");
+                sql.add("EXEC usp_alt_data_usuario '" + e + "','" + data +"'");
             }
 
             conn = this.conn;

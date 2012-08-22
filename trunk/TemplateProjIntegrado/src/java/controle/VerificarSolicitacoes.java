@@ -385,7 +385,7 @@ public class VerificarSolicitacoes extends HttpServlet {
         String html = "<option value=''></option>";
         for (Iterator i = lista.iterator(); i.hasNext();) {
             CategoriaTipoBean l = (CategoriaTipoBean) i.next();
-            html += "<option value='" + l.getTipo() + "' name='" + l.getIdTipo() + "'>" + l.getTipo() + "</option>";
+            html += "<option value='" + l.getIdTipo() +","+ l.getTipo() +"'>" + l.getTipo() + "</option>";
         }
 
         response.getWriter().write(html);
@@ -442,7 +442,10 @@ public class VerificarSolicitacoes extends HttpServlet {
             List<CategoriaTipoBean> list = new ArrayList<CategoriaTipoBean>();
             for (String w : lista_cat) {
                 String[] v = w.split(",");
-                list.add(new CategoriaTipoBean(v[0], v[1]));
+                CategoriaTipoBean cat = new CategoriaTipoBean();
+                cat.setIdTipo(Integer.parseInt(v[1]));
+                cat.setIdCategoria(Integer.parseInt(v[0]));
+                list.add(cat);
             }
             entidade.inserirEntidade(e, lista_wiki, list);
             rd = request.getRequestDispatcher("/sucessoCad.jsp");
