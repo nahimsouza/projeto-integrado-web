@@ -24,9 +24,9 @@ public class EntidadeDAO {
 
     public List<EntidadeBean> listaEntidades(String displayname) throws EntidadeDAOException, UsuarioDAOException {
         PreparedStatement ps = null;
-        PreparedStatement ps2 = null;
         Connection conn = null;
         ResultSet rs = null;
+        PreparedStatement ps2 = null;
         ResultSet rs2 = null;
 
         try {
@@ -43,13 +43,15 @@ public class EntidadeDAO {
             while (rs.next()) {
                 String name = rs.getObject("displayname").toString(); // o nome entre aspas é o nome do campo no BD
                 String desc = rs.getObject("descricao").toString();
+                //String id = rs.getObject("id_ent").toString();
+                //id = Integer.parseInt(a);
                 int id = 0;//rs.getInt("1");
                 ps2 = conn.prepareStatement("usp_cons_id_entidade '" + name + "'");
                 rs2 = ps2.executeQuery();
                 while(rs2.next()){
                     id = rs2.getInt(1);
                 }
-                        list.add(new EntidadeBean(name, desc, id));
+                list.add(new EntidadeBean(name, desc, id));
             }
       
             return list;
@@ -206,4 +208,27 @@ public class EntidadeDAO {
             ConnectionUsuarioFactory.closeConnection(conn, ps);
         }
     }
+    
+     public void alterarEntidade(EntidadeBean ent, EntidadeBean oldent) throws EntidadeDAOException, UsuarioDAOException {
+        PreparedStatement ps = null;
+        Connection conn = null;
+
+        if (oldent == null) {
+            throw new EntidadeDAOException("O valor passado não pode ser nulo");
+        }
+
+        try {
+            // MUDAR O SQL            
+            //String SQL = ;
+            conn = this.conn;
+            //ps = conn.prepareStatement(SQL);
+            ps.executeUpdate();
+
+        } catch (SQLException sqle) {
+            throw new EntidadeDAOException("Erro ao inserir dados " + sqle);
+        } finally {
+            ConnectionUsuarioFactory.closeConnection(conn, ps);
+        }
+    }
+    
 }

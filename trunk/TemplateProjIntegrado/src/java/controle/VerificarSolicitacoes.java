@@ -59,6 +59,14 @@ public class VerificarSolicitacoes extends HttpServlet {
                 Logger.getLogger(VerificarSolicitacoes.class.getName()).log(Level.SEVERE, null, ex);
             }
 
+        }else if (acao.compareTo("altResultadoEntidade") == 0) {
+            String id = request.getParameter("lEntidade");
+            String name = request.getParameter("ncateg");
+                    try {
+                        acaoAlterarEntidade(request, response, id,name);
+                    } catch (UsuarioDAOException ex) {
+                        Logger.getLogger(VerificarSolicitacoes.class.getName()).log(Level.SEVERE, null, ex);
+                    }
         }
 
 
@@ -385,7 +393,7 @@ public class VerificarSolicitacoes extends HttpServlet {
         String html = "<option value=''></option>";
         for (Iterator i = lista.iterator(); i.hasNext();) {
             CategoriaTipoBean l = (CategoriaTipoBean) i.next();
-            html += "<option value='" + l.getIdTipo() +","+ l.getTipo() +"'>" + l.getTipo() + "</option>";
+            html += "<option value='" + l.getIdTipo() + "," + l.getTipo() + "'>" + l.getTipo() + "</option>";
         }
 
         response.getWriter().write(html);
@@ -548,11 +556,11 @@ public class VerificarSolicitacoes extends HttpServlet {
         sessao.removeAttribute("IdTipo");
 
         RequestDispatcher rd = null;
-        
+
         try {
 
             CategoriaTipoDAO tipo = new CategoriaTipoDAO();
-            tipo.alterarTipo(tip, oldtip); 
+            tipo.alterarTipo(tip, oldtip);
             request.setAttribute("CategoriaTipoBean", tip);
             rd = request.getRequestDispatcher("sucessoOperacao2.jsp");
 
@@ -560,8 +568,8 @@ public class VerificarSolicitacoes extends HttpServlet {
             request.setAttribute("CategoriaTipoBean", null);
             rd = request.getRequestDispatcher("falhaOperacao.jsp");
         }
-        
-        rd.forward(request,response);
+
+        rd.forward(request, response);
 
     }
 
@@ -729,5 +737,29 @@ public class VerificarSolicitacoes extends HttpServlet {
         } catch (EntidadeDAOException e) {
             request.setAttribute("EntidadeBean", null);
         }
+    }
+    
+        private void acaoAlterarEntidade(HttpServletRequest request, HttpServletResponse response, String id, String name)
+            throws ServletException, IOException, UsuarioDAOException {
+
+        EntidadeBean ent = new EntidadeBean("ent", "");
+        EntidadeBean oldent = new EntidadeBean("oldent", id);
+
+        RequestDispatcher rd = null;
+
+        try {
+
+            EntidadeDAO entidade = new EntidadeDAO();
+            entidade.alterarEntidade(ent, oldent);
+            request.setAttribute("EntidadeBean", ent);
+            rd = request.getRequestDispatcher("sucessoOperacao2.jsp");
+
+        } catch (EntidadeDAOException e) {
+            request.setAttribute("EntidadeBean", null);
+            rd = request.getRequestDispatcher("falhaOperacao.jsp");
+        }
+
+        rd.forward(request, response);
+
     }
 }
