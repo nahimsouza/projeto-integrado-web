@@ -486,20 +486,21 @@ public class VerificarSolicitacoes extends HttpServlet {
         sessao.removeAttribute("IdCat");
 
 
+        RequestDispatcher rd = null;
+
         try {
 
             CategoriaTipoDAO cat = new CategoriaTipoDAO();
             cat.alterarCategoria(categ, oldcateg);
-
             request.setAttribute("CategoriaTipoBean", categ);
+            rd = request.getRequestDispatcher("sucessoOperacao2.jsp");
+
 
         } catch (CategoriaTipoDAOException e) {
             request.setAttribute("CategoriaTipoBean", null);
+            rd = request.getRequestDispatcher("falhaOperacao.jsp");
         }
-
-        RequestDispatcher rd = null;
-
-        rd = request.getRequestDispatcher("/sucessoOperacao2.jsp");
+        rd = request.getRequestDispatcher("sucessoOperacao2.jsp");
 
         rd.forward(request, response);
     }
@@ -533,16 +534,21 @@ public class VerificarSolicitacoes extends HttpServlet {
         sessao.removeAttribute("Tipo");
         sessao.removeAttribute("IdTipo");
 
+        RequestDispatcher rd = null;
+        
         try {
 
             CategoriaTipoDAO tipo = new CategoriaTipoDAO();
-            tipo.alterarTipo(tip, oldtip); //temos que verificar com o Nahim o que é isso???
-
+            tipo.alterarTipo(tip, oldtip); 
             request.setAttribute("CategoriaTipoBean", tip);
+            rd = request.getRequestDispatcher("sucessoOperacao2.jsp");
 
         } catch (CategoriaTipoDAOException e) {
             request.setAttribute("CategoriaTipoBean", null);
+            rd = request.getRequestDispatcher("falhaOperacao.jsp");
         }
+        
+        rd.forward(request,response);
 
     }
 
@@ -621,7 +627,7 @@ public class VerificarSolicitacoes extends HttpServlet {
             request.setAttribute("CategoriaTipoBean", null);
             rd = request.getRequestDispatcher("/falhaOperacao.jsp");
         }
-        
+
         rd.forward(request, response);
 
     }
@@ -632,7 +638,7 @@ public class VerificarSolicitacoes extends HttpServlet {
         CategoriaTipoBean categoria = new CategoriaTipoBean("Categoria", idCat);
 
         RequestDispatcher rd = null;
-        
+
         try {
 
             CategoriaTipoDAO cat = new CategoriaTipoDAO();
