@@ -92,7 +92,7 @@ function VerificaCadastro(){
     erMail = /^[\w\.?]+@[\w]+\.[\w]{2,4}\b(\.[\w]+)?\b$/;
     erNome = /^[A-Z a-z]+$/;             // /^[\w +]+$/;
     erSenha = /^.{6,10}$/;
-    erData = /^[0-9]{2}\/[0-9]{2}\/[0-9]{4}$/
+    erData = /^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[012])\/(19|20)[0-9]{2}$/
     
     var nome, email, senha, rsenha;
     
@@ -118,13 +118,12 @@ function VerificaCadastro(){
         return false;
     }
     else if(edata.match(erData)==null){
-        alert("Data de Nascimento deve estar no formato dd/mm/aaaa!");
+        alert("Data de Nascimento deve estar no formato dd/mm/aaaa!\n\n\
+Ano deve estar entre 1900 e 2099");
         return false;
     }else{
         debugger;
-        alert("vsf codigo dos infernos");
         return document.getElementById("search-form-Cadastro").submit();
-        alert("e outra vez");
     }
 }
 
@@ -374,7 +373,7 @@ function VerificaAltCadastro(){
     erMail = /^([\w\.?]+@[\w]+\.[\w]{2,4}\b(\.[\w]+)?\b)?$/;
     erNome = /^[A-Z a-z]+$/;            //   /^([\w +]+)?$/;
     erSenha = /^(.{6,10})?$/;
-    erData = /^([0-9]{2}\/[0-9]{2}\/[0-9]{4})?$/
+    erData = /^((0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[012])\/(19|20)[0-9]{2})?$/
     
     var nome, email, senha, rsenha;
     
