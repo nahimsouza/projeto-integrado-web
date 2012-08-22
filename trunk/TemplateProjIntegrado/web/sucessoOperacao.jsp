@@ -51,7 +51,7 @@
                                         <div class="wrapper">
                                             <div class="grid9" id="conEntidade">
                                                 <h2>Operação realizada com sucesso!</h2>
-                                                <p><h3><a href="viewSolicitacoes.jsp"> Voltar à página de solicitações </a></h3> </p>
+                                                <p><h3><a href="usuarios.jsp"> Voltar à página de solicitações </a></h3></p>
                                             </div>
                                         </div>
 
