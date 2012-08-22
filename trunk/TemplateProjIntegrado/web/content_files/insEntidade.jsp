@@ -15,15 +15,32 @@
             List<String> list_cat = new ArrayList<String>();
             request.getSession().setAttribute("list_cat", list_cat);
         }
+
+        String obj = (String)request.getSession().getAttribute("displayname");
+        String z;
+        if(obj!= null && obj != ""){
+            z = obj;
+        }else{
+            z="";
+        }
+        
+        String obj1 = (String)request.getSession().getAttribute("descricao");
+        String q;
+        if(obj1!= null && obj1 != ""){
+            q = obj1;
+        }else{
+            q="";
+        }
+
     %>
 <form id="search-form" action="VerificarSolicitacoes" method="post">
     (*) = Preenchimento obrigatório
     <br /><br />
     Displayname (nome da entidade) * <br /> 
-    <input id="displayname" name="displayname" type="text" size="50" maxlength="50"/>
+    <input id="displayname" name="displayname" type="text" size="50" maxlength="50" value="<%=z %>"/>
     <br /><br /> 
 
-    Descrição <br /> <textarea id="description" name ="descricao" cols="35" rows="5"></textarea>
+    Descrição <br /> <textarea id="description" name ="descricao" cols="35" rows="5"><%=q%></textarea>
     <br /><br /> 
 
     Wikikey <br /><input id="wiki" name="wikikey" type="text" size="28" maxlength="30" onblur="document.getElementById('catnome').value = this.value;" /> 

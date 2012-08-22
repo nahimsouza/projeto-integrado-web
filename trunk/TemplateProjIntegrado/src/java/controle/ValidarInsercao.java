@@ -76,6 +76,10 @@ public class ValidarInsercao extends HttpServlet {
     }
 
     private void insereWiki(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String displayname = request.getParameter("displayname");
+        String descricao = request.getParameter("descricao");
+        request.getSession().setAttribute("descricao", descricao);
+        request.getSession().setAttribute("displayname", displayname);
         List<String> list = (List<String>) request.getSession().getAttribute("list_cat");
         String wiki = request.getParameter("catnome");
         list.add(wiki);
@@ -85,6 +89,10 @@ public class ValidarInsercao extends HttpServlet {
     }
 
     private void removeWiki(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String displayname = request.getParameter("displayname");
+        String descricao = request.getParameter("descricao");
+        request.getSession().setAttribute("descricao", descricao);
+        request.getSession().setAttribute("displayname", displayname);
         String cat_lista = (String) request.getParameter("selected");
         List<String> list = (List<String>) request.getSession().getAttribute("list_cat");
         list.remove(cat_lista);
@@ -94,7 +102,10 @@ public class ValidarInsercao extends HttpServlet {
     }
     
     private void insereCatTipo(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        String tipo_lista = request.getParameter("tipoid");
+        String displayname = request.getParameter("displayname");
+        String descricao = request.getParameter("descricao");
+        request.getSession().setAttribute("descricao", descricao);
+        request.getSession().setAttribute("displayname", displayname);
         String tiponome = request.getParameter("tiponome");
         List<String> list = (List<String>) request.getSession().getAttribute("list_aux");
         String categoria_lista = request.getParameter("catid");
@@ -108,6 +119,10 @@ public class ValidarInsercao extends HttpServlet {
     }
 
     private void removeCatTipo(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String displayname = request.getParameter("displayname");
+        String descricao = request.getParameter("descricao");
+        request.getSession().setAttribute("descricao", descricao);
+        request.getSession().setAttribute("displayname", displayname);
         String tipo_lista = (String) request.getParameter("selected");
         List<String> list = (List<String>) request.getSession().getAttribute("list_aux");
         list.remove(tipo_lista);

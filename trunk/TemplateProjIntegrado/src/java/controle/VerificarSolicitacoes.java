@@ -446,10 +446,20 @@ public class VerificarSolicitacoes extends HttpServlet {
             }
             entidade.inserirEntidade(e, lista_wiki, list);
             rd = request.getRequestDispatcher("/sucessoCad.jsp");
+            request.getSession().setAttribute("list_aux", null);
+            request.getSession().setAttribute("list_cat", null);
+            request.getSession().setAttribute("janela", null);
+            request.getSession().setAttribute("descricao", null);
+            request.getSession().setAttribute("displayname", null);
 
 
         } catch (Exception sqle) {
             rd = request.getRequestDispatcher("/oops.jsp");
+            request.getSession().setAttribute("list_aux", null);
+            request.getSession().setAttribute("list_cat", null);
+            request.getSession().setAttribute("janela", null);
+            request.getSession().setAttribute("descricao", null);
+            request.getSession().setAttribute("displayname", null);
         }
 
         rd.forward(request, response);
