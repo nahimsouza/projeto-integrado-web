@@ -121,7 +121,7 @@ public class EntidadeDAO {
             ResultSet rs = null;
             ps = conn.prepareStatement(SQL);
             ps.executeUpdate();
-            SQL = "select id_ent from entidade where displayname = '" + e.getDisplayname() + "'";
+            SQL = "usp_cons_id_entidade '" + e.getDisplayname() + "'";
             int id_ent = 0;
             ps = conn.prepareStatement(SQL);
             rs = ps.executeQuery();
