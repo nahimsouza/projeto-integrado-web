@@ -30,6 +30,9 @@ public class ValidarUsuario extends HttpServlet {
         if (tipo.compareTo("rejeitar") == 0) {
             acaoRejeitar(request, response, user);
         }
+        if (tipo.compareTo("rejeitarSelecionado") == 0) {
+            acaoRejeitarSelecionado(request, response, user);
+        }
     }
 
     private void acaoSalvar(HttpServletRequest request, HttpServletResponse response, String user)
@@ -53,7 +56,7 @@ public class ValidarUsuario extends HttpServlet {
         RequestDispatcher rd = null;
 
         rd = request.getRequestDispatcher("/sucessoOperacao.jsp");
-        
+
         rd.forward(request, response);
     }
 
@@ -73,6 +76,25 @@ public class ValidarUsuario extends HttpServlet {
         if (list != null) {
             list.remove(objUsuario);
             request.setAttribute("UsuarioBean", list);
+        }
+
+        RequestDispatcher rd = null;
+
+        rd = request.getRequestDispatcher("/sucessoOperacao.jsp");
+
+        rd.forward(request, response);
+    }
+
+    private void acaoRejeitarSelecionado(HttpServletRequest request, HttpServletResponse response, String user)
+            throws ServletException, IOException {
+
+        HttpSession sessao = request.getSession(false);
+        UsuarioBean usu = (UsuarioBean)sessao.getAttribute("userview");
+        try {
+            UsuarioDAO u = new UsuarioDAO();
+            u.rejeitarUsuario(usu.getEmail());
+        } catch (Exception e){
+            e.printStackTrace();
         }
 
         RequestDispatcher rd = null;

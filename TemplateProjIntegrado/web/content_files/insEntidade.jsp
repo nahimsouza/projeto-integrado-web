@@ -64,7 +64,7 @@
     </select>
 
     <!-- Precisa pegar do BD -->
-    <select id="tipo" name="tipo" onblur="document.getElementById('tipoid').value = this.selectedIndex; document.getElementById('tiponome').value = this[this.selectedIndex].value;">
+    <select id="tipo" name="tipo" onblur="document.getElementById('tiponome').value = this[this.selectedIndex].value;">
 
     </select>
     <input type="button" name="tipoButton" value="Adicionar" onclick="VerificaListIns();"/>
@@ -75,7 +75,7 @@
                 if(lista_b != null){ 
                     for(String i : lista_b){
                         String[] a = i.split(",");
-                        String b = "/"+a[2]+"/"+a[1];
+                        String b = "/"+a[2]+"/"+a[3];
             %>
             <option value='<%=i%>' SELECTED><%=b%></option>               
             <% } } %>

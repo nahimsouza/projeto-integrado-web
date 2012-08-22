@@ -347,23 +347,16 @@ function alterarSenha(userId){
         document.getElementById("tipo").value = 'alterarSenha';
         document.getElementById('user').value = userId;
         document.getElementById("search-form").submit();
-        alert("Será que submeteu????");
     }
 }
 
 function excluirUsuario(userId){
-    
-    //alert("Entrou no acaoExcluirUsuario");
-    
-    if(confirm("Deseja Excluir o Usuário?")){
-        //alert("Entrou dentro do if!!!!")
-        document.getElementById('tipo').value = 'rejeitar';
-        //alert("Passou pelo rejeitar")
-        document.getElementById('user').value = userId;
-        //alert("Passou pelo user")
-        document.getElementById("search-form").submit();
-    //alert("Será que submeteu????");
 
+    if(confirm("Deseja Excluir o Usuário?")){
+        document.getElementById('tipo').value = 'rejeitarSelecionado';
+        document.getElementById('user').value = userId;
+        document.getElementById("search-form").action = "ValidarUsuario";
+        document.getElementById("search-form").submit();
     }
     
 }
@@ -371,7 +364,7 @@ function excluirUsuario(userId){
 function VerificaAltCadastro(){
     var erMail, erNome, erSenha, erData;
     erMail = /^([\w\.?]+@[\w]+\.[\w]{2,4}\b(\.[\w]+)?\b)?$/;
-    erNome = /^[A-Z a-z]+$/;            //   /^([\w +]+)?$/;
+    erNome = /^[A-Z a-z]*$/;            //   /^([\w +]+)?$/;
     erSenha = /^(.{6,10})?$/;
     erData = /^((0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[012])\/(19|20)[0-9]{2})?$/
     

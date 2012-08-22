@@ -70,7 +70,8 @@
                                 <input type="hidden" name="user" id="user" >
                                 <%
                                     UsuarioBean objUsuario = (UsuarioBean) request.getAttribute("UsuarioBean");
-
+                                    
+                                    request.getSession().setAttribute("userview", objUsuario);
                                     if (objUsuario == null) {
 
                                 %>
