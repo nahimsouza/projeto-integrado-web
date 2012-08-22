@@ -283,7 +283,7 @@ public class CategoriaTipoDAO {
         Connection conn = null;
         ResultSet rs = null;
         try {
-            String SQL = "EXEC usp_ins_tipo_entidade " + id_ent + "," + id_tipo;
+            String SQL = "EXEC usp_ins_tipo_entidade " + id_ent + ", " + id_tipo;
             conn = this.conn;
             ps = conn.prepareStatement(SQL);
             ps.executeUpdate();
@@ -301,17 +301,16 @@ public class CategoriaTipoDAO {
         ResultSet rs = null;
         try {
             //String SQL = "EXEC usp_cons_id_tipo '" + c.getTipo() + "'";
-            String SQL = "SELECT id_tipo FROM tipo WHERE tipo='" + tipo + "'";
+            String SQL = "SELECT id_tipo FROM tipo WHERE tipo='/" + tipo + "'";
             conn = this.conn;
             ps = conn.prepareStatement(SQL);
             rs = ps.executeQuery();
-            int id = 0;
-            String a = "";
+
             while (rs.next()) {
-                a = rs.getString("id_tipo");
+                int a = rs.getInt("id_tipo");
+                return a;
             }
-            id = Integer.parseInt(a);
-            return id;
+            return 0;
 
         } catch (SQLException sqle) {
             throw new CategoriaTipoDAOException("Erro ao inserir dados " + sqle);

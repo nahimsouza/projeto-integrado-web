@@ -123,21 +123,18 @@ public class EntidadeDAO {
             ps.executeUpdate();
             int id_ent = this.getIdEntidade(e.getDisplayname());
             
-            for (String k : wiki) {
+           /* for (String k : wiki) {
                 SQL = "EXEC usp_ins_wiki " + id_ent + ",'" + k + "'";
                 conn = this.conn;
                 ps = conn.prepareStatement(SQL);
-                ps.executeUpdate();
-            }
+                ps.executeUpdate(); 
+            }*/
             CategoriaTipoDAO tipo = new CategoriaTipoDAO();
-            //tipo.inserirTipo(l);
             for (CategoriaTipoBean a : l) {
                 tipo = new CategoriaTipoDAO();
                 int id_tipo = tipo.getIdTipo(a.getTipo());
-                tipo.inserirTipoEntidade(5, 2);
+                //tipo.inserirTipoEntidade(id_ent, id_tipo);
             }
-
-
         } catch (SQLException sqle) {
             throw new EntidadeDAOException("Erro ao inserir dados " + sqle);
         } finally {
@@ -151,17 +148,15 @@ public class EntidadeDAO {
         ResultSet rs = null;
         try {
             //String SQL = "EXEC usp_cons_id_entidade '" + e.getDisplayname() +"'";
-            String SQL = "SELECT id_ent FROM entidade WHERE displayname='" + displayname +"'";
+            String SQL = "SELECT id_ent FROM entidade WHERE displayname= '" + displayname +"'";
             conn = this.conn;
             ps = conn.prepareStatement(SQL);
             rs = ps.executeQuery();
-            int id;
-            String a = "";
             while (rs.next()) {
-                a = rs.getString("id_ent");
+                int a = rs.getInt("id_ent");
+                return a;
             }
-            id = Integer.parseInt(a);
-            return id;
+            return 0;
 
         } catch (SQLException sqle) {
             throw new EntidadeDAOException("Erro ao inserir dados " + sqle);
