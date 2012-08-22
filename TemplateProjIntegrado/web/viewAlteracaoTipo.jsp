@@ -74,7 +74,7 @@
                     </table>
                     <% }%>
                     <br>
-                    <p><a href="consulta.jsp"> Nova Consulta </a> </p>
+                    <p><a href="alteracao.jsp"> Nova Consulta </a> </p>
 
 
                 </div><%-- inserido --%>

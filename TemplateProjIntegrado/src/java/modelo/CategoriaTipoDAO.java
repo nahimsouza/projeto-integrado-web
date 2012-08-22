@@ -209,7 +209,7 @@ public class CategoriaTipoDAO {
 
         try {
             // MUDAR O SQL            
-            String SQL = "UPDATE categoria SET categoria='" + novaCategoria.getCategoria() + "' WHERE id_cat=" + categoria.getIdCategoria();
+            String SQL = "UPDATE categoria SET categoria='/" + novaCategoria.getCategoria() + "' WHERE id_cat=" + categoria.getIdCategoria();
             conn = this.conn;
             ps = conn.prepareStatement(SQL);
             ps.executeUpdate();
@@ -231,7 +231,7 @@ public class CategoriaTipoDAO {
 
         try {
             // MUDAR O SQL
-            String SQL = "UPDATE tipo SET tipo='" + novoTipo.getTipo() + "' WHERE id_tipo=" + tipo.getIdTipo();
+            String SQL = "UPDATE tipo SET tipo='/" + novoTipo.getTipo() + "' WHERE id_tipo=" + tipo.getIdTipo();
             conn = this.conn;
             ps = conn.prepareStatement(SQL);
             ps.executeUpdate();
