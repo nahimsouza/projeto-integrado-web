@@ -351,6 +351,7 @@ function alterarSenha(userId){
 function excluirUsuario(userId){
 
     if(confirm("Deseja Excluir o Usuário?")){
+        
         document.getElementById('tipo').value = 'rejeitarSelecionado';
         document.getElementById('user').value = userId;
         document.getElementById("search-form").action = "ValidarUsuario";
