@@ -46,7 +46,7 @@ public class EntidadeDAO {
                 //String id = rs.getObject("id_ent").toString();
                 //id = Integer.parseInt(a);
                 int id = 0;//rs.getInt("1");
-                ps2 = conn.prepareStatement("usp_cons_id_entidade '" + name + "'");
+                ps2 = conn.prepareStatement("exec usp_cons_id_entidade '" + name + "'");
                 rs2 = ps2.executeQuery();
                 while(rs2.next()){
                     id = rs2.getInt(1);
@@ -133,7 +133,7 @@ public class EntidadeDAO {
             ResultSet rs = null;
             ps = conn.prepareStatement(SQL);
             ps.executeUpdate();
-            SQL = "usp_cons_id_entidade '" + e.getDisplayname() + "'";
+            SQL = "exec usp_cons_id_entidade '" + e.getDisplayname() + "'";
             int id_ent = 0;
             ps = conn.prepareStatement(SQL);
             rs = ps.executeQuery();
