@@ -385,7 +385,7 @@ public class VerificarSolicitacoes extends HttpServlet {
         String html = "<option value=''></option>";
         for (Iterator i = lista.iterator(); i.hasNext();) {
             CategoriaTipoBean l = (CategoriaTipoBean) i.next();
-            html += "<option value=" + l.getIdTipo() + ">" + l.getTipo() + "</option>";
+            html += "<option value='" + l.getTipo() + "' name='" + l.getIdTipo() + "'>" + l.getTipo() + "</option>";
         }
 
         response.getWriter().write(html);
